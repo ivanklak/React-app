@@ -1,0 +1,17 @@
+.header {
+  grid-area: h;
+  background-color: #000000;
+  text-align: left;
+}
+.header img {
+  width: 60px;
+  padding: 2px;
+}
+
+/* .header {
+    color: white;
+
+}  */
+
+/* font-size: 20px; */
+/* vertical-align: 10px; */
