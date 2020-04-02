@@ -11,13 +11,13 @@ const MyPosts = props => {
 
   let onAddPost = () => {
     props.addPost();
-  };  
+  };
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
     props.updateNewPostText(text);
-  }; 
-
+  };
+  //ojoon
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>
@@ -25,7 +25,11 @@ const MyPosts = props => {
         <div>
           <div>New post</div>
         </div>
-        <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
+        <textarea
+          onChange={onPostChange}
+          ref={newPostElement}
+          value={props.newPostText}
+        />
       </div>
       <div>
         <button onClick={onAddPost}>Add post</button>
