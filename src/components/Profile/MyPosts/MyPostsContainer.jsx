@@ -7,7 +7,7 @@ let mapStateToProps = state => {
   return {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText
-  };
+  }; //перерисовка
 };
 let mapDispatchToProps = dispatch => {
   return {

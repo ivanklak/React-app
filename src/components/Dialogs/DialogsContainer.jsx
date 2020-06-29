@@ -1,21 +1,21 @@
 import React from "react";
-import { sendMessageCreator, newMessageBodyCreator } from "../../Redux/state";
+import { sendMessageCreator, updateNewMessageBodyCreator } from "../../Redux/state";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 
 let mapStateToProps = state => {
   return {
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage //перерисовка
   };
 };
 let mapDispatchToProps = (dispatch) => {
   return {
     //callback -и
-    newMessageBody: () => {
+    sendMessage: () => {
       dispatch(sendMessageCreator());
     },
-    sendMessage: (body) => {
-      dispatch(newMessageBodyCreator(body));
+    updateNewMessageBody: (body) => {
+      dispatch(updateNewMessageBodyCreator(body));
     }
   };
 };
