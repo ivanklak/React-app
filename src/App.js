@@ -11,6 +11,7 @@ import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App = props => {
   return (
@@ -23,7 +24,7 @@ const App = props => {
         render={() => <DialogsContainer />} />
 
         <Route path="/profile" 
-        render={() => <Profile />} />
+        render={() => <ProfileContainer />} />
 
         <Route path="/users" 
         render={() => <UsersContainer /> } />
