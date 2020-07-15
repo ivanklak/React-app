@@ -2,6 +2,11 @@
     grid-area: n;
     background-color: rgb(23, 31, 36);
     padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 8.8%;
+    width: 156px;
+
   }
   .item a {
       color: #dbd9d9;

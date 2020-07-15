@@ -28,20 +28,31 @@ const Dialogs = props => {
     props.updateNewMessageBody(body);
   };
 
+  // const input = document.querySelector(".message-input");
+
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>{dialogsElements}</div>
       <div className={s.messages}>{messagesElements}</div>
       <div>
-        <textarea
+        {/* <textarea
           // ref={newMessageElement}
           value={newMessageBody}
           onChange={onNewMessageChange}
           placeholder="Enter your message"
-        ></textarea>
+        ></textarea> */}
+        <form className={s.form}>
+          <input className={s.messageInput} type="message" placeholder="Enter your message" value={newMessageBody}
+          onChange={onNewMessageChange}  />
+          {/* <button class="send-button" type="submit" onClick={onSendMessageClick}>
+            <i class="far fa-envelope send-envelope"></i>
+            Send
+          </button> */}
+        </form>
+        <i class="far fa-envelope hidden-envelope"></i>
       </div>
       <div>
-        <button onClick={onSendMessageClick}>Send</button>
+        <button className={s.sendButton} onClick={onSendMessageClick}>Send</button>
       </div>
     </div>
   );

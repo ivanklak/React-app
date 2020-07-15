@@ -2,10 +2,15 @@
   grid-area: h;
   background-color: #3d3d3d;
   text-align: left;
+  border-radius: 10px;
+  position: relative;
+  top: 5%;
 }
 .header img {
   width: 60px;
   padding: 2px;
+  position: relative;
+  bottom: 3%;
 }
 .loginBlock {
   float: right;
