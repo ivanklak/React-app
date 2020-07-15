@@ -33,6 +33,12 @@ const Navbar = (props) => {
       <div className={s.itemfr}>
         <FriendsItem />
       </div>
+      <div className={s.itemfre}>
+        <FriendsItem />
+      </div>
+      <div className={s.itemfres}>
+        <FriendsItem />
+      </div>
       {/* <div className={s.itemf}>
        <img src="https://consol-games.com/uploads/posts/2012-12/1356061760_1341555753_00470-01.jpg" />
       </div>
