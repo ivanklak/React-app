@@ -15,21 +15,25 @@ export const usersAPI = {
       .then(response => {
         return response.data;
       });
+  },
+  toFollow(userId) {
+    return instance.post(`follow/${userId}`).then(response => {
+      return response.data;
+    });
+  },
+  toUnfollow(userId) {
+    return instance.delete(`follow/${userId}`).then(response => {
+      return response.data;
+    });
+  },
+  getProfile(userId) {
+    return instance.get(`profile/` + userId);
   }
 };
-
-export const followAPI = {
-  toFollow(id) {
-    return instance.post(`follow/${id}`).then(response => {
+export const authAPI = {
+  me() {
+    return instance.get(`auth/me`).then(response => {
       return response.data;
     });
   }
-};
-
-export const unfollowAPI = {
-  toUnfollow(id) {
-    return instance.delete(`follow/${id}`).then(response => {
-      return response.data;
-    });
-  }
-};
+}
