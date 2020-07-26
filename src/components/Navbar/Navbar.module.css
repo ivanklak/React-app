@@ -1,14 +1,15 @@
 .nav {
   grid-area: n;
-  background-color: rgb(23, 31, 36);
+  background-color: rgb(255, 255, 255);
   padding: 20px;
   border-radius: 10px;
   position: absolute;
-  top: 8.8%;
+  top: 9%;
   width: 156px;
+  box-shadow: 0 0 10px rgba(143, 142, 142, 0.5);
 }
 .item a {
-  color: #dbd9d9;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -20,7 +21,7 @@
   font-size: x-large;
 }
 .items a {
-  color: #dbd9d9;
+  color: #000000;
   text-decoration: none;
 }
 .items a.activeLink {

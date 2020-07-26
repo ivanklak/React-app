@@ -5,6 +5,7 @@
   border-radius: 10px;
   position: relative;
   top: 5%;
+  box-shadow: 0 0 10px rgba(175, 175, 175, 0.5);
 }
 .header img {
   width: 60px;
@@ -14,6 +15,8 @@
 }
 .loginBlock {
   float: right;
+  position: relative;
+  right: 1%;
 }
 .loginBlock a {
   color: white;

@@ -3,6 +3,7 @@ import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { sendMessageCreator, newMessageBodyCreator } from "./../../Redux/state";
+import {Redirect} from "react-router-dom";
 
 const Dialogs = props => {
   let state = props.dialogsPage;
@@ -28,6 +29,8 @@ const Dialogs = props => {
     props.updateNewMessageBody(body);
   };
 
+  if (!props.isAuth) return <Redirect to={"/login"} />;
+
   // const input = document.querySelector(".message-input");
 
   return (
@@ -42,8 +45,13 @@ const Dialogs = props => {
           placeholder="Enter your message"
         ></textarea> */}
         <form className={s.form}>
-          <input className={s.messageInput} type="message" placeholder="Enter your message" value={newMessageBody}
-          onChange={onNewMessageChange}  />
+          <input
+            className={s.messageInput}
+            type="message"
+            placeholder="Enter your message"
+            value={newMessageBody}
+            onChange={onNewMessageChange}
+          />
           {/* <button class="send-button" type="submit" onClick={onSendMessageClick}>
             <i class="far fa-envelope send-envelope"></i>
             Send
@@ -52,7 +60,9 @@ const Dialogs = props => {
         <i class="far fa-envelope hidden-envelope"></i>
       </div>
       <div>
-        <button className={s.sendButton} onClick={onSendMessageClick}>Send</button>
+        <button className={s.sendButton} onClick={onSendMessageClick}>
+          Send
+        </button>
       </div>
     </div>
   );

@@ -13,10 +13,11 @@
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: rgb(224, 224, 224);
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
   position: absolute;
-  top: 8.8%; 
+  top: 9%; 
   left: 20.3%;
   width: 1000px;
+  box-shadow: 0 0 10px rgba(187, 187, 187, 0.5);
 }
