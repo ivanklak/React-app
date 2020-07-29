@@ -15,6 +15,7 @@ import * as Axios from "axios";
 import Preloader from "../Preloader/Preloader";
 import { usersAPI } from "../../api/api";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -86,12 +87,23 @@ let mapStateToProps = state => {
 //   };
 // };
 
-//let withRedirect = withAuthRedirect(UsersContainer); 
+//let withRedirect = withAuthRedirect(UsersContainer);
 
-export default withAuthRedirect(connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setCurrentPage,
-  toggleFollowingProgress,
-  getUsers
-})(UsersContainer));
+export default compose(
+  withAuthRedirect, //защита
+  connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setCurrentPage,
+    toggleFollowingProgress,
+    getUsers
+  })
+)(UsersContainer);
+
+// export default withAuthRedirect(connect(mapStateToProps, {
+//   follow,
+//   unfollow,
+//   setCurrentPage,
+//   toggleFollowingProgress,
+//   getUsers
+// })(UsersContainer));

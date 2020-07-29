@@ -3,9 +3,10 @@ import Profile from "./Profile";
 import * as Axios from "axios";
 import { connect } from "react-redux";
 import { getUserProfile } from "./../../Redux/profile-reducer";
-import { withRouter, Redirect} from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { usersAPI } from "../../api/api";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -28,14 +29,22 @@ class ProfileContainer extends React.Component {
   }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
 let mapStateToProps = state => ({
   profile: state.profilePage.profile
 });
 
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
+//стало:
+export default compose(
+  connect(mapStateToProps, { getUserProfile }),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);
 
-export default connect(mapStateToProps, { getUserProfile })(
-  WithUrlDataContainerComponent
-);
+//было:
+// let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
+// let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
+
+// export default connect(mapStateToProps, { getUserProfile })(
+//   WithUrlDataContainerComponent
+// );
