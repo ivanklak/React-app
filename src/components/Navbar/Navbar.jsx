@@ -30,6 +30,7 @@ const Navbar = (props) => {
       <div className={s.items}>
         <NavLink to="/friends" activeClassName={s.activeLink}>Friends</NavLink>
       </div>
+      <NavLink to="/profile">
       <div className={s.itemfr}>
         <FriendsItem />
       </div>
@@ -39,6 +40,7 @@ const Navbar = (props) => {
       <div className={s.itemfres}>
         <FriendsItem />
       </div>
+      </NavLink>
       {/* <div className={s.itemf}>
        <img src="https://consol-games.com/uploads/posts/2012-12/1356061760_1341555753_00470-01.jpg" />
       </div>

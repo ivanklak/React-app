@@ -2,7 +2,7 @@ import React from "react";
 import Profile from "./Profile";
 import * as Axios from "axios";
 import { connect } from "react-redux";
-import { getUserProfile } from "./../../Redux/profile-reducer";
+import { getUserProfile, getStatus, updateStatus } from "./../../Redux/profile-reducer";
 import { withRouter, Redirect } from "react-router-dom";
 import { usersAPI } from "../../api/api";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -18,29 +18,36 @@ class ProfileContainer extends React.Component {
     // usersAPI.getProfile.get(userId).then(data => {
     //   this.props.setUserProfile(data.data);
     // });
+    this.props.getStatus(userId);
   }
 
   render() {
     return (
       <div>
-        <Profile {...this.props} profile={this.props.profile} />
+        <Profile
+          {...this.props}
+          profile={this.props.profile}
+          status={this.props.status}
+          updateStatus={this.props.updateStatus}
+        />
       </div>
     );
   }
 }
 
 let mapStateToProps = state => ({
-  profile: state.profilePage.profile
+  profile: state.profilePage.profile,
+  status: state.profilePage.status
 });
 
 //стало:
 export default compose(
-  connect(mapStateToProps, { getUserProfile }),
+  connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
   withRouter
   //withAuthRedirect
 )(ProfileContainer);
 
-//было:
+//было: (HOC)
 // let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 // let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
