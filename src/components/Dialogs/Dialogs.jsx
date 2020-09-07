@@ -3,7 +3,8 @@ import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { sendMessageCreator, newMessageBodyCreator } from "./../../Redux/state";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { Field, reduxForm } from "redux-form";
 
 const Dialogs = props => {
   let state = props.dialogsPage;
@@ -18,15 +19,20 @@ const Dialogs = props => {
 
   //let newMessageElement = React.createRef();
 
-  let onSendMessageClick = () => {
-    props.sendMessage();
-    // let text = newMessageElement.current.value;
-    // alert(text);
-  };
+  //удалили так как это все делает redux-form
+  // let onSendMessageClick = () => {
+  //   props.sendMessage();
+  //   // let text = newMessageElement.current.value;
+  //   // alert(text);
+  // };
 
-  let onNewMessageChange = e => {
-    let body = e.target.value;
-    props.updateNewMessageBody(body);
+  // let onNewMessageChange = e => {
+  //   let body = e.target.value;
+  //   props.updateNewMessageBody(body);
+  // };
+
+  let addNewMessage = values => {
+    props.sendMessage(values.newMessageBody);
   };
 
   if (!props.isAuth) return <Redirect to={"/login"} />;
@@ -37,35 +43,34 @@ const Dialogs = props => {
     <div className={s.dialogs}>
       <div className={s.dialogsItems}>{dialogsElements}</div>
       <div className={s.messages}>{messagesElements}</div>
-      <div>
-        {/* <textarea
-          // ref={newMessageElement}
-          value={newMessageBody}
-          onChange={onNewMessageChange}
-          placeholder="Enter your message"
-        ></textarea> */}
-        <form className={s.form}>
-          <input
-            className={s.messageInput}
-            type="message"
-            placeholder="Enter your message"
-            value={newMessageBody}
-            onChange={onNewMessageChange}
-          />
-          {/* <button class="send-button" type="submit" onClick={onSendMessageClick}>
-            <i class="far fa-envelope send-envelope"></i>
-            Send
-          </button> */}
-        </form>
-        <i class="far fa-envelope hidden-envelope"></i>
-      </div>
-      <div>
-        <button className={s.sendButton} onClick={onSendMessageClick}>
-          Send
-        </button>
-      </div>
+      <AddMessageFormRedux onSubmit={addNewMessage} />
     </div>
   );
 };
+
+const AddMessageForm = props => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div className={s.form}>
+        <Field
+          component="input"
+          name="newMessageBody"
+          placeholder="Enter your message"
+          className={s.messageInput}
+          type="message"
+        />
+      </div>
+      {/* <i class="far fa-envelope hidden-envelope"></i> */}
+      <div>
+        <button>Send</button>
+        {/* className={s.sendButton} */}
+      </div>
+    </form>
+  );
+};
+
+const AddMessageFormRedux = reduxForm({ form: "dialogAddMessageForm" })(
+  AddMessageForm
+);
 
 export default Dialogs;
