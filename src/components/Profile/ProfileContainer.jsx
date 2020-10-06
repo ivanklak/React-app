@@ -2,7 +2,11 @@ import React from "react";
 import Profile from "./Profile";
 import * as Axios from "axios";
 import { connect } from "react-redux";
-import { getUserProfile, getStatus, updateStatus } from "./../../Redux/profile-reducer";
+import {
+  getUserProfile,
+  getStatus,
+  updateStatus
+} from "./../../Redux/profile-reducer";
 import { withRouter, Redirect } from "react-router-dom";
 import { usersAPI } from "../../api/api";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -12,7 +16,9 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if (!userId) {
-      userId = 2;
+      userId = this.props.authorizedUserId;
+      if (!userId) {this.props.history.push("/login");
+    }
     }
     this.props.getUserProfile(userId);
     // usersAPI.getProfile.get(userId).then(data => {
@@ -37,7 +43,9 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = state => ({
   profile: state.profilePage.profile,
-  status: state.profilePage.status
+  status: state.profilePage.status,
+  authorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth
 });
 
 //стало:
