@@ -15,9 +15,9 @@
   grid-area: c;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  position: absolute;
+  /* position: absolute;
   top: 9%; 
   left: 20.3%;
-  width: 1000px;
+  width: 1000px; */
   box-shadow: 0 0 10px rgba(187, 187, 187, 0.5);
 }

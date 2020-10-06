@@ -3,8 +3,8 @@
   background-color: #3d3d3d;
   text-align: left;
   border-radius: 10px;
-  position: relative;
-  top: 5%;
+  /* position: relative;
+  top: 5%; */
   box-shadow: 0 0 10px rgba(175, 175, 175, 0.5);
 }
 .header img {
