@@ -23,6 +23,7 @@ import Preloader from "./components/Preloader/Preloader";
 class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
+    
   }
   render() {
     if (!this.props.initialized) {

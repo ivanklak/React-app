@@ -100,6 +100,7 @@ export const requestUsers = (currentPage, pageSize) => {
     dispatch(setTougleIsFetching(true));
     dispatch(setCurrentPage(currentPage));
     usersAPI.getUsers(currentPage, pageSize).then(data => {
+      //debugger;
       dispatch(setTougleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCount(data.totalCount));
