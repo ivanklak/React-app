@@ -7,6 +7,9 @@
   top: 9%;
   width: 156px; */
   box-shadow: 0 0 10px rgba(143, 142, 142, 0.5);
+
+  margin-top: 5px;
+  margin-right: 5px;
 }
 .item a {
   color: #000000;
