@@ -28,7 +28,7 @@ import {
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.requestUsers(this.props.currentPage, this.props.pageSize);
-
+    console.log(this.props);
     // перенесли в reducer
     //   this.props.setTougleIsFetching(true);
     //   usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
@@ -41,7 +41,6 @@ class UsersContainer extends React.Component {
   onPageChanged = pageNumber => {
     this.props.requestUsers(pageNumber, this.props.pageSize);
   };
-
   render() {
     return (
       <>

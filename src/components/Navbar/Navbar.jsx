@@ -4,10 +4,10 @@ import {NavLink} from "react-router-dom";
 import Friends from "../Friends/Friends";
 import FriendsItem from "../Friends/FriendsItem";
 
+
 const Navbar = (props) => {
   return (
     <nav className={s.nav}>
-       
       <div className={s.item}>
         <NavLink to="/profile" activeClassName={s.activeLink}>Profile</NavLink>
       </div>

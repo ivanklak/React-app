@@ -104,6 +104,7 @@ export const requestUsers = (currentPage, pageSize) => {
       dispatch(setTougleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCount(data.totalCount));
+      console.log(data);
     });
   };
 };
