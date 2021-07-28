@@ -56,3 +56,29 @@ export const authAPI = {
     return instance.delete(`auth/login`);
   }
 };
+
+// standart POST request
+
+// let reqOptions = {
+//   method: "POST",
+//   headers: {
+//     Authorization: `Bearer ${accessToken}`,
+//     "Content-Type": "application/json"
+//   },
+//   body: JSON.stringify({
+//     fullname: data.fullname,
+//     dateOfBirth: data.birthDay,
+//     " skiPassExpirationTime": data.skipass,
+//     coach: data.coach,
+//     sportType: data.sportType
+//   }),
+//   redirect: "follow"
+// };
+// return fetch("http://192.168.235.8:7001/visitor", reqOptions)
+//   .then(resp => {
+//     if (resp.status === 200) {
+//       return resp.json();
+//     }
+//   })
+//   .then(result => console.log(result))
+//   .catch(error => console.log("error", error))
