@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import "./App.css";
-import Header from "./components/Header/Header";
-import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
-import { BrowserRouter, Route } from "react-router-dom";
-import News from "./components/News/News";
-import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import LoginPage from "./components/Login/Login";
-import { connect } from "react-redux";
-import { getAuthUserData } from "./Redux/auth-reducer";
-import { compose } from "../../Library/Caches/typescript/3.6/node_modules/redux";
-import { withRouter } from "react-router-dom";
-import { initializeApp } from "./Redux/app-reducer";
-import Preloader from "./components/Preloader/Preloader";
+import React, { Component } from 'react';
+import './App.css';
+import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
+import Profile from './components/Profile/Profile';
+import Dialogs from './components/Dialogs/Dialogs';
+import { BrowserRouter, Route } from 'react-router-dom';
+import News from './components/News/News';
+import Music from './components/Music/Music';
+import Settings from './components/Settings/Settings';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
+import LoginPage from './components/Login/Login';
+import { connect } from 'react-redux';
+import { getAuthUserData } from './Redux/auth-reducer';
+import { compose } from '../../Library/Caches/typescript/3.6/node_modules/redux';
+import { withRouter } from 'react-router-dom';
+import { initializeApp } from './Redux/app-reducer';
+import Preloader from './components/Preloader/Preloader';
 
 class App extends Component {
   componentDidMount() {
@@ -54,11 +54,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   initialized: state.app.initialized,
 });
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps, { initializeApp })
-)(App);
+export default compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);

@@ -1,16 +1,12 @@
-import React from "react";
-import Profile from "./Profile";
-import * as Axios from "axios";
-import { connect } from "react-redux";
-import {
-  getUserProfile,
-  getStatus,
-  updateStatus,
-} from "./../../Redux/profile-reducer";
-import { withRouter, Redirect } from "react-router-dom";
-import { usersAPI } from "../../api/api";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
+import React from 'react';
+import Profile from './Profile';
+import * as Axios from 'axios';
+import { connect } from 'react-redux';
+import { getUserProfile, getStatus, updateStatus } from './../../Redux/profile-reducer';
+import { withRouter, Redirect } from 'react-router-dom';
+import { usersAPI } from '../../api/api';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -18,7 +14,7 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = this.props.authorizedUserId;
       if (!userId) {
-        this.props.history.push("/login");
+        this.props.history.push('/login');
       }
     }
     this.props.getUserProfile(userId);
@@ -31,18 +27,13 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <div>
-        <Profile
-          {...this.props}
-          profile={this.props.profile}
-          status={this.props.status}
-          updateStatus={this.props.updateStatus}
-        />
+        <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
       </div>
     );
   }
 }
 
-let mapStateToProps = (state) => ({
+let mapStateToProps = state => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
   authorizedUserId: state.auth.userId,
@@ -52,7 +43,7 @@ let mapStateToProps = (state) => ({
 //стало:
 export default compose(
   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
-  withRouter
+  withRouter,
   //withAuthRedirect
 )(ProfileContainer);
 

@@ -1,23 +1,20 @@
-import React from "react";
-import {
-  sendMessageCreator,
-  updateNewMessageBodyCreator,
-} from "../../Redux/state";
-import Dialogs from "./Dialogs";
-import { connect } from "react-redux";
-import { withRouter, Redirect } from "react-router-dom";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
+import React from 'react';
+import { sendMessageCreator, updateNewMessageBodyCreator } from '../../Redux/state';
+import Dialogs from './Dialogs';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router-dom';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
-let mapStateToProps = (state) => {
+let mapStateToProps = state => {
   return {
     dialogsPage: state.dialogsPage, //перерисовка
   };
 };
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = dispatch => {
   return {
     //callback -и
-    sendMessage: (newMessageBody) => {
+    sendMessage: newMessageBody => {
       dispatch(sendMessageCreator(newMessageBody));
     },
     // updateNewMessageBody: (body) => {
@@ -26,10 +23,7 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
-  withAuthRedirect
-)(Dialogs);
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs);
 
 // let AuthRedirectComponent = withAuthRedirect(Dialogs);
 

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { setServers } from "dns";
+import React, { useState, useEffect } from 'react';
+import { setServers } from 'dns';
 
-const ProfileStatusWithHooks = (props) => {
+const ProfileStatusWithHooks = props => {
   let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
   //useState возращает нам массив,
@@ -20,7 +20,7 @@ const ProfileStatusWithHooks = (props) => {
     props.updateStatus(status); // update status
   };
 
-  const onStatusChange = (e) => {
+  const onStatusChange = e => {
     setStatus(e.currentTarget.value); // current value
   };
 
@@ -28,19 +28,12 @@ const ProfileStatusWithHooks = (props) => {
     <div>
       {!editMode && (
         <div>
-          <span onDoubleClick={activateEditMode}>
-            {props.status || "No status"}
-          </span>
+          <span onDoubleClick={activateEditMode}>{props.status || 'No status'}</span>
         </div>
       )}
       {editMode && (
         <div>
-          <input
-            onChange={onStatusChange}
-            autoFocus={true}
-            onBlur={deactivateEditMode}
-            value={status}
-          />
+          <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={status} />
         </div>
       )}
     </div>

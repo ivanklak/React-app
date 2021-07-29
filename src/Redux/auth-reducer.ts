@@ -1,8 +1,8 @@
-import { authAPI } from "../api/api";
-import { any } from "../../../Library/Caches/typescript/3.6/node_modules/@types/prop-types";
-import { stopSubmit } from "redux-form";
+import { authAPI } from '../api/api';
+import { any } from '../../../Library/Caches/typescript/3.6/node_modules/@types/prop-types';
+import { stopSubmit } from 'redux-form';
 
-const SET_USER_DATA = "SET_USER_DATA";
+const SET_USER_DATA = 'SET_USER_DATA';
 
 // export type InitialAuthStateType = {
 //   userId: number | null;
@@ -20,10 +20,7 @@ let initialState = {
 
 export type InitialAuthStateType = typeof initialState;
 
-const authReducer = (
-  state = initialState,
-  action: any
-): InitialAuthStateType => {
+const authReducer = (state = initialState, action: any): InitialAuthStateType => {
   switch (action.type) {
     case SET_USER_DATA:
       return {
@@ -49,12 +46,7 @@ type setAuthUserDataActionType = {
 };
 
 //Ac
-export const setAuthUserData = (
-  userId: number | null,
-  email: string | null,
-  login: string | null,
-  isAuth: boolean
-): setAuthUserDataActionType => ({
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): setAuthUserDataActionType => ({
   type: SET_USER_DATA,
   payload: { userId, email, login, isAuth },
 });
@@ -68,20 +60,16 @@ export const getAuthUserData = () => (dispatch: any) => {
   });
 };
 
-export const login =
-  (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
-    authAPI.login(email, password, rememberMe).then((response: any) => {
-      if (response.data.resultCode === 0) {
-        dispatch(getAuthUserData());
-      } else {
-        let message =
-          response.data.messages.length > 0
-            ? response.data.messages[0]
-            : "Some error";
-        dispatch(stopSubmit("login", { _error: message }));
-      }
-    });
-  };
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+  authAPI.login(email, password, rememberMe).then((response: any) => {
+    if (response.data.resultCode === 0) {
+      dispatch(getAuthUserData());
+    } else {
+      let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+      dispatch(stopSubmit('login', { _error: message }));
+    }
+  });
+};
 
 export const logout = () => (dispatch: any) => {
   authAPI.logout().then((response: any) => {

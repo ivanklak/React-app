@@ -1,5 +1,5 @@
-import React from "react";
-import s from "./ProfileInfo.module.css";
+import React from 'react';
+import s from './ProfileInfo.module.css';
 
 class ProfileStatus extends React.Component {
   //statusInputRef = React.createRef();
@@ -22,7 +22,7 @@ class ProfileStatus extends React.Component {
     });
     this.props.updateStatus(this.state.status);
   };
-  onStatusChange = (e) => {
+  onStatusChange = e => {
     this.setState({
       status: e.currentTarget.value,
     });
@@ -35,7 +35,7 @@ class ProfileStatus extends React.Component {
       });
     }
 
-    console.log("ComponentDidUpdate");
+    console.log('ComponentDidUpdate');
   }
 
   render() {
@@ -43,9 +43,7 @@ class ProfileStatus extends React.Component {
       <div>
         {!this.state.editMode && (
           <div>
-            <span onDoubleClick={this.activateEditMode}>
-              {this.props.status || "No status"}
-            </span>
+            <span onDoubleClick={this.activateEditMode}>{this.props.status || 'No status'}</span>
           </div>
         )}
         {this.state.editMode && (

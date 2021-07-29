@@ -1,14 +1,14 @@
-import { usersAPI } from "../api/api";
-import { setAuthUserData } from "./auth-reducer";
-import { UserType } from "../types/types";
+import { usersAPI } from '../api/api';
+import { setAuthUserData } from './auth-reducer';
+import { UserType } from '../types/types';
 
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_USERS = "SET_USERS";
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 let initialState = {
   users: [] as Array<UserType>,
@@ -27,7 +27,7 @@ const usersReducer = (state = initialState, action: any): InitialState => {
       return {
         ...state,
         // users: [...state.users],
-        users: state.users.map((u) => {
+        users: state.users.map(u => {
           if (u.id === action.userId) {
             return { ...u, followed: true };
           }
@@ -38,7 +38,7 @@ const usersReducer = (state = initialState, action: any): InitialState => {
     case UNFOLLOW:
       return {
         ...state,
-        users: state.users.map((u) => {
+        users: state.users.map(u => {
           if (u.id === action.userId) {
             return { ...u, followed: false };
           }
@@ -65,9 +65,7 @@ const usersReducer = (state = initialState, action: any): InitialState => {
     case TOGGLE_IS_FOLLOWING_PROGRESS: {
       return {
         ...state,
-        followingInProgress: action.isFetching
-          ? [...state.followingInProgress, action.userId]
-          : state.followingInProgress.filter((id) => id != action.userId),
+        followingInProgress: action.isFetching ? [...state.followingInProgress, action.userId] : state.followingInProgress.filter(id => id != action.userId),
       };
     }
 
@@ -116,9 +114,7 @@ type SetTotalUsersCountType = {
   type: typeof SET_TOTAL_USERS_COUNT;
   count: number;
 };
-export const setTotalUsersCount = (
-  totalUsersCount: number
-): SetTotalUsersCountType => ({
+export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountType => ({
   type: SET_TOTAL_USERS_COUNT,
   count: totalUsersCount,
 });
@@ -127,9 +123,7 @@ type SetTougleIsFetchingType = {
   type: typeof TOGGLE_IS_FETCHING;
   isFetching: boolean;
 };
-export const setTougleIsFetching = (
-  isFetching: boolean
-): SetTougleIsFetchingType => ({
+export const setTougleIsFetching = (isFetching: boolean): SetTougleIsFetchingType => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
 });
@@ -139,10 +133,7 @@ type ToggleFollowingProgressType = {
   isFetching: boolean;
   userId: number;
 };
-export const toggleFollowingProgress = (
-  isFetching: boolean,
-  userId: number
-): ToggleFollowingProgressType => ({
+export const toggleFollowingProgress = (isFetching: boolean, userId: number): ToggleFollowingProgressType => ({
   type: TOGGLE_IS_FOLLOWING_PROGRESS,
   isFetching,
   userId,

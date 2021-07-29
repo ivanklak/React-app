@@ -1,9 +1,9 @@
-import React from "react";
-import preloader from "./../../assets/images/wait.gif";
+import React from 'react';
+import preloader from './../../assets/images/wait.gif';
 
-let Preloader = (props) => {
+let Preloader = props => {
   return (
-    <div style={{ backgroundColor: "" }}>
+    <div style={{ backgroundColor: '' }}>
       <img src={preloader} />
     </div>
   );

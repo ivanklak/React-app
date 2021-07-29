@@ -1,10 +1,10 @@
-import React from "react";
-import styles from "./users.module.css";
-import userPhoto from "../../assets/images/people-profile.png";
-import { NavLink } from "react-router-dom";
-import Axios from "axios";
+import React from 'react';
+import styles from './users.module.css';
+import userPhoto from '../../assets/images/people-profile.png';
+import { NavLink } from 'react-router-dom';
+import Axios from 'axios';
 
-let Users = (props) => {
+let Users = props => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   console.log(props.users);
   let pages = [];
@@ -15,37 +15,32 @@ let Users = (props) => {
   return (
     <div>
       <div className={styles.pages}>
-        {pages.map((p) => {
+        {pages.map(p => {
           return (
             <span
               className={props.currentPage === p && styles.selectedPage}
-              onClick={(e) => {
+              onClick={e => {
                 props.onPageChanged(p);
               }}
             >
-              {p + " "}
+              {p + ' '}
             </span>
           );
         })}
       </div>
-      {props.users.map((u) => (
+      {props.users.map(u => (
         <div key={u.id} className={styles.persons}>
           <div className={styles.person}>
             <span>
               <div>
-                <NavLink to={"/profile/" + u.id}>
-                  <img
-                    src={u.photos.small != null ? u.photos.small : userPhoto}
-                    className={styles.userPhoto}
-                  />
+                <NavLink to={'/profile/' + u.id}>
+                  <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto} />
                 </NavLink>
               </div>
               <div className={styles.followbtn}>
                 {u.followed ? (
                   <button
-                    disabled={props.followingInProgress.some(
-                      (id) => id === u.id
-                    )}
+                    disabled={props.followingInProgress.some(id => id === u.id)}
                     onClick={() => {
                       props.unfollow(u.id);
                     }}
@@ -54,9 +49,7 @@ let Users = (props) => {
                   </button>
                 ) : (
                   <button
-                    disabled={props.followingInProgress.some(
-                      (id) => id === u.id
-                    )}
+                    disabled={props.followingInProgress.some(id => id === u.id)}
                     onClick={() => {
                       props.follow(u.id);
                     }}
@@ -73,8 +66,8 @@ let Users = (props) => {
               <div>
                 <h5>{u.status}</h5>
               </div>
-              <div>{"u.location.country"}</div>
-              <div>{"u.location.city"}</div>
+              <div>{'u.location.country'}</div>
+              <div>{'u.location.city'}</div>
             </span>
           </div>
         </div>

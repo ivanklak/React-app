@@ -1,29 +1,26 @@
-import { usersAPI, profileAPI } from "../api/api";
-import { type } from "os";
-import { PostType, ProfileType } from "../types/types";
+import { usersAPI, profileAPI } from '../api/api';
+import { type } from 'os';
+import { PostType, ProfileType } from '../types/types';
 
-const ADD_POST = "ADD_POST";
+const ADD_POST = 'ADD_POST';
 // const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS = "SET_STATUS";
-const DELETE_POST = "DELETE_POST";
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
   posts: [
-    { id: 1, message: "Hi, how are you?", likesCount: 12 },
-    { id: 2, message: "Its my first post", likesCount: 11 },
+    { id: 1, message: 'Hi, how are you?', likesCount: 12 },
+    { id: 2, message: 'Its my first post', likesCount: 11 },
   ] as Array<PostType>,
   profile: null as ProfileType | null,
-  status: "",
-  newPostText: "",
+  status: '',
+  newPostText: '',
 }; // чтобы state был не undefined
 
 export type InitialStateType = typeof initialState;
 
-const profileReducer = (
-  state = initialState,
-  action: any
-): InitialStateType => {
+const profileReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
@@ -34,7 +31,7 @@ const profileReducer = (
       return {
         ...state,
         posts: [...state.posts, newPost],
-        newPostText: "",
+        newPostText: '',
       };
     }
     // case UPDATE_NEW_POST_TEXT: {
@@ -55,7 +52,7 @@ const profileReducer = (
     case DELETE_POST: {
       return {
         ...state,
-        posts: state.posts.filter((p) => p.id != action.postId),
+        posts: state.posts.filter(p => p.id != action.postId),
       };
     }
     //typescript video 4 - SAVE_PHOTO
@@ -68,9 +65,7 @@ type SetUserProfileActionType = {
   type: typeof SET_USER_PROFILE;
   profile: ProfileType;
 };
-export const setUserProfile = (
-  profile: ProfileType
-): SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
+export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile });
 
 //================================
 
@@ -89,9 +84,7 @@ type AddPostActionCreatorActionType = {
   type: typeof ADD_POST;
   newPostText: string;
 };
-export const addPostActionCreator = (
-  newPostText: string
-): AddPostActionCreatorActionType => {
+export const addPostActionCreator = (newPostText: string): AddPostActionCreatorActionType => {
   return { type: ADD_POST, newPostText };
 };
 

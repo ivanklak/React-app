@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettify": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
+    "prettify": "prettier --config prettierrc.json --write \"**/*.{js,jsx,ts,tsx,json}\""
   },
   "eslintConfig": {
     "extends": "react-app"

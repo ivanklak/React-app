@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const NickName = (props) => {
+const NickName = props => {
   return <div>{props.name}</div>;
 };
 

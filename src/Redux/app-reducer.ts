@@ -1,9 +1,9 @@
-import { authAPI } from "../api/api";
+import { authAPI } from '../api/api';
 // import { stopSubmit } from "redux-form";
-import { getAuthUserData } from "./auth-reducer";
-import { any } from "prop-types";
+import { getAuthUserData } from './auth-reducer';
+import { any } from 'prop-types';
 
-const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS";
+const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 export type InitialStateType = {
   initialized: boolean;
