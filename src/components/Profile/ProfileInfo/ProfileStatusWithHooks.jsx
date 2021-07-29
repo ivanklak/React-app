@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { setServers } from "dns";
 
-const ProfileStatusWithHooks = props => {
+const ProfileStatusWithHooks = ({ status, updateStatus }) => {
   let [editMode, setEditMode] = useState(false);
-  let [status, setStatus] = useState(props.status);
-  //useState возращает нам массив,
-  //в кот. записывается нулевым элементом - editMode, а первым - setEditMode
+  let [profileStatus, setProfileStatus] = useState(status);
 
   useEffect(() => {
-    setStatus(props.status)
-  }, [props.status]);
+    setProfileStatus(status);
+  }, [status]);
 
   const activateEditMode = () => {
     setEditMode(true); // input
@@ -17,20 +14,18 @@ const ProfileStatusWithHooks = props => {
 
   const deactivateEditMode = () => {
     setEditMode(false); // span
-    props.updateStatus(status); // update status
+    updateStatus(profileStatus); // update status
   };
 
   const onStatusChange = e => {
-    setStatus(e.currentTarget.value); // current value
+    setProfileStatus(e.currentTarget.value); // current value
   };
 
   return (
     <div>
       {!editMode && (
         <div>
-          <span onDoubleClick={activateEditMode}>
-            {props.status || "No status"}
-          </span>
+          <span onDoubleClick={activateEditMode}>{status || "No status"}</span>
         </div>
       )}
       {editMode && (
@@ -39,7 +34,7 @@ const ProfileStatusWithHooks = props => {
             onChange={onStatusChange}
             autoFocus={true}
             onBlur={deactivateEditMode}
-            value={status}
+            value={profileStatus}
           />
         </div>
       )}
