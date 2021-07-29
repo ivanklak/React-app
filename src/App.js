@@ -23,16 +23,15 @@ import Preloader from "./components/Preloader/Preloader";
 class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
-    
   }
   render() {
     if (!this.props.initialized) {
-    return <Preloader />
+      return <Preloader />;
     }
     return (
       <div className="app-wrapper">
         <HeaderContainer />
-        <Navbar /> 
+        <Navbar />
         <div className="app-wrapper-content">
           <Route path="/dialogs" render={() => <DialogsContainer />} />
 
@@ -56,7 +55,10 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
-})
+  initialized: state.app.initialized,
+});
 
-export default compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { initializeApp })
+)(App);

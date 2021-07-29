@@ -16,7 +16,7 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
-  followingInProgress: [] as Array<number> //array of users ids
+  followingInProgress: [] as Array<number>, //array of users ids
 };
 
 type InitialState = typeof initialState;
@@ -27,23 +27,23 @@ const usersReducer = (state = initialState, action: any): InitialState => {
       return {
         ...state,
         // users: [...state.users],
-        users: state.users.map(u => {
+        users: state.users.map((u) => {
           if (u.id === action.userId) {
             return { ...u, followed: true };
           }
           return u;
-        })
+        }),
       };
 
     case UNFOLLOW:
       return {
         ...state,
-        users: state.users.map(u => {
+        users: state.users.map((u) => {
           if (u.id === action.userId) {
             return { ...u, followed: false };
           }
           return u;
-        })
+        }),
       };
 
     case SET_USERS: {
@@ -67,7 +67,7 @@ const usersReducer = (state = initialState, action: any): InitialState => {
         ...state,
         followingInProgress: action.isFetching
           ? [...state.followingInProgress, action.userId]
-          : state.followingInProgress.filter(id => id != action.userId)
+          : state.followingInProgress.filter((id) => id != action.userId),
       };
     }
 
@@ -82,7 +82,7 @@ type FollowSuccessType = {
 };
 export const followSuccess = (userId: number): FollowSuccessType => ({
   type: FOLLOW,
-  userId
+  userId,
 });
 
 type UnfollowSuccessType = {
@@ -91,7 +91,7 @@ type UnfollowSuccessType = {
 };
 export const unfollowSuccess = (userId: number): UnfollowSuccessType => ({
   type: UNFOLLOW,
-  userId
+  userId,
 });
 
 type SetUsersType = {
@@ -100,7 +100,7 @@ type SetUsersType = {
 };
 export const setUsers = (users: Array<UserType>): SetUsersType => ({
   type: SET_USERS,
-  users
+  users,
 });
 
 type SetCurrentPageType = {
@@ -109,7 +109,7 @@ type SetCurrentPageType = {
 };
 export const setCurrentPage = (currentPage: number): SetCurrentPageType => ({
   type: SET_CURRENT_PAGE,
-  currentPage
+  currentPage,
 });
 
 type SetTotalUsersCountType = {
@@ -120,7 +120,7 @@ export const setTotalUsersCount = (
   totalUsersCount: number
 ): SetTotalUsersCountType => ({
   type: SET_TOTAL_USERS_COUNT,
-  count: totalUsersCount
+  count: totalUsersCount,
 });
 
 type SetTougleIsFetchingType = {
@@ -131,7 +131,7 @@ export const setTougleIsFetching = (
   isFetching: boolean
 ): SetTougleIsFetchingType => ({
   type: TOGGLE_IS_FETCHING,
-  isFetching
+  isFetching,
 });
 
 type ToggleFollowingProgressType = {
@@ -145,7 +145,7 @@ export const toggleFollowingProgress = (
 ): ToggleFollowingProgressType => ({
   type: TOGGLE_IS_FOLLOWING_PROGRESS,
   isFetching,
-  userId
+  userId,
 });
 
 //thunk
@@ -159,7 +159,6 @@ export const requestUsers = (currentPage: number, pageSize: number) => {
       dispatch(setTougleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCount(data.totalCount));
-      
     });
   };
 };

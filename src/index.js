@@ -9,15 +9,15 @@ import { Provider } from "react-redux";
 
 //addPost("Samuray");
 
-  ReactDOM.render(
-    <BrowserRouter>
+ReactDOM.render(
+  <BrowserRouter>
     {/* izmeneniya */}
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>,
-    document.getElementById("root")
-  );
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  document.getElementById("root")
+);
 
 // rerenderEntireTree(store.getState());
 

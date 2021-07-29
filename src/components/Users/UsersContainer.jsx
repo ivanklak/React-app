@@ -8,7 +8,7 @@ import {
   setTotalUsersCount,
   setTougleIsFetching,
   toggleFollowingProgress,
-  requestUsers
+  requestUsers,
 } from "../../Redux/users-reducer";
 import Users from "./Users";
 import * as Axios from "axios";
@@ -22,7 +22,7 @@ import {
   getCurrentPage,
   getIsFetching,
   getFollowingInProgress,
-  getUsers
+  getUsers,
 } from "../../Redux/users-selectors";
 
 class UsersContainer extends React.Component {
@@ -38,7 +38,7 @@ class UsersContainer extends React.Component {
     // });
   }
 
-  onPageChanged = pageNumber => {
+  onPageChanged = (pageNumber) => {
     this.props.requestUsers(pageNumber, this.props.pageSize);
   };
   render() {
@@ -61,14 +61,14 @@ class UsersContainer extends React.Component {
 }
 
 //users-selectors
-let mapStateToProps = state => {
+let mapStateToProps = (state) => {
   return {
     users: getUsers(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     currentPage: getCurrentPage(state),
     isFetching: getIsFetching(state),
-    followingInProgress: getFollowingInProgress(state)
+    followingInProgress: getFollowingInProgress(state),
   };
 };
 
@@ -104,7 +104,7 @@ export default compose(
     unfollow,
     setCurrentPage,
     toggleFollowingProgress,
-    requestUsers
+    requestUsers,
   })
 )(UsersContainer);
 

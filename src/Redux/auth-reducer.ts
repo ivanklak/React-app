@@ -15,7 +15,7 @@ let initialState = {
   userId: null as number | null,
   email: null as string | null,
   login: null as string | null,
-  isAuth: false
+  isAuth: false,
 };
 
 export type InitialAuthStateType = typeof initialState;
@@ -28,7 +28,7 @@ const authReducer = (
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
 
     default:
@@ -56,7 +56,7 @@ export const setAuthUserData = (
   isAuth: boolean
 ): setAuthUserDataActionType => ({
   type: SET_USER_DATA,
-  payload: { userId, email, login, isAuth }
+  payload: { userId, email, login, isAuth },
 });
 
 export const getAuthUserData = () => (dispatch: any) => {
@@ -68,21 +68,20 @@ export const getAuthUserData = () => (dispatch: any) => {
   });
 };
 
-export const login = (email: string, password: string, rememberMe: boolean) => (
-  dispatch: any
-) => {
-  authAPI.login(email, password, rememberMe).then((response: any) => {
-    if (response.data.resultCode === 0) {
-      dispatch(getAuthUserData());
-    } else {
-      let message =
-        response.data.messages.length > 0
-          ? response.data.messages[0]
-          : "Some error";
-      dispatch(stopSubmit("login", { _error: message }));
-    }
-  });
-};
+export const login =
+  (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+    authAPI.login(email, password, rememberMe).then((response: any) => {
+      if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData());
+      } else {
+        let message =
+          response.data.messages.length > 0
+            ? response.data.messages[0]
+            : "Some error";
+        dispatch(stopSubmit("login", { _error: message }));
+      }
+    });
+  };
 
 export const logout = () => (dispatch: any) => {
   authAPI.logout().then((response: any) => {

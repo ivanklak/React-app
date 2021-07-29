@@ -5,7 +5,7 @@ import stena from "../../../assets/images/s1200.jpg";
 import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = props => {
+const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />;
   }
@@ -17,7 +17,10 @@ const ProfileInfo = props => {
       </div> */}
       <div className={s.descriptionBlock}>
         <img src={props.profile.photos.small} />
-        <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+        <ProfileStatusWithHooks
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
         <p>
           <div>
             <strong>{props.profile.fullName}</strong>

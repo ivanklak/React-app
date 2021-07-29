@@ -16,7 +16,7 @@ let initialState = {
     { id: 2, message: "How are you?" },
     { id: 3, message: "Would you like some pizza?" },
     { id: 4, message: "Yeeeaah" },
-    { id: 5, message: "Yo" }
+    { id: 5, message: "Yo" },
   ] as Array<MessageType>,
   dialogs: [
     { id: 1, name: "Timofey" },
@@ -24,8 +24,8 @@ let initialState = {
     { id: 3, name: "Pavel" },
     { id: 4, name: "Anton" },
     { id: 5, name: "Gleb" },
-    { id: 6, name: "Tolya" }
-  ] as Array<DialogType>
+    { id: 6, name: "Tolya" },
+  ] as Array<DialogType>,
 };
 
 export type InitialStateType = typeof initialState;
@@ -46,7 +46,7 @@ const dialogsReducer = (
       let body = action.newMessageBody;
       return {
         ...state,
-        messages: [...state.messages, { id: 6, message: body }]
+        messages: [...state.messages, { id: 6, message: body }],
       };
     default:
       return state;
@@ -62,7 +62,7 @@ export const sendMessageCreator = (
   newMessageBody: any
 ): SendMessageCreatorActionType => ({
   type: SEND_MESSAGE,
-  newMessageBody
+  newMessageBody,
 });
 // export const updateNewMessageBodyCreator = body => ({
 //   type: UPDATE_NEW_MESSAGE_BODY,

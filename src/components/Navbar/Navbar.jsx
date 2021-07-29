@@ -1,45 +1,58 @@
 import React from "react";
 import s from "./Navbar.module.css";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Friends from "../Friends/Friends";
 import FriendsItem from "../Friends/FriendsItem";
-
 
 const Navbar = (props) => {
   return (
     <nav className={s.nav}>
       <div className={s.item}>
-        <NavLink to="/profile" activeClassName={s.activeLink}>Profile</NavLink>
+        <NavLink to="/profile" activeClassName={s.activeLink}>
+          Profile
+        </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="/dialogs" activeClassName={s.activeLink}>Messages</NavLink>
+        <NavLink to="/dialogs" activeClassName={s.activeLink}>
+          Messages
+        </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="/users" activeClassName={s.activeLink}>Users</NavLink>
+        <NavLink to="/users" activeClassName={s.activeLink}>
+          Users
+        </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="/news" activeClassName={s.activeLink}>News</NavLink>
+        <NavLink to="/news" activeClassName={s.activeLink}>
+          News
+        </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="/music" activeClassName={s.activeLink}>Music</NavLink>
+        <NavLink to="/music" activeClassName={s.activeLink}>
+          Music
+        </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to="/settings" activeClassName={s.activeLink}>Settings</NavLink>
+        <NavLink to="/settings" activeClassName={s.activeLink}>
+          Settings
+        </NavLink>
       </div>
-      
+
       <div className={s.items}>
-        <NavLink to="/friends" activeClassName={s.activeLink}>Friends</NavLink>
+        <NavLink to="/friends" activeClassName={s.activeLink}>
+          Friends
+        </NavLink>
       </div>
       <NavLink to="/profile">
-      <div className={s.itemfr}>
-        <FriendsItem />
-      </div>
-      <div className={s.itemfre}>
-        <FriendsItem />
-      </div>
-      <div className={s.itemfres}>
-        <FriendsItem />
-      </div>
+        <div className={s.itemfr}>
+          <FriendsItem />
+        </div>
+        <div className={s.itemfre}>
+          <FriendsItem />
+        </div>
+        <div className={s.itemfres}>
+          <FriendsItem />
+        </div>
       </NavLink>
       {/* <div className={s.itemf}>
        <img src="https://consol-games.com/uploads/posts/2012-12/1356061760_1341555753_00470-01.jpg" />
@@ -50,8 +63,7 @@ const Navbar = (props) => {
       <div className={s.itemf}>
        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQjMiiSaZUaPGrR40wueKNydKCkk9HVcidp0JmdkHdPcHp1GrhV" />
       </div> */}
-    </nav> 
+    </nav>
   );
 };
 export default Navbar;
-  

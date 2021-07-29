@@ -4,9 +4,9 @@ import userPhoto from "../../assets/images/people-profile.png";
 import { NavLink } from "react-router-dom";
 import Axios from "axios";
 
-let Users = props => {
+let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-console.log(props.users);
+  console.log(props.users);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
@@ -15,11 +15,11 @@ console.log(props.users);
   return (
     <div>
       <div className={styles.pages}>
-        {pages.map(p => {
+        {pages.map((p) => {
           return (
             <span
               className={props.currentPage === p && styles.selectedPage}
-              onClick={e => {
+              onClick={(e) => {
                 props.onPageChanged(p);
               }}
             >
@@ -28,7 +28,7 @@ console.log(props.users);
           );
         })}
       </div>
-      {props.users.map(u => (
+      {props.users.map((u) => (
         <div key={u.id} className={styles.persons}>
           <div className={styles.person}>
             <span>
@@ -43,7 +43,9 @@ console.log(props.users);
               <div className={styles.followbtn}>
                 {u.followed ? (
                   <button
-                    disabled={props.followingInProgress.some(id => id === u.id)}
+                    disabled={props.followingInProgress.some(
+                      (id) => id === u.id
+                    )}
                     onClick={() => {
                       props.unfollow(u.id);
                     }}
@@ -52,7 +54,9 @@ console.log(props.users);
                   </button>
                 ) : (
                   <button
-                    disabled={props.followingInProgress.some(id => id === u.id)}
+                    disabled={props.followingInProgress.some(
+                      (id) => id === u.id
+                    )}
                     onClick={() => {
                       props.follow(u.id);
                     }}
@@ -66,7 +70,9 @@ console.log(props.users);
               <div>
                 <h4>{u.name}</h4>
               </div>
-              <div><h5>{u.status}</h5></div>
+              <div>
+                <h5>{u.status}</h5>
+              </div>
               <div>{"u.location.country"}</div>
               <div>{"u.location.city"}</div>
             </span>

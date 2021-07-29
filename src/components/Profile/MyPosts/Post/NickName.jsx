@@ -1,16 +1,11 @@
 import React from "react";
 
+const NickName = (props) => {
+  return <div>{props.name}</div>;
+};
 
-const NickName = props => {
-    return (
-      <div>
-        {props.name}
-      </div>
-    );
-  };
+export default NickName;
 
-  export default NickName;
-  
 // import NickName from "./components/Profile/MyPosts/Post/NickName";
 
 // const NickNames = () => {

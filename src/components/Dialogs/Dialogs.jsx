@@ -8,13 +8,13 @@ import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../common/FormsControl/FormsControls";
 import { required, maxLengthCreator } from "../../utils/validators/validators";
 
-const Dialogs = props => {
+const Dialogs = (props) => {
   let state = props.dialogsPage;
 
-  let dialogsElements = state.dialogs.map(d => (
+  let dialogsElements = state.dialogs.map((d) => (
     <DialogItem name={d.name} key={d.id} id={d.id} />
   ));
-  let messagesElements = state.messages.map(m => (
+  let messagesElements = state.messages.map((m) => (
     <Message message={m.message} key={m.id} />
   ));
   let newMessageBody = state.newMessageBody;
@@ -33,7 +33,7 @@ const Dialogs = props => {
   //   props.updateNewMessageBody(body);
   // };
 
-  let addNewMessage = values => {
+  let addNewMessage = (values) => {
     props.sendMessage(values.newMessageBody);
   };
 
@@ -52,7 +52,7 @@ const Dialogs = props => {
 
 const maxLength50 = maxLengthCreator(50);
 
-const AddMessageForm = props => {
+const AddMessageForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div className={s.form}>
