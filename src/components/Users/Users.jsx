@@ -4,9 +4,17 @@ import userPhoto from "../../assets/images/people-profile.png";
 import { NavLink } from "react-router-dom";
 import Axios from "axios";
 
-let Users = props => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-console.log(props.users);
+const Users = ({
+  users,
+  totalUsersCount,
+  pageSize,
+  currentPage,
+  onPageChanged,
+  followingInProgress,
+  follow,
+  unfollow
+}) => {
+  let pagesCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
@@ -18,9 +26,9 @@ console.log(props.users);
         {pages.map(p => {
           return (
             <span
-              className={props.currentPage === p && styles.selectedPage}
+              className={currentPage === p && styles.selectedPage}
               onClick={e => {
-                props.onPageChanged(p);
+                onPageChanged(p);
               }}
             >
               {p + " "}
@@ -28,7 +36,7 @@ console.log(props.users);
           );
         })}
       </div>
-      {props.users.map(u => (
+      {users.map(u => (
         <div key={u.id} className={styles.persons}>
           <div className={styles.person}>
             <span>
@@ -43,18 +51,18 @@ console.log(props.users);
               <div className={styles.followbtn}>
                 {u.followed ? (
                   <button
-                    disabled={props.followingInProgress.some(id => id === u.id)}
+                    disabled={followingInProgress.some(id => id === u.id)}
                     onClick={() => {
-                      props.unfollow(u.id);
+                      unfollow(u.id);
                     }}
                   >
                     Unfollow
                   </button>
                 ) : (
                   <button
-                    disabled={props.followingInProgress.some(id => id === u.id)}
+                    disabled={followingInProgress.some(id => id === u.id)}
                     onClick={() => {
-                      props.follow(u.id);
+                      follow(u.id);
                     }}
                   >
                     Follow
@@ -66,7 +74,9 @@ console.log(props.users);
               <div>
                 <h4>{u.name}</h4>
               </div>
-              <div><h5>{u.status}</h5></div>
+              <div>
+                <h5>{u.status}</h5>
+              </div>
               <div>{"u.location.country"}</div>
               <div>{"u.location.city"}</div>
             </span>
