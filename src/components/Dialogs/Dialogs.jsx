@@ -2,7 +2,6 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import { sendMessageCreator, newMessageBodyCreator } from "./../../Redux/state";
 import { Redirect } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../common/FormsControl/FormsControls";
@@ -19,27 +18,11 @@ const Dialogs = props => {
   ));
   let newMessageBody = state.newMessageBody;
 
-  //let newMessageElement = React.createRef();
-
-  //удалили так как это все делает redux-form
-  // let onSendMessageClick = () => {
-  //   props.sendMessage();
-  //   // let text = newMessageElement.current.value;
-  //   // alert(text);
-  // };
-
-  // let onNewMessageChange = e => {
-  //   let body = e.target.value;
-  //   props.updateNewMessageBody(body);
-  // };
-
   let addNewMessage = values => {
     props.sendMessage(values.newMessageBody);
   };
 
   if (!props.isAuth) return <Redirect to={"/login"} />;
-
-  // const input = document.querySelector(".message-input");
 
   return (
     <div className={s.dialogs}>
@@ -64,10 +47,8 @@ const AddMessageForm = props => {
           className={s.messageInput}
         />
       </div>
-      {/* <i class="far fa-envelope hidden-envelope"></i> */}
       <div>
         <button>Send</button>
-        {/* className={s.sendButton} */}
       </div>
     </form>
   );
