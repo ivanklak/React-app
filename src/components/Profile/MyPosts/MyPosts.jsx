@@ -13,8 +13,6 @@ const MyPosts = React.memo(props => {
     <Post message={p.message} likesCount={p.likesCount} />
   ));
 
-  let newPostElement = React.createRef();
-
   let onAddPost = values => {
     props.addPost(values.newPostText);
   };
@@ -23,28 +21,9 @@ const MyPosts = React.memo(props => {
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>
-      {/* Redux-form
-      <form>
-        <div>
-          <div>New post</div>
-        </div>
-        <textarea
-          onChange={onPostChange}
-          ref={newPostElement}
-          value={props.newPostText}
-        />
-      </form>
-      <div>
-        <button onClick={onAddPost}>Add post</button>
-        <button>Remove</button>
-      </div> */}
       <AddNewPostFormRedux onSubmit={onAddPost} />
 
-      <div className={s.posts}>
-        {postsElements}
-        {/* <Post message= {postData[0].message} likesCount={postData[0].likesCount} />
-        <Post message= {postData[1].message} likesCount={postData[1].likesCount}/> */}
-      </div>
+      <div className={s.posts}>{postsElements}</div>
     </div>
   );
 });
