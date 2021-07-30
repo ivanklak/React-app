@@ -1,21 +1,19 @@
-import * as axios from "axios";
+import * as axios from 'axios';
 
 //смотрим документацию для запросов
 const instance = axios.create({
   withCredentials: true,
-  baseURL: "https://social-network.samuraijs.com/api/1.0/",
+  baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   headers: {
-    "API-KEY": "2e993b56-c8b6-4744-b277-c9b4cada2532"
-  }
+    'API-KEY': '2e993b56-c8b6-4744-b277-c9b4cada2532',
+  },
 });
 
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 100) {
-    return instance
-      .get(`users?page=${currentPage}&count=${pageSize}`)
-      .then(response => {
-        return response.data;
-      });
+    return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => {
+      return response.data;
+    });
   },
   toFollow(userId) {
     return instance.post(`follow/${userId}`).then(response => {
@@ -30,7 +28,7 @@ export const usersAPI = {
   getProfile(userId) {
     console.warn(`Obsolete method. Please use profileAPI object.`);
     return profileAPI.getProfile(userId);
-  }
+  },
 };
 
 export const profileAPI = {
@@ -42,19 +40,19 @@ export const profileAPI = {
   },
   updateStatus(status) {
     return instance.put(`profile/status`, { status: status });
-  }
+  },
 };
 
 export const authAPI = {
   me() {
-    return instance.get(`auth/me`)
+    return instance.get(`auth/me`);
   },
   login(email, password, rememberMe = false) {
     return instance.post(`auth/login`, { email, password, rememberMe });
   },
   logout() {
     return instance.delete(`auth/login`);
-  }
+  },
 };
 
 // standart POST request

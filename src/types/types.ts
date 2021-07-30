@@ -30,8 +30,8 @@ export type ProfileType = {
 };
 
 export type UserType = {
-    id: number,
-    name: string,
-    status: string,
-    photos: PhotosType
-  }
+  id: number;
+  name: string;
+  status: string;
+  photos: PhotosType;
+};

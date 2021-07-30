@@ -3,19 +3,19 @@
   grid-template-columns: 2fr 10fr;
 }
 .friends img {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px; 
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 .friends {
-    padding: 10px;
+  padding: 10px;
 }
 
 .friends a {
-    color: #000000;
-    text-decoration: none;
+  color: #000000;
+  text-decoration: none;
 }
 
 .friends a.activeLink {
-    color: rgb(0, 217, 255);
+  color: rgb(0, 217, 255);
 }

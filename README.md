@@ -1,19 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Special achievements: 
+## Special achievements:
 
-I developed my own web application (SPA) on the React/Redux stack. 
+I developed my own web application (SPA) on the React/Redux stack.
 
-This is a social network where each user has their own `profile page` (the user's photo and status are uploaded from the server, the status can be changed by double-clicking, you can write a post and publish it in your profile on the wall). 
+This is a social network where each user has their own `profile page` (the user's photo and status are uploaded from the server, the status can be changed by double-clicking, you can write a post and publish it in your profile on the wall).
 
 `Page with registered users`: all users are uploaded from the server, you can add to friends and remove from friends, you can go to the profile of any user to view information, user photo and posts.
 
 `Message page`: sends the entered message.
 
-`Login page`: the user enters their username, password, and captcha. If a user with such data is not registered, an error will appear. All forms are built using the Redux-form library. 
+`Login page`: the user enters their username, password, and captcha. If a user with such data is not registered, an error will appear. All forms are built using the Redux-form library.
 
 The project is connected to the API and therefore asynchronous requests to the server are implemented using Redux-thunk.
-
 
 ## Available Scripts
 
