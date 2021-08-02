@@ -36,6 +36,7 @@
     "plugin:@typescript-eslint/recommended"
   ], // Включить React плагин
   "parserOptions": {
+    "parser": "@typescript-eslint/parser",
     "ecmaFeatures": {
       "jsx": true // Разрешить формат JSX
     },
@@ -45,7 +46,8 @@
   "plugins": [
     // Включить поддержку плагинов
     "react",
-    "babel"
+    "babel",
+    "@typescript-eslint"
   ],
   "rules": {
     // Задать правила игнорирования типичных ошибок
