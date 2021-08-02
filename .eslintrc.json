@@ -48,6 +48,15 @@
       "rules": {
         "@typescript-eslint/explicit-module-boundary-types": ["error"]
       }
+    },
+    {
+      "files": [
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
     }
   ]
 }

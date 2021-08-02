@@ -1,27 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { setServers } from 'dns';
+import React, {useState, useEffect} from 'react';
 
 const ProfileStatusWithHooks = props => {
   let [editMode, setEditMode] = useState(false);
   let [status, setStatus] = useState(props.status);
-  //useState возращает нам массив,
-  //в кот. записывается нулевым элементом - editMode, а первым - setEditMode
 
   useEffect(() => {
     setStatus(props.status);
   }, [props.status]);
 
   const activateEditMode = () => {
-    setEditMode(true); // input
+    setEditMode(true);
   };
 
   const deactivateEditMode = () => {
-    setEditMode(false); // span
-    props.updateStatus(status); // update status
+    setEditMode(false);
+    props.updateStatus(status);
   };
 
   const onStatusChange = e => {
-    setStatus(e.currentTarget.value); // current value
+    setStatus(e.currentTarget.value);
   };
 
   return (

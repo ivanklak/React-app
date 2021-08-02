@@ -1,11 +1,10 @@
 import React from 'react';
 import s from './Header.module.css';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const Header = props => {
   return (
     <header className={s.header}>
-      {/* <a>KLAKOTCKII</a> */}
       <NavLink to={'/profile'}>
         <img src="https://cdn.auth0.com/blog/react-js/react.png"></img>
       </NavLink>

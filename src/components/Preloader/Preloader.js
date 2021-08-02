@@ -1,10 +1,10 @@
 import React from 'react';
 import preloader from './../../assets/images/wait.gif';
 
-let Preloader = props => {
+let Preloader = () => {
   return (
-    <div style={{ backgroundColor: '' }}>
-      <img src={preloader} />
+    <div style={{backgroundColor: ''}}>
+      <img src={preloader} alt="preloader" />
     </div>
   );
 };

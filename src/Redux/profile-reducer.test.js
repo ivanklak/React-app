@@ -1,11 +1,10 @@
-import React from 'react';
-import profileReducer, { deletePost } from './profile-reducer';
-import { addPostActionCreator } from './state';
+import profileReducer, {deletePost} from './profile-reducer';
+import {addPostActionCreator} from './state';
 
 let state = {
   posts: [
-    { id: 1, message: 'Hi, how are you?', likesCount: 12 },
-    { id: 2, message: 'Its my first post', likesCount: 11 },
+    {id: 1, message: 'Hi, how are you?', likesCount: 12},
+    {id: 2, message: 'Its my first post', likesCount: 11},
   ],
 };
 
