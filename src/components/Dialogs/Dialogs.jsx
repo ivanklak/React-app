@@ -1,22 +1,18 @@
-import React from "react";
-import s from "./Dialogs.module.css";
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import { sendMessageCreator, newMessageBodyCreator } from "./../../Redux/state";
-import { Redirect } from "react-router-dom";
-import { Field, reduxForm } from "redux-form";
-import { Textarea } from "../common/FormsControl/FormsControls";
-import { required, maxLengthCreator } from "../../utils/validators/validators";
+import React from 'react';
+import s from './Dialogs.module.css';
+import DialogItem from './DialogItem/DialogItem';
+import Message from './Message/Message';
+import { sendMessageCreator, newMessageBodyCreator } from './../../Redux/state';
+import { Redirect } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
+import { Textarea } from '../common/FormsControl/FormsControls';
+import { required, maxLengthCreator } from '../../utils/validators/validators';
 
 const Dialogs = props => {
   let state = props.dialogsPage;
 
-  let dialogsElements = state.dialogs.map(d => (
-    <DialogItem name={d.name} key={d.id} id={d.id} />
-  ));
-  let messagesElements = state.messages.map(m => (
-    <Message message={m.message} key={m.id} />
-  ));
+  let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);
+  let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id} />);
   let newMessageBody = state.newMessageBody;
 
   //let newMessageElement = React.createRef();
@@ -37,7 +33,7 @@ const Dialogs = props => {
     props.sendMessage(values.newMessageBody);
   };
 
-  if (!props.isAuth) return <Redirect to={"/login"} />;
+  if (!props.isAuth) return <Redirect to={'/login'} />;
 
   // const input = document.querySelector(".message-input");
 
@@ -56,13 +52,7 @@ const AddMessageForm = props => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div className={s.form}>
-        <Field
-          component={Textarea}
-          validate={[required, maxLength50]}
-          name="newMessageBody"
-          placeholder="Enter your message"
-          className={s.messageInput}
-        />
+        <Field component={Textarea} validate={[required, maxLength50]} name="newMessageBody" placeholder="Enter your message" className={s.messageInput} />
       </div>
       {/* <i class="far fa-envelope hidden-envelope"></i> */}
       <div>
@@ -73,8 +63,6 @@ const AddMessageForm = props => {
   );
 };
 
-const AddMessageFormRedux = reduxForm({ form: "dialogAddMessageForm" })(
-  AddMessageForm
-);
+const AddMessageFormRedux = reduxForm({ form: 'dialogAddMessageForm' })(AddMessageForm);
 
 export default Dialogs;

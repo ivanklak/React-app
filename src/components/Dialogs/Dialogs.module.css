@@ -3,57 +3,57 @@
   grid-template-columns: 2fr 10fr;
 }
 .dialogsItems {
-    padding: 10px;
+  padding: 10px;
 }
 
 .dialogsItems .active {
-    color: grey;
+  color: grey;
 }
 .messages {
-    padding: 10px;
+  padding: 10px;
 }
 
 .dialogsItems img {
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
 }
 .dialogt {
-    position: center;
+  position: center;
 }
 .form {
-    /* background: grey; */
-    position: relative;
-    width: 250px;
-    overflow: hidden;
-    z-index: 10;
-    border-radius: 10px;
+  /* background: grey; */
+  position: relative;
+  width: 250px;
+  overflow: hidden;
+  z-index: 10;
+  border-radius: 10px;
 }
 .messageInput {
-    width: 98%;
-    border: 0;
-    position: relative;
-    left: 1%;
-    font-size: 1em;
-    background: #ffffff;
-    outline: 0;
-    box-sizing: border-box;
-    padding: 10px 40px 10px 10px;
-    color: #2c3d4e;
-    border-radius: 10px;
+  width: 98%;
+  border: 0;
+  position: relative;
+  left: 1%;
+  font-size: 1em;
+  background: #ffffff;
+  outline: 0;
+  box-sizing: border-box;
+  padding: 10px 40px 10px 10px;
+  color: #2c3d4e;
+  border-radius: 10px;
 }
 .sendButton {
-    width: 10%;
-    background: #3a72aa;
-    color: white;
-    font-size: 1em;
-    font-weight: 300;
-    position: absolute;
-    padding: 10px 0;
-    left: 25%;
-    border: 0;
-    outline: 0;
-    transition: 0.3s ease-in-out all;
-    font-weight: 500;
-    border-radius: 10px;
+  width: 10%;
+  background: #3a72aa;
+  color: white;
+  font-size: 1em;
+  font-weight: 300;
+  position: absolute;
+  padding: 10px 0;
+  left: 25%;
+  border: 0;
+  outline: 0;
+  transition: 0.3s ease-in-out all;
+  font-weight: 500;
+  border-radius: 10px;
 }

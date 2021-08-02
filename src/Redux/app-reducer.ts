@@ -1,16 +1,16 @@
-import { authAPI } from "../api/api"; 
+import { authAPI } from '../api/api';
 // import { stopSubmit } from "redux-form";
-import { getAuthUserData } from "./auth-reducer";
-import { any } from "prop-types";
+import { getAuthUserData } from './auth-reducer';
+import { any } from 'prop-types';
 
-const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS";
+const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 
 export type InitialStateType = {
-  initialized: boolean
+  initialized: boolean;
 };
 
 let initialState: InitialStateType = {
-  initialized: false
+  initialized: false,
 };
 
 const appReducer = (state = initialState, action: any): InitialStateType => {
@@ -18,7 +18,7 @@ const appReducer = (state = initialState, action: any): InitialStateType => {
     case INITIALIZED_SUCCESS:
       return {
         ...state,
-        initialized: true
+        initialized: true,
       };
 
     default:
@@ -27,12 +27,12 @@ const appReducer = (state = initialState, action: any): InitialStateType => {
 };
 
 type InitializedSuccessActionType = {
-  type: typeof INITIALIZED_SUCCESS
-}
+  type: typeof INITIALIZED_SUCCESS;
+};
 
 //Ac
 export const initializedSuccess = (): InitializedSuccessActionType => ({
-  type: INITIALIZED_SUCCESS
+  type: INITIALIZED_SUCCESS,
 });
 
 export const initializeApp = () => (dispatch: any) => {
@@ -41,6 +41,6 @@ export const initializeApp = () => (dispatch: any) => {
   Promise.all([promise]).then(() => {
     dispatch(initializedSuccess());
   });
-}; 
+};
 
 export default appReducer;

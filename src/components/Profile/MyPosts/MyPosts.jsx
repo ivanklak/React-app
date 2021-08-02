@@ -1,17 +1,12 @@
-import React from "react";
-import s from "./MyPosts.module.css";
-import Post from "./Post/Post";
-import { Field, reduxForm } from "redux-form";
-import {
-  required,
-  maxLengthCreator
-} from "../../../utils/validators/validators";
-import { Textarea } from "../../common/FormsControl/FormsControls";
+import React from 'react';
+import s from './MyPosts.module.css';
+import Post from './Post/Post';
+import { Field, reduxForm } from 'redux-form';
+import { required, maxLengthCreator } from '../../../utils/validators/validators';
+import { Textarea } from '../../common/FormsControl/FormsControls';
 
 const MyPosts = React.memo(props => {
-  let postsElements = props.posts.map(p => (
-    <Post message={p.message} likesCount={p.likesCount} />
-  ));
+  let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} />);
 
   let newPostElement = React.createRef();
 
@@ -70,8 +65,6 @@ const AddNewPostForm = props => {
   );
 };
 
-const AddNewPostFormRedux = reduxForm({ form: "profileAddNewPostForm" })(
-  AddNewPostForm
-);
+const AddNewPostFormRedux = reduxForm({ form: 'profileAddNewPostForm' })(AddNewPostForm);
 
 export default MyPosts;
