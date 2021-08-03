@@ -32,8 +32,7 @@ const Dialogs = props => {
 
 const maxLength50 = maxLengthCreator(50);
 
-const AddMessageForm = props => {
-  return (
+const AddMessageForm = props => (
     <form onSubmit={props.handleSubmit}>
       <div className={s.form}>
         <Field component={Textarea} validate={[required, maxLength50]} name="newMessageBody" placeholder="Enter your message" className={s.messageInput} />
@@ -43,7 +42,6 @@ const AddMessageForm = props => {
       </div>
     </form>
   );
-};
 
 const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
 

@@ -15,8 +15,7 @@ let Users = props => {
   return (
     <div>
       <div className={styles.pages}>
-        {pages.map(p => {
-          return (
+        {pages.map(p => (
             <span
               key={p}
               className={props.currentPage === p && styles.selectedPage}
@@ -26,8 +25,7 @@ let Users = props => {
             >
               {p + ' '}
             </span>
-          );
-        })}
+          ))}
       </div>
       {props.users.map(u => (
         <div key={u.id} className={styles.persons}>

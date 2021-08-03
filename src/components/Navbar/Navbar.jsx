@@ -5,8 +5,7 @@ import FriendsItem from '../Friends/FriendsItem';
 
 import s from './Navbar.module.css';
 
-const Navbar = () => {
-  return (
+const Navbar = () => (
     <nav className={s.nav}>
       <div className={s.item}>
         <NavLink to="/profile" activeClassName={s.activeLink}>
@@ -57,6 +56,5 @@ const Navbar = () => {
       </NavLink>
     </nav>
   );
-};
 
 export default Navbar;

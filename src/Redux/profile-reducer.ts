@@ -80,9 +80,7 @@ type AddPostActionCreatorActionType = {
   newPostText: string;
 };
 
-export const addPostActionCreator = (newPostText: string): AddPostActionCreatorActionType => {
-  return {type: ADD_POST, newPostText};
-};
+export const addPostActionCreator = (newPostText: string): AddPostActionCreatorActionType => ({type: ADD_POST, newPostText});
 
 type DeletePostActionType = {
   type: typeof DELETE_POST;
@@ -96,12 +94,10 @@ export const deletePost = (postId: number): DeletePostActionType => ({
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
 
-export const getUserProfile = (userId: number): ThunkType => {
-  return async dispatch => {
+export const getUserProfile = (userId: number): ThunkType => async dispatch => {
     const response = await usersAPI.getProfile(userId);
     dispatch(setUserProfile(response.data));
   };
-};
 
 export const getStatus =
   (userId: number): ThunkType =>

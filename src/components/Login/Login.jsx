@@ -10,8 +10,7 @@ import {login} from '../../Redux/auth-reducer';
 import style from '../common/FormsControl/FormsControls.module.css';
 import s from './Login.module.css';
 
-const LoginForm = props => {
-  return (
+const LoginForm = props => (
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field placeholder={'Email'} name={'email'} validate={[required]} component={Input} />
@@ -28,7 +27,6 @@ const LoginForm = props => {
       </div>
     </form>
   );
-};
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 

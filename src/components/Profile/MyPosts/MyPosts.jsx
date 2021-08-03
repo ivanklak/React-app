@@ -26,8 +26,7 @@ const MyPosts = props => {
 
 const maxLength10 = maxLengthCreator(10);
 
-const AddNewPostForm = props => {
-  return (
+const AddNewPostForm = props => (
     <form onSubmit={props.handleSubmit}>
       <div>
         <div>New post</div>
@@ -38,7 +37,6 @@ const AddNewPostForm = props => {
       </div>
     </form>
   );
-};
 
 const AddNewPostFormRedux = reduxForm({form: 'profileAddNewPostForm'})(AddNewPostForm);
 
