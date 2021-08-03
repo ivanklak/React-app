@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 import {compose} from 'redux';
 
 import {getUserProfile, getStatus, updateStatus} from '../../Redux/profile-reducer';
+
 import Profile from './Profile';
 
 class ProfileContainer extends React.Component {

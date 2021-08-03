@@ -2,6 +2,7 @@ import {ThunkAction} from 'redux-thunk';
 
 import {usersAPI} from '../api/api';
 import {UserType} from '../types/types';
+
 import {AppStateType} from './redux-store';
 
 const FOLLOW = 'FOLLOW';

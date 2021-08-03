@@ -28,8 +28,8 @@
   "rules": {
     "react/prop-types": "off",
     "import/order": ["error", {
-      "groups": ["builtin", "external", ["parent", "sibling"], "index"],
-      "newlines-between": "always",
+      "groups": ["builtin", "external", "parent", "sibling", "index", "object", "type"],
+      "newlines-between": "always-and-inside-groups",
       "pathGroups": [
         {
           "pattern": "**/*.+(css|sass|less|scss|pcss|styl)",
