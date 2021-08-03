@@ -2,11 +2,12 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 
-import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {Textarea} from '../common/FormsControl/FormsControls';
 import {required, maxLengthCreator} from '../../utils/validators/validators';
+
+import s from './Dialogs.module.css';
 
 const Dialogs = props => {
   let state = props.dialogsPage;

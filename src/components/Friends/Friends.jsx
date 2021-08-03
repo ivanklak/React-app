@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FriendsItem from './FriendsItem';
+
 import s from './Friends.module.css';
 
 const Friends = props => {

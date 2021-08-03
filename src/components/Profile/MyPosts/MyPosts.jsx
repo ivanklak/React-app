@@ -1,10 +1,11 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 
-import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {required, maxLengthCreator} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControl/FormsControls';
+
+import s from './MyPosts.module.css';
 
 const MyPosts = props => {
   let postsElements = props.posts.map(p => <Post key={p.message} message={p.message} likesCount={p.likesCount} />);

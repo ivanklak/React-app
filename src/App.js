@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './App.css';
 import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {compose} from 'redux';
 
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
@@ -12,9 +12,10 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
-import {compose} from '../../Library/Caches/typescript/3.6/node_modules/redux';
 import {initializeApp} from './Redux/app-reducer';
 import Preloader from './components/Preloader/Preloader';
+
+import './App.css';
 
 class App extends Component {
   componentDidMount() {
