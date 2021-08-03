@@ -1,7 +1,8 @@
-import {authAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
-import {AppStateType} from './redux-store';
 import {ThunkAction} from 'redux-thunk';
+
+import {authAPI} from '../api/api';
+import {AppStateType} from './redux-store';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 

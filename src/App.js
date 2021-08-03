@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
+import {Route, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+
 import Navbar from './components/Navbar/Navbar';
-import {Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -10,9 +12,7 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
-import {connect} from 'react-redux';
 import {compose} from '../../Library/Caches/typescript/3.6/node_modules/redux';
-import {withRouter} from 'react-router-dom';
 import {initializeApp} from './Redux/app-reducer';
 import Preloader from './components/Preloader/Preloader';
 

@@ -1,8 +1,10 @@
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+
 import {sendMessageCreator} from '../../Redux/state';
 import Dialogs from './Dialogs';
-import {connect} from 'react-redux';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
-import {compose} from 'redux';
+
 
 let mapStateToProps = state => {
   return {
