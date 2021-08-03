@@ -29,6 +29,7 @@ const profileReducer = (state = initialState, action: ActionsTypes): InitialStat
         message: action.newPostText,
         likesCount: 0,
       };
+
       return {
         ...state,
         posts: [...state.posts, newPost],
@@ -61,12 +62,14 @@ type SetUserProfileActionType = {
   type: typeof SET_USER_PROFILE;
   profile: ProfileType;
 };
+
 export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({type: SET_USER_PROFILE, profile});
 
 type SetStatusActionType = {
   type: typeof SET_STATUS;
   status: string;
 };
+
 export const setStatus = (status: string): SetStatusActionType => ({
   type: SET_STATUS,
   status,
@@ -76,6 +79,7 @@ type AddPostActionCreatorActionType = {
   type: typeof ADD_POST;
   newPostText: string;
 };
+
 export const addPostActionCreator = (newPostText: string): AddPostActionCreatorActionType => {
   return {type: ADD_POST, newPostText};
 };
@@ -84,6 +88,7 @@ type DeletePostActionType = {
   type: typeof DELETE_POST;
   postId: number;
 };
+
 export const deletePost = (postId: number): DeletePostActionType => ({
   type: DELETE_POST,
   postId,
@@ -104,6 +109,7 @@ export const getStatus =
     const response = await profileAPI.getStatus(userId);
     dispatch(setStatus(response.data));
   };
+
 export const updateStatus =
   (status: string): ThunkType =>
   async dispatch => {

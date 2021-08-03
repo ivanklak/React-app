@@ -20,6 +20,7 @@ const reducers = combineReducers({
 });
 
 type ReducerType = typeof reducers;
+
 export type AppStateType = ReturnType<ReducerType>;
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

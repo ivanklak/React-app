@@ -88,6 +88,7 @@ type FollowSuccessType = {
   type: typeof FOLLOW;
   userId: number;
 };
+
 export const followSuccess = (userId: number): FollowSuccessType => ({
   type: FOLLOW,
   userId,
@@ -97,6 +98,7 @@ type UnfollowSuccessType = {
   type: typeof UNFOLLOW;
   userId: number;
 };
+
 export const unfollowSuccess = (userId: number): UnfollowSuccessType => ({
   type: UNFOLLOW,
   userId,
@@ -106,6 +108,7 @@ type SetUsersType = {
   type: typeof SET_USERS;
   users: Array<UserType>;
 };
+
 export const setUsers = (users: Array<UserType>): SetUsersType => ({
   type: SET_USERS,
   users,
@@ -115,6 +118,7 @@ type SetCurrentPageType = {
   type: typeof SET_CURRENT_PAGE;
   currentPage: number;
 };
+
 export const setCurrentPage = (currentPage: number): SetCurrentPageType => ({
   type: SET_CURRENT_PAGE,
   currentPage,
@@ -124,6 +128,7 @@ type SetTotalUsersCountType = {
   type: typeof SET_TOTAL_USERS_COUNT;
   count: number;
 };
+
 export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountType => ({
   type: SET_TOTAL_USERS_COUNT,
   count: totalUsersCount,
@@ -133,6 +138,7 @@ type SetTougleIsFetchingType = {
   type: typeof TOGGLE_IS_FETCHING;
   isFetching: boolean;
 };
+
 export const setTougleIsFetching = (isFetching: boolean): SetTougleIsFetchingType => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
@@ -143,6 +149,7 @@ type ToggleFollowingProgressType = {
   isFetching: boolean;
   userId: number;
 };
+
 export const toggleFollowingProgress = (isFetching: boolean, userId: number): ToggleFollowingProgressType => ({
   type: TOGGLE_IS_FOLLOWING_PROGRESS,
   isFetching,
