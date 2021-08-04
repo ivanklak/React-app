@@ -6,7 +6,6 @@ import {authAPI} from '../api/api';
 import {AppStateType} from './redux-store';
 
 const SET_USER_DATA = 'SET_USER_DATA';
-
 const initialState = {
   userId: null as number | null,
   email: null as string | null,

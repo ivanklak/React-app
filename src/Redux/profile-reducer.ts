@@ -6,13 +6,9 @@ import {PostType, ProfileType} from '../types/types';
 import {AppStateType} from './redux-store';
 
 const ADD_POST = 'ADD_POST';
-
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
-
 const SET_STATUS = 'SET_STATUS';
-
 const DELETE_POST = 'DELETE_POST';
-
 const initialState = {
   posts: [
     {id: 1, message: 'Hi, how are you?', likesCount: 12},
@@ -98,7 +94,9 @@ export const deletePost = (postId: number): DeletePostActionType => ({
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
 
-export const getUserProfile = (userId: number): ThunkType => async dispatch => {
+export const getUserProfile =
+  (userId: number): ThunkType =>
+  async dispatch => {
     const response = await usersAPI.getProfile(userId);
 
     dispatch(setUserProfile(response.data));
