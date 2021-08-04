@@ -6,10 +6,10 @@ import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 import Dialogs from './Dialogs';
 
-let mapStateToProps = state => ({
+const mapStateToProps = state => ({
   dialogsPage: state.dialogsPage,
 });
-let mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   sendMessage: newMessageBody => {
     dispatch(sendMessageCreator(newMessageBody));
   },
