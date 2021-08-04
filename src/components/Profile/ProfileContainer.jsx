@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {compose} from 'redux';
@@ -7,27 +7,25 @@ import {getUserProfile, getStatus, updateStatus} from '../../Redux/profile-reduc
 
 import Profile from './Profile';
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    let userId = this.props.match.params.userId;
+const ProfileContainer = props => {
+  useEffect(() => {
+    let userId = props.match.params.userId;
     if (!userId) {
-      userId = this.props.authorizedUserId;
+      userId = props.authorizedUserId;
       if (!userId) {
-        this.props.history.push('/login');
+        props.history.push('/login');
       }
     }
-    this.props.getUserProfile(userId);
-    this.props.getStatus(userId);
-  }
+    props.getUserProfile(userId);
+    props.getStatus(userId);
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   profile: state.profilePage.profile,

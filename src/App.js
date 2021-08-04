@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
@@ -17,38 +17,36 @@ import Preloader from './components/Preloader/Preloader';
 
 import './App.css';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.initializeApp();
+const App = props => {
+  useEffect(() => {
+    props.initializeApp();
+  }, []);
+
+  if (!props.initialized) {
+    return <Preloader />;
   }
 
-  render() {
-    if (!this.props.initialized) {
-      return <Preloader />;
-    }
+  return (
+    <div className="app-wrapper">
+      <HeaderContainer />
+      <Navbar />
+      <div className="app-wrapper-content">
+        <Route path="/dialogs" render={() => <DialogsContainer />} />
 
-    return (
-      <div className="app-wrapper">
-        <HeaderContainer />
-        <Navbar />
-        <div className="app-wrapper-content">
-          <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
 
-          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+        <Route path="/users" render={() => <UsersContainer />} />
 
-          <Route path="/users" render={() => <UsersContainer />} />
+        <Route path="/login" render={() => <LoginPage />} />
 
-          <Route path="/login" render={() => <LoginPage />} />
-
-          <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/settings" render={() => <Settings />} />
-          <Route path="/friends" />
-        </div>
+        <Route path="/news" render={() => <News />} />
+        <Route path="/music" render={() => <Music />} />
+        <Route path="/settings" render={() => <Settings />} />
+        <Route path="/friends" />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   initialized: state.app.initialized,
