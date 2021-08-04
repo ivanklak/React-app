@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 
@@ -14,9 +14,9 @@ const UsersContainer = props => {
     props.requestUsers(props.currentPage, props.pageSize);
   }, []);
 
-  const onPageChanged = pageNumber => {
+  const onPageChanged = useCallback(pageNumber => {
     props.requestUsers(pageNumber, props.pageSize);
-  };
+  }, []);
 
   return (
     <>
