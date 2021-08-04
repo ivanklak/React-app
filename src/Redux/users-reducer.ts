@@ -6,11 +6,17 @@ import {UserType} from '../types/types';
 import {AppStateType} from './redux-store';
 
 const FOLLOW = 'FOLLOW';
+
 const UNFOLLOW = 'UNFOLLOW';
+
 const SET_USERS = 'SET_USERS';
+
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 const initialState = {
@@ -33,6 +39,7 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialState 
           if (u.id === action.userId) {
             return {...u, followed: true};
           }
+
           return u;
         }),
       };
@@ -44,6 +51,7 @@ const usersReducer = (state = initialState, action: ActionsTypes): InitialState 
           if (u.id === action.userId) {
             return {...u, followed: false};
           }
+
           return u;
         }),
       };
@@ -163,6 +171,7 @@ export const requestUsers = (currentPage: number, pageSize: number): ThunkType =
     dispatch(setTougleIsFetching(true));
     dispatch(setCurrentPage(currentPage));
     const data = await usersAPI.getUsers(currentPage, pageSize);
+
     dispatch(setTougleIsFetching(false));
     dispatch(setUsers(data.items));
     dispatch(setTotalUsersCount(data.totalCount));
@@ -171,6 +180,7 @@ export const requestUsers = (currentPage: number, pageSize: number): ThunkType =
 export const follow = (userId: number): ThunkType => async dispatch => {
     dispatch(toggleFollowingProgress(true, userId));
     const data = await usersAPI.toFollow(userId);
+
     if (data.resultCode === 0) {
       dispatch(followSuccess(userId));
     }
@@ -180,6 +190,7 @@ export const follow = (userId: number): ThunkType => async dispatch => {
 export const unfollow = (userId: number): ThunkType => async dispatch => {
     dispatch(toggleFollowingProgress(true, userId));
     const data = await usersAPI.toUnfollow(userId);
+
     if (data.resultCode === 0) {
       dispatch(unfollowSuccess(userId));
     }

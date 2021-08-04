@@ -63,7 +63,8 @@
     "babel/valid-typeof": 1,
     "padding-line-between-statements": [
       "error",
-      { "blankLine": "always","prev": "const", "next": "return" },
+      { "blankLine": "always","prev": "*", "next": "return" },
+      { "blankLine": "always","prev": "const", "next": "*" },
       { "blankLine": "always", "prev": "*", "next": "export" }
     ],
     "lines-between-class-members": ["error", "always"],

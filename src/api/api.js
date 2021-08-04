@@ -20,6 +20,7 @@ export const usersAPI = {
   },
   getProfile(userId) {
     console.warn(`Obsolete method. Please use profileAPI object.`);
+
     return profileAPI.getProfile(userId);
   },
 };

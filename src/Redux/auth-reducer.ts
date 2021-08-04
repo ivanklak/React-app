@@ -52,8 +52,10 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const getAuthUserData = (): ThunkType => async dispatch => {
   const response = await authAPI.me();
+
   if (response.data.resultCode === 0) {
     const {id, email, login} = response.data.data;
+
     dispatch(setAuthUserData(id, email, login, true));
   }
 };
@@ -62,16 +64,19 @@ export const login =
   (email: string, password: string, rememberMe: boolean): ThunkType =>
   async dispatch => {
     const response = await authAPI.login(email, password, rememberMe);
+
     if (response.data.resultCode === 0) {
       await dispatch(getAuthUserData());
     } else {
       const message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+
       dispatch(stopSubmit('login', {_error: message}));
     }
   };
 
 export const logout = (): ThunkType => async dispatch => {
   const response = await authAPI.logout();
+
   if (response.data.resultCode === 0) {
     dispatch(setAuthUserData(null, null, null, false));
   }

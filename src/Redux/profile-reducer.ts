@@ -6,8 +6,11 @@ import {PostType, ProfileType} from '../types/types';
 import {AppStateType} from './redux-store';
 
 const ADD_POST = 'ADD_POST';
+
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+
 const SET_STATUS = 'SET_STATUS';
+
 const DELETE_POST = 'DELETE_POST';
 
 const initialState = {
@@ -97,6 +100,7 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const getUserProfile = (userId: number): ThunkType => async dispatch => {
     const response = await usersAPI.getProfile(userId);
+
     dispatch(setUserProfile(response.data));
   };
 
@@ -104,6 +108,7 @@ export const getStatus =
   (userId: number): ThunkType =>
   async dispatch => {
     const response = await profileAPI.getStatus(userId);
+
     dispatch(setStatus(response.data));
   };
 
@@ -111,6 +116,7 @@ export const updateStatus =
   (status: string): ThunkType =>
   async dispatch => {
     const response = await profileAPI.updateStatus(status);
+
     if (response.data.resultCode === 0) {
       dispatch(setStatus(status));
     }

@@ -3,9 +3,11 @@ import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 
 const ADD_POST = 'ADD_POST';
+
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
+
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
 let store = {
