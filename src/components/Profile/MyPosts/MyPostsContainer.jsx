@@ -1,25 +1,23 @@
-import React from 'react';
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../Redux/state';
-import MyPosts from './MyPosts';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-let mapStateToProps = state => {
-  return {
+import {addPostActionCreator, updateNewPostActionCreator} from '../../../Redux/state';
+
+import MyPosts from './MyPosts';
+
+const mapStateToProps = state => ({
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
-  }; //перерисовка
-};
-let mapDispatchToProps = dispatch => {
-  return {
+  });
+const mapDispatchToProps = dispatch => ({
     updateNewPostText: text => {
-      let action = updateNewPostActionCreator(text);
+      const action = updateNewPostActionCreator(text);
+
       dispatch(action);
     },
     addPost: newPostText => {
       dispatch(addPostActionCreator(newPostText));
     },
-  };
-};
+  });
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;

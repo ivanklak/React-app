@@ -1,0 +1,93 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "babel",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "prefer-const": "error",
+    "react/prop-types": "off",
+    "import/order": ["error", {
+      "groups": ["builtin", "external", "parent", "sibling", "index", "object", "type"],
+      "newlines-between": "always-and-inside-groups",
+      "pathGroups": [
+        {
+          "pattern": "**/*.+(css|sass|less|scss|pcss|styl)",
+          "patternOptions": {"dot": true, "nocomment": true},
+          "group": "index",
+          "position": "after"
+        },
+        {
+          "pattern": "{.,..}/**/*.+(css|sass|less|scss|pcss|styl)",
+          "patternOptions": {"dot": true, "nocomment": true},
+          "group": "index",
+          "position": "after"
+        }
+      ]
+    }],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-unused-vars": ["error", { "caughtErrorsIgnorePattern": "^ignore" }],
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": "error",
+
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "babel/new-cap": 1,
+    "babel/camelcase": 1,
+    "babel/no-invalid-this": 1,
+    "babel/object-curly-spacing": 1,
+    "babel/semi": 1,
+    "babel/no-unused-expressions": 1,
+    "babel/valid-typeof": 1,
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always","prev": "*", "next": "return" },
+      { "blankLine": "always","prev": "const", "next": "*" },
+      { "blankLine": "any",   "prev": "const", "next": "const"},
+      { "blankLine": "always", "prev": "*", "next": "export" }
+    ],
+    "lines-between-class-members": ["error", "always"],
+    "arrow-body-style": ["error", "as-needed"],
+    "curly": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": ["error"]
+      }
+    },
+    {
+      "files": [
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}

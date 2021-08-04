@@ -1,11 +1,11 @@
 import React from 'react';
-import s from './Navbar.module.css';
-import { NavLink } from 'react-router-dom';
-import Friends from '../Friends/Friends';
+import {NavLink} from 'react-router-dom';
+
 import FriendsItem from '../Friends/FriendsItem';
 
-const Navbar = props => {
-  return (
+import s from './Navbar.module.css';
+
+const Navbar = () => (
     <nav className={s.nav}>
       <div className={s.item}>
         <NavLink to="/profile" activeClassName={s.activeLink}>
@@ -54,16 +54,7 @@ const Navbar = props => {
           <FriendsItem />
         </div>
       </NavLink>
-      {/* <div className={s.itemf}>
-       <img src="https://consol-games.com/uploads/posts/2012-12/1356061760_1341555753_00470-01.jpg" />
-      </div>
-      <div className={s.itemf}>
-       <img src="https://psmedia.playstation.com/is/image/psmedia/locoroco-two-column-02-ps4-eu-26apr17?$2ColExpand_Image$" />
-      </div>
-      <div className={s.itemf}>
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQjMiiSaZUaPGrR40wueKNydKCkk9HVcidp0JmdkHdPcHp1GrhV" />
-      </div> */}
     </nav>
   );
-};
+
 export default Navbar;

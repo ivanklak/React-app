@@ -1,13 +1,14 @@
 import React from 'react';
-import styles from './users.module.css';
-import userPhoto from '../../assets/images/people-profile.png';
-import { NavLink } from 'react-router-dom';
-import Axios from 'axios';
+import {NavLink} from 'react-router-dom';
 
-let Users = props => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-  console.log(props.users);
-  let pages = [];
+import userPhoto from '../../assets/images/people-profile.png';
+
+import styles from './users.module.css';
+
+const Users = props => {
+  const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  const pages = [];
+
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
@@ -15,18 +16,17 @@ let Users = props => {
   return (
     <div>
       <div className={styles.pages}>
-        {pages.map(p => {
-          return (
-            <span
-              className={props.currentPage === p && styles.selectedPage}
-              onClick={e => {
-                props.onPageChanged(p);
-              }}
-            >
-              {p + ' '}
-            </span>
-          );
-        })}
+        {pages.map(p => (
+          <span
+            key={p}
+            className={props.currentPage === p && styles.selectedPage}
+            onClick={() => {
+              props.onPageChanged(p);
+            }}
+          >
+            {p + ' '}
+          </span>
+        ))}
       </div>
       {props.users.map(u => (
         <div key={u.id} className={styles.persons}>
@@ -75,4 +75,5 @@ let Users = props => {
     </div>
   );
 };
+
 export default Users;

@@ -6,9 +6,8 @@
     "h h"
     "n c";
 
-  grid-template-rows: 60px 1fr; /*2 строки и 1 фракция*/
+  grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  /* grid-gap: 10 px; расст между колонками */
 }
 
 .app-wrapper-content {
