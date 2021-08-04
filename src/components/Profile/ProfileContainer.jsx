@@ -9,7 +9,7 @@ import Profile from './Profile';
 
 const ProfileContainer = props => {
   useEffect(() => {
-    const userId = props.match.params.userId ? props.match.params.userId : props.authorizedUserId;
+    const userId = props.match.params.userId || props.authorizedUserId;
 
     if (!userId) {
       props.history.push('/login');
