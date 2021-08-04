@@ -70,7 +70,8 @@
       { "blankLine": "always", "prev": "*", "next": "export" }
     ],
     "lines-between-class-members": ["error", "always"],
-    "arrow-body-style": ["error", "as-needed"]
+    "arrow-body-style": ["error", "as-needed"],
+    "curly": "error"
   },
   "overrides": [
     {

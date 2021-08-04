@@ -20,7 +20,9 @@ const Dialogs = props => {
     props.sendMessage(values.newMessageBody);
   };
 
-  if (!props.isAuth) return <Redirect to={'/login'} />;
+  if (!props.isAuth) {
+    return <Redirect to={'/login'} />;
+  }
 
   return (
     <div className={s.dialogs}>
@@ -34,15 +36,15 @@ const Dialogs = props => {
 const maxLength50 = maxLengthCreator(50);
 
 const AddMessageForm = props => (
-    <form onSubmit={props.handleSubmit}>
-      <div className={s.form}>
-        <Field component={Textarea} validate={[required, maxLength50]} name="newMessageBody" placeholder="Enter your message" className={s.messageInput} />
-      </div>
-      <div>
-        <button>Send</button>
-      </div>
-    </form>
-  );
+  <form onSubmit={props.handleSubmit}>
+    <div className={s.form}>
+      <Field component={Textarea} validate={[required, maxLength50]} name="newMessageBody" placeholder="Enter your message" className={s.messageInput} />
+    </div>
+    <div>
+      <button>Send</button>
+    </div>
+  </form>
+);
 
 const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
 
