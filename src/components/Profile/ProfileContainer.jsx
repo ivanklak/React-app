@@ -8,14 +8,14 @@ import {getUserProfile, getStatus, updateStatus} from '../../Redux/profile-reduc
 import Profile from './Profile';
 
 const ProfileContainer = props => {
+
   useEffect(() => {
-    let userId = props.match.params.userId;
+    const userId = props.match.params.userId ? props.match.params.userId : props.authorizedUserId;
+
     if (!userId) {
-      userId = props.authorizedUserId;
-      if (!userId) {
-        props.history.push('/login');
-      }
+      props.history.push('/login');
     }
+
     props.getUserProfile(userId);
     props.getStatus(userId);
   }, []);
