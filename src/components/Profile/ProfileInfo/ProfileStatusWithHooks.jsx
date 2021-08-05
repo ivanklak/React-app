@@ -1,12 +1,18 @@
 import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
-const ProfileStatusWithHooks = props => {
+import {updateStatus} from '../../../Redux/profile-reducer';
+import {getProfileStatus} from '../../../Redux/profile-selectors';
+
+const ProfileStatusWithHooks = () => {
+  const status = useSelector(getProfileStatus);
+  const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
-  const [status, setStatus] = useState(props.status);
+  const [profileStatus, setProfileStatus] = useState(status);
 
   useEffect(() => {
-    setStatus(props.status);
-  }, [props.status]);
+    setProfileStatus(status);
+  }, [status]);
 
   const activateEditMode = () => {
     setEditMode(true);
@@ -14,23 +20,23 @@ const ProfileStatusWithHooks = props => {
 
   const deactivateEditMode = () => {
     setEditMode(false);
-    props.updateStatus(status);
+    dispatch(updateStatus(profileStatus));
   };
 
   const onStatusChange = e => {
-    setStatus(e.currentTarget.value);
+    setProfileStatus(e.currentTarget.value);
   };
 
   return (
     <div>
       {!editMode && (
         <div>
-          <span onDoubleClick={activateEditMode}>{props.status || 'No status'}</span>
+          <span onDoubleClick={activateEditMode}>{status || 'No status'}</span>
         </div>
       )}
       {editMode && (
         <div>
-          <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={status} />
+          <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={profileStatus} />
         </div>
       )}
     </div>

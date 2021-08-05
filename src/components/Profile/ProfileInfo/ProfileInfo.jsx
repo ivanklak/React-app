@@ -1,33 +1,36 @@
 import React from 'react';
 
+import {useSelector} from 'react-redux';
+
+import {getProfile} from '../../../Redux/profile-selectors';
 import Preloader from '../../Preloader/Preloader';
 
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 import s from './ProfileInfo.module.css';
 
-const ProfileInfo = props => {
-  if (!props.profile) {
-    return <Preloader />;
-  }
+const ProfileInfo = () => {
+  const profile = useSelector(getProfile);
 
-  return (
-    <div>
+  return profile ? (
+    <>
       <div className={s.descriptionBlock}>
-        <img src={props.profile.photos.small} alt="photo" />
-        <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
+        <img src={profile.photos.small} alt="photo" />
+        <ProfileStatusWithHooks />
         <p>
           <div>
-            <strong>{props.profile.fullName}</strong>
+            <strong>{profile.fullName}</strong>
           </div>
         </p>
 
-        <div>{props.profile.aboutMe}</div>
-        <div>{props.profile.contacts.facebook}</div>
-        <div>{props.profile.contacts.vk}</div>
-        <div>{props.profile.contacts.twitter}</div>
+        <div>{profile.aboutMe}</div>
+        <div>{profile.contacts.facebook}</div>
+        <div>{profile.contacts.vk}</div>
+        <div>{profile.contacts.twitter}</div>
       </div>
-    </div>
+    </>
+  ) : (
+    <Preloader />
   );
 };
 

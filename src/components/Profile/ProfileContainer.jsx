@@ -1,36 +1,32 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {compose} from 'redux';
 
-import {getUserProfile, getStatus, updateStatus} from '../../Redux/profile-reducer';
+import {getUserProfile, getStatus} from '../../Redux/profile-reducer';
+import {getAuthorizedUserId} from '../../Redux/profile-selectors';
 
 import Profile from './Profile';
 
 const ProfileContainer = props => {
+  const authorizedUserId = useSelector(getAuthorizedUserId);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    const userId = props.match.params.userId || props.authorizedUserId;
+    const userId = props.match.params.userId || authorizedUserId;
 
     if (!userId) {
       props.history.push('/login');
     }
 
-    props.getUserProfile(userId);
-    props.getStatus(userId);
+    dispatch(getUserProfile(userId));
+    dispatch(getStatus(userId));
   }, []);
 
   return (
     <div>
-      <Profile {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+      <Profile />
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  profile: state.profilePage.profile,
-  status: state.profilePage.status,
-  authorizedUserId: state.auth.userId,
-  isAuth: state.auth.isAuth,
-});
-
-export default compose(connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}), withRouter)(ProfileContainer);
+export default withRouter(ProfileContainer);
