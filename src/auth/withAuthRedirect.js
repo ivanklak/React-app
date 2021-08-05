@@ -1,22 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useSelector} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
-const withAuthRedirect = ComponentToBeRendered => {
-  const mapStateToPropsForRedirect = state => ({
-    isAuth: state.auth.isAuth,
-  });
+const mapStateToPropsForRedirect = state => ({
+  isAuth: state.auth.isAuth,
+});
 
-  return props => {
-    const {isAuth} = useSelector(mapStateToPropsForRedirect);
+const withAuthRedirect = ComponentToBeRendered => props => {
+  const {isAuth} = useSelector(mapStateToPropsForRedirect);
 
-    useEffect(() => {
-      if (!isAuth) {
-        props.history.push('/login');
-      }
-    }, [isAuth]);
-
-    return isAuth && <ComponentToBeRendered {...props} />;
-  };
+  return isAuth ? isAuth && <ComponentToBeRendered {...props} /> : <Redirect to={'/login'} />;
 };
 
 export default withAuthRedirect;
