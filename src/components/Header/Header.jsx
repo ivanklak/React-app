@@ -1,23 +1,34 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {logout} from '../../Redux/auth-reducer';
 
 import s from './Header.module.css';
 
-const Header = props => (
-  <header className={s.header}>
-    <NavLink to={'/profile'}>
-      <img src="https://cdn.auth0.com/blog/react-js/react.png" alt="logo" />
-    </NavLink>
-    <div className={s.loginBlock}>
-      {props.isAuth ? (
-        <div>
-          {props.login} - <button onClick={props.logout}>Log out</button>{' '}
-        </div>
-      ) : (
-        <NavLink to={'/login'}>Login</NavLink>
-      )}
-    </div>
-  </header>
-);
+export const Header = () => {
+  const isAuth = useSelector(state => state.auth.isAuth);
+  const login = useSelector(state => state.auth.login);
+  const dispatch = useDispatch();
 
-export default Header;
+  const onLogout = () => {
+    dispatch(logout());
+  };
+
+  return (
+    <header className={s.header}>
+      <NavLink to={'/profile'}>
+        <img src="https://cdn.auth0.com/blog/react-js/react.png" alt="logo" />
+      </NavLink>
+      <div className={s.loginBlock}>
+        {isAuth ? (
+          <div>
+            {login} - <button onClick={onLogout}>Log out</button>{' '}
+          </div>
+        ) : (
+          <NavLink to={'/login'}>Login</NavLink>
+        )}
+      </div>
+    </header>
+  );
+};
