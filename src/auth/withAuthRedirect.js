@@ -9,7 +9,7 @@ const mapStateToPropsForRedirect = state => ({
 const withAuthRedirect = ComponentToBeRendered => props => {
   const {isAuth} = useSelector(mapStateToPropsForRedirect);
 
-  return isAuth ? isAuth && <ComponentToBeRendered {...props} /> : <Redirect to={'/login'} />;
+  return isAuth ? <ComponentToBeRendered {...props} /> : <Redirect to={'/login'} />;
 };
 
 export default withAuthRedirect;
