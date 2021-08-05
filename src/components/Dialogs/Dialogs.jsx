@@ -1,26 +1,30 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {Textarea} from '../common/FormsControl/FormsControls';
 import {required, maxLengthCreator} from '../../utils/validators/validators';
+import {sendMessages} from '../../Redux/dialogs-reducer';
 
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
 import s from './Dialogs.module.css';
 
-const Dialogs = props => {
-  const state = props.dialogsPage;
+export const Dialogs = () => {
+  const isAuth = useSelector(state => state.auth.isAuth);
+  const dialogsPage = useSelector(state => state.dialogsPage);
+  const dispatch = useDispatch();
 
-  const dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);
-  const messagesElements = state.messages.map(m => <Message message={m.message} key={m.id} />);
+  const dialogsElements = dialogsPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);
+  const messagesElements = dialogsPage.messages.map(m => <Message message={m.message} key={m.id} />);
 
   const addNewMessage = values => {
-    props.sendMessage(values.newMessageBody);
+    dispatch(sendMessages(values.newMessageBody));
   };
 
-  if (!props.isAuth) {
+  if (!isAuth) {
     return <Redirect to={'/login'} />;
   }
 
@@ -47,5 +51,3 @@ const AddMessageForm = props => (
 );
 
 const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
-
-export default Dialogs;
