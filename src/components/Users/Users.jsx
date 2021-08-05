@@ -1,12 +1,38 @@
-import React from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
 import userPhoto from '../../assets/images/people-profile.png';
+import {getCurrentPage, getFollowingInProgress, getPageSize, getTotalUsersCount, getUsers} from '../../Redux/users-selectors';
+import {requestUsers, follow, unfollow} from '../../Redux/users-reducer';
 
 import styles from './users.module.css';
 
-const Users = props => {
-  const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+const Users = () => {
+  const users = useSelector(getUsers);
+  const totalUsersCount = useSelector(getTotalUsersCount);
+  const currentPage = useSelector(getCurrentPage);
+  const pageSize = useSelector(getPageSize);
+  const followingInProgress = useSelector(getFollowingInProgress);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(requestUsers(currentPage, pageSize));
+  }, []);
+
+  const onPageChanged = useCallback(pageNumber => {
+    dispatch(requestUsers(pageNumber, pageSize));
+  }, []);
+
+  const followUser = userId => {
+    dispatch(follow(userId));
+  };
+  const unfollowUser = userId => {
+    dispatch(unfollow(userId));
+  };
+
+  const pagesCount = Math.ceil(totalUsersCount / pageSize);
   const pages = [];
 
   for (let i = 1; i <= pagesCount; i++) {
@@ -19,16 +45,16 @@ const Users = props => {
         {pages.map(p => (
           <span
             key={p}
-            className={props.currentPage === p && styles.selectedPage}
+            className={currentPage === p && styles.selectedPage}
             onClick={() => {
-              props.onPageChanged(p);
+              onPageChanged(p);
             }}
           >
             {p + ' '}
           </span>
         ))}
       </div>
-      {props.users.map(u => (
+      {users.map(u => (
         <div key={u.id} className={styles.persons}>
           <div className={styles.person}>
             <span>
@@ -40,18 +66,18 @@ const Users = props => {
               <div className={styles.followbtn}>
                 {u.followed ? (
                   <button
-                    disabled={props.followingInProgress.some(id => id === u.id)}
+                    disabled={followingInProgress.some(id => id === u.id)}
                     onClick={() => {
-                      props.unfollow(u.id);
+                      unfollowUser(u.id);
                     }}
                   >
                     Unfollow
                   </button>
                 ) : (
                   <button
-                    disabled={props.followingInProgress.some(id => id === u.id)}
+                    disabled={followingInProgress.some(id => id === u.id)}
                     onClick={() => {
-                      props.follow(u.id);
+                      followUser(u.id);
                     }}
                   >
                     Follow
