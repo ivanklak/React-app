@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {Route, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {compose} from 'redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
@@ -18,12 +17,15 @@ import withAuthRedirect from './auth/withAuthRedirect';
 
 import './App.css';
 
-const App = props => {
+const App = () => {
+  const initialized = useSelector(state => state.app.initialized);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    props.initializeApp();
+    dispatch(initializeApp());
   }, []);
 
-  if (!props.initialized) {
+  if (!initialized) {
     return <Preloader />;
   }
 
@@ -49,8 +51,4 @@ const App = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  initialized: state.app.initialized,
-});
-
-export default compose(withRouter, connect(mapStateToProps, {initializeApp}))(App);
+export default withRouter(App);
