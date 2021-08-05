@@ -27,6 +27,7 @@
   ],
   "rules": {
     "prefer-const": "error",
+    "react/display-name": "off",
     "react/prop-types": "off",
     "import/order": ["error", {
       "groups": ["builtin", "external", "parent", "sibling", "index", "object", "type"],

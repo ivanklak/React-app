@@ -1,10 +1,8 @@
 import React, {useCallback, useEffect} from 'react';
 import {connect} from 'react-redux';
-import {compose} from 'redux';
 
 import {follow, unfollow, setCurrentPage, toggleFollowingProgress, requestUsers} from '../../Redux/users-reducer';
 import Preloader from '../Preloader/Preloader';
-import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress, getUsers} from '../../Redux/users-selectors';
 
 import Users from './Users';
@@ -44,13 +42,10 @@ const mapStateToProps = state => ({
   followingInProgress: getFollowingInProgress(state),
 });
 
-export default compose(
-  withAuthRedirect,
-  connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    requestUsers,
-  }),
-)(UsersContainer);
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setCurrentPage,
+  toggleFollowingProgress,
+  requestUsers,
+})(UsersContainer);

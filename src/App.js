@@ -14,6 +14,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
 import {initializeApp} from './Redux/app-reducer';
 import Preloader from './components/Preloader/Preloader';
+import withAuthRedirect from './auth/withAuthRedirect';
 
 import './App.css';
 
@@ -31,11 +32,11 @@ const App = props => {
       <HeaderContainer />
       <Navbar />
       <div className="app-wrapper-content">
-        <Route path="/dialogs" render={() => <DialogsContainer />} />
+        <Route path="/dialogs" component={withAuthRedirect(DialogsContainer)} />
 
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
 
-        <Route path="/users" render={() => <UsersContainer />} />
+        <Route path="/users" component={withAuthRedirect(UsersContainer)} />
 
         <Route path="/login" render={() => <LoginPage />} />
 
