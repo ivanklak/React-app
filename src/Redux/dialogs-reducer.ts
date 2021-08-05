@@ -62,11 +62,11 @@ export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorAc
   newMessageBody,
 });
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>;
 
 export const sendMessages =
   (newMessageBody: string): ThunkType =>
-  async dispatch => {
+  dispatch => {
     dispatch(sendMessageCreator(newMessageBody));
   };
 
