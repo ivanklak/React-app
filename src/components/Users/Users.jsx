@@ -3,17 +3,14 @@ import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import userPhoto from '../../assets/images/people-profile.png';
-import {getCurrentPage, getFollowingInProgress, getPageSize, getTotalUsersCount, getUsers} from '../../Redux/users-selectors';
-import {requestUsers, follow, unfollow} from '../../Redux/users-reducer';
+import {follow, requestUsers, unfollow} from '../../Redux/users-reducer';
+
+import selector from './selector';
 
 import styles from './users.module.css';
 
 const Users = () => {
-  const users = useSelector(getUsers);
-  const totalUsersCount = useSelector(getTotalUsersCount);
-  const currentPage = useSelector(getCurrentPage);
-  const pageSize = useSelector(getPageSize);
-  const followingInProgress = useSelector(getFollowingInProgress);
+  const {users, pageSize, totalUsersCount, currentPage, followingInProgress} = useSelector(selector);
 
   const dispatch = useDispatch();
 
