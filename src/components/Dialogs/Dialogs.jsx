@@ -6,17 +6,17 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Textarea} from '../common/FormsControl/FormsControls';
 import {required, maxLengthCreator} from '../../utils/validators/validators';
 import {sendMessages} from '../../Redux/dialogs-reducer';
-import {getDialogPage} from '../../Redux/dialogs-selectors';
-import {getAuth} from '../../Redux/auth-selectors';
+import {getAuth} from '../../Selectors/selectors';
 
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import selector from './selector';
 
 import s from './Dialogs.module.css';
 
 export const Dialogs = () => {
   const isAuth = useSelector(getAuth);
-  const dialogsPage = useSelector(getDialogPage);
+  const {dialogsPage} = useSelector(selector);
   const dispatch = useDispatch();
 
   const dialogsElements = dialogsPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);

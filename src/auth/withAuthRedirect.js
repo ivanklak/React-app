@@ -2,12 +2,10 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-const mapStateToPropsForRedirect = state => ({
-  isAuth: state.auth.isAuth,
-});
+import {getAuth} from '../Selectors/selectors';
 
 const withAuthRedirect = ComponentToBeRendered => props => {
-  const {isAuth} = useSelector(mapStateToPropsForRedirect);
+  const isAuth = useSelector(getAuth);
 
   return isAuth ? <ComponentToBeRendered {...props} /> : <Redirect to={'/login'} />;
 };
