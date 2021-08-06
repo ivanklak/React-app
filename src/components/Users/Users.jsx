@@ -21,16 +21,25 @@ const Users = () => {
     dispatch(requestUsers(currentPage, pageSize));
   }, []);
 
-  const onPageChanged = useCallback(pageNumber => {
-    dispatch(requestUsers(pageNumber, pageSize));
-  }, []);
+  const onPageChanged = useCallback(
+    pageNumber => {
+      dispatch(requestUsers(pageNumber, pageSize));
+    },
+    [currentPage],
+  );
 
-  const followUser = userId => {
-    dispatch(follow(userId));
-  };
-  const unfollowUser = userId => {
-    dispatch(unfollow(userId));
-  };
+  const followUser = useCallback(
+    userId => {
+      dispatch(follow(userId));
+    },
+    [followingInProgress],
+  );
+  const unfollowUser = useCallback(
+    userId => {
+      dispatch(unfollow(userId));
+    },
+    [followingInProgress],
+  );
 
   const pagesCount = Math.ceil(totalUsersCount / pageSize);
   const pages = [];
