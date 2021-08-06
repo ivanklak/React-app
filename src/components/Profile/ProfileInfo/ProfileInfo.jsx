@@ -2,15 +2,15 @@ import React from 'react';
 
 import {useSelector} from 'react-redux';
 
-import {getProfile} from '../../../Redux/profile-selectors';
 import Preloader from '../../Preloader/Preloader';
+import selector from '../selector';
 
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 import s from './ProfileInfo.module.css';
 
 const ProfileInfo = () => {
-  const profile = useSelector(getProfile);
+  const {profile} = useSelector(selector);
 
   return profile ? (
     <>

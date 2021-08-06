@@ -6,14 +6,14 @@ import {useDispatch, useSelector} from 'react-redux';
 import {required, maxLengthCreator} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControl/FormsControls';
 import {addNewPost} from '../../../Redux/profile-reducer';
-import {getPosts} from '../../../Redux/profile-selectors';
+import selector from '../selector';
 
 import Post from './Post/Post';
 
 import s from './MyPosts.module.css';
 
 export const MyPosts = () => {
-  const posts = useSelector(getPosts);
+  const {posts} = useSelector(selector);
   const dispatch = useDispatch();
 
   const postsElements = posts.map(p => <Post key={p.message} message={p.message} likesCount={p.likesCount} />);

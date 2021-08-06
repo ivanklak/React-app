@@ -3,12 +3,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
 import {getUserProfile, getStatus} from '../../Redux/profile-reducer';
-import {getAuthorizedUserId} from '../../Redux/profile-selectors';
 
 import Profile from './Profile';
+import selector from './selector';
 
 const ProfileContainer = props => {
-  const authorizedUserId = useSelector(getAuthorizedUserId);
+  const {authorizedUserId} = useSelector(selector);
   const dispatch = useDispatch();
 
   useEffect(() => {

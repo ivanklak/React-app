@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {updateStatus} from '../../../Redux/profile-reducer';
-import {getProfileStatus} from '../../../Redux/profile-selectors';
+import selector from '../selector';
 
 const ProfileStatusWithHooks = () => {
-  const status = useSelector(getProfileStatus);
+  const {status} = useSelector(selector);
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
   const [profileStatus, setProfileStatus] = useState(status);
