@@ -1,18 +1,25 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 
+import {useDispatch, useSelector} from 'react-redux';
+
 import {required, maxLengthCreator} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControl/FormsControls';
+import {addNewPost} from '../../../Redux/profile-reducer';
+import {getPosts} from '../../../Redux/profile-selectors';
 
 import Post from './Post/Post';
 
 import s from './MyPosts.module.css';
 
-const MyPosts = props => {
-  const postsElements = props.posts.map(p => <Post key={p.message} message={p.message} likesCount={p.likesCount} />);
+export const MyPosts = () => {
+  const posts = useSelector(getPosts);
+  const dispatch = useDispatch();
+
+  const postsElements = posts.map(p => <Post key={p.message} message={p.message} likesCount={p.likesCount} />);
 
   const onAddPost = values => {
-    props.addPost(values.newPostText);
+    dispatch(addNewPost(values.newPostText));
   };
 
   return (
@@ -40,5 +47,3 @@ const AddNewPostForm = props => (
 );
 
 const AddNewPostFormRedux = reduxForm({form: 'profileAddNewPostForm'})(AddNewPostForm);
-
-export default React.memo(MyPosts);

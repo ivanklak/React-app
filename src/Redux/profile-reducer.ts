@@ -120,4 +120,12 @@ export const updateStatus =
     }
   };
 
+type ThunkPostType = ThunkAction<void, AppStateType, unknown, ActionsTypes>;
+
+export const addNewPost =
+  (newPostText: string): ThunkPostType =>
+  dispatch => {
+    dispatch(addPostActionCreator(newPostText));
+  };
+
 export default profileReducer;
