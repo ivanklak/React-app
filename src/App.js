@@ -14,11 +14,12 @@ import {Login} from './components/Login/Login';
 import {initializeApp} from './Redux/app-reducer';
 import Preloader from './components/Preloader/Preloader';
 import withAuthRedirect from './auth/withAuthRedirect';
+import {getInitial} from './Redux/app-selectors';
 
 import './App.css';
 
 const App = () => {
-  const initialized = useSelector(state => state.app.initialized);
+  const initialized = useSelector(getInitial);
   const dispatch = useDispatch();
 
   useEffect(() => {

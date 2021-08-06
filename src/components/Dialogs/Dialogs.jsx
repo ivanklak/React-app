@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Textarea} from '../common/FormsControl/FormsControls';
 import {required, maxLengthCreator} from '../../utils/validators/validators';
 import {sendMessages} from '../../Redux/dialogs-reducer';
+import {getDialogPage} from '../../Redux/dialogs-selectors';
+import {getAuth} from '../../Redux/auth-selectors';
 
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
@@ -13,8 +15,8 @@ import Message from './Message/Message';
 import s from './Dialogs.module.css';
 
 export const Dialogs = () => {
-  const isAuth = useSelector(state => state.auth.isAuth);
-  const dialogsPage = useSelector(state => state.dialogsPage);
+  const isAuth = useSelector(getAuth);
+  const dialogsPage = useSelector(getDialogPage);
   const dispatch = useDispatch();
 
   const dialogsElements = dialogsPage.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);

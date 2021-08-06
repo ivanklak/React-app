@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom';
 import {Input} from '../common/FormsControl/FormsControls';
 import {required} from '../../utils/validators/validators';
 import {login} from '../../Redux/auth-reducer';
+import {getAuth} from '../../Redux/auth-selectors';
 
 import style from '../common/FormsControl/FormsControls.module.css';
 import s from './Login.module.css';
@@ -31,7 +32,7 @@ const LoginForm = props => (
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 export const Login = () => {
-  const isAuth = useSelector(state => state.auth.isAuth);
+  const isAuth = useSelector(getAuth);
   const dispatch = useDispatch();
 
   const onSubmit = formData => {

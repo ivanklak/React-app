@@ -3,12 +3,14 @@ import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {logout} from '../../Redux/auth-reducer';
+import {getLogin} from '../../Redux/header-selectors';
+import {getAuth} from '../../Redux/auth-selectors';
 
 import s from './Header.module.css';
 
 export const Header = () => {
-  const isAuth = useSelector(state => state.auth.isAuth);
-  const login = useSelector(state => state.auth.login);
+  const isAuth = useSelector(getAuth);
+  const login = useSelector(getLogin);
   const dispatch = useDispatch();
 
   const onLogout = () => {
