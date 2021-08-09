@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import userPhoto from '../../assets/images/people-profile.png';
 import {follow, requestUsers, unfollow} from '../../Redux/users-reducer';
+import Pages from '../Paginator/Pages';
 
 import selector from './selector';
 
@@ -49,15 +50,7 @@ const Users = () => {
     <div>
       <div className={styles.pages}>
         {pages.map(p => (
-          <span
-            key={p}
-            className={currentPage === p && styles.selectedPage}
-            onClick={() => {
-              onPageChanged(p);
-            }}
-          >
-            {p + ' '}
-          </span>
+          <Pages key={p} page={p} style={currentPage === p && styles.selectedPage} onPageClick={onPageChanged} />
         ))}
       </div>
       {users.map(u => (
