@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {logout} from '../../Redux/auth-reducer';
-import {getLogin, getAuth} from '../../Selectors/selectors';
+import {getLogin, getAuth} from '../../selectors';
 
 import s from './Header.module.css';
 

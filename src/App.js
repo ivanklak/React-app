@@ -14,7 +14,7 @@ import {Login} from './components/Login/Login';
 import {initializeApp} from './Redux/app-reducer';
 import Preloader from './components/Preloader/Preloader';
 import withAuthRedirect from './auth/withAuthRedirect';
-import {getInitial} from './Selectors/selectors';
+import {getInitial} from './selectors';
 
 import './App.css';
 

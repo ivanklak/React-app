@@ -7,7 +7,7 @@ import {Input} from '../common/FormsControl/FormsControls';
 import {required} from '../../utils/validators/validators';
 import {login} from '../../Redux/auth-reducer';
 
-import {getAuth} from '../../Selectors/selectors';
+import {getAuth} from '../../selectors';
 
 import style from '../common/FormsControl/FormsControls.module.css';
 import s from './Login.module.css';
