@@ -8,7 +8,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Dialogs from './components/Dialogs';
 import Users from './components/Users';
-import ProfileContainer from './components/Profile/ProfileContainer';
+import Profile from './components/Profile';
 import {Header} from './components/Header/Header';
 import {Login} from './components/Login/Login';
 import {initializeApp} from './Redux/app-reducer';
@@ -37,7 +37,7 @@ const App = () => {
       <div className="app-wrapper-content">
         <Route path="/dialogs" component={withAuthRedirect(Dialogs)} />
 
-        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+        <Route path="/profile/:userId?" render={() => <Profile />} />
 
         <Route path="/users" component={withAuthRedirect(Users)} />
 

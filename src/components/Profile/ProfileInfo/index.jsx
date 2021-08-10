@@ -5,18 +5,18 @@ import {useSelector} from 'react-redux';
 import Preloader from '../../Preloader/Preloader';
 import selector from '../selector';
 
-import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import Status from './Status';
 
-import s from './ProfileInfo.module.css';
+import styles from './styles.module.css';
 
 const ProfileInfo = () => {
   const {profile} = useSelector(selector);
 
   return profile ? (
     <>
-      <div className={s.descriptionBlock}>
+      <div className={styles.descriptionBlock}>
         <img src={profile.photos.small} alt="photo" />
-        <ProfileStatusWithHooks />
+        <Status />
         <p>
           <div>
             <strong>{profile.fullName}</strong>

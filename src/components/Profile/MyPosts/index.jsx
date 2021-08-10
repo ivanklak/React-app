@@ -8,29 +8,9 @@ import {Textarea} from '../../common/FormsControl/FormsControls';
 import {addNewPost} from '../../../Redux/profile-reducer';
 import selector from '../selector';
 
-import Post from './Post/Post';
+import Post from './Post';
 
-import s from './MyPosts.module.css';
-
-export const MyPosts = () => {
-  const {posts} = useSelector(selector);
-  const dispatch = useDispatch();
-
-  const postsElements = posts.map(p => <Post key={p.message} message={p.message} likesCount={p.likesCount} />);
-
-  const onAddPost = values => {
-    dispatch(addNewPost(values.newPostText));
-  };
-
-  return (
-    <div className={s.postsBlock}>
-      <h3>My posts</h3>
-      <AddNewPostFormRedux onSubmit={onAddPost} />
-
-      <div className={s.posts}>{postsElements}</div>
-    </div>
-  );
-};
+import styles from './styles.module.css';
 
 const maxLength10 = maxLengthCreator(10);
 
@@ -47,3 +27,25 @@ const AddNewPostForm = props => (
 );
 
 const AddNewPostFormRedux = reduxForm({form: 'profileAddNewPostForm'})(AddNewPostForm);
+
+const MyPosts = () => {
+  const {posts} = useSelector(selector);
+  const dispatch = useDispatch();
+
+  const postsElements = posts.map(p => <Post key={p.message} message={p.message} likesCount={p.likesCount} />);
+
+  const onAddPost = values => {
+    dispatch(addNewPost(values.newPostText));
+  };
+
+  return (
+    <div className={styles.postsBlock}>
+      <h3>My posts</h3>
+      <AddNewPostFormRedux onSubmit={onAddPost} />
+
+      <div className={styles.posts}>{postsElements}</div>
+    </div>
+  );
+};
+
+export default MyPosts;

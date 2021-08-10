@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {updateStatus} from '../../../Redux/profile-reducer';
 import selector from '../selector';
 
-const ProfileStatusWithHooks = () => {
+const Status = () => {
   const {status} = useSelector(selector);
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
@@ -43,4 +43,4 @@ const ProfileStatusWithHooks = () => {
   );
 };
 
-export default ProfileStatusWithHooks;
+export default Status;
