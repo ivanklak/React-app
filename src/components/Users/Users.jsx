@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import userPhoto from '../../assets/images/people-profile.png';
 import {follow, requestUsers, unfollow} from '../../Redux/users-reducer';
 import Pages from '../Paginator/Pages';
+import FollowButton from '../controls/FollowButton';
 
 import selector from './selector';
 
@@ -59,28 +60,14 @@ const Users = () => {
             <span>
               <div>
                 <NavLink to={'/profile/' + u.id}>
-                  <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto} />
+                  <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto} alt="usersPhoto" />
                 </NavLink>
               </div>
               <div className={styles.followbtn}>
                 {u.followed ? (
-                  <button
-                    disabled={followingInProgress.some(id => id === u.id)}
-                    onClick={() => {
-                      unfollowUser(u.id);
-                    }}
-                  >
-                    Unfollow
-                  </button>
+                  <FollowButton text="Unfollow" disabled={followingInProgress.some(id => id === u.id)} onClick={unfollowUser} userId={u.id} />
                 ) : (
-                  <button
-                    disabled={followingInProgress.some(id => id === u.id)}
-                    onClick={() => {
-                      followUser(u.id);
-                    }}
-                  >
-                    Follow
-                  </button>
+                  <FollowButton text="Follow" disabled={followingInProgress.some(id => id === u.id)} onClick={followUser} userId={u.id} />
                 )}
               </div>
             </span>
