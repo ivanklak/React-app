@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Textarea} from '../common/FormsControl/FormsControls';
+import {Textarea} from '../common/FormsControl';
 import {required, maxLengthCreator} from '../../utils/validators';
 import {sendMessages} from '../../Redux/dialogs-reducer';
 import {getAuth} from '../../selectors';

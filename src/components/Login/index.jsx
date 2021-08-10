@@ -3,13 +3,13 @@ import {Field, reduxForm} from 'redux-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import {Input} from '../common/FormsControl/FormsControls';
+import {Input} from '../common/FormsControl';
 import {required} from '../../utils/validators';
 import {login} from '../../Redux/auth-reducer';
 
 import {getAuth} from '../../selectors';
 
-import style from '../common/FormsControl/FormsControls.module.css';
+import style from '../common/FormsControl/styles.module.css';
 import styles from './index.module.css';
 
 const LoginForm = props => (
