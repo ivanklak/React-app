@@ -14,4 +14,4 @@ const FollowButton = ({text, onClick, userId, disabled}) => {
   );
 };
 
-export default FollowButton;
+export default React.memo(FollowButton);
