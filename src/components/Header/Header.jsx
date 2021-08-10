@@ -18,7 +18,7 @@ export const Header = () => {
 
   return (
     <header className={s.header}>
-      <NavLink to={'/profile'}>
+      <NavLink to="/profile">
         <img src="https://cdn.auth0.com/blog/react-js/react.png" alt="logo" />
       </NavLink>
       <div className={s.loginBlock}>
@@ -27,7 +27,7 @@ export const Header = () => {
             {login} - <button onClick={onLogout}>Log out</button>{' '}
           </div>
         ) : (
-          <NavLink to={'/login'}>Login</NavLink>
+          <NavLink to="/login">Login</NavLink>
         )}
       </div>
     </header>

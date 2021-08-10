@@ -7,7 +7,7 @@ import {getAuth} from '../selectors';
 const withAuthRedirect = ComponentToBeRendered => props => {
   const isAuth = useSelector(getAuth);
 
-  return isAuth ? <ComponentToBeRendered {...props} /> : <Redirect to={'/login'} />;
+  return isAuth ? <ComponentToBeRendered {...props} /> : <Redirect to="/login" />;
 };
 
 export default withAuthRedirect;

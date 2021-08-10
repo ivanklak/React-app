@@ -15,13 +15,13 @@ import s from './Login.module.css';
 const LoginForm = props => (
   <form onSubmit={props.handleSubmit}>
     <div>
-      <Field placeholder={'Email'} name={'email'} validate={[required]} component={Input} />
+      <Field placeholder="Email" name="email" validate={[required]} component={Input} />
     </div>
     <div>
-      <Field placeholder={'Password'} name={'password'} type={'password'} validate={[required]} component={Input} />
+      <Field placeholder="Password" name="password" type="password" validate={[required]} component={Input} />
     </div>
     <div className={s.remember}>
-      <Field component={Input} name={'rememberMe'} type={'Checkbox'} /> remember me
+      <Field component={Input} name="rememberMe" type="Checkbox" /> remember me
     </div>
     {props.error && <div className={style.formSummaryError}>{props.error}</div>}
     <div>
@@ -41,7 +41,7 @@ export const Login = () => {
   };
 
   if (isAuth) {
-    return <Redirect to={'/profile'} />;
+    return <Redirect to="/profile" />;
   }
 
   return (

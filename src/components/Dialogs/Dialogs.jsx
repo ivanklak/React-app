@@ -27,7 +27,7 @@ export const Dialogs = () => {
   };
 
   if (!isAuth) {
-    return <Redirect to={'/login'} />;
+    return <Redirect to="/login" />;
   }
 
   return (

@@ -91,8 +91,8 @@ const Users = () => {
               <div>
                 <h5>{u.status}</h5>
               </div>
-              <div>{'u.location.country'}</div>
-              <div>{'u.location.city'}</div>
+              <div>u.location.country</div>
+              <div>u.location.city</div>
             </span>
           </div>
         </div>
