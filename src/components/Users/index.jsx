@@ -6,13 +6,14 @@ import userPhoto from '../../assets/images/people-profile.png';
 import {follow, requestUsers, unfollow} from '../../Redux/users-reducer';
 import Pages from '../Paginator/Pages';
 import FollowButton from '../controls/FollowButton';
+import Preloader from '../Preloader/Preloader';
 
 import selector from './selector';
 
-import styles from './users.module.css';
+import styles from './styles.module.css';
 
 const Users = () => {
-  const {users, pageSize, totalUsersCount, currentPage, followingInProgress} = useSelector(selector);
+  const {users, pageSize, totalUsersCount, currentPage, followingInProgress, isFetching} = useSelector(selector);
 
   const dispatch = useDispatch();
 
@@ -47,7 +48,9 @@ const Users = () => {
     pages.push(i);
   }
 
-  return (
+  return isFetching ? (
+    <Preloader />
+  ) : (
     <div>
       <div className={styles.pages}>
         {pages.map(p => (

@@ -7,7 +7,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Dialogs from './components/Dialogs';
-import {UsersContainer} from './components/Users/UsersContainer';
+import Users from './components/Users';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import {Header} from './components/Header/Header';
 import {Login} from './components/Login/Login';
@@ -39,7 +39,7 @@ const App = () => {
 
         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
 
-        <Route path="/users" component={withAuthRedirect(UsersContainer)} />
+        <Route path="/users" component={withAuthRedirect(Users)} />
 
         <Route path="/login" render={() => <Login />} />
 
