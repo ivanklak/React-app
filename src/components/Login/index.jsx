@@ -4,13 +4,13 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 import {Input} from '../common/FormsControl/FormsControls';
-import {required} from '../../utils/validators/validators';
+import {required} from '../../utils/validators';
 import {login} from '../../Redux/auth-reducer';
 
 import {getAuth} from '../../selectors';
 
 import style from '../common/FormsControl/FormsControls.module.css';
-import s from './Login.module.css';
+import styles from './index.module.css';
 
 const LoginForm = props => (
   <form onSubmit={props.handleSubmit}>
@@ -20,19 +20,19 @@ const LoginForm = props => (
     <div>
       <Field placeholder="Password" name="password" type="password" validate={[required]} component={Input} />
     </div>
-    <div className={s.remember}>
+    <div className={styles.remember}>
       <Field component={Input} name="rememberMe" type="Checkbox" /> remember me
     </div>
     {props.error && <div className={style.formSummaryError}>{props.error}</div>}
     <div>
-      <button className={s.regBtn}>Login</button>
+      <button className={styles.regBtn}>Login</button>
     </div>
   </form>
 );
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
-export const Login = () => {
+const Login = () => {
   const isAuth = useSelector(getAuth);
   const dispatch = useDispatch();
 
@@ -45,9 +45,11 @@ export const Login = () => {
   }
 
   return (
-    <div className={s.form}>
+    <div className={styles.form}>
       <h1>Sign in</h1>
       <LoginReduxForm onSubmit={onSubmit} />
     </div>
   );
 };
+
+export default Login;

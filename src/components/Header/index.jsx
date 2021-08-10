@@ -5,9 +5,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../../Redux/auth-reducer';
 import {getLogin, getAuth} from '../../selectors';
 
-import s from './Header.module.css';
+import styles from './index.module.css';
 
-export const Header = () => {
+const Header = () => {
   const isAuth = useSelector(getAuth);
   const login = useSelector(getLogin);
   const dispatch = useDispatch();
@@ -17,11 +17,11 @@ export const Header = () => {
   };
 
   return (
-    <header className={s.header}>
+    <header className={styles.header}>
       <NavLink to="/profile">
         <img src="https://cdn.auth0.com/blog/react-js/react.png" alt="logo" />
       </NavLink>
-      <div className={s.loginBlock}>
+      <div className={styles.loginBlock}>
         {isAuth ? (
           <div>
             {login} - <button onClick={onLogout}>Log out</button>{' '}
@@ -33,3 +33,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

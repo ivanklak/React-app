@@ -3,7 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 
 import {useDispatch, useSelector} from 'react-redux';
 
-import {required, maxLengthCreator} from '../../../utils/validators/validators';
+import {required, maxLengthCreator} from '../../../utils/validators';
 import {Textarea} from '../../common/FormsControl/FormsControls';
 import {addNewPost} from '../../../Redux/profile-reducer';
 import selector from '../selector';

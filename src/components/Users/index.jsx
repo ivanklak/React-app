@@ -6,7 +6,7 @@ import userPhoto from '../../assets/images/people-profile.png';
 import {follow, requestUsers, unfollow} from '../../Redux/users-reducer';
 import Pages from '../Paginator/Pages';
 import FollowButton from '../controls/FollowButton';
-import Preloader from '../Preloader/Preloader';
+import Preloader from '../Preloader';
 
 import selector from './selector';
 

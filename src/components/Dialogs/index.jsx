@@ -4,12 +4,12 @@ import {Field, reduxForm} from 'redux-form';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {Textarea} from '../common/FormsControl/FormsControls';
-import {required, maxLengthCreator} from '../../utils/validators/validators';
+import {required, maxLengthCreator} from '../../utils/validators';
 import {sendMessages} from '../../Redux/dialogs-reducer';
 import {getAuth} from '../../selectors';
 
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
+import DialogItem from './DialogItem';
+import Message from './Message';
 import selector from './selector';
 
 import styles from './styles.module.css';

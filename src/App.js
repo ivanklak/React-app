@@ -2,18 +2,18 @@ import React, {useEffect} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import Navbar from './components/Navbar/Navbar';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
+import Navbar from './components/Navbar';
+import News from './components/News';
+import Music from './components/Music';
+import Settings from './components/Settings';
 import Dialogs from './components/Dialogs';
 import Users from './components/Users';
 import Profile from './components/Profile';
-import {Header} from './components/Header/Header';
-import {Login} from './components/Login/Login';
-import {initializeApp} from './Redux/app-reducer';
-import Preloader from './components/Preloader/Preloader';
+import Header from './components/Header';
+import Login from './components/Login';
+import Preloader from './components/Preloader';
 import withAuthRedirect from './auth/withAuthRedirect';
+import {initializeApp} from './Redux/app-reducer';
 import {getInitial} from './selectors';
 
 import './App.css';

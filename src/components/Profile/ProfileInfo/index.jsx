@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useSelector} from 'react-redux';
 
-import Preloader from '../../Preloader/Preloader';
+import Preloader from '../../Preloader';
 import selector from '../selector';
 
 import Status from './Status';
