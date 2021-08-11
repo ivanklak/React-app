@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
 import userPhoto from '../../assets/images/people-profile.png';
-import {follow, requestUsers, unfollow} from '../../Redux/users-reducer';
+import {requestUsers} from '../../Redux/users-reducer';
 import Pages from '../Paginator/Pages';
 import FollowButton from '../controls/FollowButton';
 import Preloader from '../Preloader';
@@ -28,31 +28,16 @@ const Users = () => {
     [currentPage],
   );
 
-  const followUser = useCallback(
-    userId => {
-      dispatch(follow(userId));
-    },
-    [followingInProgress],
-  );
-  const unfollowUser = useCallback(
-    userId => {
-      dispatch(unfollow(userId));
-    },
-    [followingInProgress],
-  );
-
-  const getPages = count => {
+  const pagesCount = Math.ceil(totalUsersCount / pageSize);
+  const pages = useMemo(() => {
     const arrOfPages = [];
 
-    for (let i = 1; i <= count; i++) {
+    for (let i = 1; i <= pagesCount; i++) {
       arrOfPages.push(i);
     }
 
     return arrOfPages;
-  };
-
-  const pagesCount = Math.ceil(totalUsersCount / pageSize);
-  const pages = useMemo(() => getPages(pagesCount), [pagesCount]);
+  }, [totalUsersCount, pageSize]);
 
   return isFetching ? (
     <Preloader />
@@ -73,11 +58,7 @@ const Users = () => {
                 </NavLink>
               </div>
               <div className={styles.followbtn}>
-                {u.followed ? (
-                  <FollowButton text="Unfollow" disabled={followingInProgress.some(id => id === u.id)} onClick={unfollowUser} userId={u.id} />
-                ) : (
-                  <FollowButton text="Follow" disabled={followingInProgress.some(id => id === u.id)} onClick={followUser} userId={u.id} />
-                )}
+                <FollowButton user={u} followingInProgress={followingInProgress} />
               </div>
             </span>
             <span className={styles.description}>
