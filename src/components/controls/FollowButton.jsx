@@ -14,10 +14,10 @@ const FollowButton = ({user, followingInProgress}) => {
     dispatch(unfollow(userId));
   }, []);
 
-  const following = followingInProgress.some(id => id === user.id);
+  const isFollowing = followingInProgress.includes(user.id);
 
   return (
-    <button onClick={onButtonClick} disabled={following}>
+    <button onClick={onButtonClick} disabled={isFollowing}>
       {user.followed ? 'Unfollow' : 'Follow'}
     </button>
   );

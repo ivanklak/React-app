@@ -26,8 +26,8 @@ const Users = () => {
     [currentPage],
   );
 
-  const pagesCount = Math.ceil(totalUsersCount / pageSize);
   const pages = useMemo(() => {
+    const pagesCount = Math.ceil(totalUsersCount / pageSize);
     const arrOfPages = [];
 
     for (let i = 1; i <= pagesCount; i++) {
