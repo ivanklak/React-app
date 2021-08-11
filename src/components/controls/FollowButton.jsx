@@ -6,11 +6,9 @@ const FollowButton = ({text, onClick, userId, disabled}) => {
   };
 
   return (
-    <>
-      <button onClick={onButtonClick} disabled={disabled}>
-        {text}
-      </button>
-    </>
+    <button onClick={onButtonClick} disabled={disabled}>
+      {text}
+    </button>
   );
 };
 
