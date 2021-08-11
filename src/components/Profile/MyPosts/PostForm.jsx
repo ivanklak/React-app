@@ -6,7 +6,7 @@ import {Textarea} from '../../common/FormsControl';
 
 const maxLength10 = maxLengthCreator(10);
 
-const AddNewPostForm = props => (
+const PostForm = props => (
   <form onSubmit={props.handleSubmit}>
     <div>
       <div>New post</div>
@@ -18,6 +18,4 @@ const AddNewPostForm = props => (
   </form>
 );
 
-const AddNewPostFormRedux = reduxForm({form: 'profileAddNewPostForm'})(AddNewPostForm);
-
-export default AddNewPostFormRedux;
+export default reduxForm({form: 'profileAddNewPostForm'})(PostForm);

@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 const maxLength50 = maxLengthCreator(50);
 
-const AddMessageForm = props => (
+const MessageForm = props => (
   <form onSubmit={props.handleSubmit}>
     <div className={styles.form}>
       <Field component={Textarea} validate={[required, maxLength50]} name="newMessageBody" placeholder="Enter your message" className={styles.messageInput} />
@@ -19,6 +19,4 @@ const AddMessageForm = props => (
   </form>
 );
 
-const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm);
-
-export default AddMessageFormRedux;
+export default reduxForm({form: 'dialogAddMessageForm'})(MessageForm);

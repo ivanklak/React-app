@@ -8,7 +8,7 @@ import {getAuth} from '../../selectors';
 import DialogItem from './DialogItem';
 import Message from './Message';
 import selector from './selector';
-import AddMessageFormRedux from './MessageForm';
+import MessageForm from './MessageForm';
 
 import styles from './styles.module.css';
 
@@ -32,7 +32,7 @@ const Dialogs = () => {
     <div className={styles.dialogs}>
       <div className={styles.dialogsItems}>{dialogsElements}</div>
       <div className={styles.messages}>{messagesElements}</div>
-      <AddMessageFormRedux onSubmit={addNewMessage} />
+      <MessageForm onSubmit={addNewMessage} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import {addNewPost} from '../../../Redux/profile-reducer';
 import selector from '../selector';
 
 import Post from './Post';
-import AddNewPostFormRedux from './PostForm';
+import PostForm from './PostForm';
 
 import styles from './styles.module.css';
 
@@ -22,7 +22,7 @@ const MyPosts = () => {
   return (
     <div className={styles.postsBlock}>
       <h3>My posts</h3>
-      <AddNewPostFormRedux onSubmit={onAddPost} />
+      <PostForm onSubmit={onAddPost} />
       <div className={styles.posts}>{postsElements}</div>
     </div>
   );

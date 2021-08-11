@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom';
 import {login} from '../../Redux/auth-reducer';
 import {getAuth} from '../../selectors';
 
-import LoginReduxForm from './LoginForm';
+import LoginForm from './LoginForm';
 
 import styles from './styles.module.css';
 
@@ -24,7 +24,7 @@ const Login = () => {
   return (
     <div className={styles.form}>
       <h1>Sign in</h1>
-      <LoginReduxForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={onSubmit} />
     </div>
   );
 };

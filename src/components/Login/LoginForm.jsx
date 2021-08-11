@@ -25,6 +25,4 @@ const LoginForm = props => (
   </form>
 );
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
-
-export default LoginReduxForm;
+export default reduxForm({form: 'login'})(LoginForm);
