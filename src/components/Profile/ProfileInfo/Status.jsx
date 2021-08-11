@@ -27,18 +27,13 @@ const Status = () => {
     setProfileStatus(e.currentTarget.value);
   };
 
-  return (
+  return editMode ? (
     <div>
-      {!editMode && (
-        <div>
-          <span onDoubleClick={activateEditMode}>{status || 'No status'}</span>
-        </div>
-      )}
-      {editMode && (
-        <div>
-          <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={profileStatus} />
-        </div>
-      )}
+      <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={profileStatus} />
+    </div>
+  ) : (
+    <div>
+      <span onDoubleClick={activateEditMode}>{status || 'No status'}</span>
     </div>
   );
 };
