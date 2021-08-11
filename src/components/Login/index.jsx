@@ -1,36 +1,13 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import {Input} from '../common/FormsControl';
-import {required} from '../../utils/validators';
 import {login} from '../../Redux/auth-reducer';
-
 import {getAuth} from '../../selectors';
 
-import style from '../common/FormsControl/styles.module.css';
-import styles from './index.module.css';
+import LoginReduxForm from './LoginForm';
 
-const LoginForm = props => (
-  <form onSubmit={props.handleSubmit}>
-    <div>
-      <Field placeholder="Email" name="email" validate={[required]} component={Input} />
-    </div>
-    <div>
-      <Field placeholder="Password" name="password" type="password" validate={[required]} component={Input} />
-    </div>
-    <div className={styles.remember}>
-      <Field component={Input} name="rememberMe" type="Checkbox" /> remember me
-    </div>
-    {props.error && <div className={style.formSummaryError}>{props.error}</div>}
-    <div>
-      <button className={styles.regBtn}>Login</button>
-    </div>
-  </form>
-);
-
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
+import styles from './styles.module.css';
 
 const Login = () => {
   const isAuth = useSelector(getAuth);
