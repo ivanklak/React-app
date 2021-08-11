@@ -1,6 +1,6 @@
 import {ThunkAction} from 'redux-thunk';
 
-import {usersAPI, profileAPI} from '../api/api';
+import {usersAPI, profileAPI} from '../api';
 import {PostType, ProfileType} from '../types/types';
 
 import {AppStateType} from './redux-store';
@@ -118,6 +118,14 @@ export const updateStatus =
     if (response.data.resultCode === 0) {
       dispatch(setStatus(status));
     }
+  };
+
+type ThunkPostType = ThunkAction<void, AppStateType, unknown, ActionsTypes>;
+
+export const addNewPost =
+  (newPostText: string): ThunkPostType =>
+  dispatch => {
+    dispatch(addPostActionCreator(newPostText));
   };
 
 export default profileReducer;

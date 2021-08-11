@@ -1,6 +1,6 @@
 import {ThunkAction} from 'redux-thunk';
 
-import {usersAPI} from '../api/api';
+import {usersAPI} from '../api';
 import {UserType} from '../types/types';
 
 import {AppStateType} from './redux-store';
@@ -161,7 +161,8 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number): To
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
 
-export const requestUsers = (currentPage: number, pageSize: number): ThunkType =>
+export const requestUsers =
+  (currentPage: number, pageSize: number): ThunkType =>
   async dispatch => {
     dispatch(setTougleIsFetching(true));
     dispatch(setCurrentPage(currentPage));
@@ -172,7 +173,8 @@ export const requestUsers = (currentPage: number, pageSize: number): ThunkType =
     dispatch(setTotalUsersCount(data.totalCount));
   };
 
-export const follow = (userId: number): ThunkType =>
+export const follow =
+  (userId: number): ThunkType =>
   async dispatch => {
     dispatch(toggleFollowingProgress(true, userId));
     const data = await usersAPI.toFollow(userId);
@@ -183,7 +185,8 @@ export const follow = (userId: number): ThunkType =>
     dispatch(toggleFollowingProgress(false, userId));
   };
 
-export const unfollow = (userId: number): ThunkType =>
+export const unfollow =
+  (userId: number): ThunkType =>
   async dispatch => {
     dispatch(toggleFollowingProgress(true, userId));
     const data = await usersAPI.toUnfollow(userId);

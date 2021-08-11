@@ -2,20 +2,11 @@ import profileReducer from './profile-reducer';
 import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 
-const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
 const store = {
   _state: {
-    profilePage: {
-      posts: [
-        {id: 1, message: 'Hi, how are you?', likesCount: 12},
-        {id: 2, message: 'Its my first post', likesCount: 11},
-      ],
-      newPostText: 'kek.com',
-    },
     dialogsPage: {
       messages: [
         {id: 1, message: 'Hi'},
@@ -64,10 +55,6 @@ const store = {
     this._callSubscriber(this._state);
   },
 };
-
-export const addPostActionCreator = newPostText => ({type: ADD_POST, newPostText});
-
-export const updateNewPostActionCreator = text => ({type: UPDATE_NEW_POST_TEXT, newText: text});
 
 export const sendMessageCreator = newMessageBody => ({
   type: SEND_MESSAGE,

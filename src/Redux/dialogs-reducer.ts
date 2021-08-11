@@ -1,3 +1,7 @@
+import {ThunkAction} from 'redux-thunk';
+
+import {AppStateType} from './redux-store';
+
 const SEND_MESSAGE = 'SEND_MESSAGE';
 
 type DialogType = {
@@ -57,5 +61,13 @@ export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorAc
   type: SEND_MESSAGE,
   newMessageBody,
 });
+
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsTypes>;
+
+export const sendMessages =
+  (newMessageBody: string): ThunkType =>
+  dispatch => {
+    dispatch(sendMessageCreator(newMessageBody));
+  };
 
 export default dialogsReducer;
