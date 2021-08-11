@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -41,12 +41,18 @@ const Users = () => {
     [followingInProgress],
   );
 
-  const pagesCount = Math.ceil(totalUsersCount / pageSize);
-  const pages = [];
+  const getPages = count => {
+    const arrOfPages = [];
 
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
+    for (let i = 1; i <= count; i++) {
+      arrOfPages.push(i);
+    }
+
+    return arrOfPages;
+  };
+
+  const pagesCount = Math.ceil(totalUsersCount / pageSize);
+  const pages = useMemo(() => getPages(pagesCount), [pagesCount]);
 
   return isFetching ? (
     <Preloader />
