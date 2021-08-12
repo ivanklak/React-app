@@ -15,7 +15,8 @@ export enum ResultCodes {
   Error = 1,
 }
 
-type ResponseType<D = Record<string, never>, RC = ResultCodes> = {
+type EmptyObject = Record<string, never>;
+type ResponseType<D = EmptyObject, RC = ResultCodes> = {
   data: D;
   messages: Array<string>;
   resultCode: RC;

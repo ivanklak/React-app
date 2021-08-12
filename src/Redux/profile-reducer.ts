@@ -9,6 +9,7 @@ const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
+
 const initialState = {
   posts: [
     {id: 1, message: 'Hi, how are you?', likesCount: 12},
