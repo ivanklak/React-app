@@ -15,27 +15,39 @@ export enum ResultCodes {
   Error = 1,
 }
 
-type EmptyObject = Record<string, never>;
-type ResponseType<D = EmptyObject, RC = ResultCodes> = {
-  data: D;
-  messages: Array<string>;
-  resultCode: RC;
-};
-type MeResponseDataType = {
-  id: number;
-  email: string;
-  login: string;
-};
-
-type LoginResponseDataType = {
-  userId: number;
-};
-
 type GetItemsType = {
   items: Array<UserType>;
   totalCount: number;
   error: string | null;
 };
+
+type EmptyObject = Record<string, never>;
+
+interface IDefaultResponse {
+  data: EmptyObject;
+  messages: Array<string>;
+  resultCode: ResultCodes;
+}
+
+type MeResponseDataType = {
+  id: number;
+  email: string;
+  login: string;
+};
+interface IMeResponse {
+  data: MeResponseDataType;
+  messages: Array<string>;
+  resultCode: ResultCodes;
+}
+
+type LoginResponseDataType = {
+  userId: number;
+};
+interface ILoginResponse {
+  data: LoginResponseDataType;
+  messages: Array<string>;
+  resultCode: ResultCodes;
+}
 
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 100) {
@@ -43,11 +55,11 @@ export const usersAPI = {
   },
 
   toFollow(userId: number) {
-    return instance.post<ResponseType>(`follow/${userId}`).then(response => response.data);
+    return instance.post<IDefaultResponse>(`follow/${userId}`).then(response => response.data);
   },
 
   toUnfollow(userId: number) {
-    return instance.delete<ResponseType>(`follow/${userId}`).then(response => response.data);
+    return instance.delete<IDefaultResponse>(`follow/${userId}`).then(response => response.data);
   },
 };
 
@@ -61,17 +73,17 @@ export const profileAPI = {
   },
 
   updateStatus(status: string) {
-    return instance.put<ResponseType>(`profile/status`, {status: status}).then(res => res.data);
+    return instance.put<IDefaultResponse>(`profile/status`, {status: status}).then(res => res.data);
   },
 };
 
 export const authAPI = {
   me() {
-    return instance.get<ResponseType<MeResponseDataType>>(`auth/me`).then(res => res.data);
+    return instance.get<IMeResponse>(`auth/me`).then(res => res.data);
   },
 
   login(email: string, password: string, rememberMe = false) {
-    return instance.post<ResponseType<LoginResponseDataType>>(`auth/login`, {email, password, rememberMe}).then(res => res.data);
+    return instance.post<ILoginResponse>(`auth/login`, {email, password, rememberMe}).then(res => res.data);
   },
 
   logout() {
