@@ -10,12 +10,12 @@ const instance = axios.create({
   },
 });
 
-export enum ResultCodeEnum {
-  Succes = 0,
+export enum ResultCodes {
+  Success = 0,
   Error = 1,
 }
 
-type ResponseType<D = Record<string, never>, RC = ResultCodeEnum> = {
+type ResponseType<D = Record<string, never>, RC = ResultCodes> = {
   data: D;
   messages: Array<string>;
   resultCode: RC;

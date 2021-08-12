@@ -73,7 +73,7 @@
       { "blankLine": "always","prev": "*", "next": "return" },
       { "blankLine": "always","prev": "const", "next": "*" },
       { "blankLine": "any",   "prev": "const", "next": "const"},
-      { "blankLine": "always", "prev": "*", "next": "export" }
+      { "blankLine": "any", "prev": "*", "next": "export" }
     ],
     "lines-between-class-members": ["error", "always"],
     "arrow-body-style": ["error", "as-needed"],
@@ -83,7 +83,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": ["error"]
+        "@typescript-eslint/explicit-module-boundary-types": ["warn"]
       }
     },
     {

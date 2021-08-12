@@ -1,6 +1,6 @@
 import {ThunkAction} from 'redux-thunk';
 
-import {profileAPI, ResultCodeEnum} from '../api';
+import {profileAPI, ResultCodes} from '../api';
 import {PostType, ProfileType} from '../types/types';
 
 import {AppStateType} from './redux-store';
@@ -115,7 +115,7 @@ export const updateStatus =
   async dispatch => {
     const response = await profileAPI.updateStatus(status);
 
-    if (response.resultCode === ResultCodeEnum.Succes) {
+    if (response.resultCode === ResultCodes.Success) {
       dispatch(setStatus(status));
     }
   };
