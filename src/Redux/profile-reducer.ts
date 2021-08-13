@@ -1,6 +1,6 @@
 import {ThunkAction} from 'redux-thunk';
 
-import {usersAPI, profileAPI} from '../api';
+import {profileAPI, ResultCodes} from '../api';
 import {PostType, ProfileType} from '../types/types';
 
 import {AppStateType} from './redux-store';
@@ -9,6 +9,7 @@ const ADD_POST = 'ADD_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
+
 const initialState = {
   posts: [
     {id: 1, message: 'Hi, how are you?', likesCount: 12},
@@ -97,9 +98,9 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 export const getUserProfile =
   (userId: number): ThunkType =>
   async dispatch => {
-    const response = await usersAPI.getProfile(userId);
+    const response = await profileAPI.getProfile(userId);
 
-    dispatch(setUserProfile(response.data));
+    dispatch(setUserProfile(response));
   };
 
 export const getStatus =
@@ -107,7 +108,7 @@ export const getStatus =
   async dispatch => {
     const response = await profileAPI.getStatus(userId);
 
-    dispatch(setStatus(response.data));
+    dispatch(setStatus(response));
   };
 
 export const updateStatus =
@@ -115,7 +116,7 @@ export const updateStatus =
   async dispatch => {
     const response = await profileAPI.updateStatus(status);
 
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === ResultCodes.Success) {
       dispatch(setStatus(status));
     }
   };
