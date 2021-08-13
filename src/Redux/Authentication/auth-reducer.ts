@@ -6,7 +6,7 @@ import {authAPI, ResultCodes} from '../../api';
 
 import {AppStateType} from '../redux-store';
 
-import * as fromActions from './Actions';
+import * as fromActions from './actions';
 
 export interface IState {
   userId: number | null;
