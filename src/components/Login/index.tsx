@@ -9,11 +9,17 @@ import LoginForm from './LoginForm';
 
 import styles from './styles.module.css';
 
+export interface ILoginFormData {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}
+
 const Login: FC = () => {
   const isAuth = useSelector(getAuth);
   const dispatch = useDispatch();
 
-  const onSubmit = (formData: any) => {
+  const onSubmit = (formData: ILoginFormData) => {
     dispatch(login(formData.email, formData.password, formData.rememberMe));
   };
 
