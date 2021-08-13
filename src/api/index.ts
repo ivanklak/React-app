@@ -15,43 +15,42 @@ export enum ResultCodes {
   Error = 1,
 }
 
-type GetItemsType = {
+interface IGetItems {
   items: Array<UserType>;
   totalCount: number;
   error: string | null;
-};
+}
 
 type EmptyObject = Record<string, never>;
-
 interface IDefaultResponse {
   data: EmptyObject;
   messages: Array<string>;
   resultCode: ResultCodes;
 }
 
-type MeResponseDataType = {
+interface IMeResponseData {
   id: number;
   email: string;
   login: string;
-};
+}
 interface IMeResponse {
-  data: MeResponseDataType;
+  data: IMeResponseData;
   messages: Array<string>;
   resultCode: ResultCodes;
 }
 
-type LoginResponseDataType = {
+interface ILoginResponseData {
   userId: number;
-};
+}
 interface ILoginResponse {
-  data: LoginResponseDataType;
+  data: ILoginResponseData;
   messages: Array<string>;
   resultCode: ResultCodes;
 }
 
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 100) {
-    return instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
+    return instance.get<IGetItems>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
   },
 
   toFollow(userId: number) {
