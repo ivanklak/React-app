@@ -2,7 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {getStatus, getUserProfile} from '../../Redux/profile-reducer';
+import {getStatus, getUserProfile} from '../../Redux/Profile/profile-reducer';
 
 import ProfileInfo from './ProfileInfo';
 import MyPosts from './MyPosts';

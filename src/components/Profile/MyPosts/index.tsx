@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {addNewPost} from '../../../Redux/profile-reducer';
+import {addNewPost} from '../../../Redux/Profile/profile-reducer';
 import selector from '../selector';
 
 import Post from './Post';
