@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {Redirect} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {sendMessages} from '../../Redux/dialogs-reducer';
+import {sendMessages} from '../../Redux/Dialogs/dialogs-reducer';
 import {getAuth} from '../../selectors';
 
 import DialogItem from './DialogItem';
