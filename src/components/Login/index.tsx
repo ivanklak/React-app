@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import {login} from '../../Redux/auth-reducer';
+import {login} from '../../Redux/Authentication/auth-reducer';
 import {getAuth} from '../../selectors';
 
 import LoginForm from './LoginForm';
