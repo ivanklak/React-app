@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 
 import {useSelector} from 'react-redux';
 
@@ -10,7 +10,7 @@ import Status from './Status';
 
 import styles from './styles.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo: FC = () => {
   const {profile} = useSelector(selector);
 
   return profile ? (

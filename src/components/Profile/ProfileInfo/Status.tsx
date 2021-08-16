@@ -1,4 +1,4 @@
-import React, {useState, useEffect, FC} from 'react';
+import React, {useState, useEffect, FC, ChangeEvent} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {updateStatus} from '../../../Redux/Profile/profile-reducer';
@@ -23,7 +23,7 @@ const Status: FC = () => {
     dispatch(updateStatus(profileStatus));
   };
 
-  const onStatusChange = (e: any) => {
+  const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
     setProfileStatus(e.currentTarget.value);
   };
 
