@@ -2,12 +2,12 @@ import {ActionsUnion} from '../../types/types';
 
 import {createAction} from '../action-helper';
 
-export enum ActionTypes {
+export enum AppActionTypes {
   INITIALIZED_SUCCESS = 'app/INITIALIZED_SUCCESS',
 }
 
-export const Actions = {
-  initializedSuccess: () => createAction(ActionTypes.INITIALIZED_SUCCESS),
+export const AppActions = {
+  initializedSuccess: () => createAction(AppActionTypes.INITIALIZED_SUCCESS),
 };
 
-export type Actions = ActionsUnion<typeof Actions>;
+export type AppAction = ActionsUnion<typeof AppActions>;

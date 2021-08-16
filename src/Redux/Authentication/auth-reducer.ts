@@ -6,7 +6,7 @@ import {authAPI, ResultCodes} from '../../api';
 
 import {AppStateType} from '../redux-store';
 
-import * as fromActions from './actions';
+import {AuthenticationActionTypes, AuthenticationActions, AuthenticationAction} from './actions';
 
 export interface IState {
   userId: number | null;
@@ -22,9 +22,9 @@ const initialState: IState = {
   isAuth: false,
 };
 
-const authReducer = (state = initialState, action: fromActions.Actions): IState => {
+const authReducer = (state = initialState, action: AuthenticationAction): IState => {
   switch (action.type) {
-    case fromActions.ActionTypes.SET_USER_DATA:
+    case AuthenticationActionTypes.SET_USER_DATA:
       return {
         ...state,
         ...action.payload,
@@ -35,7 +35,7 @@ const authReducer = (state = initialState, action: fromActions.Actions): IState 
   }
 };
 
-type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, fromActions.Actions>;
+type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, AuthenticationAction>;
 
 export const getAuthUserData = (): IThunk => async dispatch => {
   const response = await authAPI.me();
@@ -43,7 +43,7 @@ export const getAuthUserData = (): IThunk => async dispatch => {
   if (response.resultCode === ResultCodes.Success) {
     const {id, email, login} = response.data;
 
-    dispatch(fromActions.Actions.setAuthUserData(id, email, login, true));
+    dispatch(AuthenticationActions.setAuthUserData({userId: id, email: email, login: login, isAuth: true}));
   }
 };
 
@@ -67,7 +67,7 @@ export const logout = (): IThunk => async dispatch => {
   const response = await authAPI.logout();
 
   if (response.data.resultCode === ResultCodes.Success) {
-    dispatch(fromActions.Actions.setAuthUserData(null, null, null, false));
+    dispatch(AuthenticationActions.setAuthUserData({userId: null, email: null, login: null, isAuth: false}));
   }
 };
 

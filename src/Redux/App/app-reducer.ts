@@ -3,7 +3,7 @@ import {ThunkAction} from 'redux-thunk';
 import {getAuthUserData} from '../Authentication/auth-reducer';
 import {AppStateType} from '../redux-store';
 
-import * as fromActions from './actions';
+import {AppActionTypes, AppActions, AppAction} from './actions';
 
 export interface IState {
   initialized: boolean;
@@ -13,9 +13,9 @@ const initialState: IState = {
   initialized: false,
 };
 
-const appReducer = (state = initialState, action: fromActions.Actions): IState => {
+const appReducer = (state = initialState, action: AppAction): IState => {
   switch (action.type) {
-    case fromActions.ActionTypes.INITIALIZED_SUCCESS:
+    case AppActionTypes.INITIALIZED_SUCCESS:
       return {
         ...state,
         initialized: true,
@@ -26,13 +26,13 @@ const appReducer = (state = initialState, action: fromActions.Actions): IState =
   }
 };
 
-type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, fromActions.Actions>;
+type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, AppAction>;
 
 export const initializeApp = (): IThunk => async dispatch => {
   const promise = dispatch(getAuthUserData());
 
   Promise.all([promise]).then(() => {
-    dispatch(fromActions.Actions.initializedSuccess());
+    dispatch(AppActions.initializedSuccess());
   });
 };
 

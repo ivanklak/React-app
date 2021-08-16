@@ -5,7 +5,7 @@ import {IPost, IProfile} from '../../types/types';
 
 import {AppStateType} from '../redux-store';
 
-import * as fromActions from './actions';
+import {ProfileActionTypes, ProfileActions, ProfileAction} from './actions';
 
 export interface IState {
   posts: Array<IPost>;
@@ -24,9 +24,9 @@ const initialState: IState = {
   newPostText: '',
 };
 
-const profileReducer = (state = initialState, action: fromActions.Actions): IState => {
+const profileReducer = (state = initialState, action: ProfileAction): IState => {
   switch (action.type) {
-    case fromActions.ActionTypes.ADD_POST: {
+    case ProfileActionTypes.ADD_POST: {
       const newPost = {
         id: 5,
         message: action.payload,
@@ -39,16 +39,16 @@ const profileReducer = (state = initialState, action: fromActions.Actions): ISta
         newPostText: '',
       };
     }
-    case fromActions.ActionTypes.SET_STATUS: {
+    case ProfileActionTypes.SET_STATUS: {
       return {
         ...state,
         status: action.payload,
       };
     }
-    case fromActions.ActionTypes.SET_USER_PROFILE: {
+    case ProfileActionTypes.SET_USER_PROFILE: {
       return {...state, profile: action.payload};
     }
-    case fromActions.ActionTypes.DELETE_POST: {
+    case ProfileActionTypes.DELETE_POST: {
       return {
         ...state,
         posts: state.posts.filter(p => p.id != action.payload),
@@ -59,14 +59,14 @@ const profileReducer = (state = initialState, action: fromActions.Actions): ISta
   }
 };
 
-type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, fromActions.Actions>;
+type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, ProfileAction>;
 
 export const getUserProfile =
   (userId: number): IThunk =>
   async dispatch => {
     const response = await profileAPI.getProfile(userId);
 
-    dispatch(fromActions.Actions.setUserProfile(response));
+    dispatch(ProfileActions.setUserProfile(response));
   };
 
 export const getStatus =
@@ -74,7 +74,7 @@ export const getStatus =
   async dispatch => {
     const response = await profileAPI.getStatus(userId);
 
-    dispatch(fromActions.Actions.setStatus(response));
+    dispatch(ProfileActions.setStatus(response));
   };
 
 export const updateStatus =
@@ -83,16 +83,16 @@ export const updateStatus =
     const response = await profileAPI.updateStatus(status);
 
     if (response.resultCode === ResultCodes.Success) {
-      dispatch(fromActions.Actions.setStatus(status));
+      dispatch(ProfileActions.setStatus(status));
     }
   };
 
-type IThunkPost = ThunkAction<void, AppStateType, unknown, fromActions.Actions>;
+type IThunkPost = ThunkAction<void, AppStateType, unknown, ProfileAction>;
 
 export const addNewPost =
   (newPostText: string): IThunkPost =>
   dispatch => {
-    dispatch(fromActions.Actions.addPost(newPostText));
+    dispatch(ProfileActions.addPost(newPostText));
   };
 
 export default profileReducer;

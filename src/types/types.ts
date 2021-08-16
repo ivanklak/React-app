@@ -37,6 +37,13 @@ export interface IUser {
   followed: boolean;
 }
 
+export interface IAuthenticationsData {
+  userId: number | null;
+  email: string | null;
+  login: string | null;
+  isAuth: boolean;
+}
+
 type FunctionType = (...args: any[]) => any;
 type ActionCreatorsMapObject = {[actionCreator: string]: FunctionType};
 

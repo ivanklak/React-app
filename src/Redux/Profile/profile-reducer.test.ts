@@ -1,5 +1,5 @@
 import profileReducer from './profile-reducer';
-import * as fromActions from './actions';
+import {ProfileActions} from './actions';
 
 const state = {
   posts: [
@@ -13,7 +13,7 @@ const state = {
 
 it('length of posts should be incremented', () => {
   // 1. start data
-  const action = fromActions.Actions.addPost('I am best programmer');
+  const action = ProfileActions.addPost('I am best programmer');
   // 2. action
   const newState = profileReducer(state, action);
 
@@ -23,7 +23,7 @@ it('length of posts should be incremented', () => {
 
 it('message of new post should be correct', () => {
   // 1. start data
-  const action = fromActions.Actions.addPost('I am best programmer');
+  const action = ProfileActions.addPost('I am best programmer');
 
   // 2. action
   const newState = profileReducer(state, action);
@@ -33,7 +33,7 @@ it('message of new post should be correct', () => {
 });
 it('after deleting length of messages should be decrement', () => {
   // 1. start data
-  const action = fromActions.Actions.deletePost(1);
+  const action = ProfileActions.deletePost(1);
 
   // 2. action
   const newState = profileReducer(state, action);
@@ -43,7 +43,7 @@ it('after deleting length of messages should be decrement', () => {
 });
 it("length of messages shouldn't be decrement if id is incorrect", () => {
   // 1. start data
-  const action = fromActions.Actions.deletePost(4);
+  const action = ProfileActions.deletePost(4);
 
   // 2. action
   const newState = profileReducer(state, action);

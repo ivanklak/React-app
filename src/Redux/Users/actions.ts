@@ -2,7 +2,12 @@ import {ActionsUnion, IUser} from '../../types/types';
 
 import {createAction} from '../action-helper';
 
-export enum ActionTypes {
+interface IFollowingInProgress {
+  isFetching: boolean;
+  userId: number;
+}
+
+export enum UsersActionTypes {
   FOLLOW = 'users/FOLLOW',
   UNFOLLOW = 'users/UNFOLLOW',
   SET_USERS = 'users/SET_USERS',
@@ -12,18 +17,14 @@ export enum ActionTypes {
   TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_PROGRESS',
 }
 
-export const Actions = {
-  followSuccess: (userId: number) => createAction(ActionTypes.FOLLOW, userId),
-  unfollowSuccess: (userId: number) => createAction(ActionTypes.UNFOLLOW, userId),
-  setUsers: (users: Array<IUser>) => createAction(ActionTypes.SET_USERS, users),
-  setCurrentPage: (currentPage: number) => createAction(ActionTypes.SET_CURRENT_PAGE, currentPage),
-  setTotalUsersCount: (totalUsersCount: number) => createAction(ActionTypes.SET_TOTAL_USERS_COUNT, totalUsersCount),
-  setToggleIsFetching: (isFetching: boolean) => createAction(ActionTypes.TOGGLE_IS_FETCHING, isFetching),
-  toggleFollowingProgress: (isFetching: boolean, userId: number) =>
-    createAction(ActionTypes.TOGGLE_IS_FOLLOWING_PROGRESS, {
-      isFetching,
-      userId,
-    }),
+export const UsersActions = {
+  followSuccess: (payload: number) => createAction(UsersActionTypes.FOLLOW, payload),
+  unfollowSuccess: (payload: number) => createAction(UsersActionTypes.UNFOLLOW, payload),
+  setUsers: (payload: Array<IUser>) => createAction(UsersActionTypes.SET_USERS, payload),
+  setCurrentPage: (payload: number) => createAction(UsersActionTypes.SET_CURRENT_PAGE, payload),
+  setTotalUsersCount: (payload: number) => createAction(UsersActionTypes.SET_TOTAL_USERS_COUNT, payload),
+  setToggleIsFetching: (payload: boolean) => createAction(UsersActionTypes.TOGGLE_IS_FETCHING, payload),
+  toggleFollowingProgress: (payload: IFollowingInProgress) => createAction(UsersActionTypes.TOGGLE_IS_FOLLOWING_PROGRESS, payload),
 };
 
-export type Actions = ActionsUnion<typeof Actions>;
+export type UsersAction = ActionsUnion<typeof UsersActions>;

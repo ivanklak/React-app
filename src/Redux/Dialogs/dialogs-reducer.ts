@@ -2,7 +2,7 @@ import {ThunkAction} from 'redux-thunk';
 
 import {AppStateType} from '../redux-store';
 
-import * as fromActions from './actions';
+import {DialogsAction, DialogsActions, DialogsActionTypes} from './actions';
 
 export interface IMessages {
   id: number;
@@ -35,9 +35,9 @@ const initialState: IState = {
   ],
 };
 
-const dialogsReducer = (state = initialState, action: fromActions.Actions): IState => {
+const dialogsReducer = (state = initialState, action: DialogsAction): IState => {
   switch (action.type) {
-    case fromActions.ActionTypes.SEND_MESSAGE: {
+    case DialogsActionTypes.SEND_MESSAGE: {
       const body = action.payload;
 
       return {
@@ -51,12 +51,12 @@ const dialogsReducer = (state = initialState, action: fromActions.Actions): ISta
   }
 };
 
-type IThunk = ThunkAction<void, AppStateType, unknown, fromActions.Actions>;
+type IThunk = ThunkAction<void, AppStateType, unknown, DialogsAction>;
 
 export const sendMessages =
   (newMessageBody: string): IThunk =>
   dispatch => {
-    dispatch(fromActions.Actions.sendMessage(newMessageBody));
+    dispatch(DialogsActions.sendMessage(newMessageBody));
   };
 
 export default dialogsReducer;
