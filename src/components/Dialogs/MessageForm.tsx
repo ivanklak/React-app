@@ -1,15 +1,17 @@
 import React, {FC} from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
 import {Textarea} from '../common/FormsControl';
 import {maxLengthCreator, required} from '../../utils/validators';
+
+import {IMessageValues} from './index';
 
 import styles from './styles.module.css';
 
 const maxLength50 = maxLengthCreator(50);
 
-const MessageForm: FC<any> = props => (
-  <form onSubmit={props.handleSubmit}>
+const MessageForm: FC<InjectedFormProps<IMessageValues>> = ({handleSubmit}) => (
+  <form onSubmit={handleSubmit}>
     <div className={styles.form}>
       <Field component={Textarea} validate={[required, maxLength50]} name="newMessageBody" placeholder="Enter your message" className={styles.messageInput} />
     </div>
@@ -19,4 +21,4 @@ const MessageForm: FC<any> = props => (
   </form>
 );
 
-export default reduxForm({form: 'dialogAddMessageForm'})(MessageForm);
+export default reduxForm<IMessageValues>({form: 'dialogAddMessageForm'})(MessageForm);
