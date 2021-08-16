@@ -2,8 +2,14 @@ import React, {FC, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 
 import {follow, unfollow} from '../../Redux/Users/users-reducer';
+import {UserType} from '../../types/types';
 
-const FollowButton: FC<any> = ({user, followingInProgress}) => {
+interface IProps {
+  user: UserType;
+  followingInProgress: Array<number>;
+}
+
+const FollowButton: FC<IProps> = ({user, followingInProgress}) => {
   const dispatch = useDispatch();
 
   const onButtonClick = useCallback(() => (user.followed ? dispatch(unfollow(user.id)) : dispatch(follow(user.id))), [user.id, user.followed]);
