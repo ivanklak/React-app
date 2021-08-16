@@ -1,7 +1,7 @@
 import React, {FC, useCallback, useEffect, useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {requestUsers} from '../../Redux/users-reducer';
+import {requestUsers} from '../../Redux/Users/users-reducer';
 import Pages from '../Paginator/Pages';
 import Preloader from '../Preloader';
 import {UserType} from '../../types/types';

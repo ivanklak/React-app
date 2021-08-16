@@ -1,7 +1,7 @@
 import React, {FC, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 
-import {follow, unfollow} from '../../Redux/users-reducer';
+import {follow, unfollow} from '../../Redux/Users/users-reducer';
 
 const FollowButton: FC<any> = ({user, followingInProgress}) => {
   const dispatch = useDispatch();

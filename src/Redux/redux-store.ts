@@ -4,7 +4,7 @@ import {reducer as formReducer} from 'redux-form';
 
 import profileReducer from './Profile/profile-reducer';
 import dialogsReducer from './Dialogs/dialogs-reducer';
-import usersReducer from './users-reducer';
+import usersReducer from './Users/users-reducer';
 import authReducer from './Authentication/auth-reducer';
 import appReducer from './App/app-reducer';
 
