@@ -8,12 +8,12 @@ import {UserType} from '../../types/types';
 
 import styles from './styles.module.css';
 
-interface IProps {
+interface IUserProps {
   user: UserType;
   followingInProgress: Array<number>;
 }
 
-const User: FC<IProps> = ({user, followingInProgress}) => (
+const User: FC<IUserProps> = ({user, followingInProgress}) => (
   <div className={styles.person}>
     <span>
       <div>

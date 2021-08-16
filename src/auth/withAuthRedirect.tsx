@@ -4,11 +4,11 @@ import {Redirect} from 'react-router-dom';
 
 import {getAuth} from '../selectors';
 
-function withAuthRedirect<WCProps>(WrappedComponent: ComponentType<WCProps>) {
-  const RedirectComponent: FC<WCProps> = props => {
+function withAuthRedirect<p>(WrappedComponent: ComponentType<p>) {
+  const RedirectComponent: FC<p> = props => {
     const isAuth = useSelector(getAuth);
 
-    return isAuth ? <WrappedComponent {...(props as WCProps)} /> : <Redirect to="/login" />;
+    return isAuth ? <WrappedComponent {...props} /> : <Redirect to="/login" />;
   };
 
   return RedirectComponent;

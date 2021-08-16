@@ -2,10 +2,10 @@ import React, {FC} from 'react';
 
 import styles from '../styles.module.css';
 
-interface IProps {
+interface IMessageProps {
   message: string;
 }
 
-const Message: FC<IProps> = ({message}) => <div className={styles.dialog}>{message}</div>;
+const Message: FC<IMessageProps> = ({message}) => <div className={styles.dialog}>{message}</div>;
 
 export default Message;

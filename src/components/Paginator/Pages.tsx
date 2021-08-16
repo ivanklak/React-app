@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 
-interface IProps {
+interface IPagesProps {
   onPageClick: (page: number) => void;
   currentPage: number;
   page: number;
 }
 
-const Pages: FC<IProps> = ({currentPage, onPageClick, page}) => {
+const Pages: FC<IPagesProps> = ({currentPage, onPageClick, page}) => {
   const handleClick = () => {
     onPageClick(page);
   };
