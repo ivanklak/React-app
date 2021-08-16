@@ -1,4 +1,4 @@
-import {ActionsUnion, UserType} from '../../types/types';
+import {ActionsUnion, IUser} from '../../types/types';
 
 import {createAction} from '../action-helper';
 
@@ -15,7 +15,7 @@ export enum ActionTypes {
 export const Actions = {
   followSuccess: (userId: number) => createAction(ActionTypes.FOLLOW, userId),
   unfollowSuccess: (userId: number) => createAction(ActionTypes.UNFOLLOW, userId),
-  setUsers: (users: Array<UserType>) => createAction(ActionTypes.SET_USERS, users),
+  setUsers: (users: Array<IUser>) => createAction(ActionTypes.SET_USERS, users),
   setCurrentPage: (currentPage: number) => createAction(ActionTypes.SET_CURRENT_PAGE, currentPage),
   setTotalUsersCount: (totalUsersCount: number) => createAction(ActionTypes.SET_TOTAL_USERS_COUNT, totalUsersCount),
   setToggleIsFetching: (isFetching: boolean) => createAction(ActionTypes.TOGGLE_IS_FETCHING, isFetching),

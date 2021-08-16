@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {ProfileType, UserType} from '../types/types';
+import {IProfile, IUser} from '../types/types';
 
 const instance = axios.create({
   withCredentials: true,
@@ -16,7 +16,7 @@ export enum ResultCodes {
 }
 
 interface IGetItems {
-  items: Array<UserType>;
+  items: Array<IUser>;
   totalCount: number;
   error: string | null;
 }
@@ -64,7 +64,7 @@ export const usersAPI = {
 
 export const profileAPI = {
   getProfile(userId: number) {
-    return instance.get<ProfileType>(`profile/` + userId).then(res => res.data);
+    return instance.get<IProfile>(`profile/` + userId).then(res => res.data);
   },
 
   getStatus(userId: number) {

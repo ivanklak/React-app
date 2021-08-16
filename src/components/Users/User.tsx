@@ -4,12 +4,12 @@ import {NavLink} from 'react-router-dom';
 import userPhoto from '../../assets/images/people-profile.png';
 import FollowButton from '../controls/FollowButton';
 
-import {UserType} from '../../types/types';
+import {IUser} from '../../types/types';
 
 import styles from './styles.module.css';
 
 interface IUserProps {
-  user: UserType;
+  user: IUser;
   followingInProgress: Array<number>;
 }
 

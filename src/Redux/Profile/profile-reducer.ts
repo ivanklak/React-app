@@ -1,15 +1,15 @@
 import {ThunkAction} from 'redux-thunk';
 
 import {profileAPI, ResultCodes} from '../../api';
-import {PostType, ProfileType} from '../../types/types';
+import {IPost, IProfile} from '../../types/types';
 
 import {AppStateType} from '../redux-store';
 
 import * as fromActions from './actions';
 
 export interface IState {
-  posts: Array<PostType>;
-  profile: ProfileType | null;
+  posts: Array<IPost>;
+  profile: IProfile | null;
   status: string;
   newPostText: string;
 }

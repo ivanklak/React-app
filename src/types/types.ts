@@ -1,10 +1,10 @@
-export type PostType = {
+export interface IPost {
   id: number;
   message: string;
   likesCount: number;
-};
+}
 
-export type ContactsType = {
+export interface IContacts {
   github: string;
   vk: string;
   facebook: string;
@@ -13,29 +13,29 @@ export type ContactsType = {
   website: string;
   youtube: string;
   mainLink: string;
-};
+}
 
-export type PhotosType = {
+export interface IPhotos {
   small: string | null;
   large: string | null;
-};
+}
 
-export type ProfileType = {
+export interface IProfile {
   userId: number;
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
   fullName: string;
-  contacts: ContactsType;
-  photos: PhotosType;
-};
+  contacts: IContacts;
+  photos: IPhotos;
+}
 
-export type UserType = {
+export interface IUser {
   id: number;
   name: string;
   status: string;
-  photos: PhotosType;
+  photos: IPhotos;
   followed: boolean;
-};
+}
 
 type FunctionType = (...args: any[]) => any;
 type ActionCreatorsMapObject = {[actionCreator: string]: FunctionType};

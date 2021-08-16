@@ -1,13 +1,13 @@
 import {ThunkAction} from 'redux-thunk';
 
 import {ResultCodes, usersAPI} from '../../api';
-import {UserType} from '../../types/types';
+import {IUser} from '../../types/types';
 import {AppStateType} from '../redux-store';
 
 import * as fromActions from './actions';
 
 interface IState {
-  users: Array<UserType>;
+  users: Array<IUser>;
   pageSize: number;
   totalUsersCount: number;
   currentPage: number;

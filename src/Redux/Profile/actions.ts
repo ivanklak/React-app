@@ -1,4 +1,4 @@
-import {ActionsUnion, ProfileType} from '../../types/types';
+import {ActionsUnion, IProfile} from '../../types/types';
 
 import {createAction} from '../action-helper';
 
@@ -10,7 +10,7 @@ export enum ActionTypes {
 }
 
 export const Actions = {
-  setUserProfile: (profile: ProfileType) => createAction(ActionTypes.SET_USER_PROFILE, profile),
+  setUserProfile: (profile: IProfile) => createAction(ActionTypes.SET_USER_PROFILE, profile),
   setStatus: (status: string) => createAction(ActionTypes.SET_STATUS, status),
   addPost: (newPostText: string) => createAction(ActionTypes.ADD_POST, newPostText),
   deletePost: (postId: number) => createAction(ActionTypes.DELETE_POST, postId),

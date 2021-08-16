@@ -2,10 +2,10 @@ import React, {FC, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 
 import {follow, unfollow} from '../../Redux/Users/users-reducer';
-import {UserType} from '../../types/types';
+import {IUser} from '../../types/types';
 
 interface IFollowButtonProps {
-  user: UserType;
+  user: IUser;
   followingInProgress: Array<number>;
 }
 
