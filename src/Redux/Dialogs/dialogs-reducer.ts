@@ -4,11 +4,11 @@ import {AppStateType} from '../redux-store';
 
 import * as fromActions from './actions';
 
-interface IMessages {
+export interface IMessages {
   id: number;
   message: string;
 }
-interface IDialogs {
+export interface IDialogs {
   id: number;
   name: string;
 }
