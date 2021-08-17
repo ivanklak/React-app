@@ -17,7 +17,6 @@ const appReducer = (state = initialState, action: AppAction): IState => {
   switch (action.type) {
     case AppActionTypes.INITIALIZED_SUCCESS:
       return {
-        ...state,
         initialized: true,
       };
 
