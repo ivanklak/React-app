@@ -1,4 +1,4 @@
-import {IDialogs, IMessages, IThunkResult} from '../../types/types';
+import {IDialogs, IMessages, IThunkResult} from '../../types';
 
 import {DialogsAction, DialogsActions, DialogsActionTypes} from './actions';
 

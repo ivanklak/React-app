@@ -1,4 +1,4 @@
-import {ActionsUnion} from '../../types/types';
+import {ActionsUnion} from '../../types';
 
 import {createAction} from '../action-helper';
 

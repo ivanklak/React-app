@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom';
 
 import {login} from '../../Redux/Authentication/auth-reducer';
 import {getAuth} from '../../selectors';
-import {ILoginFormData} from '../../types/types';
+import {ILoginFormData} from '../../types';
 
 import LoginForm from './LoginForm';
 

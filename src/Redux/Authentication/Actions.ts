@@ -1,4 +1,4 @@
-import {ActionsUnion, IAuthenticationsData} from '../../types/types';
+import {ActionsUnion, IAuthenticationsData} from '../../types';
 
 import {createAction} from '../action-helper';
 

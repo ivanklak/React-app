@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom';
 import userPhoto from '../../assets/images/people-profile.png';
 import FollowButton from '../controls/FollowButton';
 
-import {IUser} from '../../types/types';
+import {IUser} from '../../types';
 
 import styles from './styles.module.css';
 

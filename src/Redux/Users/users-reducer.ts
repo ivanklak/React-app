@@ -1,5 +1,5 @@
 import {ResultCodes, usersAPI} from '../../api';
-import {IThunkResult, IUser} from '../../types/types';
+import {IThunkResult, IUser} from '../../types';
 
 import {UsersAction, UsersActions, UsersActionTypes} from './actions';
 

@@ -1,6 +1,6 @@
 import {getAuthUserData} from '../Authentication/auth-reducer';
 
-import {IThunkResult} from '../../types/types';
+import {IThunkResult} from '../../types';
 
 import {AppAction, AppActions, AppActionTypes} from './actions';
 

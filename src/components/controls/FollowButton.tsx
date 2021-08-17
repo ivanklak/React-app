@@ -2,7 +2,7 @@ import React, {FC, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 
 import {follow, unfollow} from '../../Redux/Users/users-reducer';
-import {IUser} from '../../types/types';
+import {IUser} from '../../types';
 
 interface IFollowButtonProps {
   user: IUser;

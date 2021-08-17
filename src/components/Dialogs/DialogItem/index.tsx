@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {NavLink} from 'react-router-dom';
 
-import {IDialogs} from '../../../types/types';
+import {IDialogs} from '../../../types';
 
 import styles from '../styles.module.css';
 

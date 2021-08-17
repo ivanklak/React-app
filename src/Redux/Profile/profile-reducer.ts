@@ -1,5 +1,5 @@
 import {profileAPI, ResultCodes} from '../../api';
-import {IPost, IProfile, IThunkResult} from '../../types/types';
+import {IPost, IProfile, IThunkResult} from '../../types';
 
 import {ProfileAction, ProfileActions, ProfileActionTypes} from './actions';
 

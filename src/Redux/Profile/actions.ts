@@ -1,4 +1,4 @@
-import {ActionsUnion, IProfile} from '../../types/types';
+import {ActionsUnion, IProfile} from '../../types';
 
 import {createAction} from '../action-helper';
 

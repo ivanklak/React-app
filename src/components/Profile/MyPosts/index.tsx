@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 
 import {addNewPost} from '../../../Redux/Profile/profile-reducer';
 import selector from '../selector';
-import {IPostValues} from '../../../types/types';
+import {IPostValues} from '../../../types';
 
 import Post from './Post';
 import PostForm from './PostForm';

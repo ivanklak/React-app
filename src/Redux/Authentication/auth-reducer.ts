@@ -2,7 +2,7 @@ import {stopSubmit} from 'redux-form';
 import {FormAction} from 'redux-form/lib/actions';
 
 import {authAPI, ResultCodes} from '../../api';
-import {IThunkResult} from '../../types/types';
+import {IThunkResult} from '../../types';
 
 import {AuthenticationAction, AuthenticationActions, AuthenticationActionTypes} from './actions';
 
