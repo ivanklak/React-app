@@ -4,7 +4,7 @@ import {IThunkResult} from '../../types/types';
 
 import {AppAction, AppActions, AppActionTypes} from './actions';
 
-export interface IState {
+interface IState {
   initialized: boolean;
 }
 
@@ -24,7 +24,7 @@ const appReducer = (state = initialState, action: AppAction): IState => {
   }
 };
 
-export const initializeApp = (): IThunkResult<Promise<void>, AppAction> => async dispatch => {
+export const initializeApp = (): IThunkResult<void, AppAction> => dispatch => {
   const promise = dispatch(getAuthUserData());
 
   Promise.all([promise]).then(() => {
