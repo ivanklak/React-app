@@ -3,10 +3,10 @@ import {ActionsUnion, IProfile} from '../../types/types';
 import {createAction} from '../action-helper';
 
 export enum ProfileActionTypes {
-  ADD_POST = 'profile/ADD_POST',
-  SET_USER_PROFILE = 'profile/SET_USER_PROFILE',
-  SET_STATUS = 'profile/SET_STATUS',
-  DELETE_POST = 'profile/DELETE_POST',
+  ADD_POST = 'PROFILE/ADD_POST',
+  SET_USER_PROFILE = 'PROFILE/SET_USER_PROFILE',
+  SET_STATUS = 'PROFILE/SET_STATUS',
+  DELETE_POST = 'PROFILE/DELETE_POST',
 }
 
 export const ProfileActions = {

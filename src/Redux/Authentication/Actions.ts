@@ -3,7 +3,7 @@ import {ActionsUnion, IAuthenticationsData} from '../../types/types';
 import {createAction} from '../action-helper';
 
 export enum AuthenticationActionTypes {
-  SET_USER_DATA = 'auth/SET_USER_DATA',
+  SET_USER_DATA = 'AUTH/SET_USER_DATA',
 }
 
 export const AuthenticationActions = {

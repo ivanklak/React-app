@@ -3,7 +3,7 @@ import {ActionsUnion} from '../../types/types';
 import {createAction} from '../action-helper';
 
 export enum DialogsActionTypes {
-  SEND_MESSAGE = 'dialogs/SEND_MESSAGE',
+  SEND_MESSAGE = 'DIALOGS/SEND_MESSAGE',
 }
 
 export const DialogsActions = {
