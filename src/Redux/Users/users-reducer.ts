@@ -1,10 +1,7 @@
-import {ThunkAction} from 'redux-thunk';
-
 import {ResultCodes, usersAPI} from '../../api';
-import {IUser} from '../../types/types';
-import {AppStateType} from '../redux-store';
+import {IThunkResult, IUser} from '../../types/types';
 
-import {UsersActionTypes, UsersActions, UsersAction} from './actions';
+import {UsersAction, UsersActions, UsersActionTypes} from './actions';
 
 interface IState {
   users: Array<IUser>;
@@ -80,10 +77,8 @@ const usersReducer = (state = initialState, action: UsersAction): IState => {
   }
 };
 
-type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, UsersAction>;
-
 export const requestUsers =
-  (currentPage: number, pageSize: number): IThunk =>
+  (currentPage: number, pageSize: number): IThunkResult<Promise<void>, UsersAction> =>
   async dispatch => {
     dispatch(UsersActions.setToggleIsFetching(true));
     dispatch(UsersActions.setCurrentPage(currentPage));
@@ -95,7 +90,7 @@ export const requestUsers =
   };
 
 export const follow =
-  (userId: number): IThunk =>
+  (userId: number): IThunkResult<Promise<void>, UsersAction> =>
   async dispatch => {
     dispatch(UsersActions.toggleFollowingProgress({isFetching: true, userId: userId}));
     const data = await usersAPI.toFollow(userId);
@@ -107,7 +102,7 @@ export const follow =
   };
 
 export const unfollow =
-  (userId: number): IThunk =>
+  (userId: number): IThunkResult<Promise<void>, UsersAction> =>
   async dispatch => {
     dispatch(UsersActions.toggleFollowingProgress({isFetching: true, userId: userId}));
     const data = await usersAPI.toUnfollow(userId);

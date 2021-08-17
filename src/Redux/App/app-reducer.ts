@@ -1,9 +1,8 @@
-import {ThunkAction} from 'redux-thunk';
-
 import {getAuthUserData} from '../Authentication/auth-reducer';
-import {AppStateType} from '../redux-store';
 
-import {AppActionTypes, AppActions, AppAction} from './actions';
+import {IThunkResult} from '../../types/types';
+
+import {AppAction, AppActions, AppActionTypes} from './actions';
 
 export interface IState {
   initialized: boolean;
@@ -25,9 +24,7 @@ const appReducer = (state = initialState, action: AppAction): IState => {
   }
 };
 
-type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, AppAction>;
-
-export const initializeApp = (): IThunk => async dispatch => {
+export const initializeApp = (): IThunkResult<Promise<void>, AppAction> => async dispatch => {
   const promise = dispatch(getAuthUserData());
 
   Promise.all([promise]).then(() => {

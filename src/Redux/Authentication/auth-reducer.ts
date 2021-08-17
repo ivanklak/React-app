@@ -1,12 +1,10 @@
 import {stopSubmit} from 'redux-form';
-import {ThunkAction} from 'redux-thunk';
 import {FormAction} from 'redux-form/lib/actions';
 
 import {authAPI, ResultCodes} from '../../api';
+import {IThunkResult} from '../../types/types';
 
-import {AppStateType} from '../redux-store';
-
-import {AuthenticationActionTypes, AuthenticationActions, AuthenticationAction} from './actions';
+import {AuthenticationAction, AuthenticationActions, AuthenticationActionTypes} from './actions';
 
 export interface IState {
   userId: number | null;
@@ -35,9 +33,7 @@ const authReducer = (state = initialState, action: AuthenticationAction): IState
   }
 };
 
-type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, AuthenticationAction>;
-
-export const getAuthUserData = (): IThunk => async dispatch => {
+export const getAuthUserData = (): IThunkResult<Promise<void>, AuthenticationAction> => async dispatch => {
   const response = await authAPI.me();
 
   if (response.resultCode === ResultCodes.Success) {
@@ -47,10 +43,8 @@ export const getAuthUserData = (): IThunk => async dispatch => {
   }
 };
 
-type IThunkForm = ThunkAction<Promise<void>, AppStateType, unknown, FormAction>;
-
 export const login =
-  (email: string, password: string, rememberMe: boolean): IThunkForm =>
+  (email: string, password: string, rememberMe: boolean): IThunkResult<Promise<void>, FormAction> =>
   async dispatch => {
     const response = await authAPI.login(email, password, rememberMe);
 
@@ -63,7 +57,7 @@ export const login =
     }
   };
 
-export const logout = (): IThunk => async dispatch => {
+export const logout = (): IThunkResult<Promise<void>, AuthenticationAction> => async dispatch => {
   const response = await authAPI.logout();
 
   if (response.data.resultCode === ResultCodes.Success) {

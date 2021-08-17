@@ -1,6 +1,4 @@
-import {ThunkAction} from 'redux-thunk';
-
-import {AppStateType} from '../redux-store';
+import {IThunkResult} from '../../types/types';
 
 import {DialogsAction, DialogsActions, DialogsActionTypes} from './actions';
 
@@ -51,10 +49,8 @@ const dialogsReducer = (state = initialState, action: DialogsAction): IState => 
   }
 };
 
-type IThunk = ThunkAction<void, AppStateType, unknown, DialogsAction>;
-
 export const sendMessages =
-  (newMessageBody: string): IThunk =>
+  (newMessageBody: string): IThunkResult<void, DialogsAction> =>
   dispatch => {
     dispatch(DialogsActions.sendMessage(newMessageBody));
   };

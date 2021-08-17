@@ -1,11 +1,7 @@
-import {ThunkAction} from 'redux-thunk';
-
 import {profileAPI, ResultCodes} from '../../api';
-import {IPost, IProfile} from '../../types/types';
+import {IPost, IProfile, IThunkResult} from '../../types/types';
 
-import {AppStateType} from '../redux-store';
-
-import {ProfileActionTypes, ProfileActions, ProfileAction} from './actions';
+import {ProfileAction, ProfileActions, ProfileActionTypes} from './actions';
 
 export interface IState {
   posts: Array<IPost>;
@@ -59,10 +55,8 @@ const profileReducer = (state = initialState, action: ProfileAction): IState => 
   }
 };
 
-type IThunk = ThunkAction<Promise<void>, AppStateType, unknown, ProfileAction>;
-
 export const getUserProfile =
-  (userId: number): IThunk =>
+  (userId: number): IThunkResult<Promise<void>, ProfileAction> =>
   async dispatch => {
     const response = await profileAPI.getProfile(userId);
 
@@ -70,7 +64,7 @@ export const getUserProfile =
   };
 
 export const getStatus =
-  (userId: number): IThunk =>
+  (userId: number): IThunkResult<Promise<void>, ProfileAction> =>
   async dispatch => {
     const response = await profileAPI.getStatus(userId);
 
@@ -78,7 +72,7 @@ export const getStatus =
   };
 
 export const updateStatus =
-  (status: string): IThunk =>
+  (status: string): IThunkResult<Promise<void>, ProfileAction> =>
   async dispatch => {
     const response = await profileAPI.updateStatus(status);
 
@@ -87,10 +81,8 @@ export const updateStatus =
     }
   };
 
-type IThunkPost = ThunkAction<void, AppStateType, unknown, ProfileAction>;
-
 export const addNewPost =
-  (newPostText: string): IThunkPost =>
+  (newPostText: string): IThunkResult<void, ProfileAction> =>
   dispatch => {
     dispatch(ProfileActions.addPost(newPostText));
   };
