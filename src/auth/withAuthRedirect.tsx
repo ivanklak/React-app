@@ -4,8 +4,8 @@ import {Redirect} from 'react-router-dom';
 
 import {getAuth} from '../selectors';
 
-function withAuthRedirect<p>(WrappedComponent: ComponentType<p>) {
-  const RedirectComponent: FC<p> = props => {
+function withAuthRedirect<P>(WrappedComponent: ComponentType<P>) {
+  const RedirectComponent: FC<P> = props => {
     const isAuth = useSelector(getAuth);
 
     return isAuth ? <WrappedComponent {...props} /> : <Redirect to="/login" />;
