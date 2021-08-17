@@ -39,7 +39,7 @@ export const getAuthUserData = (): IThunkResult<Promise<void>, AuthenticationAct
   if (response.resultCode === ResultCodes.Success) {
     const {id, email, login} = response.data;
 
-    dispatch(AuthenticationActions.setAuthUserData({userId: id, email: email, login: login, isAuth: true}));
+    dispatch(AuthenticationActions.setAuthUserData({userId: id, email, login, isAuth: true}));
   }
 };
 

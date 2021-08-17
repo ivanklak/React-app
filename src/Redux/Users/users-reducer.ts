@@ -92,25 +92,25 @@ export const requestUsers =
 export const follow =
   (userId: number): IThunkResult<Promise<void>, UsersAction> =>
   async dispatch => {
-    dispatch(UsersActions.toggleFollowingProgress({isFetching: true, userId: userId}));
+    dispatch(UsersActions.toggleFollowingProgress({isFetching: true, userId}));
     const data = await usersAPI.toFollow(userId);
 
     if (data.resultCode === ResultCodes.Success) {
       dispatch(UsersActions.followSuccess(userId));
     }
-    dispatch(UsersActions.toggleFollowingProgress({isFetching: false, userId: userId}));
+    dispatch(UsersActions.toggleFollowingProgress({isFetching: false, userId}));
   };
 
 export const unfollow =
   (userId: number): IThunkResult<Promise<void>, UsersAction> =>
   async dispatch => {
-    dispatch(UsersActions.toggleFollowingProgress({isFetching: true, userId: userId}));
+    dispatch(UsersActions.toggleFollowingProgress({isFetching: true, userId}));
     const data = await usersAPI.toUnfollow(userId);
 
     if (data.resultCode === ResultCodes.Success) {
       dispatch(UsersActions.unfollowSuccess(userId));
     }
-    dispatch(UsersActions.toggleFollowingProgress({isFetching: false, userId: userId}));
+    dispatch(UsersActions.toggleFollowingProgress({isFetching: false, userId}));
   };
 
 export default usersReducer;

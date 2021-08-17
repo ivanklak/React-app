@@ -72,7 +72,7 @@ export const profileAPI = {
   },
 
   updateStatus(status: string) {
-    return instance.put<IDefaultResponse>(`profile/status`, {status: status}).then(res => res.data);
+    return instance.put<IDefaultResponse>(`profile/status`, {status}).then(res => res.data);
   },
 };
 
