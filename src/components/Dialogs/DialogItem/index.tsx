@@ -5,7 +5,11 @@ import {IDialogs} from '../../../types';
 
 import styles from '../styles.module.css';
 
-const DialogItem: FC<IDialogs> = ({id, name}) => {
+interface IDialogsItemProps {
+  dialog: IDialogs;
+}
+
+const DialogItem: FC<IDialogsItemProps> = ({dialog: {id, name}}) => {
   const path = '/dialogs/' + id;
 
   return (

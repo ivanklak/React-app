@@ -17,7 +17,7 @@ const Profile: FC<RouteComponentProps<IPathParams>> = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const userId: number | null = +props.match.params.userId || authorizedUserId;
+    const userId: number | null = Number(props.match.params.userId) || authorizedUserId;
 
     if (!userId) {
       props.history.push('/login');
