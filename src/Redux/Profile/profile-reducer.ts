@@ -3,7 +3,7 @@ import {IPost, IProfile, IThunkResult} from '../../types/types';
 
 import {ProfileAction, ProfileActions, ProfileActionTypes} from './actions';
 
-export interface IState {
+interface IState {
   posts: Array<IPost>;
   profile: IProfile | null;
   status: string;

@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {sendMessages} from '../../Redux/Dialogs/dialogs-reducer';
+import {IMessageValues} from '../../types/types';
 
 import DialogItem from './DialogItem';
 import Message from './Message';
@@ -9,10 +10,6 @@ import selector from './selector';
 import MessageForm from './MessageForm';
 
 import styles from './styles.module.css';
-
-export interface IMessageValues {
-  newMessageBody: string;
-}
 
 const Dialogs: FC = () => {
   const {dialogsPage} = useSelector(selector);

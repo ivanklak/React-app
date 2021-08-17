@@ -4,16 +4,11 @@ import {Redirect} from 'react-router-dom';
 
 import {login} from '../../Redux/Authentication/auth-reducer';
 import {getAuth} from '../../selectors';
+import {ILoginFormData} from '../../types/types';
 
 import LoginForm from './LoginForm';
 
 import styles from './styles.module.css';
-
-export interface ILoginFormData {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-}
 
 const Login: FC = () => {
   const isAuth = useSelector(getAuth);

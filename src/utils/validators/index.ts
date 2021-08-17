@@ -1,4 +1,4 @@
-export interface IFieldValidator {
+interface IFieldValidator {
   (value: string): string | undefined;
 }
 

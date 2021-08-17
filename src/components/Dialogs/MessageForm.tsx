@@ -3,8 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
 import {Textarea} from '../common/FormsControl';
 import {maxLengthCreator, required} from '../../utils/validators';
-
-import {IMessageValues} from './index';
+import {IMessageValues} from '../../types/types';
 
 import styles from './styles.module.css';
 

@@ -6,7 +6,7 @@ import {IThunkResult} from '../../types/types';
 
 import {AuthenticationAction, AuthenticationActions, AuthenticationActionTypes} from './actions';
 
-export interface IState {
+interface IState {
   userId: number | null;
   email: string | null;
   login: string | null;

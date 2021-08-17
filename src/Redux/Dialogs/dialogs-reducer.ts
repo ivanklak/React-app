@@ -1,15 +1,7 @@
-import {IThunkResult} from '../../types/types';
+import {IDialogs, IMessages, IThunkResult} from '../../types/types';
 
 import {DialogsAction, DialogsActions, DialogsActionTypes} from './actions';
 
-export interface IMessages {
-  id: number;
-  message: string;
-}
-export interface IDialogs {
-  id: number;
-  name: string;
-}
 interface IState {
   messages: Array<IMessages>;
   dialogs: Array<IDialogs>;

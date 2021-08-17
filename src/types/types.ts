@@ -3,6 +3,30 @@ import {Action} from 'redux';
 
 import {AppStateType} from '../Redux/redux-store';
 
+export interface IMessages {
+  id: number;
+  message: string;
+}
+
+export interface IDialogs {
+  id: number;
+  name: string;
+}
+
+export interface IMessageValues {
+  newMessageBody: string;
+}
+
+export interface ILoginFormData {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}
+
+export interface IPostValues {
+  newPostText: string;
+}
+
 export interface IPost {
   id: number;
   message: string;

@@ -3,8 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
 import {Input} from '../common/FormsControl';
 import {required} from '../../utils/validators';
-
-import {ILoginFormData} from './index';
+import {ILoginFormData} from '../../types/types';
 
 import style from '../common/FormsControl/styles.module.css';
 import styles from './styles.module.css';
