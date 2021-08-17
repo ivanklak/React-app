@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {addNewPost} from '../../../Redux/Profile/profile-reducer';
+import {addNewPost} from '../../../Redux/Profile/thunks';
 import selector from '../selector';
 import {IPostValues} from '../../../types';
 

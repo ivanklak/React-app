@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {sendMessages} from '../../Redux/Dialogs/dialogs-reducer';
+import {sendMessages} from '../../Redux/Dialogs/thunks';
 import {IMessageValues} from '../../types';
 
 import DialogItem from './DialogItem';

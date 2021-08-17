@@ -1,6 +1,6 @@
-import {IDialogs, IMessages, IThunkResult} from '../../types';
+import {IDialogs, IMessages} from '../../types';
 
-import {DialogsAction, DialogsActions, DialogsActionTypes} from './actions';
+import {DialogsAction, DialogsActionTypes} from './actions';
 
 interface IState {
   messages: Array<IMessages>;
@@ -40,11 +40,5 @@ const dialogsReducer = (state = initialState, action: DialogsAction): IState => 
       return state;
   }
 };
-
-export const sendMessages =
-  (newMessageBody: string): IThunkResult<void, DialogsAction> =>
-  dispatch => {
-    dispatch(DialogsActions.sendMessage(newMessageBody));
-  };
 
 export default dialogsReducer;

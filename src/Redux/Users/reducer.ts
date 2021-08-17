@@ -1,7 +1,6 @@
-import {ResultCodes, usersAPI} from '../../api';
-import {IThunkResult, IUser} from '../../types';
+import {IUser} from '../../types';
 
-import {UsersAction, UsersActions, UsersActionTypes} from './actions';
+import {UsersAction, UsersActionTypes} from './actions';
 
 interface IState {
   users: Array<IUser>;
@@ -68,7 +67,7 @@ const usersReducer = (state = initialState, action: UsersAction): IState => {
         ...state,
         followingInProgress: action.payload.isFetching
           ? [...state.followingInProgress, action.payload.userId]
-          : state.followingInProgress.filter(id => id != action.payload.userId),
+          : state.followingInProgress.filter(id => id !== action.payload.userId),
       };
     }
 
@@ -76,41 +75,5 @@ const usersReducer = (state = initialState, action: UsersAction): IState => {
       return state;
   }
 };
-
-export const requestUsers =
-  (currentPage: number, pageSize: number): IThunkResult<Promise<void>, UsersAction> =>
-  async dispatch => {
-    dispatch(UsersActions.setToggleIsFetching(true));
-    dispatch(UsersActions.setCurrentPage(currentPage));
-    const data = await usersAPI.getUsers(currentPage, pageSize);
-
-    dispatch(UsersActions.setToggleIsFetching(false));
-    dispatch(UsersActions.setUsers(data.items));
-    dispatch(UsersActions.setTotalUsersCount(data.totalCount));
-  };
-
-export const follow =
-  (userId: number): IThunkResult<Promise<void>, UsersAction> =>
-  async dispatch => {
-    dispatch(UsersActions.toggleFollowingProgress({isFetching: true, userId}));
-    const data = await usersAPI.toFollow(userId);
-
-    if (data.resultCode === ResultCodes.Success) {
-      dispatch(UsersActions.followSuccess(userId));
-    }
-    dispatch(UsersActions.toggleFollowingProgress({isFetching: false, userId}));
-  };
-
-export const unfollow =
-  (userId: number): IThunkResult<Promise<void>, UsersAction> =>
-  async dispatch => {
-    dispatch(UsersActions.toggleFollowingProgress({isFetching: true, userId}));
-    const data = await usersAPI.toUnfollow(userId);
-
-    if (data.resultCode === ResultCodes.Success) {
-      dispatch(UsersActions.unfollowSuccess(userId));
-    }
-    dispatch(UsersActions.toggleFollowingProgress({isFetching: false, userId}));
-  };
 
 export default usersReducer;

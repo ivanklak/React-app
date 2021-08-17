@@ -1,4 +1,4 @@
-import profileReducer from './profile-reducer';
+import profileReducer from './reducer';
 import {ProfileActions} from './actions';
 
 const state = {

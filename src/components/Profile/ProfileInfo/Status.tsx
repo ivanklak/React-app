@@ -1,7 +1,7 @@
 import React, {useState, useEffect, FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {updateStatus} from '../../../Redux/Profile/profile-reducer';
+import {updateStatus} from '../../../Redux/Profile/thunks';
 import selector from '../selector';
 
 const Status: FC = () => {

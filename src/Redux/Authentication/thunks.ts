@@ -1,37 +1,10 @@
-import {stopSubmit} from 'redux-form';
 import {FormAction} from 'redux-form/lib/actions';
+import {stopSubmit} from 'redux-form';
 
-import {authAPI, ResultCodes} from '../../api';
 import {IThunkResult} from '../../types';
+import {authAPI, ResultCodes} from '../../api';
 
-import {AuthenticationAction, AuthenticationActions, AuthenticationActionTypes} from './actions';
-
-interface IState {
-  userId: number | null;
-  email: string | null;
-  login: string | null;
-  isAuth: boolean;
-}
-
-const initialState: IState = {
-  userId: null,
-  email: '',
-  login: '',
-  isAuth: false,
-};
-
-const authReducer = (state = initialState, action: AuthenticationAction): IState => {
-  switch (action.type) {
-    case AuthenticationActionTypes.SET_USER_DATA:
-      return {
-        ...state,
-        ...action.payload,
-      };
-
-    default:
-      return state;
-  }
-};
+import {AuthenticationAction, AuthenticationActions} from './actions';
 
 export const getAuthUserData = (): IThunkResult<Promise<void>, AuthenticationAction> => async dispatch => {
   const response = await authAPI.me();
@@ -64,5 +37,3 @@ export const logout = (): IThunkResult<Promise<void>, AuthenticationAction> => a
     dispatch(AuthenticationActions.setAuthUserData({userId: null, email: null, login: null, isAuth: false}));
   }
 };
-
-export default authReducer;
