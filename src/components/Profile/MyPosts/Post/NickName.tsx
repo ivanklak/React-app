@@ -1,5 +1,9 @@
 import React, {FC} from 'react';
 
-const NickName: FC<any> = props => <div>{props.name}</div>;
+interface INickNameProps {
+  name: string;
+}
+
+const NickName: FC<INickNameProps> = ({name}) => <div>{name}</div>;
 
 export default NickName;

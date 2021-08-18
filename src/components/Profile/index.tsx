@@ -1,26 +1,30 @@
 import React, {FC, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import {withRouter, RouteComponentProps} from 'react-router-dom';
 
-import {getStatus, getUserProfile} from '../../Redux/profile-reducer';
+import {getStatus, getUserProfile} from '../../Redux/Profile/thunks';
 
 import ProfileInfo from './ProfileInfo';
 import MyPosts from './MyPosts';
 import selector from './selector';
 
-const Profile: FC<any> = props => {
+interface IPathParams {
+  userId: string;
+}
+
+const Profile: FC<RouteComponentProps<IPathParams>> = props => {
   const {authorizedUserId} = useSelector(selector);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const userId = props.match.params.userId || authorizedUserId;
+    const userId: number | null = Number(props.match.params.userId) || authorizedUserId;
 
     if (!userId) {
       props.history.push('/login');
+    } else {
+      dispatch(getUserProfile(userId));
+      dispatch(getStatus(userId));
     }
-
-    dispatch(getUserProfile(userId));
-    dispatch(getStatus(userId));
   }, []);
 
   return (

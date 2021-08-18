@@ -1,19 +1,17 @@
-import React, {FC} from 'react';
+import React, {ComponentType, FC} from 'react';
 import {useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 import {getAuth} from '../selectors';
 
-type PropsType = any;
-
-const withAuthRedirect = (ComponentToBeRendered: any) => {
-  const WrappedComponent: FC<PropsType> = props => {
+function withAuthRedirect<P>(WrappedComponent: ComponentType<P>) {
+  const RedirectComponent: FC<P> = props => {
     const isAuth = useSelector(getAuth);
 
-    return isAuth ? <ComponentToBeRendered {...props} /> : <Redirect to="/login" />;
+    return isAuth ? <WrappedComponent {...props} /> : <Redirect to="/login" />;
   };
 
-  return WrappedComponent;
-};
+  return RedirectComponent;
+}
 
 export default withAuthRedirect;

@@ -1,12 +1,18 @@
 import React, {FC} from 'react';
 
-const Pages: FC<any> = ({key, onPageClick, page, style}) => {
+interface IPagesProps {
+  onPageClick: (page: number) => void;
+  currentPage: number;
+  page: number;
+}
+
+const Pages: FC<IPagesProps> = ({currentPage, onPageClick, page}) => {
   const handleClick = () => {
     onPageClick(page);
   };
 
   return (
-    <span key={key} onClick={handleClick} className={style}>
+    <span onClick={handleClick} style={currentPage === page ? {fontWeight: 'bold'} : undefined}>
       {page + ' '}
     </span>
   );

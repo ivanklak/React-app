@@ -2,8 +2,9 @@ import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import {login} from '../../Redux/auth-reducer';
+import {login} from '../../Redux/Authentication/thunks';
 import {getAuth} from '../../selectors';
+import {ILoginFormData} from '../../types';
 
 import LoginForm from './LoginForm';
 
@@ -13,7 +14,7 @@ const Login: FC = () => {
   const isAuth = useSelector(getAuth);
   const dispatch = useDispatch();
 
-  const onSubmit = (formData: any) => {
+  const onSubmit = (formData: ILoginFormData) => {
     dispatch(login(formData.email, formData.password, formData.rememberMe));
   };
 

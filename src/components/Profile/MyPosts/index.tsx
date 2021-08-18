@@ -1,8 +1,9 @@
 import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {addNewPost} from '../../../Redux/profile-reducer';
+import {addNewPost} from '../../../Redux/Profile/thunks';
 import selector from '../selector';
+import {IPostValues} from '../../../types';
 
 import Post from './Post';
 import PostForm from './PostForm';
@@ -13,9 +14,9 @@ const MyPosts: FC = () => {
   const {posts} = useSelector(selector);
   const dispatch = useDispatch();
 
-  const postsElements = posts.map(p => <Post key={p.message} message={p.message} likesCount={p.likesCount} />);
+  const postsElements = posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />);
 
-  const onAddPost = (values: any) => {
+  const onAddPost = (values: IPostValues) => {
     dispatch(addNewPost(values.newPostText));
   };
 

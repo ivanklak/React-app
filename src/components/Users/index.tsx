@@ -1,10 +1,9 @@
 import React, {FC, useCallback, useEffect, useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {requestUsers} from '../../Redux/users-reducer';
+import {requestUsers} from '../../Redux/Users/thunks';
 import Pages from '../Paginator/Pages';
 import Preloader from '../Preloader';
-import {UserType} from '../../types/types';
 
 import selector from './selector';
 import User from './User';
@@ -21,7 +20,7 @@ const Users: FC = () => {
   }, []);
 
   const onPageChanged = useCallback(
-    pageNumber => {
+    (pageNumber: number) => {
       dispatch(requestUsers(pageNumber, pageSize));
     },
     [currentPage],
@@ -29,7 +28,7 @@ const Users: FC = () => {
 
   const pages = useMemo(() => {
     const pagesCount = Math.ceil(totalUsersCount / pageSize);
-    const arrOfPages = [];
+    const arrOfPages: Array<number> = [];
 
     for (let i = 1; i <= pagesCount; i++) {
       arrOfPages.push(i);
@@ -44,11 +43,11 @@ const Users: FC = () => {
     <div>
       <div className={styles.pages}>
         {pages.map(p => (
-          <Pages key={p} page={p} style={currentPage === p && styles.selectedPage} onPageClick={onPageChanged} />
+          <Pages key={p} page={p} currentPage={currentPage} onPageClick={onPageChanged} />
         ))}
       </div>
       <div>
-        {users.map((u: UserType) => (
+        {users.map(u => (
           <User user={u} followingInProgress={followingInProgress} key={u.id} />
         ))}
       </div>

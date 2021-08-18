@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import {ProfileType, UserType} from '../types/types';
+import {IProfile, IUser} from '../types';
 
 const instance = axios.create({
   withCredentials: true,
@@ -15,43 +15,42 @@ export enum ResultCodes {
   Error = 1,
 }
 
-type GetItemsType = {
-  items: Array<UserType>;
+interface IGetItems {
+  items: Array<IUser>;
   totalCount: number;
   error: string | null;
-};
+}
 
 type EmptyObject = Record<string, never>;
-
 interface IDefaultResponse {
   data: EmptyObject;
   messages: Array<string>;
   resultCode: ResultCodes;
 }
 
-type MeResponseDataType = {
+interface IMeResponseData {
   id: number;
   email: string;
   login: string;
-};
+}
 interface IMeResponse {
-  data: MeResponseDataType;
+  data: IMeResponseData;
   messages: Array<string>;
   resultCode: ResultCodes;
 }
 
-type LoginResponseDataType = {
+interface ILoginResponseData {
   userId: number;
-};
+}
 interface ILoginResponse {
-  data: LoginResponseDataType;
+  data: ILoginResponseData;
   messages: Array<string>;
   resultCode: ResultCodes;
 }
 
 export const usersAPI = {
   getUsers(currentPage = 1, pageSize = 100) {
-    return instance.get<GetItemsType>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
+    return instance.get<IGetItems>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
   },
 
   toFollow(userId: number) {
@@ -65,7 +64,7 @@ export const usersAPI = {
 
 export const profileAPI = {
   getProfile(userId: number) {
-    return instance.get<ProfileType>(`profile/` + userId).then(res => res.data);
+    return instance.get<IProfile>(`profile/` + userId).then(res => res.data);
   },
 
   getStatus(userId: number) {
@@ -73,7 +72,7 @@ export const profileAPI = {
   },
 
   updateStatus(status: string) {
-    return instance.put<IDefaultResponse>(`profile/status`, {status: status}).then(res => res.data);
+    return instance.put<IDefaultResponse>(`profile/status`, {status}).then(res => res.data);
   },
 };
 

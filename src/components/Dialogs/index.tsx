@@ -1,9 +1,8 @@
 import React, {FC} from 'react';
-import {Redirect} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {sendMessages} from '../../Redux/dialogs-reducer';
-import {getAuth} from '../../selectors';
+import {sendMessages} from '../../Redux/Dialogs/thunks';
+import {IMessageValues} from '../../types';
 
 import DialogItem from './DialogItem';
 import Message from './Message';
@@ -13,20 +12,15 @@ import MessageForm from './MessageForm';
 import styles from './styles.module.css';
 
 const Dialogs: FC = () => {
-  const isAuth = useSelector(getAuth);
   const {dialogsPage} = useSelector(selector);
   const dispatch = useDispatch();
 
-  const dialogsElements = dialogsPage.dialogs.map((d: any) => <DialogItem name={d.name} key={d.id} id={d.id} />);
-  const messagesElements = dialogsPage.messages.map((m: any) => <Message message={m.message} key={m.id} />);
+  const dialogsElements = dialogsPage.dialogs.map(d => <DialogItem dialog={d} key={d.id} />);
+  const messagesElements = dialogsPage.messages.map(m => <Message message={m.message} key={m.id} />);
 
-  const addNewMessage = (values: any) => {
+  const addNewMessage = (values: IMessageValues) => {
     dispatch(sendMessages(values.newMessageBody));
   };
-
-  if (!isAuth) {
-    return <Redirect to="/login" />;
-  }
 
   return (
     <div className={styles.dialogs}>

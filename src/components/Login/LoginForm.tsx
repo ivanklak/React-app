@@ -1,13 +1,14 @@
 import React, {FC} from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
 import {Input} from '../common/FormsControl';
 import {required} from '../../utils/validators';
+import {ILoginFormData} from '../../types';
 
 import style from '../common/FormsControl/styles.module.css';
 import styles from './styles.module.css';
 
-const LoginForm: FC<any> = ({handleSubmit, error}) => (
+const LoginForm: FC<InjectedFormProps<ILoginFormData>> = ({handleSubmit, error}) => (
   <form onSubmit={handleSubmit}>
     <div>
       <Field placeholder="Email" name="email" validate={[required]} component={Input} />
@@ -25,4 +26,4 @@ const LoginForm: FC<any> = ({handleSubmit, error}) => (
   </form>
 );
 
-export default reduxForm({form: 'login'})(LoginForm);
+export default reduxForm<ILoginFormData>({form: 'login'})(LoginForm);

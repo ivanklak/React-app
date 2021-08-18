@@ -4,9 +4,16 @@ import {NavLink} from 'react-router-dom';
 import userPhoto from '../../assets/images/people-profile.png';
 import FollowButton from '../controls/FollowButton';
 
+import {IUser} from '../../types';
+
 import styles from './styles.module.css';
 
-const User: FC<any> = ({user, followingInProgress}) => (
+interface IUserProps {
+  user: IUser;
+  followingInProgress: Array<number>;
+}
+
+const User: FC<IUserProps> = ({user, followingInProgress}) => (
   <div className={styles.person}>
     <span>
       <div>

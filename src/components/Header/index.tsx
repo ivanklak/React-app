@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {logout} from '../../Redux/auth-reducer';
+import {logout} from '../../Redux/Authentication/thunks';
 import {getLogin, getAuth} from '../../selectors';
 
 import styles from './index.module.css';

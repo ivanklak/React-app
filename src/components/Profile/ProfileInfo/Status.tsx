@@ -1,7 +1,7 @@
 import React, {useState, useEffect, FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {updateStatus} from '../../../Redux/profile-reducer';
+import {updateStatus} from '../../../Redux/Profile/thunks';
 import selector from '../selector';
 
 const Status: FC = () => {
@@ -23,7 +23,7 @@ const Status: FC = () => {
     dispatch(updateStatus(profileStatus));
   };
 
-  const onStatusChange = (e: any) => {
+  const onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProfileStatus(e.currentTarget.value);
   };
 

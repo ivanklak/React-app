@@ -13,7 +13,7 @@ import Header from './components/Header';
 import Login from './components/Login';
 import Preloader from './components/Preloader';
 import withAuthRedirect from './auth/withAuthRedirect';
-import {initializeApp} from './Redux/app-reducer';
+import {initializeApp} from './Redux/App/thunks';
 import {getInitial} from './selectors';
 
 import './App.css';

@@ -28,6 +28,7 @@
   "rules": {
     "prefer-const": "error",
     "react/prop-types": "off",
+    "object-shorthand": "error",
     "import/order": ["error", {
       "groups": ["builtin", "external", "parent", "sibling", "index", "object", "type"],
       "newlines-between": "always-and-inside-groups",
@@ -47,6 +48,8 @@
       ]
     }],
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": ["warn", { "ignoreRestArgs": false}],
+    "@typescript-eslint/no-unused-vars": "error",
     "no-unused-vars": ["error", { "caughtErrorsIgnorePattern": "^ignore" }],
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": "error",
