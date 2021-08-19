@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-import store from './Redux/redux-store';
+import store from './App/redux-store';
 import App from './App';
 
-import './index.css';
+import './App/index.css';
 
 ReactDOM.render(
   <BrowserRouter>
