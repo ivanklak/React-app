@@ -1,5 +1,5 @@
-import profileReducer from '../reducers';
-import {ProfileActions} from '../actions';
+import profileReducer from './reducers';
+import {ProfileActions} from './actions';
 
 const state = {
   posts: [

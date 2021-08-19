@@ -2,7 +2,7 @@ import React, {useState, useEffect, FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {updateStatus} from '../../thunks';
-import selector from '../selector';
+import selector from '../../selector';
 
 const Status: FC = () => {
   const {status} = useSelector(selector);

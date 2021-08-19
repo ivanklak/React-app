@@ -3,7 +3,7 @@ import React, {FC} from 'react';
 import {useSelector} from 'react-redux';
 
 import Preloader from '../../../App/compnents/Preloader';
-import selector from '../selector';
+import selector from '../../selector';
 import ProfileLogo from '../../../App/images/people-profile.png';
 
 import Status from './Status';

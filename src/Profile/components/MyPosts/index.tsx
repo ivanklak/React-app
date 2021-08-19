@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {addNewPost} from '../../thunks';
-import selector from '../selector';
+import selector from '../../selector';
 import {IPostValues} from '../../types';
 
 import Post from './Post';

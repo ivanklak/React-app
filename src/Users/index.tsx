@@ -5,7 +5,7 @@ import Pages from '../App/compnents/Paginator';
 import Preloader from '../App/compnents/Preloader';
 
 import {requestUsers} from './thunks';
-import selector from './components/selector';
+import selector from './selector';
 import User from './components/User';
 
 import styles from './styles.module.css';
