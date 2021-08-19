@@ -2,14 +2,14 @@ import {IPost, IProfile} from '../types';
 
 import {ProfileAction, ProfileActionTypes} from '../actions';
 
-interface IState {
+interface IProfileState {
   posts: Array<IPost>;
   profile: IProfile | null;
   status: string;
   newPostText: string;
 }
 
-const initialState: IState = {
+const initialState: IProfileState = {
   posts: [
     {id: 1, message: 'Hi, how are you?', likesCount: 12},
     {id: 2, message: 'Its my first post', likesCount: 11},
@@ -19,7 +19,7 @@ const initialState: IState = {
   newPostText: '',
 };
 
-const profileReducer = (state = initialState, action: ProfileAction): IState => {
+const profileReducer = (state = initialState, action: ProfileAction): IProfileState => {
   switch (action.type) {
     case ProfileActionTypes.ADD_POST: {
       const newPost = {

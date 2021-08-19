@@ -2,7 +2,7 @@ import {IUser} from '../types';
 
 import {UsersAction, UsersActionTypes} from '../actions';
 
-interface IState {
+interface IUsersState {
   users: Array<IUser>;
   pageSize: number;
   totalUsersCount: number;
@@ -11,7 +11,7 @@ interface IState {
   followingInProgress: Array<number>;
 }
 
-const initialState: IState = {
+const initialState: IUsersState = {
   users: [],
   pageSize: 100,
   totalUsersCount: 0,
@@ -20,7 +20,7 @@ const initialState: IState = {
   followingInProgress: [],
 };
 
-const usersReducer = (state = initialState, action: UsersAction): IState => {
+const usersReducer = (state = initialState, action: UsersAction): IUsersState => {
   switch (action.type) {
     case UsersActionTypes.FOLLOW:
       return {

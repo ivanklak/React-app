@@ -1,20 +1,20 @@
 import {AuthenticationAction, AuthenticationActionTypes} from '../actions';
 
-interface IState {
+interface IAuthenticationState {
   userId: number | null;
   email: string | null;
   login: string | null;
   isAuth: boolean;
 }
 
-const initialState: IState = {
+const initialState: IAuthenticationState = {
   userId: null,
   email: '',
   login: '',
   isAuth: false,
 };
 
-const authReducer = (state = initialState, action: AuthenticationAction): IState => {
+const authReducer = (state = initialState, action: AuthenticationAction): IAuthenticationState => {
   switch (action.type) {
     case AuthenticationActionTypes.SET_USER_DATA:
       return {

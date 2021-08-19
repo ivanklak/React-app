@@ -2,12 +2,12 @@ import {IDialogs, IMessages} from '../types';
 
 import {DialogsAction, DialogsActionTypes} from '../actions';
 
-interface IState {
+interface IDialogsState {
   messages: Array<IMessages>;
   dialogs: Array<IDialogs>;
 }
 
-const initialState: IState = {
+const initialState: IDialogsState = {
   messages: [
     {id: 1, message: 'Hi'},
     {id: 2, message: 'How are you?'},
@@ -25,7 +25,7 @@ const initialState: IState = {
   ],
 };
 
-const dialogsReducer = (state = initialState, action: DialogsAction): IState => {
+const dialogsReducer = (state = initialState, action: DialogsAction): IDialogsState => {
   switch (action.type) {
     case DialogsActionTypes.SEND_MESSAGE: {
       const body = action.payload;

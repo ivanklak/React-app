@@ -1,14 +1,14 @@
 import {AppAction, AppActionTypes} from '../actions';
 
-interface IState {
+interface IInitializeState {
   initialized: boolean;
 }
 
-const initialState: IState = {
+const initialState: IInitializeState = {
   initialized: false,
 };
 
-const appReducer = (state = initialState, action: AppAction): IState => {
+const appReducer = (state = initialState, action: AppAction): IInitializeState => {
   switch (action.type) {
     case AppActionTypes.INITIALIZED_SUCCESS:
       return {
