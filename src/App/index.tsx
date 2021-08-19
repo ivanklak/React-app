@@ -8,7 +8,7 @@ import Profile from '../Profile';
 import Header from '../Authentication/components/Header';
 import Login from '../Authentication/components/Login';
 
-import withAuthRedirect from '../HOC/withAuthRedirect';
+import withAuthRedirect from './HOC/withAuthRedirect';
 
 import Settings from './compnents/Settings';
 import Music from './compnents/Music';
@@ -19,7 +19,7 @@ import Preloader from './compnents/Preloader';
 import {initializeApp} from './thunks';
 import {getInitial} from './selectors';
 
-import './index.css';
+import './compnents/index.css';
 
 const App: FC = () => {
   const initialized = useSelector(getInitial);
