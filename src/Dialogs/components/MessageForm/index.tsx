@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
-import {Textarea} from '../../../App/compnents/FormsControl';
+import Textarea from '../../../App/compnents/FormsControl/Textarea';
 import {maxLengthCreator, required} from '../../../App/validators';
 import {IMessageValues} from '../../types';
 

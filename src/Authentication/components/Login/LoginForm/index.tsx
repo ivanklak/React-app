@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
-import {Input} from '../../../../App/compnents/FormsControl';
+import Input from '../../../../App/compnents/FormsControl/Input';
 import {required} from '../../../../App/validators';
 import {ILoginFormData} from '../../../types';
 
