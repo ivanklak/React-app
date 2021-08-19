@@ -4,7 +4,7 @@ import {stopSubmit} from 'redux-form';
 import {IThunkResult} from '../../App/types';
 import {authAPI} from '../services';
 import {AuthenticationAction, AuthenticationActions} from '../actions';
-import {ResultCodes} from '../../App/api';
+import {ResultCodes} from '../../App/services/api';
 
 export const getAuthUserData = (): IThunkResult<Promise<void>, AuthenticationAction> => async dispatch => {
   const response = await authAPI.me();

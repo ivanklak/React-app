@@ -1,11 +1,11 @@
 import React, {FC, useCallback, useEffect, useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import Pages from '../App/compnents/Paginator';
-import Preloader from '../App/compnents/Preloader';
+import Pages from '../App/components/Paginator';
+import Preloader from '../App/components/Preloader';
 
 import {requestUsers} from './thunks';
-import selector from './selector';
+import selector from './selectors';
 import User from './components/User';
 
 import styles from './styles.module.css';

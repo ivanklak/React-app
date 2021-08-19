@@ -1,4 +1,4 @@
-import {instance, ResultCodes} from '../../App/api';
+import {instance, ResultCodes} from '../../App/services/api';
 
 interface IMeResponseData {
   id: number;

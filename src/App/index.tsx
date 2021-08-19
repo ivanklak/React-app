@@ -8,18 +8,18 @@ import Profile from '../Profile';
 import Header from '../Authentication/components/Header';
 import Login from '../Authentication/components/Login';
 
-import withAuthRedirect from './HOC/withAuthRedirect';
+import withAuthRedirect from './HOCs/withAuthRedirect';
 
-import Settings from './compnents/Settings';
-import Music from './compnents/Music';
-import News from './compnents/News';
-import Navbar from './compnents/Navbar';
+import Settings from './components/Settings';
+import Music from './components/Music';
+import News from './components/News';
+import Navbar from './components/Navbar';
 
-import Preloader from './compnents/Preloader';
+import Preloader from './components/Preloader';
 import {initializeApp} from './thunks';
 import {getInitial} from './selectors';
 
-import './compnents/index.css';
+import './components/index.css';
 
 const App: FC = () => {
   const initialized = useSelector(getInitial);

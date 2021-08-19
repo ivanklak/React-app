@@ -2,7 +2,7 @@ import {IThunkResult} from '../../App/types';
 import {usersAPI} from '../services';
 
 import {UsersAction, UsersActions} from '../actions';
-import {ResultCodes} from '../../App/api';
+import {ResultCodes} from '../../App/services/api';
 
 export const requestUsers =
   (currentPage: number, pageSize: number): IThunkResult<Promise<void>, UsersAction> =>

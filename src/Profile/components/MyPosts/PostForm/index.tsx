@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
 import {maxLengthCreator, required} from '../../../../App/validators';
-import Textarea from '../../../../App/compnents/FormsControl/Textarea';
+import Textarea from '../../../../App/components/FormsControl/Textarea';
 import {IPostValues} from '../../../types';
 
 const maxLength10 = maxLengthCreator(10);

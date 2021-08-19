@@ -6,7 +6,7 @@ import {getStatus, getUserProfile} from './thunks';
 
 import ProfileInfo from './components/ProfileInfo';
 import MyPosts from './components/MyPosts';
-import selector from './selector';
+import selector from './selectors';
 
 interface IPathParams {
   userId: string;

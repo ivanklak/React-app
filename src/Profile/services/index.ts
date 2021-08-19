@@ -1,5 +1,5 @@
 import {IProfile} from '../types';
-import {instance, ResultCodes} from '../../App/api';
+import {instance, ResultCodes} from '../../App/services/api';
 
 type EmptyObject = Record<string, never>;
 interface IDefaultResponse {

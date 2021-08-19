@@ -6,7 +6,7 @@ import {IMessageValues} from './types';
 
 import DialogItem from './components/DialogItem';
 import Message from './components/Message';
-import selector from './selector';
+import selector from './selectors';
 import MessageForm from './components/MessageForm';
 
 import styles from './styles.module.css';

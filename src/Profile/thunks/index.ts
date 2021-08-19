@@ -2,7 +2,7 @@ import {IThunkResult} from '../../App/types';
 import {profileAPI} from '../services';
 
 import {ProfileAction, ProfileActions} from '../actions';
-import {ResultCodes} from '../../App/api';
+import {ResultCodes} from '../../App/services/api';
 
 export const getUserProfile =
   (userId: number): IThunkResult<Promise<void>, ProfileAction> =>
