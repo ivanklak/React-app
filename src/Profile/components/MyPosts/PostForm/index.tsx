@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-
 import {Button, Form, Input} from 'antd';
 
 import {IPostValues} from '../../../types';
@@ -16,10 +15,10 @@ const PostForm: FC<IPostProps> = ({onAddPost}) => {
   return (
     <Form name="basic" labelCol={{span: 8}} wrapperCol={{span: 16}} initialValues={{remember: true}} onFinish={onAddPost}>
       <Form.Item name="newPostText" rules={[{required: true, message: 'Please input your post!'}]}>
-        <TextArea />
+        <TextArea data-testid="post-textarea" />
       </Form.Item>
       <Form.Item wrapperCol={{offset: 8, span: 16}}>
-        <Button type="primary" htmlType="submit">
+        <Button data-testid="post-button" type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>
