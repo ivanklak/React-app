@@ -9,6 +9,8 @@ const state = {
   profile: null,
   status: '',
   newPostText: '',
+  isLoading: false,
+  error: null,
 };
 
 it('length of posts should be incremented', () => {
