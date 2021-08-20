@@ -1,28 +1,32 @@
 import React, {FC} from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {Button, Checkbox, Form, Input} from 'antd';
 
-import Input from '../../../../App/components/FormsControl/Input';
-import {required} from '../../../../App/validators';
 import {ILoginFormData} from '../../../types';
 
-import styles from '../styles.module.css';
+interface ILoginProps {
+  onSubmit: (formData: ILoginFormData) => void;
+}
 
-const LoginForm: FC<InjectedFormProps<ILoginFormData>> = ({handleSubmit, error}) => (
-  <form onSubmit={handleSubmit}>
-    <div>
-      <Field placeholder="Email" name="email" validate={[required]} component={Input} />
-    </div>
-    <div>
-      <Field placeholder="Password" name="password" type="password" validate={[required]} component={Input} />
-    </div>
-    <div className={styles.remember}>
-      <Field component={Input} name="rememberMe" type="Checkbox" /> remember me
-    </div>
-    {error && <div className={styles.formSummaryError}>{error}</div>}
-    <div>
-      <button className={styles.regBtn}>Login</button>
-    </div>
-  </form>
+const LoginForm: FC<ILoginProps> = ({onSubmit}) => (
+  <Form name="basic" labelCol={{span: 5}} wrapperCol={{span: 16}} initialValues={{remember: true}} onFinish={onSubmit}>
+    <Form.Item label="Email" name="email" rules={[{required: true, message: 'Please input your email!'}]}>
+      <Input data-testid="login-email-input" />
+    </Form.Item>
+
+    <Form.Item label="Password" name="password" rules={[{required: true, message: 'Please input your password!'}]}>
+      <Input.Password data-testid="login-password-input" />
+    </Form.Item>
+
+    <Form.Item name="rememberMe" valuePropName="checked" wrapperCol={{offset: 4, span: 16}}>
+      <Checkbox data-testid="login-checkbox">Remember me</Checkbox>
+    </Form.Item>
+
+    <Form.Item wrapperCol={{offset: 4, span: 16}}>
+      <Button data-testid="login-button" type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
 );
 
-export default reduxForm<ILoginFormData>({form: 'login'})(LoginForm);
+export default LoginForm;
