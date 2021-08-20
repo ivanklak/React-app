@@ -1,23 +1,25 @@
 import React, {FC} from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
-import Textarea from '../../../App/components/FormsControl/Textarea';
-import {maxLengthCreator, required} from '../../../App/validators';
+import {Button, Form, Input} from 'antd';
+
 import {IMessageValues} from '../../types';
+import 'antd/dist/antd.css';
 
-import styles from '../../styles.module.css';
+interface IPostProps {
+  addNewMessage: (values: IMessageValues) => void;
+}
 
-const maxLength50 = maxLengthCreator(50);
-
-const MessageForm: FC<InjectedFormProps<IMessageValues>> = ({handleSubmit}) => (
-  <form onSubmit={handleSubmit}>
-    <div className={styles.form}>
-      <Field component={Textarea} validate={[required, maxLength50]} name="newMessageBody" placeholder="Enter your message" className={styles.messageInput} />
-    </div>
-    <div>
-      <button>Send</button>
-    </div>
-  </form>
+const MessageForm: FC<IPostProps> = ({addNewMessage}) => (
+  <Form name="basic" labelCol={{span: 8}} wrapperCol={{span: 16}} initialValues={{remember: true}} onFinish={addNewMessage}>
+    <Form.Item name="newMessageBody" rules={[{required: true, message: 'Please input your message'}]}>
+      <Input data-testid="message-input" />
+    </Form.Item>
+    <Form.Item wrapperCol={{offset: 8, span: 16}}>
+      <Button data-testid="message-button" type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
 );
 
-export default reduxForm<IMessageValues>({form: 'dialogAddMessageForm'})(MessageForm);
+export default MessageForm;

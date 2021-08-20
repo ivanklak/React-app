@@ -26,7 +26,7 @@ const Dialogs: FC = () => {
     <div className={styles.dialogs}>
       <div className={styles.dialogsItems}>{dialogsElements}</div>
       <div className={styles.messages}>{messagesElements}</div>
-      <MessageForm onSubmit={addNewMessage} />
+      <MessageForm addNewMessage={addNewMessage} />
     </div>
   );
 };
