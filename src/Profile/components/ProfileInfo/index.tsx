@@ -12,6 +12,7 @@ import styles from './styles.module.css';
 
 const ProfileInfo: FC = () => {
   const {profile} = useSelector(selector);
+  const {isLoading} = useSelector(selector);
 
   return profile ? (
     <>
@@ -28,9 +29,9 @@ const ProfileInfo: FC = () => {
         <div>{profile.contacts.twitter}</div>
       </div>
     </>
-  ) : (
+  ) : isLoading ? (
     <Preloader />
-  );
+  ) : null;
 };
 
 export default ProfileInfo;

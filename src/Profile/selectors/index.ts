@@ -5,6 +5,7 @@ const selector = (state: AppStateType) => ({
   status: state.profilePage.status,
   authorizedUserId: state.auth.userId,
   posts: state.profilePage.posts,
+  isLoading: state.profilePage.isLoading,
 });
 
 export default selector;

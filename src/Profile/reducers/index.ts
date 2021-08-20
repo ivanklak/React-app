@@ -7,6 +7,8 @@ interface IProfileState {
   profile: IProfile | null;
   status: string;
   newPostText: string;
+  isLoading: boolean;
+  error: IProfile | null;
 }
 
 const initialState: IProfileState = {
@@ -17,6 +19,8 @@ const initialState: IProfileState = {
   profile: null,
   status: '',
   newPostText: '',
+  isLoading: false,
+  error: null,
 };
 
 const profileReducer = (state = initialState, action: ProfileAction): IProfileState => {
@@ -40,8 +44,29 @@ const profileReducer = (state = initialState, action: ProfileAction): IProfileSt
         status: action.payload,
       };
     }
-    case ProfileActionTypes.SET_USER_PROFILE: {
-      return {...state, profile: action.payload};
+    case ProfileActionTypes.GET_USER_PROFILE_REQUEST: {
+      return {
+        ...state,
+        profile: null,
+        isLoading: true,
+        error: null,
+      };
+    }
+    case ProfileActionTypes.GET_USER_PROFILE_SUCCESS: {
+      return {
+        ...state,
+        profile: action.payload,
+        isLoading: false,
+        error: null,
+      };
+    }
+    case ProfileActionTypes.GET_USER_PROFILE_FAILURE: {
+      return {
+        ...state,
+        profile: null,
+        isLoading: false,
+        error: action.payload,
+      };
     }
     case ProfileActionTypes.DELETE_POST: {
       return {
