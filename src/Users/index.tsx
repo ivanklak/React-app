@@ -1,7 +1,8 @@
-import React, {FC, useCallback, useEffect, useMemo} from 'react';
+import React, {FC, useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
-import Pages from '../App/components/Paginator';
+import {Pagination} from 'antd';
+
 import Preloader from '../App/components/Preloader';
 
 import {requestUsers} from './thunks';
@@ -26,26 +27,16 @@ const Users: FC = () => {
     [currentPage],
   );
 
-  const pages = useMemo(() => {
-    const pagesCount = Math.ceil(totalUsersCount / pageSize);
-    const arrOfPages: Array<number> = [];
-
-    for (let i = 1; i <= pagesCount; i++) {
-      arrOfPages.push(i);
-    }
-
-    return arrOfPages;
-  }, [totalUsersCount, pageSize]);
+  const pagesCount = Math.ceil(totalUsersCount / pageSize);
 
   return isFetching ? (
     <Preloader />
   ) : (
     <div>
-      <div className={styles.pages}>
-        {pages.map(p => (
-          <Pages key={p} page={p} currentPage={currentPage} onPageClick={onPageChanged} />
-        ))}
+      <div className={styles.pagination}>
+        <Pagination size="small" current={currentPage} total={pagesCount} onChange={onPageChanged} showSizeChanger={false} />
       </div>
+
       <div>
         {users.map(u => (
           <User user={u} followingInProgress={followingInProgress} key={u.id} />

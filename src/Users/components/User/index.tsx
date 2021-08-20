@@ -21,19 +21,20 @@ const User: FC<IUserProps> = ({user, followingInProgress}) => (
           <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} alt="usersPhoto" />
         </NavLink>
       </div>
-      <div className={styles.followbtn}>
-        <FollowButton user={user} followingInProgress={followingInProgress} />
-      </div>
     </span>
     <span className={styles.description}>
       <div>
-        <h4>{user.name}</h4>
+        <div>
+          <h4>{user.name}</h4>
+        </div>
+        <div>
+          <h5>{user.status}</h5>
+        </div>
+        <div>Italy, Milano</div>
+        <div>
+          <FollowButton user={user} followingInProgress={followingInProgress} />
+        </div>
       </div>
-      <div>
-        <h5>{user.status}</h5>
-      </div>
-      <div>user.location.country</div>
-      <div>user.location.city</div>
     </span>
   </div>
 );

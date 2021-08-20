@@ -32,10 +32,14 @@
 .person h5 {
   margin-top: -10px;
 }
-.followbtn {
-  margin-left: 35px;
-}
 .description {
   margin-left: 15px;
-  /* margin-top: 5px; */
+  display: flex;
+
+  align-items: center;
+}
+.pagination {
+  display: flex;
+  margin: 10px 0;
+  justify-content: center;
 }

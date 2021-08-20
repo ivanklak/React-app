@@ -1,6 +1,8 @@
 import React, {FC, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
 
+import {Button} from 'antd';
+
 import {follow, unfollow} from '../../thunks';
 import {IUser} from '../../types';
 
@@ -17,9 +19,9 @@ const FollowButton: FC<IFollowButtonProps> = ({user, followingInProgress}) => {
   const isFollowing = followingInProgress.includes(user.id);
 
   return (
-    <button onClick={onButtonClick} disabled={isFollowing}>
+    <Button onClick={onButtonClick} disabled={isFollowing}>
       {user.followed ? 'Unfollow' : 'Follow'}
-    </button>
+    </Button>
   );
 };
 
