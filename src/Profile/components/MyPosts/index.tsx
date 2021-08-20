@@ -23,7 +23,7 @@ const MyPosts: FC = () => {
   return (
     <div className={styles.postsBlock}>
       <h3>My posts</h3>
-      <PostForm onSubmit={onAddPost} />
+      <PostForm onAddPost={onAddPost} />
       <div className={styles.posts}>{postsElements}</div>
     </div>
   );
