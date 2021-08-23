@@ -10,11 +10,11 @@ interface IPostProps {
 }
 
 const MessageForm: FC<IPostProps> = ({addNewMessage}) => (
-  <Form layout="inline" name="basic" labelCol={{span: 6}} wrapperCol={{span: 26}} initialValues={{remember: true}} onFinish={addNewMessage}>
+  <Form layout="inline" name="basic" labelCol={{span: 12}} wrapperCol={{span: 24}} initialValues={{remember: true}} onFinish={addNewMessage}>
     <Form.Item name="newMessageBody" rules={[{required: true, message: 'Please input your message'}]}>
       <Input data-testid="NewMessage.Enter" />
     </Form.Item>
-    <Form.Item wrapperCol={{span: 16}}>
+    <Form.Item wrapperCol={{span: 24}}>
       <Button data-testid="NewMessage.Submit" type="primary" htmlType="submit">
         Submit
       </Button>
