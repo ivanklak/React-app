@@ -15,10 +15,10 @@ const PostForm: FC<IPostProps> = ({onAddPost}) => {
   return (
     <Form name="basic" labelCol={{span: 8}} wrapperCol={{span: 10}} initialValues={{remember: true}} onFinish={onAddPost}>
       <Form.Item name="newPostText" rules={[{required: true, message: 'Please input your post!'}]}>
-        <TextArea data-testid="post-textarea" />
+        <TextArea data-testid="NewPost.Enter" />
       </Form.Item>
       <Form.Item wrapperCol={{offset: 4, span: 16}}>
-        <Button data-testid="post-button" type="primary" htmlType="submit">
+        <Button data-testid="NewPost.Submit" type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>

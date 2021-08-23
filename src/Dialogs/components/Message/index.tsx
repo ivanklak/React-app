@@ -9,7 +9,7 @@ interface IMessageProps {
 }
 
 const Message: FC<IMessageProps> = ({messages: {message}}) => (
-  <div data-testid="message-text" className={styles.dialog}>
+  <div data-testid="NewMessageText" className={styles.dialog}>
     {message}
   </div>
 );
