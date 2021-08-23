@@ -1,15 +1,16 @@
 import React, {FC} from 'react';
-import {NavLink} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {Link} from 'react-router-dom';
+
+import {Layout, Avatar, Button, Col, Row} from 'antd';
+import {UserOutlined} from '@ant-design/icons';
 
 import {logout} from '../../thunks';
-import {getLogin, getAuth} from '../../../App/selectors';
-
-import styles from './styles.module.css';
+import {getAuth} from '../../../App/selectors';
 
 const Header: FC = () => {
+  const {Header} = Layout;
   const isAuth = useSelector(getAuth);
-  const login = useSelector(getLogin);
   const dispatch = useDispatch();
 
   const onLogout = () => {
@@ -17,20 +18,29 @@ const Header: FC = () => {
   };
 
   return (
-    <header className={styles.header}>
-      <NavLink to="/profile">
-        <img src="https://cdn.auth0.com/blog/react-js/react.png" alt="logo" />
-      </NavLink>
-      <div className={styles.loginBlock}>
+    <Header className="header">
+      <Row>
+        <Col span={20}>
+          <Avatar src="https://cdn.auth0.com/blog/react-js/react.png" />
+        </Col>
         {isAuth ? (
-          <div>
-            {login} - <button onClick={onLogout}>Log out</button>{' '}
-          </div>
+          <>
+            <Col span={1}>
+              <Avatar style={{backgroundColor: '#87d068'}} icon={<UserOutlined />} />
+            </Col>
+            <Col span={3}>
+              <Button onClick={onLogout}>Log out</Button>
+            </Col>
+          </>
         ) : (
-          <NavLink to="/login">Login</NavLink>
+          <Col span={4}>
+            <Button>
+              <Link to="/login">Login</Link>
+            </Button>
+          </Col>
         )}
-      </div>
-    </header>
+      </Row>
+    </Header>
   );
 };
 

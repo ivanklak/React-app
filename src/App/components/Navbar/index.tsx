@@ -1,59 +1,35 @@
 import React, {FC} from 'react';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
-import FriendsItem from '../Friends/FriendsItem';
-
-import styles from './styles.module.css';
+import {Layout, Menu} from 'antd';
+const {Sider} = Layout;
 
 const Navbar: FC = () => (
-  <nav className={styles.nav}>
-    <div className={styles.item}>
-      <NavLink to="/profile" activeClassName={styles.activeLink}>
-        Profile
-      </NavLink>
-    </div>
-    <div className={styles.item}>
-      <NavLink to="/dialogs" activeClassName={styles.activeLink}>
-        Messages
-      </NavLink>
-    </div>
-    <div className={styles.item}>
-      <NavLink to="/users" activeClassName={styles.activeLink}>
-        Users
-      </NavLink>
-    </div>
-    <div className={styles.item}>
-      <NavLink to="/news" activeClassName={styles.activeLink}>
-        News
-      </NavLink>
-    </div>
-    <div className={styles.item}>
-      <NavLink to="/music" activeClassName={styles.activeLink}>
-        Music
-      </NavLink>
-    </div>
-    <div className={styles.item}>
-      <NavLink to="/settings" activeClassName={styles.activeLink}>
-        Settings
-      </NavLink>
-    </div>
-    <div className={styles.items}>
-      <NavLink to="/friends" activeClassName={styles.activeLink}>
-        Friends
-      </NavLink>
-    </div>
-    <NavLink to="/profile">
-      <div className={styles.itemfr}>
-        <FriendsItem />
-      </div>
-      <div className={styles.itemfre}>
-        <FriendsItem />
-      </div>
-      <div className={styles.itemfres}>
-        <FriendsItem />
-      </div>
-    </NavLink>
-  </nav>
+  <Sider className="site-layout-background">
+    <Menu mode="inline" defaultSelectedKeys={['1']} style={{height: '100%'}}>
+      <Menu.Item key="1">
+        <Link to="/profile">Profile</Link>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <Link to="/dialogs">Messages</Link>
+      </Menu.Item>
+      <Menu.Item key="3">
+        <Link to="/users">Users</Link>
+      </Menu.Item>
+      <Menu.Item key="4">
+        <Link to="/friends">Friends</Link>
+      </Menu.Item>
+      <Menu.Item key="5">
+        <Link to="/news">News</Link>
+      </Menu.Item>
+      <Menu.Item key="6">
+        <Link to="/music">Music</Link>
+      </Menu.Item>
+      <Menu.Item key="7">
+        <Link to="/settings">Settings</Link>
+      </Menu.Item>
+    </Menu>
+  </Sider>
 );
 
 export default Navbar;
