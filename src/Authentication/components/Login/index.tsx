@@ -1,14 +1,13 @@
 import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {Card} from 'antd';
 
 import {login} from '../../thunks';
 import {getAuth} from '../../../App/selectors';
 import {ILoginFormData} from '../../types';
 
 import LoginForm from './LoginForm';
-
-import styles from './styles.module.css';
 
 const Login: FC = () => {
   const isAuth = useSelector(getAuth);
@@ -23,9 +22,10 @@ const Login: FC = () => {
   }
 
   return (
-    <div className={styles.form}>
-      <h1>Sign in</h1>
-      <LoginForm onSubmit={onSubmit} />
+    <div className="site-card-border-less-wrapper">
+      <Card title="Log in" bordered={true} style={{width: 500}}>
+        <LoginForm onSubmit={onSubmit} />
+      </Card>
     </div>
   );
 };

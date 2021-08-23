@@ -8,7 +8,7 @@ interface ILoginProps {
 }
 
 const LoginForm: FC<ILoginProps> = ({onSubmit}) => (
-  <Form name="basic" labelCol={{span: 5}} wrapperCol={{span: 16}} initialValues={{remember: true}} onFinish={onSubmit}>
+  <Form name="basic" labelCol={{offset: 1, span: 5}} wrapperCol={{span: 16}} initialValues={{remember: true}} onFinish={onSubmit}>
     <Form.Item label="Email" name="email" rules={[{required: true, message: 'Please input your email!'}]}>
       <Input data-testid="Email.Enter" />
     </Form.Item>
@@ -17,11 +17,11 @@ const LoginForm: FC<ILoginProps> = ({onSubmit}) => (
       <Input.Password data-testid="Password.Enter" />
     </Form.Item>
 
-    <Form.Item name="rememberMe" valuePropName="checked" wrapperCol={{offset: 4, span: 16}}>
+    <Form.Item name="rememberMe" valuePropName="checked" wrapperCol={{offset: 9, span: 16}}>
       <Checkbox data-testid="Checkbox.Enter">Remember me</Checkbox>
     </Form.Item>
 
-    <Form.Item wrapperCol={{offset: 4, span: 16}}>
+    <Form.Item wrapperCol={{offset: 10, span: 11}}>
       <Button data-testid="Login.Submit" type="primary" htmlType="submit">
         Submit
       </Button>
