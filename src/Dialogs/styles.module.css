@@ -1,57 +1,43 @@
-.dialogs {
-  display: grid;
-  grid-template-columns: 2fr 10fr;
-  background-color: #ffffff;
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #dddddd;
 }
-.dialogsItems {
-  padding: 10px;
+.dialogs_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dialogs_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  overflow: fragments;
 }
 
-.dialogsItems .active {
-  color: grey;
-}
 .messages {
   position: relative;
 }
 .message_item {
   padding: 10px;
+  height: 420px;
+  margin: 5px;
+  border: 1px solid #dddddd;
+  overflow-y: scroll;
+}
+.messages_container {
+  position: relative;
+  height: 500px;
+}
+.messages_title {
+  height: 60px;
+  padding: 10px 5px;
+  font-size: 24px;
 }
 .message_enter {
-  position: absolute;
-  bottom: 0;
-}
-.dialogsImage {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-}
-.dialogt {
-  position: center;
-}
-.messageInput {
-  width: 98%;
-  border: 0;
-  position: relative;
-  left: 1%;
-  font-size: 1em;
-  background: #ffffff;
-  outline: 0;
-  box-sizing: border-box;
-  padding: 10px 40px 10px 10px;
-  color: #2c3d4e;
-  border-radius: 10px;
-}
-.sendButton {
-  width: 10%;
-  background: #3a72aa;
-  color: white;
-  font-size: 1em;
-  position: absolute;
+  height: 60px;
   padding: 10px 0;
-  left: 25%;
-  border: 0;
-  outline: 0;
-  transition: 0.3s ease-in-out all;
-  font-weight: 500;
-  border-radius: 10px;
+  margin: 5px;
 }

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Card, List} from 'antd';
+import {Col, List, Row} from 'antd';
 
 import {sendMessages} from './thunks';
 import {IMessageValues} from './types';
@@ -24,19 +24,20 @@ const Dialogs: FC = () => {
   };
 
   return (
-    <div>
-      <div className={styles.dialogs}>
-        <List bordered dataSource={dialogsElements} renderItem={item => <List.Item>{item}</List.Item>} />
-        <div className={styles.messages}>
-          <Card style={{width: 600, height: '100%'}}>
-            <div className={styles.message_item}>{messagesElements}</div>
-            <div className={styles.message_enter}>
-              <MessageForm addNewMessage={addNewMessage} />
-            </div>
-          </Card>
+    <Row gutter={16}>
+      <Col span={2} style={{backgroundColor: '#ffffff'}}>
+        <List className={styles.list} dataSource={dialogsElements} renderItem={item => <List.Item>{item}</List.Item>} />
+      </Col>
+      <Col span={12} style={{backgroundColor: '#ffffff'}}>
+        <div className={styles.messages_title}>Timofey</div>
+        <div className={styles.messages_container}>
+          <div className={styles.message_item}>{messagesElements}</div>
+          <div className={styles.message_enter}>
+            <MessageForm addNewMessage={addNewMessage} />
+          </div>
         </div>
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 };
 
