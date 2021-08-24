@@ -1,6 +1,8 @@
 import React, {useState, useEffect, FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
+import {Input} from 'antd';
+
 import {updateStatus} from '../../thunks';
 import selector from '../../selectors';
 
@@ -29,7 +31,7 @@ const Status: FC = () => {
 
   return editMode ? (
     <div>
-      <input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} value={profileStatus} />
+      <Input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} defaultValue={profileStatus} />
     </div>
   ) : (
     <div>

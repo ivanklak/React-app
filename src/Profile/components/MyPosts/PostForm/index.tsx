@@ -13,12 +13,12 @@ const PostForm: FC<IPostProps> = ({onAddPost}) => {
   const {TextArea} = Input;
 
   return (
-    <Form name="basic" labelCol={{span: 8}} wrapperCol={{span: 10}} initialValues={{remember: true}} onFinish={onAddPost}>
+    <Form name="basic" initialValues={{remember: true}} onFinish={onAddPost}>
       <Form.Item name="newPostText" rules={[{required: true, message: 'Please input your post!'}]}>
-        <TextArea data-testid="NewPost.Enter" />
+        <TextArea placeholder="Write your post" data-testid="NewPost.Enter" />
       </Form.Item>
-      <Form.Item wrapperCol={{offset: 4, span: 16}}>
-        <Button data-testid="NewPost.Submit" type="primary" htmlType="submit">
+      <Form.Item style={{marginBottom: 0}}>
+        <Button style={{float: 'right'}} data-testid="NewPost.Submit" type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>

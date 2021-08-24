@@ -1,6 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
+import {Col, Row} from 'antd';
 
 import {getStatus, getUserProfile} from './thunks';
 
@@ -28,10 +29,14 @@ const Profile: FC<RouteComponentProps<IPathParams>> = props => {
   }, []);
 
   return (
-    <div>
-      <ProfileInfo />
-      <MyPosts />
-    </div>
+    <Row>
+      <Col span={6} style={{backgroundColor: '#ffffff', borderRight: '1px solid #dddddd'}}>
+        <ProfileInfo />
+      </Col>
+      <Col span={12} style={{backgroundColor: '#ffffff'}}>
+        <MyPosts />
+      </Col>
+    </Row>
   );
 };
 
