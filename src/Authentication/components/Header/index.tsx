@@ -29,12 +29,14 @@ const Header: FC = () => {
               <Avatar style={{backgroundColor: '#87d068'}} icon={<UserOutlined />} />
             </Col>
             <Col span={3}>
-              <Button onClick={onLogout}>Log out</Button>
+              <Button data-testid="User.Logout" onClick={onLogout}>
+                Log out
+              </Button>
             </Col>
           </>
         ) : (
           <Col span={4}>
-            <Button>
+            <Button data-testid="User.Login">
               <Link to="/login">Login</Link>
             </Button>
           </Col>

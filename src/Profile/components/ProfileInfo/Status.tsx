@@ -31,11 +31,13 @@ const Status: FC = () => {
 
   return editMode ? (
     <div>
-      <Input onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} defaultValue={profileStatus} />
+      <Input data-testid="NewStatus.Input" onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} defaultValue={profileStatus} />
     </div>
   ) : (
     <div>
-      <span onDoubleClick={activateEditMode}>{status || 'No status'}</span>
+      <span data-testid="DefaultStatus" onDoubleClick={activateEditMode}>
+        {status || 'No status'}
+      </span>
     </div>
   );
 };
