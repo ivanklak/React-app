@@ -24,15 +24,15 @@ const Dialogs: FC = () => {
   };
 
   return (
-    <Row gutter={16}>
-      <Col span={2} style={{backgroundColor: '#ffffff'}}>
-        <List className={styles.list} dataSource={dialogsElements} renderItem={item => <List.Item>{item}</List.Item>} />
+    <Row>
+      <Col span={2} className={styles.dialogsColumn}>
+        <List className={styles.dialogsList} dataSource={dialogsElements} renderItem={item => <List.Item>{item}</List.Item>} />
       </Col>
-      <Col span={12} style={{backgroundColor: '#ffffff'}}>
-        <div className={styles.messages_title}>Timofey</div>
-        <div className={styles.messages_container}>
-          <div className={styles.message_item}>{messagesElements}</div>
-          <div className={styles.message_enter}>
+      <Col span={12} className={styles.messagesColumn}>
+        <div className={styles.messagesTitle}>Timofey</div>
+        <div className={styles.messagesContainer}>
+          <div className={styles.messageItem}>{messagesElements}</div>
+          <div className={styles.messageEnter}>
             <MessageForm addNewMessage={addNewMessage} />
           </div>
         </div>

@@ -1,7 +1,7 @@
-.postsBlock {
+.postsContainer {
   padding: 10px;
 }
-.createPost {
+.postForm {
   padding: 10px;
   border: 1px solid #dddddd;
 }

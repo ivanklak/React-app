@@ -1,0 +1,11 @@
+.profileContainer {
+    margin-top: 15px;
+}
+.profileAvatar {
+    height: 160px;
+    width: 160px;
+    margin: 0 auto;
+}
+.skeletonAvatar {
+    margin: 15px 55px;
+}

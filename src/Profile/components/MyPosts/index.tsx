@@ -21,9 +21,9 @@ const MyPosts: FC = () => {
   };
 
   return (
-    <div className={styles.postsBlock}>
+    <div className={styles.postsContainer}>
       <h2>My posts</h2>
-      <div className={styles.createPost}>
+      <div className={styles.postForm}>
         <PostForm onAddPost={onAddPost} />
       </div>
       <div>{postsElements}</div>

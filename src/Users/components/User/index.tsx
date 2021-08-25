@@ -8,6 +8,8 @@ import FollowButton from '../controls/FollowButton';
 
 import {IUser} from '../../types';
 
+import styles from './styles.module.css';
+
 interface IUserProps {
   user: IUser;
   followingInProgress: Array<number>;
@@ -18,14 +20,14 @@ const User: FC<IUserProps> = ({user, followingInProgress, isFetching}) => {
   const {Meta} = Card;
 
   return (
-    <Card style={{width: '100%', marginBottom: '10px'}}>
+    <Card className={styles.userCard}>
       <Row align="middle">
-        <Col span={19} style={{paddingRight: '20px'}}>
+        <Col span={19} className={styles.userDescription}>
           <Skeleton loading={isFetching} avatar active title={false} paragraph={{rows: 2}}>
             <Meta
               avatar={
                 <NavLink to={'/profile/' + user.id}>
-                  <Avatar src={user.photos.small != null ? user.photos.small : userPhoto} style={{height: '60px', width: '60px'}} />
+                  <Avatar src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userAvatar} />
                 </NavLink>
               }
               title={user.name}

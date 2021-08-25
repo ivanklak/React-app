@@ -2,16 +2,10 @@ import React, {FC} from 'react';
 
 import {IMessages} from '../../types';
 
-import styles from '../../styles.module.css';
-
 interface IMessageProps {
   messages: IMessages;
 }
 
-const Message: FC<IMessageProps> = ({messages: {message}}) => (
-  <div data-testid="NewMessageText" className={styles.dialog}>
-    {message}
-  </div>
-);
+const Message: FC<IMessageProps> = ({messages: {message}}) => <div data-testid="NewMessageText">{message}</div>;
 
 export default Message;

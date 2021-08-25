@@ -9,6 +9,8 @@ import {ILoginFormData} from '../../types';
 
 import LoginForm from './LoginForm';
 
+import styles from './styles.module.css';
+
 const Login: FC = () => {
   const isAuth = useSelector(getAuth);
   const dispatch = useDispatch();
@@ -23,7 +25,7 @@ const Login: FC = () => {
 
   return (
     <div className="site-card-border-less-wrapper">
-      <Card title="Log in" bordered={true} style={{width: 500}}>
+      <Card title="Log in" bordered={true} className={styles.loginContainer}>
         <LoginForm onSubmit={onSubmit} />
       </Card>
     </div>

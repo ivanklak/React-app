@@ -5,6 +5,8 @@ import {useSelector} from 'react-redux';
 
 import selector from '../../../selectors';
 
+import styles from './styles.module.css';
+
 interface IPostProps {
   message: string;
   likesCount: number;
@@ -14,7 +16,7 @@ const Post: FC<IPostProps> = ({message, likesCount}) => {
   const {profile} = useSelector(selector);
 
   return (
-    <Card data-testid="NewPost" style={{marginTop: 16}}>
+    <Card data-testid="NewPost" className={styles.postItem}>
       <Row align="middle">
         <Col span={22}>
           <Meta

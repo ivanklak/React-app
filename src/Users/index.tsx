@@ -30,7 +30,7 @@ const Users: FC = () => {
 
   return users ? (
     <Row>
-      <Col span={24} style={{backgroundColor: '#ffffff', padding: '20px'}}>
+      <Col span={24} className={styles.usersContainer}>
         <div className={styles.pagination}>
           <Pagination size="small" current={currentPage} total={pagesCount} onChange={onPageChanged} showSizeChanger={false} />
         </div>

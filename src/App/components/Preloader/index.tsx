@@ -1,8 +1,10 @@
 import React, {FC} from 'react';
 import {Space, Spin} from 'antd';
 
+import styles from './styles.module.css';
+
 const Preloader: FC = () => (
-  <Space style={{display: 'flex', justifyContent: 'center', marginTop: '200px'}}>
+  <Space className={styles.preloader}>
     <Spin size="large" />
   </Space>
 );

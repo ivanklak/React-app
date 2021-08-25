@@ -9,6 +9,8 @@ import ProfileInfo from './components/ProfileInfo';
 import MyPosts from './components/MyPosts';
 import selector from './selectors';
 
+import styles from './styles.module.css';
+
 interface IPathParams {
   userId: string;
 }
@@ -30,10 +32,10 @@ const Profile: FC<RouteComponentProps<IPathParams>> = props => {
 
   return (
     <Row>
-      <Col span={6} style={{backgroundColor: '#ffffff', borderRight: '1px solid #dddddd'}}>
+      <Col span={6} className={styles.profileInfo}>
         <ProfileInfo />
       </Col>
-      <Col span={12} style={{backgroundColor: '#ffffff'}}>
+      <Col span={12} className={styles.myPosts}>
         <MyPosts />
       </Col>
     </Row>
