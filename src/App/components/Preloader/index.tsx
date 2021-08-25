@@ -1,11 +1,10 @@
 import React, {FC} from 'react';
-
-import preloader from '../../images/wait.gif';
+import {Space, Spin} from 'antd';
 
 const Preloader: FC = () => (
-  <div style={{backgroundColor: ''}}>
-    <img src={preloader} alt="preloader" />
-  </div>
+  <Space style={{display: 'flex', justifyContent: 'center', marginTop: '200px'}}>
+    <Spin size="large" />
+  </Space>
 );
 
 export default Preloader;

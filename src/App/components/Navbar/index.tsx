@@ -5,7 +5,7 @@ import {Layout, Menu} from 'antd';
 const {Sider} = Layout;
 
 const Navbar: FC = () => (
-  <Sider className="site-layout-background">
+  <Sider className="site-layout-background" style={{height: '340px'}}>
     <Menu mode="inline" defaultSelectedKeys={['1']} style={{height: '100%'}}>
       <Menu.Item key="1">
         <Link to="/profile">Profile</Link>

@@ -2,9 +2,8 @@ import React, {FC} from 'react';
 
 import {useSelector} from 'react-redux';
 
-import {Card, Col, Row} from 'antd';
+import {Card, Col, Row, Skeleton, Space} from 'antd';
 
-import Preloader from '../../../App/components/Preloader';
 import selector from '../../selectors';
 import ProfileLogo from '../../../App/images/people-profile.png';
 
@@ -33,20 +32,11 @@ const ProfileInfo: FC = () => {
         </Card>
       </Col>
     </Row>
-  ) : // <>
-  //   <div className={styles.descriptionBlock}>
-  //     <img src={profile.photos.small ? profile.photos.small : ProfileLogo} alt="photo" style={{height: '120px', width: '120px'}} />
-  //     <div className={styles.fullName}>
-  //       <strong>{profile.fullName}</strong>
-  //     </div>
-  //   </div>
-  //   <div className={styles.profile_status}>
-  //     <Status />
-  //   </div>
-  // </>
-  isLoading ? (
-    <Preloader />
-  ) : null;
+  ) : (
+    <Space>
+      <Skeleton.Avatar style={{height: '160px', width: '160px', marginLeft: '55px', marginTop: '15px'}} active={isLoading} />
+    </Space>
+  );
 };
 
 export default ProfileInfo;

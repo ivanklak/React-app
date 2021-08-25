@@ -1,6 +1,5 @@
 import React, {FC, useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-
 import {Col, Pagination, Row} from 'antd';
 
 import Preloader from '../App/components/Preloader';
@@ -29,9 +28,7 @@ const Users: FC = () => {
 
   const pagesCount = Math.ceil(totalUsersCount / pageSize);
 
-  return isFetching ? (
-    <Preloader />
-  ) : (
+  return users ? (
     <Row>
       <Col span={24} style={{backgroundColor: '#ffffff', padding: '20px'}}>
         <div className={styles.pagination}>
@@ -39,11 +36,13 @@ const Users: FC = () => {
         </div>
         <div className={styles.usersList}>
           {users.map(u => (
-            <User user={u} followingInProgress={followingInProgress} key={u.id} />
+            <User user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
           ))}
         </div>
       </Col>
     </Row>
+  ) : (
+    <Preloader />
   );
 };
 
