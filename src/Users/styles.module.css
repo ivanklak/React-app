@@ -1,45 +1,12 @@
-.userPhoto {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  margin: 10px;
-}
-.selectedPage {
-  font-weight: bold;
-}
-.pages {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow-x: scroll;
-  width: 800px;
-  height: 25px;
-  padding: 5px;
-  border: 2px solid rgba(61, 114, 122, 0.233);
-  border-radius: 5px;
-  white-space: nowrap;
-  cursor: pointer;
-}
-.person {
-  display: flex;
-  /* max-width: 500px;  */
-  margin: 12px 12px;
-  border: 2px solid rgba(61, 114, 122, 0.233);
-  border-radius: 7px;
-  padding: 7px;
-}
-.person h5 {
-  margin-top: -10px;
-}
-.description {
-  margin-left: 15px;
-  display: flex;
-
-  align-items: center;
-}
 .pagination {
   display: flex;
-  margin: 10px 0;
+  margin: 10px 0 20px 0;
   justify-content: center;
+}
+.usersList {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-column-gap: 1rem;
 }

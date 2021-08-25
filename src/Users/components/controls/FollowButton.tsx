@@ -1,7 +1,7 @@
 import React, {FC, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-
 import {Button} from 'antd';
+import {MinusOutlined, PlusOutlined} from '@ant-design/icons';
 
 import {follow, unfollow} from '../../thunks';
 import {IUser} from '../../types';
@@ -19,7 +19,11 @@ const FollowButton: FC<IFollowButtonProps> = ({user, followingInProgress}) => {
   const isFollowing = followingInProgress.includes(user.id);
 
   return (
-    <Button onClick={onButtonClick} disabled={isFollowing}>
+    <Button
+      icon={user.followed ? <MinusOutlined style={{color: 'indianred'}} /> : <PlusOutlined style={{color: 'forestgreen'}} />}
+      onClick={onButtonClick}
+      disabled={isFollowing}
+    >
       {user.followed ? 'Unfollow' : 'Follow'}
     </Button>
   );
