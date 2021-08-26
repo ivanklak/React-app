@@ -6,6 +6,8 @@ import {MinusOutlined, PlusOutlined} from '@ant-design/icons';
 import {follow, unfollow} from '../../thunks';
 import {IUser} from '../../types';
 
+import styles from './styles.module.css';
+
 interface IFollowButtonProps {
   user: IUser;
   followingInProgress: Array<number>;
@@ -20,7 +22,7 @@ const FollowButton: FC<IFollowButtonProps> = ({user, followingInProgress}) => {
 
   return (
     <Button
-      icon={user.followed ? <MinusOutlined style={{color: 'indianred'}} /> : <PlusOutlined style={{color: 'forestgreen'}} />}
+      icon={user.followed ? <MinusOutlined className={styles.unfollowIcon} /> : <PlusOutlined className={styles.followIcon} />}
       onClick={onButtonClick}
       disabled={isFollowing}
       data-testid="User.Follow"

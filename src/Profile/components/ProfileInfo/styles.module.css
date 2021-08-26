@@ -9,3 +9,22 @@
 .skeletonAvatar {
     margin: 15px 55px;
 }
+.profileCart {
+    width: 250px;
+}
+.loadingAvatar {
+    height: 160px;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.loadingColumn {
+    width: 250px;
+    margin-top: 15px;
+}
+.avatarIcon {
+    font-size: 50px;
+}
+

@@ -1,12 +1,14 @@
 import React, {FC} from 'react';
 import {Link} from 'react-router-dom';
-
 import {Layout, Menu} from 'antd';
+
+import styles from './styles.module.css';
+
 const {Sider} = Layout;
 
 const Navbar: FC = () => (
-  <Sider className="site-layout-background" style={{height: '340px'}}>
-    <Menu mode="inline" defaultSelectedKeys={['1']} style={{height: '100%'}}>
+  <Sider className={styles.siderContainer}>
+    <Menu mode="inline" defaultSelectedKeys={['1']} className={styles.menuContainer}>
       <Menu.Item key="1">
         <Link to="/profile">Profile</Link>
       </Menu.Item>

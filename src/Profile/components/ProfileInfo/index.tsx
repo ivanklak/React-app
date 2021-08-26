@@ -1,35 +1,40 @@
 import React, {FC} from 'react';
 import {useSelector} from 'react-redux';
-import {Card, Col, Row, Skeleton, Space} from 'antd';
+import {Avatar, Card, Col, Row} from 'antd';
+import {UserOutlined} from '@ant-design/icons';
 
 import selector from '../../selectors';
-import ProfileLogo from '../../../App/images/people-profile.png';
+import ProfileLogoImage from '../../../App/images/people-profile.png';
 
 import Status from './Status';
 
 import styles from './styles.module.css';
 
+const {Meta} = Card;
+
 const ProfileInfo: FC = () => {
-  const {Meta} = Card;
   const {profile} = useSelector(selector);
-  const {isLoading} = useSelector(selector);
 
   return profile ? (
     <Row justify="center" className={styles.profileContainer}>
       <Col>
         <Card
+          className={styles.profileCart}
           bordered={false}
-          style={{width: 250}}
-          cover={<img alt="avatar" src={profile.photos.small ? profile.photos.small : ProfileLogo} className={styles.profileAvatar} />}
+          cover={<img alt="avatar" src={profile.photos.small ? profile.photos.small : ProfileLogoImage} className={styles.profileAvatar} />}
         >
           <Meta title={profile.fullName} description={<Status />} />
         </Card>
       </Col>
     </Row>
   ) : (
-    <Space>
-      <Skeleton.Avatar style={{height: '160px', width: '160px'}} className={styles.skeletonAvatar} active={isLoading} />
-    </Space>
+    <Row justify="center">
+      <Col className={styles.loadingColumn}>
+        <Card loading={true} bordered={false} cover={<Avatar className={styles.loadingAvatar} icon={<UserOutlined className={styles.avatarIcon} />} />}>
+          <Meta title="fullName" />
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

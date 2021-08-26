@@ -16,10 +16,10 @@ import withAuthRedirect from './HOCs/withAuthRedirect';
 import News from './components/News';
 import Music from './components/Music';
 import Settings from './components/Settings';
-
-import './components/index.css';
-import 'antd/dist/antd.css';
 import Navbar from './components/Navbar';
+
+import styles from './components/styles.module.css';
+import 'antd/dist/antd.css';
 
 const {Footer, Content} = Layout;
 
@@ -38,10 +38,10 @@ const App: FC = () => {
   return (
     <Layout>
       <Header />
-      <Content style={{padding: '0 50px'}}>
-        <Layout className="site-layout-background" style={{padding: '24px 0'}}>
+      <Content className={styles.appContent}>
+        <Layout className={styles.appLayout}>
           <Navbar />
-          <Content style={{padding: '0 24px', minHeight: 280}}>
+          <Content className={styles.routeContent}>
             <Route path="/dialogs" component={withAuthRedirect(Dialogs)} />
             <Route path="/profile/:userId?" render={() => <Profile />} />
             <Route path="/users" component={withAuthRedirect(Users)} />
