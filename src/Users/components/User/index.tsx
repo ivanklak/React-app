@@ -5,7 +5,6 @@ import {Avatar, Card, Col, Row, Skeleton} from 'antd';
 
 import userPhoto from '../../../App/images/people-profile.png';
 import FollowButton from '../controls/FollowButton';
-
 import {IUser} from '../../types';
 
 import styles from './styles.module.css';
@@ -16,33 +15,31 @@ interface IUserProps {
   isFetching: boolean;
 }
 
-const User: FC<IUserProps> = ({user, followingInProgress, isFetching}) => {
-  const {Meta} = Card;
+const {Meta} = Card;
 
-  return (
-    <Card className={styles.userCard}>
-      <Row align="middle">
-        <Col span={19} className={styles.userDescription}>
-          <Skeleton loading={isFetching} avatar active title={false} paragraph={{rows: 2}}>
-            <Meta
-              avatar={
-                <NavLink to={'/profile/' + user.id}>
-                  <Avatar src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userAvatar} />
-                </NavLink>
-              }
-              title={user.name}
-              description={user.status ? user.status : 'Italy, Milano'}
-            />
-          </Skeleton>
-        </Col>
-        <Col span={5}>
-          <div>
-            <FollowButton user={user} followingInProgress={followingInProgress} />
-          </div>
-        </Col>
-      </Row>
-    </Card>
-  );
-};
+const User: FC<IUserProps> = ({user, followingInProgress, isFetching}) => (
+  <Card className={styles.userCard}>
+    <Row align="middle">
+      <Col span={19} className={styles.userDescription}>
+        <Skeleton loading={isFetching} avatar active title={false} paragraph={{rows: 2}}>
+          <Meta
+            avatar={
+              <NavLink to={'/profile/' + user.id}>
+                <Avatar src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userAvatar} />
+              </NavLink>
+            }
+            title={user.name}
+            description={user.status ? user.status : 'Italy, Milano'}
+          />
+        </Skeleton>
+      </Col>
+      <Col span={5}>
+        <div>
+          <FollowButton user={user} followingInProgress={followingInProgress} />
+        </div>
+      </Col>
+    </Row>
+  </Card>
+);
 
 export default User;

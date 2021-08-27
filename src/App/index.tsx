@@ -18,7 +18,7 @@ import Music from './components/Music';
 import Settings from './components/Settings';
 import Navbar from './components/Navbar';
 
-import styles from './components/styles.module.css';
+import styles from './styles.module.css';
 import 'antd/dist/antd.css';
 
 const {Footer, Content} = Layout;

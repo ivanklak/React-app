@@ -31,7 +31,7 @@ const Status: FC = () => {
 
   return editMode ? (
     <div>
-      <Input data-testid="NewStatus.Input" onChange={onStatusChange} autoFocus={true} onBlur={deactivateEditMode} defaultValue={profileStatus} />
+      <Input data-testid="NewStatus.Input" onChange={onStatusChange} autoFocus onBlur={deactivateEditMode} defaultValue={profileStatus} />
     </div>
   ) : (
     <div>

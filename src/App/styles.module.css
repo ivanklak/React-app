@@ -1,9 +1,11 @@
 .appContent {
   padding: 0 50px;
 }
+
 .appLayout {
   padding: 24px 0;
 }
+
 .routeContent {
   padding: 0 24px;
   min-height: 280px;

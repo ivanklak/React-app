@@ -15,7 +15,7 @@ const MessageForm: FC<IPostProps> = ({addNewMessage}) => (
     <Form.Item name="newMessageBody" rules={[{required: true, message: 'Please input your message'}]}>
       <Input className={styles.messageEnter} data-testid="NewMessage.Enter" />
     </Form.Item>
-    <Form.Item style={{marginRight: 0}}>
+    <Form.Item>
       <Button data-testid="NewMessage.Submit" type="primary" htmlType="submit">
         Submit
       </Button>

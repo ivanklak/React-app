@@ -11,8 +11,10 @@ interface IPostProps {
   message: string;
   likesCount: number;
 }
+
+const {Meta} = Card;
+
 const Post: FC<IPostProps> = ({message, likesCount}) => {
-  const {Meta} = Card;
   const {profile} = useSelector(selector);
 
   return (

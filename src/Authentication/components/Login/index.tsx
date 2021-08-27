@@ -24,11 +24,9 @@ const Login: FC = () => {
   }
 
   return (
-    <div className="site-card-border-less-wrapper">
-      <Card title="Log in" bordered={true} className={styles.loginContainer}>
-        <LoginForm onSubmit={onSubmit} />
-      </Card>
-    </div>
+    <Card title="Log in" bordered className={styles.loginContainer}>
+      <LoginForm onSubmit={onSubmit} />
+    </Card>
   );
 };
 

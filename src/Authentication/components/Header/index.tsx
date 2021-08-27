@@ -8,6 +8,8 @@ import {UserOutlined} from '@ant-design/icons';
 import {logout} from '../../thunks';
 import {getAuth} from '../../../App/selectors';
 
+import styles from './styles.module.css';
+
 const Header: FC = () => {
   const {Header} = Layout;
   const isAuth = useSelector(getAuth);
@@ -26,7 +28,7 @@ const Header: FC = () => {
         {isAuth ? (
           <>
             <Col span={1}>
-              <Avatar style={{backgroundColor: '#87d068'}} icon={<UserOutlined />} />
+              <Avatar className={styles.headerAvatar} icon={<UserOutlined />} />
             </Col>
             <Col span={3}>
               <Button data-testid="User.Logout" onClick={onLogout}>

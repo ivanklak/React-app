@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {NavLink} from 'react-router-dom';
+import {Avatar} from 'antd';
 
 import {IDialogs} from '../../types';
 
@@ -14,7 +15,7 @@ const DialogItem: FC<IDialogsItemProps> = ({dialog: {id, name}}) => {
 
   return (
     <div data-testid="DialogItem" className={styles.dialogsItem}>
-      <img className={styles.dialogsImage} src="https://consol-games.com/uploads/posts/2012-12/1356061760_1341555753_00470-01.jpg" alt="user" />
+      <Avatar className={styles.dialogsImage} size={50} src="https://consol-games.com/uploads/posts/2012-12/1356061760_1341555753_00470-01.jpg" />
       <NavLink to={path}>{name}</NavLink>
     </div>
   );
