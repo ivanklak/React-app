@@ -13,7 +13,7 @@ export const getUserProfile =
 
       dispatch(ProfileActions.getUserProfileSuccess(response));
     } catch (error) {
-      dispatch(ProfileActions.getUserProfileFailure(error));
+      dispatch(ProfileActions.getUserProfileFailure(error.message));
     }
   };
 

@@ -4,7 +4,7 @@ import {Avatar, Card, Col, Row} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 
 import selector from '../../selectors';
-import ProfileLogoImage from '../../../App/images/people-profile.png';
+import ProfileImage from '../../../App/images/people-profile.png';
 
 import Status from './Status';
 
@@ -21,7 +21,7 @@ const ProfileInfo: FC = () => {
         <Card
           className={styles.profileCart}
           bordered={false}
-          cover={<img alt="avatar" src={profile.photos.small ? profile.photos.small : ProfileLogoImage} className={styles.profileAvatar} />}
+          cover={<img alt="avatar" src={profile.photos.small ? profile.photos.small : ProfileImage} className={styles.profileAvatar} />}
         >
           <Meta title={profile.fullName} description={<Status />} />
         </Card>

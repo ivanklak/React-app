@@ -8,7 +8,7 @@ interface IProfileState {
   status: string;
   newPostText: string;
   isLoading: boolean;
-  error: IProfile | null;
+  error: string | null;
 }
 
 const initialState: IProfileState = {

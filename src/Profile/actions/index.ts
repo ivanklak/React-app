@@ -14,7 +14,7 @@ export enum ProfileActionTypes {
 export const ProfileActions = {
   getUserProfileRequest: () => createAction(ProfileActionTypes.GET_USER_PROFILE_REQUEST),
   getUserProfileSuccess: (payload: IProfile) => createAction(ProfileActionTypes.GET_USER_PROFILE_SUCCESS, payload),
-  getUserProfileFailure: (payload: IProfile) => createAction(ProfileActionTypes.GET_USER_PROFILE_FAILURE, payload),
+  getUserProfileFailure: (payload: string) => createAction(ProfileActionTypes.GET_USER_PROFILE_FAILURE, payload),
   setStatus: (payload: string) => createAction(ProfileActionTypes.SET_STATUS, payload),
   addPost: (payload: string) => createAction(ProfileActionTypes.ADD_POST, payload),
   deletePost: (payload: number) => createAction(ProfileActionTypes.DELETE_POST, payload),
