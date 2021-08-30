@@ -17,6 +17,7 @@ import News from './components/News';
 import Music from './components/Music';
 import Settings from './components/Settings';
 import Navbar from './components/Navbar';
+import Friends from './components/Friends';
 
 import styles from './styles.module.css';
 import 'antd/dist/antd.css';
@@ -43,13 +44,13 @@ const App: FC = () => {
           <Navbar />
           <Content className={styles.routeContent}>
             <Route path="/dialogs" component={withAuthRedirect(Dialogs)} />
-            <Route path="/profile/:userId?" render={() => <Profile />} />
+            <Route path="/profile/:userId?" component={Profile} />
             <Route path="/users" component={withAuthRedirect(Users)} />
-            <Route path="/login" render={() => <Login />} />
-            <Route path="/news" render={() => <News />} />
-            <Route path="/music" render={() => <Music />} />
-            <Route path="/settings" render={() => <Settings />} />
-            <Route path="/friends" />
+            <Route path="/login" component={Login} />
+            <Route path="/news" component={News} />
+            <Route path="/music" component={Music} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/friends" component={Friends} />
           </Content>
         </Layout>
       </Content>
