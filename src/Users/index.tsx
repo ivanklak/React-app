@@ -15,7 +15,7 @@ const Users: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedCurrentPage = JSON.parse(window.localStorage.getItem('currentPage') as string);
+    const storedCurrentPage = JSON.parse(window.localStorage.getItem('currentPage') || '1');
 
     dispatch(requestUsers(storedCurrentPage, pageSize));
   }, []);
