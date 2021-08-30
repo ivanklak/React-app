@@ -11,7 +11,7 @@ interface IDialogsItemProps {
 }
 
 const DialogItem: FC<IDialogsItemProps> = ({dialog: {id, name}}) => {
-  const path = '/dialogs/' + id;
+  const path = `/dialogs/${id}`;
 
   return (
     <div className={styles.dialogsItem}>

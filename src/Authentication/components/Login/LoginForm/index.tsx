@@ -8,7 +8,7 @@ interface ILoginProps {
 }
 
 const LoginForm: FC<ILoginProps> = ({onSubmit}) => (
-  <Form name="basic" labelCol={{offset: 1, span: 5}} wrapperCol={{span: 16}} initialValues={{remember: true}} onFinish={onSubmit}>
+  <Form labelCol={{offset: 1, span: 5}} wrapperCol={{span: 16}} initialValues={{remember: true}} onFinish={onSubmit}>
     <Form.Item label="Email" name="email" rules={[{required: true, message: 'Please input your email!'}]}>
       <Input data-testid="Email.Input" />
     </Form.Item>

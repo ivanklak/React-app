@@ -7,8 +7,8 @@ import {ResultCodes} from '../../App/services/api';
 export const getUserProfile =
   (userId: number): IThunkResult<Promise<void>, ProfileAction> =>
   async dispatch => {
+    dispatch(ProfileActions.getUserProfileRequest());
     try {
-      dispatch(ProfileActions.getUserProfileRequest());
       const response = await profileAPI.getProfile(userId);
 
       dispatch(ProfileActions.getUserProfileSuccess(response));

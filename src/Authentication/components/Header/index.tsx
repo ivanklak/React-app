@@ -20,7 +20,7 @@ const Header: FC = () => {
   };
 
   return (
-    <Header className="header">
+    <Header>
       <Row>
         <Col span={20}>
           <Avatar src="https://cdn.auth0.com/blog/react-js/react.png" />

@@ -19,8 +19,8 @@ import Settings from './components/Settings';
 import Navbar from './components/Navbar';
 import Friends from './components/Friends';
 
-import styles from './styles.module.css';
 import 'antd/dist/antd.css';
+import styles from './styles.module.css';
 
 const {Footer, Content} = Layout;
 

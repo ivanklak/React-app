@@ -21,7 +21,7 @@ const ProfileInfo: FC = () => {
         <Card
           className={styles.profileCart}
           bordered={false}
-          cover={<img alt="avatar" src={profile.photos.small ? profile.photos.small : ProfileImage} className={styles.profileAvatar} />}
+          cover={<img alt="avatar" src={profile.photos.small || ProfileImage} className={styles.profileAvatar} />}
         >
           <Meta title={profile.fullName} description={<Status />} />
         </Card>

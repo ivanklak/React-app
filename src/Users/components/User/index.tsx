@@ -24,12 +24,12 @@ const User: FC<IUserProps> = ({user, followingInProgress, isFetching}) => (
         <Skeleton loading={isFetching} avatar active title={false} paragraph={{rows: 2}}>
           <Meta
             avatar={
-              <NavLink to={'/profile/' + user.id}>
-                <Avatar src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userAvatar} />
+              <NavLink to={`/profile/${user.id}`}>
+                <Avatar src={user.photos.small || userPhoto} className={styles.userAvatar} />
               </NavLink>
             }
             title={user.name}
-            description={user.status ? user.status : 'Italy, Milano'}
+            description={user.status || 'Italy, Milano'}
           />
         </Skeleton>
       </Col>

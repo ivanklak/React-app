@@ -57,13 +57,11 @@ const profileReducer = (state = initialState, action: ProfileAction): IProfileSt
         ...state,
         profile: action.payload,
         isLoading: false,
-        error: null,
       };
     }
     case ProfileActionTypes.GET_USER_PROFILE_FAILURE: {
       return {
         ...state,
-        profile: null,
         isLoading: false,
         error: action.payload,
       };
