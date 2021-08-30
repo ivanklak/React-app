@@ -12,16 +12,18 @@ import styles from './styles.module.css';
 
 const Users: FC = () => {
   const {users, pageSize, totalUsersCount, currentPage, followingInProgress, isFetching} = useSelector(selector);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestUsers(currentPage, pageSize));
+    const storedCurrentPage = JSON.parse(window.localStorage.getItem('currentPage') as string);
+
+    dispatch(requestUsers(storedCurrentPage, pageSize));
   }, []);
 
   const onPageChanged = useCallback(
     (pageNumber: number) => {
       dispatch(requestUsers(pageNumber, pageSize));
+      window.localStorage.setItem('currentPage', String(pageNumber));
     },
     [currentPage],
   );
