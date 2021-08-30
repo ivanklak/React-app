@@ -6,6 +6,6 @@ interface IMessageProps {
   messages: IMessages;
 }
 
-const Message: FC<IMessageProps> = ({messages: {message}}) => <div data-testid="NewMessageText">{message}</div>;
+const Message: FC<IMessageProps> = ({messages: {message}}) => <div>{message}</div>;
 
 export default Message;

@@ -16,8 +16,8 @@ const Dialogs: FC = () => {
   const {dialogsPage} = useSelector(selector);
   const dispatch = useDispatch();
 
-  const dialogsElements = dialogsPage.dialogs.map(d => <DialogItem dialog={d} key={d.id} />);
-  const messagesElements = dialogsPage.messages.map(m => <Message messages={m} key={m.id} />);
+  const dialogsElements = dialogsPage.dialogs.map(d => <DialogItem data-testid={`DialogItem.User${d.id}`} dialog={d} key={d.id} />);
+  const messagesElements = dialogsPage.messages.map(m => <Message data-testid={`NewMessage.Text${m.id}`} messages={m} key={m.id} />);
 
   const addNewMessage = (values: IMessageValues) => {
     dispatch(sendMessages(values.newMessageBody));

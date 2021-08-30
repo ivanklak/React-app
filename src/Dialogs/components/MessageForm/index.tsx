@@ -13,7 +13,7 @@ interface IPostProps {
 const MessageForm: FC<IPostProps> = ({addNewMessage}) => (
   <Form layout="inline" name="basic" initialValues={{remember: true}} onFinish={addNewMessage}>
     <Form.Item name="newMessageBody" rules={[{required: true, message: 'Please input your message'}]}>
-      <Input className={styles.messageEnter} data-testid="NewMessage.Enter" />
+      <Input className={styles.messageEnter} data-testid="NewMessage.Input" />
     </Form.Item>
     <Form.Item>
       <Button data-testid="NewMessage.Submit" type="primary" htmlType="submit">

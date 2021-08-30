@@ -14,7 +14,7 @@ const MyPosts: FC = () => {
   const {posts} = useSelector(selector);
   const dispatch = useDispatch();
 
-  const postsElements = posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />);
+  const postsElements = posts.map(p => <Post data-testid={`NewPost.Message${p.id}`} key={p.id} message={p.message} likesCount={p.likesCount} />);
 
   const onAddPost = (values: IPostValues) => {
     dispatch(addNewPost(values.newPostText));

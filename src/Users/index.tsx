@@ -36,7 +36,7 @@ const Users: FC = () => {
         </div>
         <div className={styles.usersList}>
           {users.map(u => (
-            <User data-testid="UserItem" user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
+            <User data-testid={`UserItem.${u.id}`} user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
           ))}
         </div>
       </Col>

@@ -18,7 +18,7 @@ const Post: FC<IPostProps> = ({message, likesCount}) => {
   const {profile} = useSelector(selector);
 
   return (
-    <Card data-testid="NewPost" className={styles.postItem}>
+    <Card className={styles.postItem}>
       <Row align="middle">
         <Col span={22}>
           <Meta

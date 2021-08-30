@@ -25,7 +25,7 @@ const FollowButton: FC<IFollowButtonProps> = ({user, followingInProgress}) => {
       icon={user.followed ? <MinusOutlined className={styles.unfollowIcon} /> : <PlusOutlined className={styles.followIcon} />}
       onClick={onButtonClick}
       disabled={isFollowing}
-      data-testid="User.Follow"
+      data-testid="FollowUser.Submit"
     >
       {user.followed ? 'Unfollow' : 'Follow'}
     </Button>

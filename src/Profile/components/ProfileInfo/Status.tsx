@@ -35,7 +35,7 @@ const Status: FC = () => {
     </div>
   ) : (
     <div>
-      <span data-testid="DefaultStatus" onDoubleClick={activateEditMode}>
+      <span data-testid="DefaultStatus.Text" onDoubleClick={activateEditMode}>
         {status || 'No status'}
       </span>
     </div>

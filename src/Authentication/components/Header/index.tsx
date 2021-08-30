@@ -31,14 +31,14 @@ const Header: FC = () => {
               <Avatar className={styles.headerAvatar} icon={<UserOutlined />} />
             </Col>
             <Col span={3}>
-              <Button data-testid="User.Logout" onClick={onLogout}>
+              <Button data-testid="LogoutUser.Submit" onClick={onLogout}>
                 Log out
               </Button>
             </Col>
           </>
         ) : (
           <Col span={4}>
-            <Button data-testid="User.Login">
+            <Button data-testid="LoginUser.Submit">
               <Link to="/login">Login</Link>
             </Button>
           </Col>
