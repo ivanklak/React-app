@@ -15,15 +15,12 @@ const Users: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedCurrentPage = JSON.parse(window.localStorage.getItem('currentPage') || '1');
-
-    dispatch(requestUsers(storedCurrentPage, pageSize));
+    dispatch(requestUsers(currentPage, pageSize));
   }, []);
 
   const onPageChanged = useCallback(
     (pageNumber: number) => {
       dispatch(requestUsers(pageNumber, pageSize));
-      window.localStorage.setItem('currentPage', String(pageNumber));
     },
     [currentPage],
   );
