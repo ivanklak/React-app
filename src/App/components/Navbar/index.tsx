@@ -6,6 +6,21 @@ import styles from './styles.module.css';
 
 const {Sider} = Layout;
 
+interface IClickEvent {
+  key: string;
+}
+
+const pages = [
+  {key: '/profile', path: '/profile'},
+  {key: '/dialogs', path: '/dialogs'},
+  {key: '/users', path: '/users'},
+  {key: '/friends', path: '/friends'},
+  {key: '/news', path: '/news'},
+  {key: '/music', path: '/music'},
+  {key: '/settings', path: '/settings'},
+  {key: '/login', path: '/login'},
+];
+
 const menuItems = [
   {key: '/profile', label: 'Profile', path: '/profile'},
   {key: '/dialogs', label: 'Dialogs', path: '/dialogs'},
@@ -15,10 +30,6 @@ const menuItems = [
   {key: '/music', label: 'Music', path: '/music'},
   {key: '/settings', label: 'Settings', path: '/settings'},
 ];
-
-interface IClickEvent {
-  key: string;
-}
 
 const Navbar: FC = () => {
   const location = useLocation();
@@ -32,7 +43,7 @@ const Navbar: FC = () => {
   };
 
   useEffect(() => {
-    const startPage = menuItems.find(item => location.pathname.startsWith(item.path))?.key;
+    const startPage = pages.find(item => location.pathname.startsWith(item.path))?.key;
 
     if (startPage !== undefined) {
       setSelectedPage(startPage);
