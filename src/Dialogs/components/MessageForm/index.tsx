@@ -3,7 +3,6 @@ import {Button, Form, Input} from 'antd';
 
 import {IMessageValues} from '../../types';
 
-import 'antd/dist/antd.css';
 import styles from './styles.module.css';
 
 interface IPostProps {

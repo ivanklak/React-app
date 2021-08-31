@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.8",
-    "@types/redux-form": "^8.3.2",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "eslint-plugin-babel": "^5.3.1",

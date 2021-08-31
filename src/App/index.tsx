@@ -2,6 +2,7 @@ import React, {FC, useEffect} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Layout} from 'antd';
+import 'antd/dist/antd.css';
 
 import Dialogs from '../Dialogs';
 import Users from '../Users';
@@ -19,7 +20,6 @@ import Settings from './components/Settings';
 import Navbar from './components/Navbar';
 import Friends from './components/Friends';
 
-import 'antd/dist/antd.css';
 import styles from './styles.module.css';
 
 const {Footer, Content} = Layout;
