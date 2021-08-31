@@ -10,8 +10,9 @@ import {getAuth} from '../../../App/selectors';
 
 import styles from './styles.module.css';
 
-const Header: FC = () => {
-  const {Header} = Layout;
+const {Header} = Layout;
+
+const HeaderApp: FC = () => {
   const isAuth = useSelector(getAuth);
   const dispatch = useDispatch();
 
@@ -48,4 +49,4 @@ const Header: FC = () => {
   );
 };
 
-export default Header;
+export default HeaderApp;
