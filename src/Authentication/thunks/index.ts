@@ -1,6 +1,3 @@
-import {FormAction} from 'redux-form/lib/actions';
-import {stopSubmit} from 'redux-form';
-
 import {IThunkResult} from '../../App/types';
 import {authAPI} from '../services';
 import {AuthenticationAction, AuthenticationActions} from '../actions';
@@ -17,16 +14,12 @@ export const getAuthUserData = (): IThunkResult<Promise<void>, AuthenticationAct
 };
 
 export const login =
-  (email: string, password: string, rememberMe: boolean): IThunkResult<Promise<void>, FormAction> =>
+  (email: string, password: string, rememberMe: boolean): IThunkResult<Promise<void>, AuthenticationAction> =>
   async dispatch => {
     const response = await authAPI.login(email, password, rememberMe);
 
     if (response.resultCode === ResultCodes.Success) {
       await dispatch(getAuthUserData());
-    } else {
-      const message = response.messages.length > 0 ? response.messages[0] : 'Some error';
-
-      dispatch(stopSubmit('login', {_error: message}));
     }
   };
 

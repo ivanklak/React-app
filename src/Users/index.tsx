@@ -1,7 +1,7 @@
-import React, {FC, useCallback, useEffect, useMemo} from 'react';
+import React, {FC, useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {Col, Pagination, Row} from 'antd';
 
-import Pages from '../App/components/Paginator';
 import Preloader from '../App/components/Preloader';
 
 import {requestUsers} from './thunks';
@@ -12,7 +12,6 @@ import styles from './styles.module.css';
 
 const Users: FC = () => {
   const {users, pageSize, totalUsersCount, currentPage, followingInProgress, isFetching} = useSelector(selector);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,32 +25,23 @@ const Users: FC = () => {
     [currentPage],
   );
 
-  const pages = useMemo(() => {
-    const pagesCount = Math.ceil(totalUsersCount / pageSize);
-    const arrOfPages: Array<number> = [];
+  const pagesCount = Math.ceil(totalUsersCount / pageSize);
 
-    for (let i = 1; i <= pagesCount; i++) {
-      arrOfPages.push(i);
-    }
-
-    return arrOfPages;
-  }, [totalUsersCount, pageSize]);
-
-  return isFetching ? (
-    <Preloader />
+  return users ? (
+    <Row>
+      <Col span={24} className={styles.usersContainer}>
+        <div className={styles.pagination}>
+          <Pagination size="small" current={currentPage} total={pagesCount} onChange={onPageChanged} showSizeChanger={false} />
+        </div>
+        <div className={styles.usersList}>
+          {users.map(u => (
+            <User data-testid={`UserItem.${u.id}`} user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
+          ))}
+        </div>
+      </Col>
+    </Row>
   ) : (
-    <div>
-      <div className={styles.pages}>
-        {pages.map(p => (
-          <Pages key={p} page={p} currentPage={currentPage} onPageClick={onPageChanged} />
-        ))}
-      </div>
-      <div>
-        {users.map(u => (
-          <User user={u} followingInProgress={followingInProgress} key={u.id} />
-        ))}
-      </div>
-    </div>
+    <Preloader />
   );
 };
 

@@ -1,58 +1,45 @@
-.dialogs {
-  display: grid;
-  grid-template-columns: 2fr 10fr;
-}
-.dialogsItems {
-  padding: 10px;
+.dialogsColumn {
+  background-color: #ffffff;
 }
 
-.dialogsItems .active {
-  color: grey;
+.dialogsList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.messagesColumn {
+  background-color: #ffffff;
+  margin-left: 12px;
+  padding: 5px;
+  height: 580px;
+}
+
 .messages {
-  padding: 10px;
+  position: relative;
 }
 
-.dialogsItems img {
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+.messageItem {
+  padding: 10px;
+  height: 420px;
+  margin: 5px;
+  border: 1px solid #dddddd;
+  overflow-y: scroll;
 }
-.dialogt {
-  position: center;
-}
-.form {
-  /* background: grey; */
+
+.messagesContainer {
   position: relative;
-  width: 250px;
-  overflow: hidden;
-  z-index: 10;
-  border-radius: 10px;
+  height: 500px;
 }
-.messageInput {
-  width: 98%;
-  border: 0;
-  position: relative;
-  left: 1%;
-  font-size: 1em;
-  background: #ffffff;
-  outline: 0;
-  box-sizing: border-box;
-  padding: 10px 40px 10px 10px;
-  color: #2c3d4e;
-  border-radius: 10px;
+
+.messagesTitle {
+  height: 60px;
+  padding: 10px 5px;
+  font-size: 24px;
 }
-.sendButton {
-  width: 10%;
-  background: #3a72aa;
-  color: white;
-  font-size: 1em;
-  position: absolute;
+
+.messageEnter {
+  height: 60px;
   padding: 10px 0;
-  left: 25%;
-  border: 0;
-  outline: 0;
-  transition: 0.3s ease-in-out all;
-  font-weight: 500;
-  border-radius: 10px;
+  margin: 5px;
 }

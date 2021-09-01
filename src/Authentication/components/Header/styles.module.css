@@ -1,32 +1,3 @@
-.header {
-  grid-area: h;
-  background-color: #3d3d3d;
-  text-align: left;
-  border-radius: 10px;
-  /* position: relative;
-  top: 5%; */
-  box-shadow: 0 0 10px rgba(175, 175, 175, 0.5);
-  max-width: 100%;
+.headerAvatar {
+    background-color: #87d068;
 }
-.header img {
-  width: 60px;
-  padding: 2px;
-  position: relative;
-  bottom: 3%;
-}
-.loginBlock {
-  float: right;
-  position: relative;
-  right: 1%;
-}
-.loginBlock a {
-  color: white;
-}
-
-/* .header {
-    color: white;
-
-}  */
-
-/* font-size: 20px; */
-/* vertical-align: 10px; */

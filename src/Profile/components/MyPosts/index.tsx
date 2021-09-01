@@ -14,17 +14,19 @@ const MyPosts: FC = () => {
   const {posts} = useSelector(selector);
   const dispatch = useDispatch();
 
-  const postsElements = posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount} />);
+  const postsElements = posts.map(p => <Post data-testid={`NewPost.Message.${p.id}`} key={p.id} message={p.message} likesCount={p.likesCount} />);
 
   const onAddPost = (values: IPostValues) => {
     dispatch(addNewPost(values.newPostText));
   };
 
   return (
-    <div className={styles.postsBlock}>
-      <h3>My posts</h3>
-      <PostForm onSubmit={onAddPost} />
-      <div className={styles.posts}>{postsElements}</div>
+    <div className={styles.postsContainer}>
+      <h2>My posts</h2>
+      <div className={styles.postForm}>
+        <PostForm onAddPost={onAddPost} />
+      </div>
+      <div>{postsElements}</div>
     </div>
   );
 };

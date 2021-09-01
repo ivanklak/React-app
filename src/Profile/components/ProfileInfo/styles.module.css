@@ -1,8 +1,35 @@
-.descriptionBlock {
-  padding: 10px;
-  border-radius: 10px;
+.profileContainer {
+    margin-top: 15px;
 }
-.image img {
-  width: 1000px;
-  border-radius: 10px;
+
+.profileAvatar {
+    height: 160px;
+    width: 160px;
+    margin: 0 auto;
+}
+
+.skeletonAvatar {
+    margin: 15px 55px;
+}
+
+.profileCart {
+    width: 250px;
+}
+
+.loadingAvatar {
+    height: 160px;
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.loadingColumn {
+    width: 250px;
+    margin-top: 15px;
+}
+
+.avatarIcon {
+    font-size: 50px;
 }

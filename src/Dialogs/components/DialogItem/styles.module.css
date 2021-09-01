@@ -1,0 +1,12 @@
+.dialogsItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialogsImage {
+    margin-bottom: 5px;
+    border-radius: 25px;
+    object-fit: cover;
+}

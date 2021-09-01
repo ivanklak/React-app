@@ -1,6 +1,8 @@
-.postsBlock {
+.postsContainer {
   padding: 10px;
 }
-.posts {
-  margin-top: 10px;
+
+.postForm {
+  padding: 10px;
+  border: 1px solid #dddddd;
 }

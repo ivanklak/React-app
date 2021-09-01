@@ -1,8 +1,12 @@
 import React, {FC, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
+import {Button} from 'antd';
+import {MinusOutlined, PlusOutlined} from '@ant-design/icons';
 
 import {follow, unfollow} from '../../thunks';
 import {IUser} from '../../types';
+
+import styles from './styles.module.css';
 
 interface IFollowButtonProps {
   user: IUser;
@@ -17,9 +21,14 @@ const FollowButton: FC<IFollowButtonProps> = ({user, followingInProgress}) => {
   const isFollowing = followingInProgress.includes(user.id);
 
   return (
-    <button onClick={onButtonClick} disabled={isFollowing}>
+    <Button
+      icon={user.followed ? <MinusOutlined className={styles.unfollowIcon} /> : <PlusOutlined className={styles.followIcon} />}
+      onClick={onButtonClick}
+      disabled={isFollowing}
+      data-testid="FollowUser.Submit"
+    >
       {user.followed ? 'Unfollow' : 'Follow'}
-    </button>
+    </Button>
   );
 };
 

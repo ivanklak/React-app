@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import {Card} from 'antd';
 
 import {login} from '../../thunks';
 import {getAuth} from '../../../App/selectors';
@@ -23,10 +24,9 @@ const Login: FC = () => {
   }
 
   return (
-    <div className={styles.form}>
-      <h1>Sign in</h1>
+    <Card title="Log in" bordered className={styles.loginContainer}>
       <LoginForm onSubmit={onSubmit} />
-    </div>
+    </Card>
   );
 };
 

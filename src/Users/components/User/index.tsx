@@ -1,41 +1,45 @@
 import React, {FC} from 'react';
 import {NavLink} from 'react-router-dom';
 
+import {Avatar, Card, Col, Row, Skeleton} from 'antd';
+
 import userPhoto from '../../../App/images/people-profile.png';
 import FollowButton from '../controls/FollowButton';
-
 import {IUser} from '../../types';
 
-import styles from '../../styles.module.css';
+import styles from './styles.module.css';
 
 interface IUserProps {
   user: IUser;
   followingInProgress: Array<number>;
+  isFetching: boolean;
 }
 
-const User: FC<IUserProps> = ({user, followingInProgress}) => (
-  <div className={styles.person}>
-    <span>
-      <div>
-        <NavLink to={'/profile/' + user.id}>
-          <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto} alt="usersPhoto" />
-        </NavLink>
-      </div>
-      <div className={styles.followbtn}>
-        <FollowButton user={user} followingInProgress={followingInProgress} />
-      </div>
-    </span>
-    <span className={styles.description}>
-      <div>
-        <h4>{user.name}</h4>
-      </div>
-      <div>
-        <h5>{user.status}</h5>
-      </div>
-      <div>user.location.country</div>
-      <div>user.location.city</div>
-    </span>
-  </div>
+const {Meta} = Card;
+
+const User: FC<IUserProps> = ({user, followingInProgress, isFetching}) => (
+  <Card className={styles.userCard}>
+    <Row align="middle">
+      <Col span={19} className={styles.userDescription}>
+        <Skeleton loading={isFetching} avatar active title={false} paragraph={{rows: 2}}>
+          <Meta
+            avatar={
+              <NavLink to={`/profile/${user.id}`}>
+                <Avatar src={user.photos.small || userPhoto} className={styles.userAvatar} />
+              </NavLink>
+            }
+            title={user.name}
+            description={user.status || 'Italy, Milano'}
+          />
+        </Skeleton>
+      </Col>
+      <Col span={5}>
+        <div>
+          <FollowButton user={user} followingInProgress={followingInProgress} />
+        </div>
+      </Col>
+    </Row>
+  </Card>
 );
 
 export default User;

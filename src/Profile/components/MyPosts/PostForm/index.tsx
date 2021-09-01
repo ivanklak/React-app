@@ -1,22 +1,27 @@
 import React, {FC} from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
+import {Button, Form, Input} from 'antd';
 
-import {maxLengthCreator, required} from '../../../../App/validators';
-import Textarea from '../../../../App/components/FormsControl/Textarea';
 import {IPostValues} from '../../../types';
 
-const maxLength10 = maxLengthCreator(10);
+import styles from './styles.module.css';
 
-const PostForm: FC<InjectedFormProps<IPostValues>> = ({handleSubmit}) => (
-  <form onSubmit={handleSubmit}>
-    <div>
-      <div>New post</div>
-    </div>
-    <Field component={Textarea} placeholder="Click me" name="newPostText" validate={[required, maxLength10]} />
-    <div>
-      <button>Add post</button>
-    </div>
-  </form>
+interface IPostProps {
+  onAddPost: (values: IPostValues) => void;
+}
+
+const {TextArea} = Input;
+
+const PostForm: FC<IPostProps> = ({onAddPost}) => (
+  <Form initialValues={{remember: true}} onFinish={onAddPost}>
+    <Form.Item name="newPostText" rules={[{required: true, message: 'Please input your post!'}]}>
+      <TextArea placeholder="Write your post" data-testid="NewPost.Input" />
+    </Form.Item>
+    <Form.Item className={styles.buttonForm}>
+      <Button className={styles.submitButton} data-testid="NewPost.Submit" type="primary" htmlType="submit">
+        Submit
+      </Button>
+    </Form.Item>
+  </Form>
 );
 
-export default reduxForm<IPostValues>({form: 'profileAddNewPostForm'})(PostForm);
+export default PostForm;
