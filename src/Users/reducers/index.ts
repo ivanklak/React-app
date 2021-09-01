@@ -2,7 +2,7 @@ import {IUser} from '../types';
 
 import {UsersAction, UsersActionTypes} from '../actions';
 
-interface IUsersState {
+export interface IUsersState {
   users: Array<IUser>;
   pageSize: number;
   totalUsersCount: number;
