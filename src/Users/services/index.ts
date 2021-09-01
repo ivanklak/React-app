@@ -1,14 +1,14 @@
 import {IUser} from '../types';
 import {instance, ResultCodes} from '../../App/services/api';
 
-interface IGetItems {
+export interface IGetItems {
   items: Array<IUser>;
   totalCount: number;
   error: string | null;
 }
 
 type EmptyObject = Record<string, never>;
-interface IDefaultResponse {
+export interface IDefaultResponse {
   data: EmptyObject;
   messages: Array<string>;
   resultCode: ResultCodes;
