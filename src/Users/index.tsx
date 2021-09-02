@@ -30,12 +30,12 @@ const Users: FC = () => {
   return users ? (
     <Row>
       <Col span={24} className={styles.usersContainer}>
-        <div className={styles.pagination}>
+        <div title="Pagination" className={styles.pagination}>
           <Pagination size="small" current={currentPage} total={pagesCount} onChange={onPageChanged} showSizeChanger={false} />
         </div>
         <div className={styles.usersList}>
           {users.map(u => (
-            <User data-testid={`UserItem.${u.id}`} user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
+            <User user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
           ))}
         </div>
       </Col>
