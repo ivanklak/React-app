@@ -5,7 +5,6 @@
   "homepage": "/profile",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.37",
@@ -47,12 +46,15 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^9.5.0",
     "@types/react-router-dom": "^5.1.8",
+    "@types/redux-mock-store": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-react": "^7.24.0",
-    "prettier": "2.3.2"
+    "prettier": "2.3.2",
+    "redux-mock-store": "^1.5.4"
   }
 }
