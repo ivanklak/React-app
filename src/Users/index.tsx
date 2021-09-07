@@ -11,7 +11,7 @@ import User from './components/User';
 import styles from './styles.module.css';
 
 const Users: FC = () => {
-  const {users, pageSize, totalUsersCount, currentPage, followingInProgress, isFetching} = useSelector(selector);
+  const {users, pageSize, currentPage, totalUsersCount, followingInProgress, isFetching} = useSelector(selector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,13 +25,11 @@ const Users: FC = () => {
     [currentPage],
   );
 
-  const pagesCount = Math.ceil(totalUsersCount / pageSize);
-
   return users ? (
     <Row>
       <Col span={24} className={styles.usersContainer}>
-        <div title="Pagination" className={styles.pagination}>
-          <Pagination size="small" current={currentPage} total={pagesCount} onChange={onPageChanged} showSizeChanger={false} />
+        <div data-testid="Pagination.Block" className={styles.pagination}>
+          <Pagination size="small" current={currentPage} total={totalUsersCount} pageSize={pageSize} onChange={onPageChanged} showSizeChanger={false} />
         </div>
         <div className={styles.usersList}>
           {users.map(u => (

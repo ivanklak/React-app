@@ -19,7 +19,7 @@ const reducers = combineReducers({
 type ReducerType = typeof reducers;
 export type AppStateType = ReturnType<ReducerType>;
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+export const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
