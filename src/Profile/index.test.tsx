@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
@@ -53,6 +53,7 @@ describe('Profile Component', () => {
       login: 'ivanklak',
       isAuth: true,
     };
+    store.dispatch(AuthenticationActions.setAuthUserData(authData));
   });
 
   const authAction = AuthenticationActions.setAuthUserData(authData);
@@ -63,14 +64,65 @@ describe('Profile Component', () => {
 
     const {store} = createTestables({});
 
-    store.dispatch(AuthenticationActions.setAuthUserData(authData));
     expect(store.dispatch).toBeCalledWith({...authAction, payload: authData});
-
-    await new Promise(resolve => setTimeout(resolve, 100));
-
     expect(mockedGetProfile).toBeCalledTimes(1);
     expect(mockedGetStatus).toBeCalledTimes(1);
-    expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
-    expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
+    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
+    await expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
+  });
+
+  it('clicking on the status opens the edit mode', async () => {
+    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
+    mockedGetStatus.mockReturnValue(Promise.resolve(statusResponse));
+
+    const {getByTestId} = createTestables({});
+
+    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
+    await expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
+
+    const defaultStatus = getByTestId('DefaultStatus.Text');
+
+    expect(defaultStatus).toBeInTheDocument();
+    expect(defaultStatus).toHaveTextContent(statusResponse);
+
+    fireEvent.doubleClick(defaultStatus);
+
+    const editStatus = getByTestId('NewStatus.Input');
+
+    expect(editStatus).toBeInTheDocument();
+    expect(editStatus).toHaveValue(statusResponse);
+  });
+
+  it('my posts should be displayed', async () => {
+    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
+
+    const {getByTestId} = createTestables({});
+
+    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
+
+    const myPosts = getByTestId('MyPosts.Title');
+
+    expect(myPosts).toBeInTheDocument();
+
+    const postItem = getByTestId('NewPost.Message.1');
+
+    expect(postItem).toBeInTheDocument();
+    expect(postItem).toHaveTextContent(store.getState().profilePage.posts[0].message);
+  });
+
+  it('at first textarea shoudnt have a value', async () => {
+    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
+
+    const {getByTestId} = createTestables({});
+
+    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
+
+    const textarea = getByTestId('NewPost.Input');
+
+    expect(textarea).toBeInTheDocument();
+    expect(textarea).not.toHaveValue();
+
+    fireEvent.change(textarea, {target: {value: 'This is my third post'}});
+    expect(textarea).toHaveValue('This is my third post');
   });
 });
