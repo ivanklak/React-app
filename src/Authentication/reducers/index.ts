@@ -1,6 +1,6 @@
 import {AuthenticationAction, AuthenticationActionTypes} from '../actions';
 
-interface IAuthenticationState {
+export interface IAuthenticationState {
   userId: number | null;
   email: string | null;
   login: string | null;

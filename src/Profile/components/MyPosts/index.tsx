@@ -22,7 +22,7 @@ const MyPosts: FC = () => {
 
   return (
     <div className={styles.postsContainer}>
-      <h2>My posts</h2>
+      <h2 data-testid="MyPosts.Title">My posts</h2>
       <div className={styles.postForm}>
         <PostForm onAddPost={onAddPost} />
       </div>
