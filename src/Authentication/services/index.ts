@@ -5,7 +5,7 @@ interface IMeResponseData {
   email: string;
   login: string;
 }
-interface IMeResponse {
+export interface IMeResponse {
   data: IMeResponseData;
   messages: Array<string>;
   resultCode: ResultCodes;

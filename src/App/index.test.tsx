@@ -1,52 +1,56 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import {render} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 
 import '../matchMedia';
+import {authAPI, IMeResponse} from '../Authentication/services';
+
+import store from './redux-store';
+import {ResultCodes} from './services/api';
+
 import App from './index';
 
+let authResponse: IMeResponse;
+
+const createTestables = (props: Partial<any>) => {
+  const renderResult = render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <App {...props} />
+      </Provider>
+    </BrowserRouter>,
+  );
+
+  return renderResult;
+};
+
 describe('App Component', () => {
-  const middlewares = [thunk];
-  const mockStore = configureMockStore(middlewares);
+  let mockedAuth: jest.SpyInstance;
 
-  const getState = {
-    app: {
-      initialized: true,
-    },
-    auth: {
-      email: 'ivanklak17@gmail.com',
-      isAuth: true,
-      login: 'ivanklak',
-      userId: 9208,
-    },
-  };
+  beforeEach(() => {
+    mockedAuth = jest.spyOn(authAPI, 'me');
+    authResponse = {
+      data: {id: 9208, email: 'ivanklak17@gmail.com', login: 'ivanklak'},
+      messages: [],
+      resultCode: ResultCodes.Success,
+    };
+  });
 
-  const store = mockStore(getState);
+  it('should be rendered', async () => {
+    mockedAuth.mockReturnValue(Promise.resolve(authResponse));
 
-  test('should be rendered', () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </BrowserRouter>,
-    );
+    const {getByTestId, getByRole} = createTestables({});
 
-    expect(screen.getByTestId('Header.Title')).toBeInTheDocument();
-    expect(screen.getByTestId('LoginUser.Img')).toBeInTheDocument();
-    expect(screen.getByTestId('LogoutUser.Submit')).toBeInTheDocument();
-    expect(screen.getByTestId('LogoutUser.Submit')).toHaveTextContent('Log out');
+    expect(mockedAuth).toBeCalledTimes(1);
 
-    expect(screen.getByRole('menu')).toBeInTheDocument();
-    expect(screen.getByTestId('MenuItem./profile')).toHaveTextContent('Profile');
-    expect(screen.getByTestId('MenuItem./dialogs')).toHaveTextContent('Dialogs');
-    expect(screen.getByTestId('MenuItem./users')).toHaveTextContent('Users');
-    expect(screen.getByTestId('MenuItem./friends')).toHaveTextContent('Friends');
-    expect(screen.getByTestId('MenuItem./news')).toHaveTextContent('News');
-    expect(screen.getByTestId('MenuItem./music')).toHaveTextContent('Music');
-    expect(screen.getByTestId('MenuItem./settings')).toHaveTextContent('Settings');
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    const header = getByTestId('Header.Title');
+    const menu = getByRole('menu');
+
+    expect(header).toBeInTheDocument();
+    expect(menu).toBeInTheDocument();
+    //
   });
 });
