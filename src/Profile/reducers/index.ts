@@ -2,7 +2,7 @@ import {IPost, IProfile} from '../types';
 
 import {ProfileAction, ProfileActionTypes} from '../actions';
 
-interface IProfileState {
+export interface IProfileState {
   posts: Array<IPost>;
   profile: IProfile | null;
   status: string;
@@ -23,7 +23,7 @@ const initialState: IProfileState = {
   error: null,
 };
 
-const profileReducer = (state = initialState, action: ProfileAction): IProfileState => {
+export const profileReducer = (state = initialState, action: ProfileAction): IProfileState => {
   switch (action.type) {
     case ProfileActionTypes.ADD_POST: {
       const newPost = {

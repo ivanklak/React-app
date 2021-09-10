@@ -110,8 +110,9 @@ describe('Profile Component', () => {
     expect(postItem).toHaveTextContent(store.getState().profilePage.posts[0].message);
   });
 
-  it('at first textarea shoudnt have a value', async () => {
+  it('at first textarea shouldn`t have a value, and have after change event', async () => {
     mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
+    const textareaValue = 'This is my third post';
 
     const {getByTestId} = createTestables({});
 
@@ -122,7 +123,7 @@ describe('Profile Component', () => {
     expect(textarea).toBeInTheDocument();
     expect(textarea).not.toHaveValue();
 
-    fireEvent.change(textarea, {target: {value: 'This is my third post'}});
-    expect(textarea).toHaveValue('This is my third post');
+    fireEvent.change(textarea, {target: {value: textareaValue}});
+    expect(textarea).toHaveValue(textareaValue);
   });
 });
