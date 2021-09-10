@@ -1,16 +1,24 @@
-import {profileAPI} from '../services';
+import {IDefaultResponse, profileAPI} from '../services';
 import {IProfile} from '../types';
 import {ProfileActions} from '../actions';
+import {ResultCodes} from '../../App/services/api';
 
-import {getStatus, getUserProfile} from './index';
+import {addNewPost, getStatus, getUserProfile, updateStatus} from './index';
 
 describe('profile thunks', () => {
   let mockedGetProfile: jest.SpyInstance;
   let mockedGetStatus: jest.SpyInstance;
+  let mockedUpdateStatus: jest.SpyInstance;
+
   let userId: number;
   const dispatchMock = jest.fn();
   const getStateMock = jest.fn();
   const extraArgumentMock = jest.fn();
+  const defaultResponse: IDefaultResponse = {
+    data: {},
+    messages: [],
+    resultCode: ResultCodes.Success,
+  };
   const profileResponse: IProfile = {
     userId: 9208,
     lookingForAJob: false,
@@ -20,11 +28,14 @@ describe('profile thunks', () => {
     photos: {small: null, large: null},
   };
   const statusResponse = '#dogecoin';
+  const updatedStatus = '#ethereum';
   const failureResponse = {message: 'some error'};
+  const newPostText = 'HI dudes!';
 
   beforeEach(() => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
     mockedGetStatus = jest.spyOn(profileAPI, 'getStatus');
+    mockedUpdateStatus = jest.spyOn(profileAPI, 'updateStatus');
     dispatchMock.mockClear();
     getStateMock.mockClear();
     extraArgumentMock.mockClear();
@@ -77,5 +88,36 @@ describe('profile thunks', () => {
     expect(dispatchMock).toBeCalledTimes(2);
     expect(dispatchMock).toHaveBeenNthCalledWith(1, ProfileActions.getStatusRequest());
     expect(dispatchMock).toHaveBeenNthCalledWith(2, ProfileActions.getStatusFailure(failureResponse.message));
+  });
+
+  it('success updateStatus thunk', async () => {
+    mockedUpdateStatus.mockReturnValue(Promise.resolve(defaultResponse));
+
+    const thunk = updateStatus(updatedStatus);
+
+    await thunk(dispatchMock, getStateMock, extraArgumentMock);
+
+    expect(dispatchMock).toBeCalledTimes(1);
+    expect(dispatchMock).toBeCalledWith(ProfileActions.getStatusSuccess(updatedStatus));
+  });
+
+  it('failure updateStatus thunk', async () => {
+    mockedUpdateStatus.mockReturnValue(Promise.reject(failureResponse));
+
+    const thunk = updateStatus(updatedStatus);
+
+    await thunk(dispatchMock, getStateMock, extraArgumentMock);
+
+    expect(dispatchMock).toBeCalledTimes(1);
+    expect(dispatchMock).toBeCalledWith(ProfileActions.getStatusFailure(failureResponse.message));
+  });
+
+  it('addPost thunk', async () => {
+    const thunk = addNewPost(newPostText);
+
+    await thunk(dispatchMock, getStateMock, extraArgumentMock);
+
+    expect(dispatchMock).toBeCalledTimes(1);
+    expect(dispatchMock).toBeCalledWith(ProfileActions.addPost(newPostText));
   });
 });

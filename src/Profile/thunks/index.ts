@@ -33,10 +33,14 @@ export const getStatus =
 export const updateStatus =
   (status: string): IThunkResult<Promise<void>, ProfileAction> =>
   async dispatch => {
-    const response = await profileAPI.updateStatus(status);
+    try {
+      const response = await profileAPI.updateStatus(status);
 
-    if (response.resultCode === ResultCodes.Success) {
-      dispatch(ProfileActions.getStatusSuccess(status));
+      if (response.resultCode === ResultCodes.Success) {
+        dispatch(ProfileActions.getStatusSuccess(status));
+      }
+    } catch (error) {
+      dispatch(ProfileActions.getStatusFailure(error.message));
     }
   };
 

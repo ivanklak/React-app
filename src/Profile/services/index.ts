@@ -2,7 +2,7 @@ import {IProfile} from '../types';
 import {instance, ResultCodes} from '../../App/services/api';
 
 type EmptyObject = Record<string, never>;
-interface IDefaultResponse {
+export interface IDefaultResponse {
   data: EmptyObject;
   messages: Array<string>;
   resultCode: ResultCodes;
