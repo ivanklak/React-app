@@ -20,9 +20,14 @@ export const getUserProfile =
 export const getStatus =
   (userId: number): IThunkResult<Promise<void>, ProfileAction> =>
   async dispatch => {
-    const response = await profileAPI.getStatus(userId);
+    dispatch(ProfileActions.getStatusRequest());
+    try {
+      const response = await profileAPI.getStatus(userId);
 
-    dispatch(ProfileActions.setStatus(response));
+      dispatch(ProfileActions.getStatusSuccess(response));
+    } catch (error) {
+      dispatch(ProfileActions.getStatusFailure(error.message));
+    }
   };
 
 export const updateStatus =
@@ -31,7 +36,7 @@ export const updateStatus =
     const response = await profileAPI.updateStatus(status);
 
     if (response.resultCode === ResultCodes.Success) {
-      dispatch(ProfileActions.setStatus(status));
+      dispatch(ProfileActions.getStatusSuccess(status));
     }
   };
 

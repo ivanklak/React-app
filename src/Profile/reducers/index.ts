@@ -38,10 +38,24 @@ export const profileReducer = (state = initialState, action: ProfileAction): IPr
         newPostText: '',
       };
     }
-    case ProfileActionTypes.SET_STATUS: {
+    case ProfileActionTypes.SET_STATUS_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case ProfileActionTypes.SET_STATUS_SUCCESS: {
       return {
         ...state,
         status: action.payload,
+        isLoading: false,
+      };
+    }
+    case ProfileActionTypes.SET_STATUS_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
       };
     }
     case ProfileActionTypes.GET_USER_PROFILE_REQUEST: {
