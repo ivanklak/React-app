@@ -69,46 +69,46 @@ describe('usersReducer test', () => {
     expect(newState.users[1].id).toBe(4);
   });
 
-  test('follow success', () => {
+  it('follow success', () => {
     const newState = usersReducer(state, UsersActions.followSuccess(1));
 
     expect(newState.users[1].followed).toBeTruthy();
     expect(newState.users[2].followed).toBeFalsy();
   });
 
-  test('unfollow success', () => {
+  it('unfollow success', () => {
     const newState = usersReducer(state, UsersActions.unfollowSuccess(0));
 
     expect(newState.users[0].followed).toBeFalsy();
     expect(newState.users[3].followed).toBeTruthy();
   });
 
-  test('current page should be changed', () => {
+  it('current page should be changed', () => {
     const newState = usersReducer(state, UsersActions.setCurrentPage(2));
 
     expect(newState.currentPage).toBe(2);
   });
 
-  test('total users count should be changed', () => {
+  it('total users count should be changed', () => {
     const newState = usersReducer(state, UsersActions.setTotalUsersCount(200));
 
     expect(newState.totalUsersCount).toBe(200);
   });
 
-  test('isFetching should be falsy', () => {
+  it('isFetching should be falsy', () => {
     const newState = usersReducer(state, UsersActions.setToggleIsFetching(false));
 
     expect(newState.isFetching).toBeFalsy();
   });
 
-  test('the user should be added to the array', () => {
+  it('the user should be added to the array', () => {
     const newState = usersReducer(state, UsersActions.toggleFollowingProgress({isFetching: true, userId: 1}));
 
     expect(newState.followingInProgress.length).toBeGreaterThan(0);
     expect(newState.followingInProgress[0]).toBe(1);
   });
 
-  test('the user should be removed from the array', () => {
+  it('the user should be removed from the array', () => {
     const changedState = {...state, followingInProgress: [1]};
     const newState = usersReducer(changedState, UsersActions.toggleFollowingProgress({isFetching: false, userId: 1}));
 

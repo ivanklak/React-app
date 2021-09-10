@@ -42,7 +42,7 @@ describe('users thunks tests', () => {
   usersAPIMock.toFollow.mockReturnValue(Promise.resolve(defaultResponse));
   usersAPIMock.toUnfollow.mockReturnValue(Promise.resolve(defaultResponse));
 
-  test('success requestUsers thunk', async () => {
+  it('success requestUsers thunk', async () => {
     const thunk = requestUsers(1, 100);
 
     await thunk(dispatchMock, getStateMock, extraArgumentMock);
@@ -54,7 +54,7 @@ describe('users thunks tests', () => {
     expect(dispatchMock).toHaveBeenNthCalledWith(5, UsersActions.setTotalUsersCount(usersResponse.totalCount));
   });
 
-  test('success follow thunk', async () => {
+  it('success follow thunk', async () => {
     const thunk = follow(0);
 
     await thunk(dispatchMock, getStateMock, extraArgumentMock);
@@ -64,7 +64,7 @@ describe('users thunks tests', () => {
     expect(dispatchMock).toHaveBeenNthCalledWith(3, UsersActions.toggleFollowingProgress({isFetching: false, userId: 0}));
   });
 
-  test('success unfollow thunk', async () => {
+  it('success unfollow thunk', async () => {
     const thunk = unfollow(0);
 
     await thunk(dispatchMock, getStateMock, extraArgumentMock);
