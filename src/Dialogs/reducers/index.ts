@@ -2,7 +2,7 @@ import {IDialogs, IMessages} from '../types';
 
 import {DialogsAction, DialogsActionTypes} from '../actions';
 
-interface IDialogsState {
+export interface IDialogsState {
   messages: Array<IMessages>;
   dialogs: Array<IDialogs>;
 }
