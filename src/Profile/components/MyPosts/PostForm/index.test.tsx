@@ -1,5 +1,6 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+// @ts-ignore
+import {render, fireEvent, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
@@ -33,8 +34,6 @@ describe('PostForm Component', () => {
     fireEvent.change(textarea, {target: {value: textareaValue}});
     fireEvent.click(submitButton);
 
-    setTimeout(() => {
-      expect(onAddPost).toHaveBeenCalledTimes(1);
-    }, 0);
+    await wait(() => expect(onAddPost).toHaveBeenCalledTimes(1));
   });
 });
