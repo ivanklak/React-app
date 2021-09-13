@@ -126,4 +126,28 @@ describe('Profile Component', () => {
     fireEvent.change(textarea, {target: {value: textareaValue}});
     expect(textarea).toHaveValue(textareaValue);
   });
+
+  it('amount of posts should be incremented', async () => {
+    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
+    const textareaValue = 'This is my third post';
+
+    const {getByTestId, getAllByTestId} = createTestables({});
+
+    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
+
+    const textarea = getByTestId('NewPost.Input');
+
+    fireEvent.change(textarea, {target: {value: textareaValue}});
+    expect(textarea).toHaveValue(textareaValue);
+
+    const submitButton = getByTestId('NewPost.Submit');
+
+    fireEvent.click(submitButton);
+
+    setTimeout(() => {
+      const listItems = getAllByTestId(/NewPost.Message/i);
+
+      expect(listItems).toHaveLength(3);
+    }, 0);
+  });
 });

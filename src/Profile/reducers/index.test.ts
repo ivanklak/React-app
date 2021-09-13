@@ -49,11 +49,18 @@ describe('profileReducer', () => {
     expect(newState.error).toBe(failureResponse);
   });
 
-  it('set status success', () => {
+  it('get status success', () => {
     const newStatus = '#bitcoin';
-    const newState = profileReducer(state, ProfileActions.setStatus(newStatus));
+    const newState = profileReducer(state, ProfileActions.getStatusSuccess(newStatus));
 
     expect(newState.status).toBe(newStatus);
+  });
+
+  it('get status failure', () => {
+    const error = 'some error';
+    const newState = profileReducer(state, ProfileActions.getStatusFailure(error));
+
+    expect(newState.error).toBe(error);
   });
 
   it('add post', () => {

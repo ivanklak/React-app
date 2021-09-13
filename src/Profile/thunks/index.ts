@@ -13,7 +13,9 @@ export const getUserProfile =
 
       dispatch(ProfileActions.getUserProfileSuccess(response));
     } catch (error) {
-      dispatch(ProfileActions.getUserProfileFailure(error.message));
+      const result = (error as Error).message;
+
+      dispatch(ProfileActions.getUserProfileFailure(result));
     }
   };
 
@@ -26,7 +28,9 @@ export const getStatus =
 
       dispatch(ProfileActions.getStatusSuccess(response));
     } catch (error) {
-      dispatch(ProfileActions.getStatusFailure(error.message));
+      const result = (error as Error).message;
+
+      dispatch(ProfileActions.getStatusFailure(result));
     }
   };
 
@@ -40,7 +44,9 @@ export const updateStatus =
         dispatch(ProfileActions.getStatusSuccess(status));
       }
     } catch (error) {
-      dispatch(ProfileActions.getStatusFailure(error.message));
+      const result = (error as Error).message;
+
+      dispatch(ProfileActions.getStatusFailure(result));
     }
   };
 
