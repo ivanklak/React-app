@@ -14,8 +14,15 @@ export interface IMeResponse {
 interface ILoginResponseData {
   userId: number;
 }
-interface ILoginResponse {
+export interface ILoginResponse {
   data: ILoginResponseData;
+  messages: Array<string>;
+  resultCode: ResultCodes;
+}
+
+type EmptyObject = Record<string, never>;
+export interface IDefaultResponse {
+  data: EmptyObject;
   messages: Array<string>;
   resultCode: ResultCodes;
 }
@@ -30,6 +37,6 @@ export const authAPI = {
   },
 
   logout() {
-    return instance.delete(`auth/login`);
+    return instance.delete<IDefaultResponse>(`auth/login`).then(res => res.data);
   },
 };

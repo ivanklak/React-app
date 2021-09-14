@@ -5,6 +5,8 @@ export interface IAuthenticationState {
   email: string | null;
   login: string | null;
   isAuth: boolean;
+  isLoading: boolean;
+  error: string | null;
 }
 
 const initialState: IAuthenticationState = {
@@ -12,14 +14,29 @@ const initialState: IAuthenticationState = {
   email: '',
   login: '',
   isAuth: false,
+  isLoading: false,
+  error: null,
 };
 
-const authReducer = (state = initialState, action: AuthenticationAction): IAuthenticationState => {
+export const authReducer = (state = initialState, action: AuthenticationAction): IAuthenticationState => {
   switch (action.type) {
-    case AuthenticationActionTypes.SET_USER_DATA:
+    case AuthenticationActionTypes.SET_USER_DATA_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case AuthenticationActionTypes.SET_USER_DATA_SUCCESS:
       return {
         ...state,
         ...action.payload,
+        isLoading: false,
+      };
+
+    case AuthenticationActionTypes.SET_USER_DATA_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
 
     default:
