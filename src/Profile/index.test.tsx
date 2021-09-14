@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import '../matchMedia';
 import store from '../App/redux-store';
 import {AuthenticationActions} from '../Authentication/actions';
-import {IAuthenticationState} from '../Authentication/reducers';
+import {IAuthenticationsData} from '../Authentication/types';
 
 import {profileAPI} from './services';
 import {IProfile} from './types';
@@ -15,7 +15,7 @@ import Profile from './index';
 
 let profileResponse: IProfile;
 let statusResponse: string;
-let authData: IAuthenticationState;
+let authData: IAuthenticationsData;
 
 const createTestables = (props: Partial<any>) => {
   const renderResult = render(
@@ -53,10 +53,10 @@ describe('Profile Component', () => {
       login: 'ivanklak',
       isAuth: true,
     };
-    store.dispatch(AuthenticationActions.setAuthUserData(authData));
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
   });
 
-  const authAction = AuthenticationActions.setAuthUserData(authData);
+  const authAction = AuthenticationActions.getAuthUserDataSuccess(authData);
 
   it('should be rendered', async () => {
     mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
