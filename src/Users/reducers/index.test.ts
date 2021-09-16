@@ -42,7 +42,7 @@ describe('usersReducer test', () => {
       currentPage: 1,
       isFetching: true,
       followingInProgress: [],
-      error: null
+      error: null,
     };
   });
 
