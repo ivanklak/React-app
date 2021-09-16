@@ -2,14 +2,17 @@ import {ResultCodes} from '../../App/services/api';
 
 import {IDefaultResponse, IGetItems, usersAPI} from './index';
 
-jest.mock('./index');
-const userAPIMock = usersAPI as jest.Mocked<typeof usersAPI>;
-
 describe('usersAPI test', () => {
+  let mockedGetUsers: jest.SpyInstance;
+  let mockedToFollow: jest.SpyInstance;
+  let mockedToUnfollow: jest.SpyInstance;
   let defaultResponse: IDefaultResponse;
   let usersResponse: IGetItems;
 
   beforeEach(() => {
+    mockedGetUsers = jest.spyOn(usersAPI, 'getUsers');
+    mockedToFollow = jest.spyOn(usersAPI, 'toFollow');
+    mockedToUnfollow = jest.spyOn(usersAPI, 'toUnfollow');
     usersResponse = {
       items: [
         {
@@ -52,21 +55,21 @@ describe('usersAPI test', () => {
   });
 
   test('return users from backend', async () => {
-    userAPIMock.getUsers.mockReturnValue(Promise.resolve(usersResponse));
+    mockedGetUsers.mockReturnValue(Promise.resolve(usersResponse));
     const data = await usersAPI.getUsers(1, 10);
 
     expect(data).toEqual(usersResponse);
   });
 
   test('return data after following user', async () => {
-    userAPIMock.toFollow.mockReturnValue(Promise.resolve(defaultResponse));
+    mockedToFollow.mockReturnValue(Promise.resolve(defaultResponse));
     const data = await usersAPI.toFollow(2);
 
     expect(data.resultCode).toBe(defaultResponse.resultCode);
   });
 
   test('return data after unfollowing user', async () => {
-    userAPIMock.toUnfollow.mockReturnValue(Promise.resolve(defaultResponse));
+    mockedToUnfollow.mockReturnValue(Promise.resolve(defaultResponse));
     const data = await usersAPI.toUnfollow(2);
 
     expect(data.resultCode).toBe(defaultResponse.resultCode);

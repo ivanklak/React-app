@@ -42,6 +42,7 @@ describe('usersReducer test', () => {
       currentPage: 1,
       isFetching: true,
       followingInProgress: [],
+      error: null
     };
   });
 
@@ -63,7 +64,7 @@ describe('usersReducer test', () => {
       },
     ];
 
-    const newState = usersReducer(state, UsersActions.setUsers(newUsers));
+    const newState = usersReducer(state, UsersActions.getUsersSuccess(newUsers));
 
     expect(newState.users[0].id).toBe(3);
     expect(newState.users[1].id).toBe(4);
