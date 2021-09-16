@@ -31,7 +31,7 @@ const Users: FC = () => {
         <div data-testid="Pagination.Block" className={styles.pagination}>
           <Pagination size="small" current={currentPage} total={totalUsersCount} pageSize={pageSize} onChange={onPageChanged} showSizeChanger={false} />
         </div>
-        <div className={styles.usersList}>
+        <div className={styles.usersList} data-testid="Users.List">
           {users.map(u => (
             <User user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
           ))}

@@ -1,24 +1,17 @@
 import React, {FC, useEffect} from 'react';
-import {Route, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {Layout} from 'antd';
 import 'antd/dist/antd.css';
 
-import Dialogs from '../Dialogs';
-import Users from '../Users';
-import Login from '../Authentication/components/Login';
-import Profile from '../Profile';
 import Header from '../Authentication/components/Header';
 
-import Preloader from './components/Preloader';
 import {initializeApp} from './thunks';
 import {getInitial} from './selectors';
-import withAuthRedirect from './HOCs/withAuthRedirect';
-import News from './components/News';
-import Music from './components/Music';
-import Settings from './components/Settings';
+import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
-import Friends from './components/Friends';
+
+import Routes from './routes';
 
 import styles from './styles.module.css';
 
@@ -43,14 +36,7 @@ const App: FC = () => {
         <Layout className={styles.appLayout}>
           <Navbar />
           <Content className={styles.routeContent}>
-            <Route path="/dialogs" component={withAuthRedirect(Dialogs)} />
-            <Route path="/profile/:userId?" component={Profile} />
-            <Route path="/users" component={withAuthRedirect(Users)} />
-            <Route path="/login" component={Login} />
-            <Route path="/news" component={News} />
-            <Route path="/music" component={Music} />
-            <Route path="/settings" component={Settings} />
-            <Route path="/friends" component={Friends} />
+            <Routes />
           </Content>
         </Layout>
       </Content>

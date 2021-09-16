@@ -1,5 +1,6 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+//@ts-ignore
+import {render, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
@@ -27,11 +28,13 @@ const createTestables = (props: Partial<any>) => {
 
 describe('App Component', () => {
   let mockedAuth: jest.SpyInstance;
+  const dispatch = store.dispatch;
 
   beforeEach(() => {
     mockedAuth = jest.spyOn(authAPI, 'me');
+    store.dispatch = jest.fn(dispatch);
     authResponse = {
-      data: {id: 9208, email: 'ivanklak17@gmail.com', login: 'ivanklak'},
+      data: {id: 999, email: 'test@gmail.com', login: 'testLogin'},
       messages: [],
       resultCode: ResultCodes.Success,
     };
@@ -42,15 +45,12 @@ describe('App Component', () => {
 
     const {getByTestId, getByRole} = createTestables({});
 
-    expect(mockedAuth).toBeCalledTimes(1);
-
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await wait(() => expect(mockedAuth).toHaveBeenCalledTimes(1));
 
     const header = getByTestId('Header.Title');
     const menu = getByRole('menu');
 
     expect(header).toBeInTheDocument();
     expect(menu).toBeInTheDocument();
-    //
   });
 });
