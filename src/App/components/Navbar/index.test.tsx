@@ -20,16 +20,16 @@ const createTestables = (props: Partial<any>) => {
 };
 
 describe('Navbar Component', () => {
-  it('should display menu items', () => {
-    const {getByText} = createTestables({});
+  it('should display menu items', async () => {
+    const {findByText} = createTestables({});
 
-    const profile = getByText('Profile');
-    const dialogs = getByText('Dialogs');
-    const users = getByText('Users');
-    const friends = getByText('Friends');
-    const news = getByText('News');
-    const music = getByText('Music');
-    const settings = getByText('Settings');
+    const profile = await findByText('Profile');
+    const dialogs = await findByText('Dialogs');
+    const users = await findByText('Users');
+    const friends = await findByText('Friends');
+    const news = await findByText('News');
+    const music = await findByText('Music');
+    const settings = await findByText('Settings');
 
     expect(profile).toHaveAttribute('href', '/profile');
     expect(dialogs).toHaveAttribute('href', '/dialogs');
