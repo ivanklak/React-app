@@ -1,18 +1,13 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
-import {Provider} from 'react-redux';
-
-import store from '../../redux-store';
 
 import Navbar from './index';
 
 const createTestables = (props: Partial<any>) => {
   const renderResult = render(
     <BrowserRouter>
-      <Provider store={store}>
-        <Navbar {...props} />
-      </Provider>
+      <Navbar {...props} />
     </BrowserRouter>,
   );
 
@@ -23,33 +18,29 @@ describe('Navbar Component', () => {
   it('should display menu items', async () => {
     const {findByText} = createTestables({});
 
-    const profile = await findByText('Profile');
-    const dialogs = await findByText('Dialogs');
-    const users = await findByText('Users');
-    const friends = await findByText('Friends');
-    const news = await findByText('News');
-    const music = await findByText('Music');
-    const settings = await findByText('Settings');
-
-    expect(profile).toHaveAttribute('href', '/profile');
-    expect(dialogs).toHaveAttribute('href', '/dialogs');
-    expect(users).toHaveAttribute('href', '/users');
-    expect(friends).toHaveAttribute('href', '/friends');
-    expect(news).toHaveAttribute('href', '/news');
-    expect(music).toHaveAttribute('href', '/music');
-    expect(settings).toHaveAttribute('href', '/settings');
+    expect(await findByText('Profile')).toHaveAttribute('href', '/profile');
+    expect(await findByText('Dialogs')).toHaveAttribute('href', '/dialogs');
+    expect(await findByText('Users')).toHaveAttribute('href', '/users');
+    expect(await findByText('Friends')).toHaveAttribute('href', '/friends');
+    expect(await findByText('News')).toHaveAttribute('href', '/news');
+    expect(await findByText('Music')).toHaveAttribute('href', '/music');
+    expect(await findByText('Settings')).toHaveAttribute('href', '/settings');
   });
 
   it('active link', async () => {
-    const {getByTestId} = createTestables({});
+    const selectedItemClass = 'ant-menu-item-selected';
 
-    const profileLink = getByTestId('MenuItem./profile');
-    const usersLink = getByTestId('MenuItem./users');
+    const {findByTestId} = createTestables({});
+
+    const profileLink = await findByTestId('MenuItem./profile');
+    const usersLink = await findByTestId('MenuItem./users');
 
     fireEvent.click(profileLink);
-    expect(profileLink).toHaveClass('ant-menu-item-selected');
+    expect(profileLink).toHaveClass(selectedItemClass);
+    expect(usersLink).not.toHaveClass(selectedItemClass);
 
     fireEvent.click(usersLink);
-    expect(usersLink).toHaveClass('ant-menu-item-selected');
+    expect(usersLink).toHaveClass(selectedItemClass);
+    expect(profileLink).not.toHaveClass(selectedItemClass);
   });
 });
