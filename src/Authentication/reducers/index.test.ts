@@ -5,21 +5,16 @@ import {IAuthenticationsData} from '../types';
 
 import authReducer from './index';
 
+const authData: IAuthenticationsData = {
+  userId: 9208,
+  email: 'ivanklak17@gmail.com',
+  login: 'ivanklak',
+  isAuth: true,
+};
+const errorMessage = 'some error';
+const state = store.getState().auth;
+
 describe('authReducer', () => {
-  let authData: IAuthenticationsData;
-  let errorMessage: string;
-  const state = store.getState().auth;
-
-  beforeEach(() => {
-    authData = {
-      userId: 9208,
-      email: 'ivanklak17@gmail.com',
-      login: 'ivanklak',
-      isAuth: true,
-    };
-    errorMessage = 'some error';
-  });
-
   it('get users data request', () => {
     const newState = authReducer(state, AuthenticationActions.getAuthUserDataRequest());
 

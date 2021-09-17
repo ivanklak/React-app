@@ -4,6 +4,26 @@ import {ResultCodes} from '../../App/services/api';
 
 import {follow, requestUsers, unfollow} from './index';
 
+const usersResponse: IGetItems = {
+  items: [
+    {
+      id: 0,
+      name: 'Post Malone',
+      status: 'status 0',
+      followed: true,
+      photos: {small: null, large: null},
+    },
+  ],
+  totalCount: 1,
+  error: null,
+};
+
+const defaultResponse = {
+  data: {},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
+
 describe('users thunks tests', () => {
   let mockedGetUsers: jest.SpyInstance;
   let mockedToFollow: jest.SpyInstance;
@@ -21,26 +41,6 @@ describe('users thunks tests', () => {
     getStateMock.mockClear();
     extraArgumentMock.mockClear();
   });
-
-  const usersResponse: IGetItems = {
-    items: [
-      {
-        id: 0,
-        name: 'Post Malone',
-        status: 'status 0',
-        followed: true,
-        photos: {small: null, large: null},
-      },
-    ],
-    totalCount: 1,
-    error: null,
-  };
-
-  const defaultResponse = {
-    data: {},
-    messages: [],
-    resultCode: ResultCodes.Success,
-  };
 
   it('success requestUsers thunk', async () => {
     mockedGetUsers.mockReturnValue(Promise.resolve(usersResponse));

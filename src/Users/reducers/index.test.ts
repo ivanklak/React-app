@@ -2,51 +2,47 @@ import {UsersActions} from '../actions';
 
 import usersReducer, {IUsersState} from './index';
 
+const state: IUsersState = {
+  users: [
+    {
+      id: 0,
+      name: 'Post Malone',
+      status: 'status 0',
+      followed: true,
+      photos: {small: null, large: null},
+    },
+    {
+      id: 1,
+      name: 'Dipper Pines',
+      status: 'status 1',
+      followed: false,
+      photos: {small: null, large: null},
+    },
+    {
+      id: 2,
+      name: 'Mable Pines',
+      status: 'status 2',
+      followed: false,
+      photos: {small: null, large: null},
+    },
+    {
+      id: 3,
+      name: 'Miss Tokyo',
+      status: 'status 3',
+      followed: true,
+      photos: {small: null, large: null},
+    },
+  ],
+  pageSize: 100,
+  totalUsersCount: 0,
+  currentPage: 1,
+  isFetching: true,
+  followingInProgress: [],
+  error: null,
+};
+
 describe('usersReducer test', () => {
-  let state: IUsersState;
-
-  beforeEach(() => {
-    state = {
-      users: [
-        {
-          id: 0,
-          name: 'Post Malone',
-          status: 'status 0',
-          followed: true,
-          photos: {small: null, large: null},
-        },
-        {
-          id: 1,
-          name: 'Dipper Pines',
-          status: 'status 1',
-          followed: false,
-          photos: {small: null, large: null},
-        },
-        {
-          id: 2,
-          name: 'Mable Pines',
-          status: 'status 2',
-          followed: false,
-          photos: {small: null, large: null},
-        },
-        {
-          id: 3,
-          name: 'Miss Tokyo',
-          status: 'status 3',
-          followed: true,
-          photos: {small: null, large: null},
-        },
-      ],
-      pageSize: 100,
-      totalUsersCount: 0,
-      currentPage: 1,
-      isFetching: true,
-      followingInProgress: [],
-      error: null,
-    };
-  });
-
-  test('users should be changed', () => {
+  it('users should be changed', () => {
     const newUsers = [
       {
         id: 3,

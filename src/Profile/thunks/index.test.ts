@@ -5,32 +5,33 @@ import {ResultCodes} from '../../App/services/api';
 
 import {addNewPost, getStatus, getUserProfile, updateStatus} from './index';
 
+const defaultResponse: IDefaultResponse = {
+  data: {},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
+const profileResponse: IProfile = {
+  userId: 9208,
+  lookingForAJob: false,
+  lookingForAJobDescription: 'React',
+  fullName: 'ivanklak',
+  contacts: null,
+  photos: {small: null, large: null},
+};
+const statusResponse = '#dogecoin';
+const updatedStatus = '#ethereum';
+const failureResponse = {message: 'some error'};
+const newPostText = 'HI dudes!';
+const userId = 9208;
+
 describe('profile thunks', () => {
   let mockedGetProfile: jest.SpyInstance;
   let mockedGetStatus: jest.SpyInstance;
   let mockedUpdateStatus: jest.SpyInstance;
 
-  let userId: number;
   const dispatchMock = jest.fn();
   const getStateMock = jest.fn();
   const extraArgumentMock = jest.fn();
-  const defaultResponse: IDefaultResponse = {
-    data: {},
-    messages: [],
-    resultCode: ResultCodes.Success,
-  };
-  const profileResponse: IProfile = {
-    userId: 9208,
-    lookingForAJob: false,
-    lookingForAJobDescription: 'React',
-    fullName: 'ivanklak',
-    contacts: null,
-    photos: {small: null, large: null},
-  };
-  const statusResponse = '#dogecoin';
-  const updatedStatus = '#ethereum';
-  const failureResponse = {message: 'some error'};
-  const newPostText = 'HI dudes!';
 
   beforeEach(() => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
@@ -39,7 +40,6 @@ describe('profile thunks', () => {
     dispatchMock.mockClear();
     getStateMock.mockClear();
     extraArgumentMock.mockClear();
-    userId = 9208;
   });
 
   it('success getUserProfile thunk', async () => {

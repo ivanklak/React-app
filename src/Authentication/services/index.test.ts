@@ -8,34 +8,31 @@ const loginData: ILoginFormData = {
   password: 'test-password',
   rememberMe: true,
 };
+const defaultResponse: IDefaultResponse = {
+  data: {},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
+const meResponse: IMeResponse = {
+  data: {id: 9208, email: 'ivanklak17@gmail.com', login: 'ivanklak'},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
+const loginResponse: ILoginResponse = {
+  data: {userId: 9208},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
 
 describe('authAPI', () => {
   let mockedGetAuthUserData: jest.SpyInstance;
   let mockedLogin: jest.SpyInstance;
   let mockedLogout: jest.SpyInstance;
-  let defaultResponse: IDefaultResponse;
-  let meResponse: IMeResponse;
-  let loginResponse: ILoginResponse;
 
   beforeEach(() => {
     mockedGetAuthUserData = jest.spyOn(authAPI, 'me');
     mockedLogin = jest.spyOn(authAPI, 'login');
     mockedLogout = jest.spyOn(authAPI, 'logout');
-    defaultResponse = {
-      data: {},
-      messages: [],
-      resultCode: ResultCodes.Success,
-    };
-    meResponse = {
-      data: {id: 9208, email: 'ivanklak17@gmail.com', login: 'ivanklak'},
-      messages: [],
-      resultCode: ResultCodes.Success,
-    };
-    loginResponse = {
-      data: {userId: 9208},
-      messages: [],
-      resultCode: ResultCodes.Success,
-    };
   });
 
   it('return auth users data from backend', async () => {

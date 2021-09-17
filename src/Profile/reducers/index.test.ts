@@ -1,34 +1,26 @@
 import {ProfileActions} from '../actions';
 import {IProfile} from '../types';
 
+import store from '../../App/redux-store';
+
 import profileReducer, {IProfileState} from './index';
+
+const profileResponse: IProfile = {
+  userId: 9208,
+  lookingForAJob: false,
+  lookingForAJobDescription: 'React',
+  fullName: 'ivanklak',
+  contacts: null,
+  photos: {small: null, large: null},
+};
+
+const failureResponse = 'Some error';
 
 describe('profileReducer', () => {
   let state: IProfileState;
-  let profileResponse: IProfile;
-  let failureResponse: string;
 
   beforeEach(() => {
-    state = {
-      posts: [
-        {id: 1, message: 'Hi, how are you?', likesCount: 12},
-        {id: 2, message: 'Its my first post', likesCount: 11},
-      ],
-      profile: null,
-      status: '',
-      newPostText: '',
-      isLoading: false,
-      error: null,
-    };
-    profileResponse = {
-      userId: 9208,
-      lookingForAJob: false,
-      lookingForAJobDescription: 'React',
-      fullName: 'ivanklak',
-      contacts: null,
-      photos: {small: null, large: null},
-    };
-    failureResponse = 'Some error';
+    state = store.getState().profilePage;
   });
 
   it('request action should be invoked', () => {

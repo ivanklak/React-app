@@ -6,30 +6,39 @@ import {IAuthenticationsData, ILoginFormData} from '../types';
 
 import {getAuthUserData, login, logout} from './index';
 
+const meResponse: IMeResponse = {
+  data: {id: 9208, email: 'ivanklak17@gmail.com', login: 'ivanklak'},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
+const loginResponse: ILoginResponse = {
+  data: {userId: 9208},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
+const authData: IAuthenticationsData = {
+  userId: 9208,
+  email: 'ivanklak17@gmail.com',
+  login: 'ivanklak',
+  isAuth: true,
+};
+const loginData: ILoginFormData = {
+  email: 'ivanklak17@gmail.com',
+  password: 'test-password',
+  rememberMe: true,
+};
+const logoutData: IAuthenticationsData = {
+  userId: null,
+  email: null,
+  login: null,
+  isAuth: false,
+};
+const failureResponse = {message: 'some error'};
+
 describe('auth thunks', () => {
   let mockedGetAuthUserData: jest.SpyInstance;
   let mockedLogin: jest.SpyInstance;
   let mockedLogout: jest.SpyInstance;
-  let meResponse: IMeResponse;
-  let loginResponse: ILoginResponse;
-  const authData: IAuthenticationsData = {
-    userId: 9208,
-    email: 'ivanklak17@gmail.com',
-    login: 'ivanklak',
-    isAuth: true,
-  };
-  const loginData: ILoginFormData = {
-    email: 'ivanklak17@gmail.com',
-    password: 'test-password',
-    rememberMe: true,
-  };
-  const logoutData: IAuthenticationsData = {
-    userId: null,
-    email: null,
-    login: null,
-    isAuth: false,
-  };
-  const failureResponse = {message: 'some error'};
   const dispatchMock = jest.fn();
   const getStateMock = jest.fn();
   const extraArgumentMock = jest.fn();
@@ -41,16 +50,6 @@ describe('auth thunks', () => {
     dispatchMock.mockClear();
     getStateMock.mockClear();
     extraArgumentMock.mockClear();
-    meResponse = {
-      data: {id: 9208, email: 'ivanklak17@gmail.com', login: 'ivanklak'},
-      messages: [],
-      resultCode: ResultCodes.Success,
-    };
-    loginResponse = {
-      data: {userId: 9208},
-      messages: [],
-      resultCode: ResultCodes.Success,
-    };
   });
 
   it(' success getAuthUserData thunk', async () => {

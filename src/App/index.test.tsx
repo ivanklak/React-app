@@ -12,7 +12,11 @@ import {ResultCodes} from './services/api';
 
 import App from './index';
 
-let authResponse: IMeResponse;
+const authResponse: IMeResponse = {
+  data: {id: 999, email: 'test@gmail.com', login: 'testLogin'},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
 
 const createTestables = (props: Partial<any>) => {
   const renderResult = render(
@@ -28,16 +32,9 @@ const createTestables = (props: Partial<any>) => {
 
 describe('App Component', () => {
   let mockedAuth: jest.SpyInstance;
-  const dispatch = store.dispatch;
 
   beforeEach(() => {
     mockedAuth = jest.spyOn(authAPI, 'me');
-    store.dispatch = jest.fn(dispatch);
-    authResponse = {
-      data: {id: 999, email: 'test@gmail.com', login: 'testLogin'},
-      messages: [],
-      resultCode: ResultCodes.Success,
-    };
   });
 
   it('should be rendered', async () => {

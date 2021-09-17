@@ -4,9 +4,22 @@ import {IProfile} from '../types';
 
 import {profileAPI} from './index';
 
-let defaultResponse: IDefaultResponse;
-let profileResponse: IProfile;
-let statusResponse: string;
+const defaultResponse: IDefaultResponse = {
+  data: {},
+  messages: [],
+  resultCode: ResultCodes.Success,
+};
+const profileResponse: IProfile = {
+  userId: 9208,
+  lookingForAJob: false,
+  lookingForAJobDescription: 'Nein',
+  fullName: 'ivanklak',
+  contacts: null,
+  photos: {small: null, large: null},
+};
+const statusResponse = '#bitcoin';
+const newStatus = '#dogecoin';
+const userId = 9208;
 
 describe('profileAPI', () => {
   let mockedGetProfile: jest.SpyInstance;
@@ -17,25 +30,9 @@ describe('profileAPI', () => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
     mockedGetStatus = jest.spyOn(profileAPI, 'getStatus');
     mockedUpdateStatus = jest.spyOn(profileAPI, 'updateStatus');
-    defaultResponse = {
-      data: {},
-      messages: [],
-      resultCode: ResultCodes.Success,
-    };
-    statusResponse = '#bitcoin';
-    profileResponse = {
-      userId: 9208,
-      lookingForAJob: false,
-      lookingForAJobDescription: 'Nein',
-      fullName: 'ivanklak',
-      contacts: null,
-      photos: {small: null, large: null},
-    };
   });
 
   it('return profile from backend', async () => {
-    const userId = 9208;
-
     mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
 
     const data = await profileAPI.getProfile(userId);
@@ -44,8 +41,6 @@ describe('profileAPI', () => {
   });
 
   it('return status from backend', async () => {
-    const userId = 9208;
-
     mockedGetStatus.mockReturnValue(Promise.resolve(statusResponse));
 
     const data = await profileAPI.getStatus(userId);
@@ -54,8 +49,6 @@ describe('profileAPI', () => {
   });
 
   it('update status', async () => {
-    const newStatus = '#dogecoin';
-
     mockedUpdateStatus.mockReturnValue(Promise.resolve(defaultResponse));
 
     const data = await profileAPI.updateStatus(newStatus);
