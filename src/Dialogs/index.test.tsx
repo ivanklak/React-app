@@ -8,6 +8,10 @@ import store from '../App/redux-store';
 
 import Dialogs from './index';
 
+const inputValue = 'test value';
+const itemsAmount = store.getState().dialogsPage.dialogs.length;
+const messagesAmount = store.getState().dialogsPage.messages.length;
+
 const createTestables = (props: Partial<any>) => {
   const renderResult = render(
     <BrowserRouter>
@@ -17,13 +21,11 @@ const createTestables = (props: Partial<any>) => {
     </BrowserRouter>,
   );
 
-  return {...renderResult, store};
+  return renderResult;
 };
 
 describe('Dialogs Component', () => {
   it('dialogs items should be displayed', () => {
-    const itemsAmount = store.getState().dialogsPage.dialogs.length;
-
     const {getAllByTestId} = createTestables({});
 
     const dialogItems = getAllByTestId(/DialogItem.User/i);
@@ -32,8 +34,6 @@ describe('Dialogs Component', () => {
   });
 
   it('messages should be displayed', () => {
-    const messagesAmount = store.getState().dialogsPage.messages.length;
-
     const {getAllByTestId} = createTestables({});
 
     const messages = getAllByTestId(/NewMessage.Text/i);
@@ -42,8 +42,6 @@ describe('Dialogs Component', () => {
   });
 
   it('input should change the value', () => {
-    const inputValue = 'test value';
-
     const {getByTestId} = createTestables({});
 
     const input = getByTestId('NewMessage.Input');
@@ -55,10 +53,8 @@ describe('Dialogs Component', () => {
     expect(input).toHaveValue(inputValue);
   });
 
-  it('amount of messages should be incremented', () => {
-    const inputValue = 'test value';
-
-    const {getByTestId, getAllByTestId} = createTestables({});
+  it('amount of messages should be incremented', async () => {
+    const {getByTestId, findByTestId} = createTestables({});
 
     const input = getByTestId('NewMessage.Input');
 
@@ -69,10 +65,8 @@ describe('Dialogs Component', () => {
 
     fireEvent.click(submitButton);
 
-    setTimeout(() => {
-      const messages = getAllByTestId(/NewMessage.Text/i);
+    const newMessage = await findByTestId('NewMessage.Text.6');
 
-      expect(messages.length).toBe(6);
-    }, 0);
+    expect(newMessage).toBeInTheDocument();
   });
 });

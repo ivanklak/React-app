@@ -13,9 +13,22 @@ import {IProfile} from './types';
 
 import Profile from './index';
 
-let profileResponse: IProfile;
-let statusResponse: string;
-let authData: IAuthenticationsData;
+const profileResponse: IProfile = {
+  userId: 9208,
+  lookingForAJob: false,
+  lookingForAJobDescription: 'React',
+  fullName: 'ivanklak',
+  contacts: null,
+  photos: {small: null, large: null},
+};
+const statusResponse = '#bitcoin';
+const authData: IAuthenticationsData = {
+  userId: 9208,
+  email: 'ivanklak17@gmail.com',
+  login: 'ivanklak',
+  isAuth: true,
+};
+const textareaValue = 'This is my third post';
 
 const createTestables = (props: Partial<any>) => {
   const renderResult = render(
@@ -26,45 +39,25 @@ const createTestables = (props: Partial<any>) => {
     </BrowserRouter>,
   );
 
-  return {...renderResult, store};
+  return renderResult;
 };
 
 describe('Profile Component', () => {
   let mockedGetProfile: jest.SpyInstance;
   let mockedGetStatus: jest.SpyInstance;
-  const dispatch = store.dispatch;
 
   beforeEach(() => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
     mockedGetStatus = jest.spyOn(profileAPI, 'getStatus');
-    store.dispatch = jest.fn(dispatch);
-    profileResponse = {
-      userId: 9208,
-      lookingForAJob: false,
-      lookingForAJobDescription: 'React',
-      fullName: 'ivanklak',
-      contacts: null,
-      photos: {small: null, large: null},
-    };
-    statusResponse = '#bitcoin';
-    authData = {
-      userId: 9208,
-      email: 'ivanklak17@gmail.com',
-      login: 'ivanklak',
-      isAuth: true,
-    };
     store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
+    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
   });
 
-  const authAction = AuthenticationActions.getAuthUserDataSuccess(authData);
-
   it('should be rendered', async () => {
-    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
     mockedGetStatus.mockReturnValue(Promise.resolve(statusResponse));
 
-    const {store} = createTestables({});
+    createTestables({});
 
-    expect(store.dispatch).toBeCalledWith({...authAction, payload: authData});
     expect(mockedGetProfile).toBeCalledTimes(1);
     expect(mockedGetStatus).toBeCalledTimes(1);
     await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
@@ -72,12 +65,10 @@ describe('Profile Component', () => {
   });
 
   it('clicking on the status opens the edit mode', async () => {
-    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
     mockedGetStatus.mockReturnValue(Promise.resolve(statusResponse));
 
     const {getByTestId} = createTestables({});
 
-    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
     await expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
 
     const defaultStatus = getByTestId('DefaultStatus.Text');
@@ -93,12 +84,8 @@ describe('Profile Component', () => {
     expect(editStatus).toHaveValue(statusResponse);
   });
 
-  it('my posts should be displayed', async () => {
-    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
-
+  it('my posts should be displayed', () => {
     const {getByTestId} = createTestables({});
-
-    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
 
     const myPosts = getByTestId('MyPosts.Title');
 
@@ -111,12 +98,7 @@ describe('Profile Component', () => {
   });
 
   it('at first textarea shouldn`t have a value, and have after change event', async () => {
-    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
-    const textareaValue = 'This is my third post';
-
     const {getByTestId} = createTestables({});
-
-    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
 
     const textarea = getByTestId('NewPost.Input');
 
@@ -128,12 +110,7 @@ describe('Profile Component', () => {
   });
 
   it('amount of posts should be incremented', async () => {
-    mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
-    const textareaValue = 'This is my third post';
-
-    const {getByTestId, getAllByTestId} = createTestables({});
-
-    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
+    const {getByTestId, findByTestId} = createTestables({});
 
     const textarea = getByTestId('NewPost.Input');
 
@@ -144,10 +121,8 @@ describe('Profile Component', () => {
 
     fireEvent.click(submitButton);
 
-    setTimeout(() => {
-      const listItems = getAllByTestId(/NewPost.Message/i);
+    const newPost = await findByTestId('NewPost.Message.5');
 
-      expect(listItems).toHaveLength(3);
-    }, 0);
+    expect(newPost).toBeInTheDocument();
   });
 });
