@@ -37,6 +37,9 @@ describe('profile thunks', () => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
     mockedGetStatus = jest.spyOn(profileAPI, 'getStatus');
     mockedUpdateStatus = jest.spyOn(profileAPI, 'updateStatus');
+  });
+
+  afterEach(() => {
     dispatchMock.mockClear();
     getStateMock.mockClear();
     extraArgumentMock.mockClear();

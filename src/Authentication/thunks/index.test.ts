@@ -47,6 +47,9 @@ describe('auth thunks', () => {
     mockedGetAuthUserData = jest.spyOn(authAPI, 'me');
     mockedLogin = jest.spyOn(authAPI, 'login');
     mockedLogout = jest.spyOn(authAPI, 'logout');
+  });
+
+  afterEach(() => {
     dispatchMock.mockClear();
     getStateMock.mockClear();
     extraArgumentMock.mockClear();

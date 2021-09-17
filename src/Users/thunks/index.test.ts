@@ -37,6 +37,9 @@ describe('users thunks tests', () => {
     mockedGetUsers = jest.spyOn(usersAPI, 'getUsers');
     mockedToFollow = jest.spyOn(usersAPI, 'toFollow');
     mockedToUnfollow = jest.spyOn(usersAPI, 'toUnfollow');
+  });
+
+  afterEach(() => {
     dispatchMock.mockClear();
     getStateMock.mockClear();
     extraArgumentMock.mockClear();
