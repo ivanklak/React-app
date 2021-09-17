@@ -2,23 +2,19 @@ import React from 'react';
 //@ts-ignore
 import {render, fireEvent, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
-import {Provider} from 'react-redux';
 
 import '../../../../matchMedia';
-import store from '../../../../App/redux-store';
 
 import LoginForm from './index';
 
 const createTestables = (props: any) => {
   const renderResult = render(
     <BrowserRouter>
-      <Provider store={store}>
-        <LoginForm {...props} />
-      </Provider>
+      <LoginForm {...props} />
     </BrowserRouter>,
   );
 
-  return {...renderResult, store};
+  return renderResult;
 };
 
 describe('LoginForm Component', () => {

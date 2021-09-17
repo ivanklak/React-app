@@ -2,19 +2,15 @@ import React from 'react';
 //@ts-ignore
 import {fireEvent, render, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
-import {Provider} from 'react-redux';
 
 import '../../../matchMedia';
-import store from '../../../App/redux-store';
 
 import MessageForm from './index';
 
 const createTestables = (props: any) => {
   const renderResult = render(
     <BrowserRouter>
-      <Provider store={store}>
-        <MessageForm {...props} />
-      </Provider>
+      <MessageForm {...props} />
     </BrowserRouter>,
   );
 

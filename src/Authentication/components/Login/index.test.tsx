@@ -17,7 +17,7 @@ const createTestables = (props: Partial<any>) => {
     </BrowserRouter>,
   );
 
-  return {...renderResult, store};
+  return renderResult;
 };
 
 describe('Login Component', () => {

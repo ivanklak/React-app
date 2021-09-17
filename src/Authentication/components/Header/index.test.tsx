@@ -2,10 +2,10 @@ import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
-import '../../../matchMedia';
 //@ts-ignore
 import {fireEvent, render, wait} from '@testing-library/react';
 
+import '../../../matchMedia';
 import store from '../../../App/redux-store';
 
 import {AuthenticationActions} from '../../actions';
@@ -41,11 +41,9 @@ const createTestables = (props: Partial<any>) => {
 
 describe('Header Component', () => {
   let mockedLogout: jest.SpyInstance;
-  const dispatch = store.dispatch;
 
   beforeEach(() => {
     mockedLogout = jest.spyOn(authAPI, 'logout');
-    store.dispatch = jest.fn(dispatch);
   });
 
   it('should be rendered', () => {
