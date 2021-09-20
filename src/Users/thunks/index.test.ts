@@ -48,7 +48,7 @@ describe('users thunks tests', () => {
   it('success requestUsers thunk', async () => {
     mockedGetUsers.mockReturnValue(Promise.resolve(usersResponse));
 
-    const thunk = requestUsers(1, 100);
+    const thunk = requestUsers({currentPage: 1, pageSize: 100});
 
     await thunk(dispatchMock, getStateMock, extraArgumentMock);
     expect(dispatchMock).toBeCalledTimes(5);
@@ -62,7 +62,7 @@ describe('users thunks tests', () => {
   it('failure requestUsers thunk', async () => {
     mockedGetUsers.mockReturnValue(Promise.reject(failureResponse));
 
-    const thunk = requestUsers(1, 100);
+    const thunk = requestUsers({currentPage: 1, pageSize: 100});
 
     await thunk(dispatchMock, getStateMock, extraArgumentMock);
     expect(dispatchMock).toBeCalledTimes(3);

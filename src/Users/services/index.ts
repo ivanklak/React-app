@@ -15,7 +15,7 @@ export interface IDefaultResponse {
 }
 
 export const usersAPI = {
-  getUsers(currentPage = 1, pageSize = 100) {
+  getUsers({currentPage = 1, pageSize = 100}) {
     return instance.get<IGetItems>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data);
   },
 

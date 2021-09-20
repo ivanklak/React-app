@@ -15,12 +15,12 @@ const Users: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestUsers(currentPage, pageSize));
+    dispatch(requestUsers({currentPage, pageSize}));
   }, []);
 
   const onPageChanged = useCallback(
-    (pageNumber: number) => {
-      dispatch(requestUsers(pageNumber, pageSize));
+    (currentPage: number) => {
+      dispatch(requestUsers({currentPage, pageSize}));
     },
     [currentPage],
   );

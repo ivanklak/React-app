@@ -4,13 +4,18 @@ import {usersAPI} from '../services';
 import {UsersAction, UsersActions} from '../actions';
 import {ResultCodes} from '../../App/services/api';
 
+interface IRequestUsersData {
+  currentPage: number;
+  pageSize: number;
+}
+
 export const requestUsers =
-  (currentPage: number, pageSize: number): IThunkResult<Promise<void>, UsersAction> =>
+  (requestUsersData: IRequestUsersData): IThunkResult<Promise<void>, UsersAction> =>
   async dispatch => {
     dispatch(UsersActions.setToggleIsFetching(true));
     try {
-      dispatch(UsersActions.setCurrentPage(currentPage));
-      const data = await usersAPI.getUsers(currentPage, pageSize);
+      dispatch(UsersActions.setCurrentPage(requestUsersData.currentPage));
+      const data = await usersAPI.getUsers(requestUsersData);
 
       dispatch(UsersActions.setToggleIsFetching(false));
       dispatch(UsersActions.getUsersSuccess(data.items));
