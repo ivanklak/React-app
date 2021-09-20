@@ -41,8 +41,10 @@ const state: IUsersState = {
   error: null,
 };
 
+const errorMessage = 'some error';
+
 describe('usersReducer test', () => {
-  it('users should be changed', () => {
+  it('get users success', () => {
     const newUsers = [
       {
         id: 3,
@@ -66,6 +68,12 @@ describe('usersReducer test', () => {
     expect(newState.users[1].id).toBe(4);
   });
 
+  it('get users failure', () => {
+    const newState = usersReducer(state, UsersActions.getUsersFailure(errorMessage));
+
+    expect(newState.error).toBe(errorMessage);
+  });
+
   it('follow success', () => {
     const newState = usersReducer(state, UsersActions.followSuccess(1));
 
@@ -73,11 +81,23 @@ describe('usersReducer test', () => {
     expect(newState.users[2].followed).toBeFalsy();
   });
 
+  it('follow failure', () => {
+    const newState = usersReducer(state, UsersActions.followFailure(errorMessage));
+
+    expect(newState.error).toBe(errorMessage);
+  });
+
   it('unfollow success', () => {
     const newState = usersReducer(state, UsersActions.unfollowSuccess(0));
 
     expect(newState.users[0].followed).toBeFalsy();
     expect(newState.users[3].followed).toBeTruthy();
+  });
+
+  it('unfollow failure', () => {
+    const newState = usersReducer(state, UsersActions.unfollowFailure(errorMessage));
+
+    expect(newState.error).toBe(errorMessage);
   });
 
   it('current page should be changed', () => {
