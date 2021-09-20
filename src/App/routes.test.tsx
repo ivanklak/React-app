@@ -18,6 +18,13 @@ const authData: IAuthenticationsData = {
   isAuth: true,
 };
 
+const logoutData: IAuthenticationsData = {
+  userId: null,
+  email: null,
+  login: null,
+  isAuth: false,
+};
+
 const createTestables = (props: any) => {
   const renderResult = render(
     <MemoryRouter initialEntries={[props.path]} initialIndex={0}>
@@ -27,11 +34,17 @@ const createTestables = (props: any) => {
     </MemoryRouter>,
   );
 
-  return {...renderResult, store};
+  return renderResult;
 };
 
 describe('router tests', () => {
+  beforeEach(() => {
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
+  });
+
   it('route path login', () => {
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(logoutData));
+
     const {getByTestId} = createTestables({path: '/login'});
 
     const loginInput = getByTestId('Email.Input');
@@ -40,8 +53,6 @@ describe('router tests', () => {
   });
 
   it('route path profile', () => {
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
-
     const {getByTestId} = createTestables({path: '/profile'});
 
     const profileTitle = getByTestId('MyPosts.Title');
@@ -50,8 +61,6 @@ describe('router tests', () => {
   });
 
   it('route path dialogs', () => {
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
-
     const {getByTestId} = createTestables({path: '/dialogs'});
 
     const dialogItems = getByTestId('DialogItem.User.1');
@@ -62,8 +71,6 @@ describe('router tests', () => {
   });
 
   it('route path users', () => {
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
-
     const {getByTestId} = createTestables({path: '/users'});
 
     const pagination = getByTestId('Pagination.Block');
