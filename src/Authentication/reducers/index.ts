@@ -20,20 +20,20 @@ const initialState: IAuthenticationState = {
 
 export const authReducer = (state = initialState, action: AuthenticationAction): IAuthenticationState => {
   switch (action.type) {
-    case AuthenticationActionTypes.SET_USER_DATA_REQUEST:
+    case AuthenticationActionTypes.GET_USER_DATA_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
 
-    case AuthenticationActionTypes.SET_USER_DATA_SUCCESS:
+    case AuthenticationActionTypes.GET_USER_DATA_SUCCESS:
       return {
         ...state,
         ...action.payload,
         isLoading: false,
       };
 
-    case AuthenticationActionTypes.SET_USER_DATA_FAILURE:
+    case AuthenticationActionTypes.GET_USER_DATA_FAILURE:
       return {
         ...state,
         error: action.payload,

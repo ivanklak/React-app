@@ -82,7 +82,7 @@ describe('auth thunks', () => {
   it('success login thunk', async () => {
     mockedLogin.mockReturnValue(Promise.resolve(loginResponse));
 
-    const thunk = login(loginData.email, loginData.password, loginData.rememberMe);
+    const thunk = login(loginData);
 
     await thunk(dispatchMock, getStateMock, extraArgumentMock);
 
@@ -92,7 +92,7 @@ describe('auth thunks', () => {
   it('failure login thunk', async () => {
     mockedLogin.mockReturnValue(Promise.reject(failureResponse));
 
-    const thunk = login(loginData.email, loginData.password, loginData.rememberMe);
+    const thunk = login(loginData);
 
     await thunk(dispatchMock, getStateMock, extraArgumentMock);
 

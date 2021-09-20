@@ -2,6 +2,7 @@ import {IThunkResult} from '../../App/types';
 import {authAPI} from '../services';
 import {AuthenticationAction, AuthenticationActions} from '../actions';
 import {ResultCodes} from '../../App/services/api';
+import {ILoginFormData} from '../types';
 
 export const getAuthUserData = (): IThunkResult<Promise<void>, AuthenticationAction> => async dispatch => {
   dispatch(AuthenticationActions.getAuthUserDataRequest());
@@ -21,10 +22,10 @@ export const getAuthUserData = (): IThunkResult<Promise<void>, AuthenticationAct
 };
 
 export const login =
-  (email: string, password: string, rememberMe: boolean): IThunkResult<Promise<void>, AuthenticationAction> =>
+  (loginData: ILoginFormData): IThunkResult<Promise<void>, AuthenticationAction> =>
   async dispatch => {
     try {
-      const response = await authAPI.login(email, password, rememberMe);
+      const response = await authAPI.login(loginData);
 
       if (response.resultCode === ResultCodes.Success) {
         await dispatch(getAuthUserData());

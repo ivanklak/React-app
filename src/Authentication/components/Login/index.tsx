@@ -16,7 +16,7 @@ const Login: FC = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (formData: ILoginFormData) => {
-    dispatch(login(formData.email, formData.password, formData.rememberMe));
+    dispatch(login(formData));
   };
 
   if (isAuth) {

@@ -1,4 +1,5 @@
 import {instance, ResultCodes} from '../../App/services/api';
+import {ILoginFormData} from '../types';
 
 interface IMeResponseData {
   id: number;
@@ -32,7 +33,7 @@ export const authAPI = {
     return instance.get<IMeResponse>(`auth/me`).then(res => res.data);
   },
 
-  login(email: string, password: string, rememberMe = false) {
+  login({email, password, rememberMe}: ILoginFormData) {
     return instance.post<ILoginResponse>(`auth/login`, {email, password, rememberMe}).then(res => res.data);
   },
 
