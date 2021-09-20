@@ -15,6 +15,7 @@ const profileResponse: IProfile = {
 };
 
 const failureResponse = 'Some error';
+const newMessage = 'bitcoin';
 
 describe('profileReducer', () => {
   let state: IProfileState;
@@ -42,24 +43,22 @@ describe('profileReducer', () => {
   });
 
   it('get status success', () => {
-    const newStatus = '#bitcoin';
-    const newState = profileReducer(state, ProfileActions.getStatusSuccess(newStatus));
+    const newState = profileReducer(state, ProfileActions.getStatusSuccess(newMessage));
 
-    expect(newState.status).toBe(newStatus);
+    expect(newState.status).toBe(newMessage);
   });
 
   it('get status failure', () => {
-    const error = 'some error';
-    const newState = profileReducer(state, ProfileActions.getStatusFailure(error));
+    const newState = profileReducer(state, ProfileActions.getStatusFailure(failureResponse));
 
-    expect(newState.error).toBe(error);
+    expect(newState.error).toBe(failureResponse);
   });
 
   it('add post', () => {
-    const newPostMessage = 'Hi, dudes';
-    const newState = profileReducer(state, ProfileActions.addPost(newPostMessage));
+    const newState = profileReducer(state, ProfileActions.addPost(newMessage));
 
-    expect(newState.posts[2].message).toBe(newPostMessage);
+    expect(newState.posts[2].message).toBe(newMessage);
+    expect(newState.posts[2].id).toBe(3);
   });
 
   it('delete post', () => {

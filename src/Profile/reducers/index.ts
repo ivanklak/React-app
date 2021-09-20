@@ -27,7 +27,7 @@ export const profileReducer = (state = initialState, action: ProfileAction): IPr
   switch (action.type) {
     case ProfileActionTypes.ADD_POST: {
       const newPost = {
-        id: 5,
+        id: state.posts.length + 1,
         message: action.payload,
         likesCount: 0,
       };
@@ -38,20 +38,20 @@ export const profileReducer = (state = initialState, action: ProfileAction): IPr
         newPostText: '',
       };
     }
-    case ProfileActionTypes.SET_STATUS_REQUEST: {
+    case ProfileActionTypes.GET_STATUS_REQUEST: {
       return {
         ...state,
         isLoading: true,
       };
     }
-    case ProfileActionTypes.SET_STATUS_SUCCESS: {
+    case ProfileActionTypes.GET_STATUS_SUCCESS: {
       return {
         ...state,
         status: action.payload,
         isLoading: false,
       };
     }
-    case ProfileActionTypes.SET_STATUS_FAILURE: {
+    case ProfileActionTypes.GET_STATUS_FAILURE: {
       return {
         ...state,
         isLoading: false,
@@ -61,9 +61,7 @@ export const profileReducer = (state = initialState, action: ProfileAction): IPr
     case ProfileActionTypes.GET_USER_PROFILE_REQUEST: {
       return {
         ...state,
-        profile: null,
         isLoading: true,
-        error: null,
       };
     }
     case ProfileActionTypes.GET_USER_PROFILE_SUCCESS: {
