@@ -95,7 +95,7 @@ describe('Users Component', () => {
     createTestables({});
 
     expect(mockedGetUsers).toBeCalledTimes(1);
-    await expect(mockedGetUsers).toBeCalledWith(1, 100);
+    await expect(mockedGetUsers).toBeCalledWith({currentPage: 1, pageSize: 100});
   });
 
   it('page should be changed', async () => {
@@ -109,13 +109,13 @@ describe('Users Component', () => {
 
     expect(secondPage).toBeInTheDocument();
     fireEvent.click(secondPage);
-    await expect(mockedGetUsers).toHaveBeenNthCalledWith(2, 2, 100);
+    await expect(mockedGetUsers).toHaveBeenNthCalledWith(2, {currentPage: 2, pageSize: 100});
 
     const previousPageButton = getByTitle('Previous Page');
 
     expect(previousPageButton).toBeInTheDocument();
     fireEvent.click(previousPageButton);
-    await expect(mockedGetUsers).toHaveBeenNthCalledWith(3, 1, 100);
+    await expect(mockedGetUsers).toHaveBeenNthCalledWith(3, {currentPage: 1, pageSize: 100});
   });
 
   it('user should be unfollowed', async () => {

@@ -24,6 +24,8 @@ const defaultResponse = {
   resultCode: ResultCodes.Success,
 };
 
+const failureResponse = {message: 'some error'};
+
 describe('users thunks tests', () => {
   let mockedGetUsers: jest.SpyInstance;
   let mockedToFollow: jest.SpyInstance;
@@ -31,7 +33,6 @@ describe('users thunks tests', () => {
   const dispatchMock = jest.fn();
   const getStateMock = jest.fn();
   const extraArgumentMock = jest.fn();
-  const failureResponse = {message: 'some error'};
 
   beforeEach(() => {
     mockedGetUsers = jest.spyOn(usersAPI, 'getUsers');
