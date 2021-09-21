@@ -121,7 +121,7 @@ describe('Profile Component', () => {
 
     fireEvent.click(submitButton);
 
-    const newPost = await findByTestId('NewPost.Message.5');
+    const newPost = await findByTestId('NewPost.Message.3');
 
     expect(newPost).toBeInTheDocument();
   });
