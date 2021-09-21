@@ -1,13 +1,14 @@
 import React from 'react';
-import {fireEvent, render} from '@testing-library/react';
+// @ts-ignore TypeScript definitions missing wait
+import {fireEvent, render, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 
-import Navbar from './index';
+import Navbar from '../Navbar';
 
-const createTestables = (props: Partial<any>) => {
+const createTestables = () => {
   const renderResult = render(
     <BrowserRouter>
-      <Navbar {...props} />
+      <Navbar />
     </BrowserRouter>,
   );
 
@@ -16,21 +17,23 @@ const createTestables = (props: Partial<any>) => {
 
 describe('Navbar Component', () => {
   it('should display menu items', async () => {
-    const {findByText} = createTestables({});
+    const {getByText, getByTestId} = createTestables();
 
-    expect(await findByText('Profile')).toHaveAttribute('href', '/profile');
-    expect(await findByText('Dialogs')).toHaveAttribute('href', '/dialogs');
-    expect(await findByText('Users')).toHaveAttribute('href', '/users');
-    expect(await findByText('Friends')).toHaveAttribute('href', '/friends');
-    expect(await findByText('News')).toHaveAttribute('href', '/news');
-    expect(await findByText('Music')).toHaveAttribute('href', '/music');
-    expect(await findByText('Settings')).toHaveAttribute('href', '/settings');
+    await wait(() => getByTestId('Menu.Block'));
+
+    expect(getByText('Profile')).toHaveAttribute('href', '/profile');
+    expect(getByText('Dialogs')).toHaveAttribute('href', '/dialogs');
+    expect(getByText('Users')).toHaveAttribute('href', '/users');
+    expect(getByText('Friends')).toHaveAttribute('href', '/friends');
+    expect(getByText('News')).toHaveAttribute('href', '/news');
+    expect(getByText('Music')).toHaveAttribute('href', '/music');
+    expect(getByText('Settings')).toHaveAttribute('href', '/settings');
   });
 
   it('active link', async () => {
     const selectedItemClass = 'ant-menu-item-selected';
 
-    const {findByTestId} = createTestables({});
+    const {findByTestId} = createTestables();
 
     const profileLink = await findByTestId('MenuItem./profile');
     const usersLink = await findByTestId('MenuItem./users');

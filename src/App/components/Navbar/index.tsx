@@ -21,7 +21,7 @@ const Navbar: FC = () => {
 
   return (
     <Sider className={styles.siderContainer}>
-      <Menu mode="inline" defaultSelectedKeys={[location.pathname]} className={styles.menuContainer}>
+      <Menu mode="inline" defaultSelectedKeys={[location.pathname]} data-testid="Menu.Block" className={styles.menuContainer}>
         {menuItems.map(item => (
           <Menu.Item data-testid={`MenuItem.${item.key}`} key={item.key}>
             <Link to={item.path}>{item.label}</Link>
