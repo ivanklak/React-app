@@ -1,8 +1,7 @@
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-
-//@ts-ignore
+// @ts-ignore TypeScript definitions missing wait
 import {fireEvent, render, wait} from '@testing-library/react';
 
 import '../../../matchMedia';
@@ -12,42 +11,30 @@ import {AuthenticationActions} from '../../actions';
 import {IAuthenticationsData} from '../../types';
 import {authAPI} from '../../services';
 
-import HeaderApp from './index';
+import HeaderApp from '../Header';
+import {mockAuthData} from '../../helpers/test';
 
-const authData: IAuthenticationsData = {
-  userId: 9208,
-  email: 'ivanklak17@gmail.com',
-  login: 'ivanklak',
-  isAuth: true,
-};
+const authData = mockAuthData();
 const logoutData: IAuthenticationsData = {
   userId: null,
   email: null,
   login: null,
   isAuth: false,
 };
+const mockedLogout: jest.SpyInstance = jest.spyOn(authAPI, 'logout');
 
-const createTestables = (props: Partial<any>) => {
-  const renderResult = render(
+const createTestables = () =>
+  render(
     <BrowserRouter>
       <Provider store={store}>
-        <HeaderApp {...props} />
+        <HeaderApp />
       </Provider>
     </BrowserRouter>,
   );
 
-  return {...renderResult, store};
-};
-
 describe('Header Component', () => {
-  let mockedLogout: jest.SpyInstance;
-
-  beforeEach(() => {
-    mockedLogout = jest.spyOn(authAPI, 'logout');
-  });
-
   it('should be rendered', () => {
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const header = getByTestId('Header.Title');
 
@@ -55,7 +42,7 @@ describe('Header Component', () => {
   });
 
   it('Login button should be displayed when not logged', () => {
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const loginButton = getByTestId('LoginUser.Submit');
 
@@ -65,7 +52,7 @@ describe('Header Component', () => {
   it('users avatar and Logout button should be displayed when logged', () => {
     store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const userAvatar = getByTestId('LoginUser.Img');
     const logoutButton = getByTestId('LogoutUser.Submit');
@@ -77,7 +64,7 @@ describe('Header Component', () => {
   it('click on logout button', async () => {
     store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const logoutButton = getByTestId('LogoutUser.Submit');
 

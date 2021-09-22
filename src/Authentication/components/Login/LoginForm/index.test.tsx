@@ -1,25 +1,24 @@
 import React from 'react';
-//@ts-ignore
+// @ts-ignore TypeScript definitions missing wait
 import {render, fireEvent, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 
 import '../../../../matchMedia';
 
-import LoginForm from './index';
+import LoginForm, {ILoginProps} from '../LoginForm';
 
-const createTestables = (props: any) => {
-  const renderResult = render(
+const onSubmit = jest.fn();
+const defaultProps: ILoginProps = {onSubmit};
+
+const createTestables = (props: Partial<ILoginProps>) =>
+  render(
     <BrowserRouter>
-      <LoginForm {...props} />
+      <LoginForm {...defaultProps} {...props} />
     </BrowserRouter>,
   );
 
-  return renderResult;
-};
-
 describe('LoginForm Component', () => {
   it('form should be submitted', async () => {
-    const onSubmit = jest.fn();
     const emailValue = 'test@gmail.com';
     const passwordValue = 'testPassword';
 

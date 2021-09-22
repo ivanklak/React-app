@@ -1,28 +1,25 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import {fireEvent, render} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../../../matchMedia';
 import store from '../../../App/redux-store';
 
-import Login from './index';
+import Login from '../Login';
 
-const createTestables = (props: Partial<any>) => {
-  const renderResult = render(
+const createTestables = () =>
+  render(
     <BrowserRouter>
       <Provider store={store}>
-        <Login {...props} />
+        <Login />
       </Provider>
     </BrowserRouter>,
   );
 
-  return renderResult;
-};
-
 describe('Login Component', () => {
   it('should be rendered', () => {
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const emailInput = getByTestId('Email.Input');
     const passwordInput = getByTestId('Password.Input');
@@ -34,7 +31,7 @@ describe('Login Component', () => {
   });
 
   it('inputs shouldn`t have values', () => {
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const emailInput = getByTestId('Email.Input');
     const passwordInput = getByTestId('Password.Input');
@@ -44,7 +41,7 @@ describe('Login Component', () => {
   });
 
   it('inputs should change values', () => {
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
     const emailValue = 'test@gmail.com';
     const passwordValue = 'testPassword';
 
@@ -59,7 +56,7 @@ describe('Login Component', () => {
   });
 
   it('checkbox shouldn`t be checked', () => {
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const checkbox = getByTestId('Checkbox.Tick');
 
@@ -67,7 +64,7 @@ describe('Login Component', () => {
   });
 
   it('checkbox should be checked after click', () => {
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const checkbox = getByTestId('Checkbox.Tick');
 

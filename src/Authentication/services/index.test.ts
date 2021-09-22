@@ -1,25 +1,12 @@
 import {ResultCodes} from '../../App/services/api';
-import {ILoginFormData} from '../types';
+import {authAPI, IDefaultResponse} from '../services';
+import {mockLoginData, mockLoginResponse, mockMeResponse} from '../helpers/test';
 
-import {authAPI, IDefaultResponse, ILoginResponse, IMeResponse} from './index';
-
-const loginData: ILoginFormData = {
-  email: 'ivanklak17@gmail.com',
-  password: 'test-password',
-  rememberMe: true,
-};
+const meResponse = mockMeResponse();
+const loginResponse = mockLoginResponse();
+const loginData = mockLoginData();
 const defaultResponse: IDefaultResponse = {
   data: {},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-const meResponse: IMeResponse = {
-  data: {id: 9208, email: 'ivanklak17@gmail.com', login: 'ivanklak'},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-const loginResponse: ILoginResponse = {
-  data: {userId: 9208},
   messages: [],
   resultCode: ResultCodes.Success,
 };
@@ -29,7 +16,7 @@ describe('authAPI', () => {
   let mockedLogin: jest.SpyInstance;
   let mockedLogout: jest.SpyInstance;
 
-  beforeEach(() => {
+  beforeAll(() => {
     mockedGetAuthUserData = jest.spyOn(authAPI, 'me');
     mockedLogin = jest.spyOn(authAPI, 'login');
     mockedLogout = jest.spyOn(authAPI, 'logout');
@@ -46,7 +33,7 @@ describe('authAPI', () => {
   it('return login', async () => {
     mockedLogin.mockReturnValue(Promise.resolve(loginResponse));
 
-    const data = await authAPI.login(loginData.email, loginData.password, loginData.rememberMe);
+    const data = await authAPI.login(loginData);
 
     expect(data).toEqual(loginResponse);
   });

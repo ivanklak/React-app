@@ -1,16 +1,11 @@
 import store from '../../App/redux-store';
 
 import {AuthenticationActions} from '../actions';
-import {IAuthenticationsData} from '../types';
 
-import authReducer from './index';
+import authReducer from '../reducers';
+import {mockAuthData} from '../helpers/test';
 
-const authData: IAuthenticationsData = {
-  userId: 9208,
-  email: 'ivanklak17@gmail.com',
-  login: 'ivanklak',
-  isAuth: true,
-};
+const authData = mockAuthData();
 const errorMessage = 'some error';
 const state = store.getState().auth;
 

@@ -1,32 +1,14 @@
-import {authAPI, ILoginResponse, IMeResponse} from '../services';
-import {ResultCodes} from '../../App/services/api';
+import {authAPI} from '../services';
 
 import {AuthenticationActions} from '../actions';
-import {IAuthenticationsData, ILoginFormData} from '../types';
+import {IAuthenticationsData} from '../types';
+import {getAuthUserData, login, logout} from '../thunks';
+import {mockAuthData, mockLoginData, mockLoginResponse, mockMeResponse} from '../helpers/test';
 
-import {getAuthUserData, login, logout} from './index';
-
-const meResponse: IMeResponse = {
-  data: {id: 9208, email: 'ivanklak17@gmail.com', login: 'ivanklak'},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-const loginResponse: ILoginResponse = {
-  data: {userId: 9208},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-const authData: IAuthenticationsData = {
-  userId: 9208,
-  email: 'ivanklak17@gmail.com',
-  login: 'ivanklak',
-  isAuth: true,
-};
-const loginData: ILoginFormData = {
-  email: 'ivanklak17@gmail.com',
-  password: 'test-password',
-  rememberMe: true,
-};
+const meResponse = mockMeResponse();
+const loginResponse = mockLoginResponse();
+const authData = mockAuthData();
+const loginData = mockLoginData();
 const logoutData: IAuthenticationsData = {
   userId: null,
   email: null,
@@ -55,7 +37,7 @@ describe('auth thunks', () => {
     extraArgumentMock.mockClear();
   });
 
-  it(' success getAuthUserData thunk', async () => {
+  it('success getAuthUserData thunk', async () => {
     mockedGetAuthUserData.mockReturnValue(Promise.resolve(meResponse));
 
     const thunk = getAuthUserData();
