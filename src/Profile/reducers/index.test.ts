@@ -1,19 +1,11 @@
 import {ProfileActions} from '../actions';
-import {IProfile} from '../types';
 
 import store from '../../App/redux-store';
 
-import profileReducer, {IProfileState} from './index';
+import profileReducer, {IProfileState} from '../reducers';
+import {mockProfileResponse} from '../helpers/tests';
 
-const profileResponse: IProfile = {
-  userId: 9208,
-  lookingForAJob: false,
-  lookingForAJobDescription: 'React',
-  fullName: 'ivanklak',
-  contacts: null,
-  photos: {small: null, large: null},
-};
-
+const profileResponse = mockProfileResponse();
 const failureResponse = 'Some error';
 const newMessage = 'bitcoin';
 

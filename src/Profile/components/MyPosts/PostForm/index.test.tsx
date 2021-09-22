@@ -1,25 +1,24 @@
 import React from 'react';
-// @ts-ignore
+// @ts-ignore TypeScript definitions missing wait
 import {render, fireEvent, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 
 import '../../../../matchMedia';
 
-import PostForm from './index';
+import PostForm, {IPostProps} from '../PostForm';
 
-const createTestables = (props: any) => {
-  const renderResult = render(
+const onAddPost = jest.fn();
+const defaultProps: IPostProps = {onAddPost};
+
+const createTestables = (props: Partial<IPostProps>) =>
+  render(
     <BrowserRouter>
-      <PostForm {...props} />
+      <PostForm {...defaultProps} {...props} />
     </BrowserRouter>,
   );
 
-  return renderResult;
-};
-
 describe('PostForm Component', () => {
   it('show the sent post', async () => {
-    const onAddPost = jest.fn();
     const textareaValue = 'This is my third post';
 
     const {getByTestId} = createTestables({onAddPost});

@@ -1,32 +1,18 @@
-import {IDefaultResponse} from '../../Users/services';
-import {ResultCodes} from '../../App/services/api';
-import {IProfile} from '../types';
+import {profileAPI} from '../services';
+import {mockDefaultResponse, mockProfileResponse} from '../helpers/tests';
 
-import {profileAPI} from './index';
-
-const defaultResponse: IDefaultResponse = {
-  data: {},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-const profileResponse: IProfile = {
-  userId: 9208,
-  lookingForAJob: false,
-  lookingForAJobDescription: 'Nein',
-  fullName: 'ivanklak',
-  contacts: null,
-  photos: {small: null, large: null},
-};
+const defaultResponse = mockDefaultResponse();
+const profileResponse = mockProfileResponse();
 const statusResponse = '#bitcoin';
 const newStatus = '#dogecoin';
-const userId = 9208;
+const userId = 999;
 
 describe('profileAPI', () => {
   let mockedGetProfile: jest.SpyInstance;
   let mockedGetStatus: jest.SpyInstance;
   let mockedUpdateStatus: jest.SpyInstance;
 
-  beforeEach(() => {
+  beforeAll(() => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
     mockedGetStatus = jest.spyOn(profileAPI, 'getStatus');
     mockedUpdateStatus = jest.spyOn(profileAPI, 'updateStatus');

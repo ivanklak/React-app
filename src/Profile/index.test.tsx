@@ -8,39 +8,29 @@ import store from '../App/redux-store';
 import {AuthenticationActions} from '../Authentication/actions';
 import {IAuthenticationsData} from '../Authentication/types';
 
+import Profile from '../Profile';
+
 import {profileAPI} from './services';
-import {IProfile} from './types';
+import {mockProfileResponse} from './helpers/tests';
 
-import Profile from './index';
-
-const profileResponse: IProfile = {
-  userId: 9208,
-  lookingForAJob: false,
-  lookingForAJobDescription: 'React',
-  fullName: 'ivanklak',
-  contacts: null,
-  photos: {small: null, large: null},
-};
+const profileResponse = mockProfileResponse();
 const statusResponse = '#bitcoin';
 const authData: IAuthenticationsData = {
-  userId: 9208,
-  email: 'ivanklak17@gmail.com',
-  login: 'ivanklak',
+  userId: 999,
+  email: 'test@gmail.com',
+  login: 'testLogin',
   isAuth: true,
 };
 const textareaValue = 'This is my third post';
 
-const createTestables = (props: Partial<any>) => {
-  const renderResult = render(
+const createTestables = () =>
+  render(
     <BrowserRouter>
       <Provider store={store}>
-        <Profile {...props} />
+        <Profile />
       </Provider>
     </BrowserRouter>,
   );
-
-  return renderResult;
-};
 
 describe('Profile Component', () => {
   let mockedGetProfile: jest.SpyInstance;
@@ -56,7 +46,7 @@ describe('Profile Component', () => {
   it('should be rendered', async () => {
     mockedGetStatus.mockReturnValue(Promise.resolve(statusResponse));
 
-    createTestables({});
+    createTestables();
 
     expect(mockedGetProfile).toBeCalledTimes(1);
     expect(mockedGetStatus).toBeCalledTimes(1);
@@ -67,7 +57,7 @@ describe('Profile Component', () => {
   it('clicking on the status opens the edit mode', async () => {
     mockedGetStatus.mockReturnValue(Promise.resolve(statusResponse));
 
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     await expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
 
@@ -85,7 +75,7 @@ describe('Profile Component', () => {
   });
 
   it('my posts should be displayed', () => {
-    const {getByTestId} = createTestables({});
+    const {getByTestId} = createTestables();
 
     const myPosts = getByTestId('MyPosts.Title');
 
@@ -97,8 +87,8 @@ describe('Profile Component', () => {
     expect(postItem).toHaveTextContent(store.getState().profilePage.posts[0].message);
   });
 
-  it('at first textarea shouldn`t have a value, and have after change event', async () => {
-    const {getByTestId} = createTestables({});
+  it('at first textarea shouldn`t have a value, and have after change event', () => {
+    const {getByTestId} = createTestables();
 
     const textarea = getByTestId('NewPost.Input');
 
@@ -110,7 +100,7 @@ describe('Profile Component', () => {
   });
 
   it('amount of posts should be incremented', async () => {
-    const {getByTestId, findByTestId} = createTestables({});
+    const {getByTestId, findByTestId} = createTestables();
 
     const textarea = getByTestId('NewPost.Input');
 

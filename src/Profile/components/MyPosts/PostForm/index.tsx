@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 
 const {TextArea} = Input;
 
-interface IPostProps {
+export interface IPostProps {
   onAddPost: (values: IPostValues) => void;
 }
 
