@@ -2,7 +2,7 @@ import store from '../../App/redux-store';
 
 import {DialogsActions} from '../actions';
 
-import dialogsReducer from './index';
+import dialogsReducer from '../reducers';
 
 describe('dialogsReducer', () => {
   const state = store.getState().dialogsPage;

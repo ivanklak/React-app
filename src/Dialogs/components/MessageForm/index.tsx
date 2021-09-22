@@ -5,7 +5,7 @@ import {IMessageValues} from '../../types';
 
 import styles from './styles.module.css';
 
-interface IPostProps {
+export interface IPostProps {
   addNewMessage: (values: IMessageValues) => void;
 }
 

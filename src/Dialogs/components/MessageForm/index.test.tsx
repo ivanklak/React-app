@@ -1,25 +1,24 @@
 import React from 'react';
-//@ts-ignore
+// @ts-ignore TypeScript definitions missing wait
 import {fireEvent, render, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 
 import '../../../matchMedia';
 
-import MessageForm from './index';
+import MessageForm, {IPostProps} from '../MessageForm';
 
-const createTestables = (props: any) => {
-  const renderResult = render(
+const addNewMessage = jest.fn();
+const defaultProps: IPostProps = {addNewMessage};
+
+const createTestables = (props: Partial<IPostProps>) =>
+  render(
     <BrowserRouter>
-      <MessageForm {...props} />
+      <MessageForm {...defaultProps} {...props} />
     </BrowserRouter>,
   );
 
-  return renderResult;
-};
-
 describe('MessageForm Component', () => {
   it('show the sent message', async () => {
-    const addNewMessage = jest.fn();
     const inputValue = 'test message';
 
     const {getByTestId} = createTestables({addNewMessage});

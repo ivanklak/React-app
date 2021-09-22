@@ -1,6 +1,6 @@
 import {DialogsActions} from '../actions';
 
-import {sendMessages} from './index';
+import {sendMessages} from '../thunks';
 
 describe('dialogs thunk', () => {
   const dispatchMock = jest.fn();
