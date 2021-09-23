@@ -1,38 +1,18 @@
-import {authAPI, IMeResponse} from '../../Authentication/services';
-import {ResultCodes} from '../services/api';
+import {authAPI} from '../../Authentication/services';
 import {AuthenticationActions} from '../../Authentication/actions';
-import {IAuthenticationsData} from '../../Authentication/types';
 import {getAuthUserData} from '../../Authentication/thunks';
 
-import {initializeApp} from './index';
+import {initializeApp} from '../thunks';
+import {mockAuthData, mockMeResponse} from '../helpers/test';
 
-const meResponse: IMeResponse = {
-  data: {id: 999, email: 'test@gmail.com', login: 'testLogin'},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-const authData: IAuthenticationsData = {
-  userId: 999,
-  email: 'test@gmail.com',
-  login: 'testLogin',
-  isAuth: true,
-};
+const meResponse = mockMeResponse();
+const authData = mockAuthData();
 
 describe('app thunk', () => {
-  let mockedGetAuthUserData: jest.SpyInstance;
+  const mockedGetAuthUserData: jest.SpyInstance = jest.spyOn(authAPI, 'me');
   const dispatchMock = jest.fn();
   const getStateMock = jest.fn();
   const extraArgumentMock = jest.fn();
-
-  beforeEach(() => {
-    mockedGetAuthUserData = jest.spyOn(authAPI, 'me');
-  });
-
-  afterEach(() => {
-    dispatchMock.mockClear();
-    getStateMock.mockClear();
-    extraArgumentMock.mockClear();
-  });
 
   it('initializeApp thunk', async () => {
     const thunk = initializeApp();

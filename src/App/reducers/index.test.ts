@@ -1,7 +1,7 @@
 import store from '../redux-store';
 import {AppActions} from '../actions';
 
-import appReducer from './index';
+import appReducer from '../reducers';
 
 const state = store.getState().app;
 

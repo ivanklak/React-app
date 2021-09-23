@@ -6,36 +6,31 @@ import {Provider} from 'react-redux';
 import '../matchMedia';
 
 import {AuthenticationActions} from '../Authentication/actions';
-import {IAuthenticationsData} from '../Authentication/types';
 
 import store from './redux-store';
 import Routes from './routes';
+import {mockAuthData} from './helpers/test';
 
-const authData: IAuthenticationsData = {
-  userId: 9208,
-  email: 'ivanklak17@gmail.com',
-  login: 'ivanklak',
-  isAuth: true,
-};
+interface IRouterProps {
+  path: string;
+}
 
-const logoutData: IAuthenticationsData = {
+const authData = mockAuthData();
+const logoutData = mockAuthData({
   userId: null,
   email: null,
   login: null,
   isAuth: false,
-};
+});
 
-const createTestables = (props: any) => {
-  const renderResult = render(
-    <MemoryRouter initialEntries={[props.path]} initialIndex={0}>
+const createTestables = (props: IRouterProps) =>
+  render(
+    <MemoryRouter initialEntries={[props.path]}>
       <Provider store={store}>
         <Routes />
       </Provider>
     </MemoryRouter>,
   );
-
-  return renderResult;
-};
 
 describe('router tests', () => {
   beforeEach(() => {

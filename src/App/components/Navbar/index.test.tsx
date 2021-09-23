@@ -5,15 +5,12 @@ import {BrowserRouter} from 'react-router-dom';
 
 import Navbar from '../Navbar';
 
-const createTestables = () => {
-  const renderResult = render(
+const createTestables = () =>
+  render(
     <BrowserRouter>
       <Navbar />
     </BrowserRouter>,
   );
-
-  return renderResult;
-};
 
 describe('Navbar Component', () => {
   it('should display menu items', async () => {

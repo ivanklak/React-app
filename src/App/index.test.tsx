@@ -1,46 +1,35 @@
 import React from 'react';
-//@ts-ignore
+// @ts-ignore TypeScript definitions missing wait
 import {render, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../matchMedia';
-import {authAPI, IMeResponse} from '../Authentication/services';
+import {authAPI} from '../Authentication/services';
+
+import App from '../App';
 
 import store from './redux-store';
-import {ResultCodes} from './services/api';
+import {mockMeResponse} from './helpers/test';
 
-import App from './index';
+const meResponse = mockMeResponse();
 
-const authResponse: IMeResponse = {
-  data: {id: 999, email: 'test@gmail.com', login: 'testLogin'},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-
-const createTestables = (props: Partial<any>) => {
-  const renderResult = render(
+const createTestables = () =>
+  render(
     <BrowserRouter>
       <Provider store={store}>
-        <App {...props} />
+        <App />
       </Provider>
     </BrowserRouter>,
   );
 
-  return renderResult;
-};
-
 describe('App Component', () => {
-  let mockedAuth: jest.SpyInstance;
-
-  beforeEach(() => {
-    mockedAuth = jest.spyOn(authAPI, 'me');
-  });
+  const mockedAuth: jest.SpyInstance = jest.spyOn(authAPI, 'me');
 
   it('should be rendered', async () => {
-    mockedAuth.mockReturnValue(Promise.resolve(authResponse));
+    mockedAuth.mockReturnValue(Promise.resolve(meResponse));
 
-    const {getByTestId, getByRole} = createTestables({});
+    const {getByTestId, getByRole} = createTestables();
 
     await wait(() => expect(mockedAuth).toHaveBeenCalledTimes(1));
 
