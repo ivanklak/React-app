@@ -1,47 +1,9 @@
-import {ResultCodes} from '../../App/services/api';
+import {mockDefaultResponse, mockUsersResponse} from '../helpers/test';
 
-import {IDefaultResponse, IGetItems, usersAPI} from './index';
+import {usersAPI} from './index';
 
-const defaultResponse: IDefaultResponse = {
-  data: {},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-
-const usersResponse: IGetItems = {
-  items: [
-    {
-      id: 0,
-      name: 'Post Malone',
-      status: 'status 0',
-      followed: true,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 1,
-      name: 'Dipper Pines',
-      status: 'status 1',
-      followed: false,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 2,
-      name: 'Mable Pines',
-      status: 'status 2',
-      followed: false,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 3,
-      name: 'Miss Tokyo',
-      status: 'status 3',
-      followed: true,
-      photos: {small: null, large: null},
-    },
-  ],
-  totalCount: 4,
-  error: null,
-};
+const defaultResponse = mockDefaultResponse();
+const usersResponse = mockUsersResponse();
 
 describe('usersAPI test', () => {
   let mockedGetUsers: jest.SpyInstance;
@@ -56,7 +18,7 @@ describe('usersAPI test', () => {
 
   test('return users from backend', async () => {
     mockedGetUsers.mockReturnValue(Promise.resolve(usersResponse));
-    const data = await usersAPI.getUsers(1, 10);
+    const data = await usersAPI.getUsers({currentPage: 1, pageSize: 100});
 
     expect(data).toEqual(usersResponse);
   });

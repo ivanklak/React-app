@@ -1,23 +1,20 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+import {fireEvent, render} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../matchMedia';
 import store from '../App/redux-store';
-import {ResultCodes} from '../App/services/api';
 import {IProfile} from '../Profile/types';
 import {ProfileActions} from '../Profile/actions';
 
-import {IDefaultResponse, IGetItems, usersAPI} from './services';
+import Users from '../Users';
 
-import Users from './index';
+import {usersAPI} from './services';
+import {mockDefaultResponse, mockUsersResponse} from './helpers/test';
 
-const defaultResponse: IDefaultResponse = {
-  data: {},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
+const defaultResponse = mockDefaultResponse();
+const usersResponse = mockUsersResponse();
 const profileResponse: IProfile = {
   userId: 3,
   lookingForAJob: false,
@@ -26,46 +23,12 @@ const profileResponse: IProfile = {
   contacts: null,
   photos: {small: null, large: null},
 };
-const usersResponse: IGetItems = {
-  items: [
-    {
-      id: 0,
-      name: 'Post Malone',
-      status: 'status 0',
-      followed: true,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 1,
-      name: 'Dipper Pines',
-      status: 'status 1',
-      followed: false,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 2,
-      name: 'Mable Pines',
-      status: 'status 2',
-      followed: false,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 3,
-      name: 'Miss Tokyo',
-      status: 'status 3',
-      followed: true,
-      photos: {small: null, large: null},
-    },
-  ],
-  totalCount: 154,
-  error: null,
-};
 
-const createTestables = (props: Partial<any>) => {
+const createTestables = () => {
   const renderResult = render(
     <BrowserRouter>
       <Provider store={store}>
-        <Users {...props} />
+        <Users />
       </Provider>
     </BrowserRouter>,
   );
@@ -92,14 +55,14 @@ describe('Users Component', () => {
   });
 
   it('should be rendered', async () => {
-    createTestables({});
+    createTestables();
 
     expect(mockedGetUsers).toBeCalledTimes(1);
     await expect(mockedGetUsers).toBeCalledWith({currentPage: 1, pageSize: 100});
   });
 
   it('page should be changed', async () => {
-    const {findByTestId, getByTitle} = createTestables({});
+    const {findByTestId, getByTitle} = createTestables();
 
     const pagination = await findByTestId('Pagination.Block');
 
@@ -121,7 +84,7 @@ describe('Users Component', () => {
   it('user should be unfollowed', async () => {
     mockedToUnfollow.mockReturnValue(Promise.resolve(defaultResponse));
 
-    const {getByTestId, findByTestId} = createTestables({});
+    const {getByTestId, findByTestId} = createTestables();
 
     const userItem = await findByTestId('UserItem.0');
 
@@ -139,7 +102,7 @@ describe('Users Component', () => {
   it('user should be followed', async () => {
     mockedToFollow.mockReturnValue(Promise.resolve(defaultResponse));
 
-    const {getByTestId, findByTestId} = createTestables({});
+    const {getByTestId, findByTestId} = createTestables();
 
     const userItem = await findByTestId('UserItem.1');
 
@@ -155,7 +118,7 @@ describe('Users Component', () => {
   });
 
   it('by clicking on the avatar go to the profile', async () => {
-    const {findByTestId, store} = createTestables({});
+    const {findByTestId, store} = createTestables();
 
     const userAvatar = await findByTestId('UserItem.Avatar.3');
 

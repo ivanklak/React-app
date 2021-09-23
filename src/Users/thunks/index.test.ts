@@ -1,29 +1,11 @@
-import {IGetItems, usersAPI} from '../services';
+import {usersAPI} from '../services';
 import {UsersActions} from '../actions';
-import {ResultCodes} from '../../App/services/api';
+import {mockDefaultResponse, mockUsersResponse} from '../helpers/test';
 
 import {follow, requestUsers, unfollow} from './index';
 
-const usersResponse: IGetItems = {
-  items: [
-    {
-      id: 0,
-      name: 'Post Malone',
-      status: 'status 0',
-      followed: true,
-      photos: {small: null, large: null},
-    },
-  ],
-  totalCount: 1,
-  error: null,
-};
-
-const defaultResponse = {
-  data: {},
-  messages: [],
-  resultCode: ResultCodes.Success,
-};
-
+const usersResponse = mockUsersResponse();
+const defaultResponse = mockDefaultResponse();
 const failureResponse = {message: 'some error'};
 
 describe('users thunks tests', () => {
