@@ -8,19 +8,18 @@ import '../../../matchMedia';
 import store from '../../../App/redux-store';
 
 import {AuthenticationActions} from '../../actions';
-import {IAuthenticationsData} from '../../types';
 import {authAPI} from '../../services';
 
 import HeaderApp from '../Header';
 import {mockAuthData} from '../../helpers/test';
 
 const authData = mockAuthData();
-const logoutData: IAuthenticationsData = {
+const logoutData = mockAuthData({
   userId: null,
   email: null,
   login: null,
   isAuth: false,
-};
+});
 const mockedLogout: jest.SpyInstance = jest.spyOn(authAPI, 'logout');
 
 const createTestables = () =>

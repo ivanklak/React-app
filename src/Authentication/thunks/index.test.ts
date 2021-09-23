@@ -1,7 +1,6 @@
 import {authAPI} from '../services';
 
 import {AuthenticationActions} from '../actions';
-import {IAuthenticationsData} from '../types';
 import {getAuthUserData, login, logout} from '../thunks';
 import {mockAuthData, mockLoginData, mockLoginResponse, mockMeResponse} from '../helpers/test';
 
@@ -9,12 +8,12 @@ const meResponse = mockMeResponse();
 const loginResponse = mockLoginResponse();
 const authData = mockAuthData();
 const loginData = mockLoginData();
-const logoutData: IAuthenticationsData = {
+const logoutData = mockAuthData({
   userId: null,
   email: null,
   login: null,
   isAuth: false,
-};
+});
 const failureResponse = {message: 'some error'};
 
 describe('auth thunks', () => {
