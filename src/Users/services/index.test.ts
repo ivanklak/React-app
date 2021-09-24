@@ -1,6 +1,6 @@
 import {mockDefaultResponse, mockUsersResponse} from '../helpers/test';
 
-import {usersAPI} from './index';
+import {usersAPI} from '../services';
 
 const defaultResponse = mockDefaultResponse();
 const usersResponse = mockUsersResponse();
@@ -10,7 +10,7 @@ describe('usersAPI test', () => {
   let mockedToFollow: jest.SpyInstance;
   let mockedToUnfollow: jest.SpyInstance;
 
-  beforeEach(() => {
+  beforeAll(() => {
     mockedGetUsers = jest.spyOn(usersAPI, 'getUsers');
     mockedToFollow = jest.spyOn(usersAPI, 'toFollow');
     mockedToUnfollow = jest.spyOn(usersAPI, 'toUnfollow');

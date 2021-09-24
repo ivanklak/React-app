@@ -2,7 +2,7 @@ import {usersAPI} from '../services';
 import {UsersActions} from '../actions';
 import {mockDefaultResponse, mockUsersResponse} from '../helpers/test';
 
-import {follow, requestUsers, unfollow} from './index';
+import {follow, requestUsers, unfollow} from '../thunks';
 
 const usersResponse = mockUsersResponse();
 const defaultResponse = mockDefaultResponse();

@@ -10,11 +10,7 @@ const failureResponse = 'Some error';
 const newMessage = 'bitcoin';
 
 describe('profileReducer', () => {
-  let state: IProfileState;
-
-  beforeEach(() => {
-    state = store.getState().profilePage;
-  });
+  const state: IProfileState = store.getState().profilePage;
 
   it('request action should be invoked', () => {
     const newState = profileReducer(state, ProfileActions.getUserProfileRequest());

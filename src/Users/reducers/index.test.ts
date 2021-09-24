@@ -1,6 +1,5 @@
 import {UsersActions} from '../actions';
-
-import usersReducer, {IUsersState} from './index';
+import usersReducer, {IUsersState} from '../reducers';
 
 const state: IUsersState = {
   users: [
