@@ -12,7 +12,7 @@ export const mockProfileResponse = (overrides: Partial<IProfile> = {}): IProfile
   ...overrides,
 });
 
-export const mockDefaultResponse = (overrides: Partial<IDefaultResponse> = {}) => ({
+export const mockDefaultResponse = (overrides: Partial<IDefaultResponse> = {}): IDefaultResponse => ({
   data: {},
   messages: [],
   resultCode: ResultCodes.Success,

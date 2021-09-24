@@ -1,14 +1,14 @@
 import {IDefaultResponse, IGetItems} from '../services';
 import {ResultCodes} from '../../App/services/api';
 
-export const mockDefaultResponse = (overrides: Partial<IDefaultResponse> = {}) => ({
+export const mockDefaultResponse = (overrides: Partial<IDefaultResponse> = {}): IDefaultResponse => ({
   data: {},
   messages: [],
   resultCode: ResultCodes.Success,
   ...overrides,
 });
 
-export const mockUsersResponse = (overrides: Partial<IGetItems> = {}) => ({
+export const mockUsersResponse = (overrides: Partial<IGetItems> = {}): IGetItems => ({
   items: [
     {
       id: 0,
