@@ -1,30 +1,22 @@
 import React from 'react';
 import {fireEvent, render} from '@testing-library/react';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, MemoryRouter, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import {applyMiddleware, createStore} from 'redux';
 
 import '../matchMedia';
-import store from '../App/redux-store';
-import {IProfile} from '../Profile/types';
-import {ProfileActions} from '../Profile/actions';
-
 import Users from '../Users';
+import {reducers} from '../App/redux-store';
 
 import {usersAPI} from './services';
 import {mockDefaultResponse, mockUsersResponse} from './helpers/test';
 
 const defaultResponse = mockDefaultResponse();
 const usersResponse = mockUsersResponse();
-const profileResponse: IProfile = {
-  userId: 3,
-  lookingForAJob: false,
-  lookingForAJobDescription: 'React',
-  fullName: 'Miss Tokyo',
-  contacts: null,
-  photos: {small: null, large: null},
-};
 
-const createTestables = () => {
+const middlewares = [thunk];
+const createTestables = ({initialState, store = createStore(reducers, initialState, applyMiddleware(...middlewares))}: any = {}) => {
   const renderResult = render(
     <BrowserRouter>
       <Provider store={store}>
@@ -40,13 +32,11 @@ describe('Users Component', () => {
   let mockedGetUsers: jest.SpyInstance;
   let mockedToFollow: jest.SpyInstance;
   let mockedToUnfollow: jest.SpyInstance;
-  const dispatch = store.dispatch;
 
   beforeEach(() => {
     mockedGetUsers = jest.spyOn(usersAPI, 'getUsers');
     mockedToFollow = jest.spyOn(usersAPI, 'toFollow');
     mockedToUnfollow = jest.spyOn(usersAPI, 'toUnfollow');
-    store.dispatch = jest.fn(dispatch);
     mockedGetUsers.mockReturnValue(Promise.resolve(usersResponse));
   });
 
@@ -68,17 +58,21 @@ describe('Users Component', () => {
 
     expect(pagination).toBeInTheDocument();
 
+    const firstPage = getByTitle('1');
     const secondPage = getByTitle('2');
 
-    expect(secondPage).toBeInTheDocument();
+    expect(firstPage).toHaveClass('ant-pagination-item-active');
+    expect(secondPage).not.toHaveClass('ant-pagination-item-active');
+
     fireEvent.click(secondPage);
     await expect(mockedGetUsers).toHaveBeenNthCalledWith(2, {currentPage: 2, pageSize: 100});
+    expect(firstPage).not.toHaveClass('ant-pagination-item-active');
+    expect(secondPage).toHaveClass('ant-pagination-item-active');
 
-    const previousPageButton = getByTitle('Previous Page');
-
-    expect(previousPageButton).toBeInTheDocument();
-    fireEvent.click(previousPageButton);
+    fireEvent.click(firstPage);
     await expect(mockedGetUsers).toHaveBeenNthCalledWith(3, {currentPage: 1, pageSize: 100});
+    expect(firstPage).toHaveClass('ant-pagination-item-active');
+    expect(secondPage).not.toHaveClass('ant-pagination-item-active');
   });
 
   it('user should be unfollowed', async () => {
@@ -118,15 +112,29 @@ describe('Users Component', () => {
   });
 
   it('by clicking on the avatar go to the profile', async () => {
-    const {findByTestId, store} = createTestables();
+    let testLocation;
+    const store = createStore(reducers, applyMiddleware(...middlewares));
+    const {findByTestId} = render(
+      <MemoryRouter initialEntries={['/users']}>
+        <Provider store={store}>
+          <Users />
+          <Route
+            path="*"
+            render={({location}) => {
+              testLocation = location;
+
+              return null;
+            }}
+          />
+        </Provider>
+      </MemoryRouter>,
+    );
 
     const userAvatar = await findByTestId('UserItem.Avatar.3');
 
     expect(userAvatar).toBeInTheDocument();
     fireEvent.click(userAvatar);
 
-    store.dispatch(ProfileActions.getUserProfileSuccess(profileResponse));
-
-    await expect(store.dispatch).toHaveBeenNthCalledWith(2, ProfileActions.getUserProfileSuccess(profileResponse));
+    expect(testLocation.pathname).toBe('/profile/3');
   });
 });
