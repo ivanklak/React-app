@@ -9,7 +9,7 @@ export interface IAuthenticationState {
   error: string | null;
 }
 
-const initialState: IAuthenticationState = {
+export const initialState: IAuthenticationState = {
   userId: null,
   email: '',
   login: '',

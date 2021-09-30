@@ -5,13 +5,12 @@ import {Provider} from 'react-redux';
 import {fireEvent, render, wait} from '@testing-library/react';
 
 import '../../../matchMedia';
-import store from '../../../App/redux-store';
 
 import {AuthenticationActions} from '../../actions';
 import {authAPI} from '../../services';
 
 import HeaderApp from '../Header';
-import {mockAuthData} from '../../helpers/test';
+import {mockAuthData, reduxStore} from '../../helpers/test';
 
 const authData = mockAuthData();
 const logoutData = mockAuthData({
@@ -21,6 +20,7 @@ const logoutData = mockAuthData({
   isAuth: false,
 });
 const mockedLogout: jest.SpyInstance = jest.spyOn(authAPI, 'logout');
+const store = reduxStore();
 
 const createTestables = () =>
   render(
