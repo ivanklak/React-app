@@ -1,9 +1,9 @@
 import {applyMiddleware, createStore} from 'redux';
 import thunk from 'redux-thunk';
 
-import {IDefaultResponse, IGetItems} from '../services';
 import {ResultCodes} from '../../App/services/api';
 import {reducers} from '../../App/redux-store';
+import {IDefaultResponse, IGetItems} from '../services';
 
 export const mockDefaultResponse = (overrides: Partial<IDefaultResponse> = {}): IDefaultResponse => ({
   data: {},

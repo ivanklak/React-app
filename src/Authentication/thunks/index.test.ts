@@ -1,5 +1,4 @@
 import {authAPI} from '../services';
-
 import {AuthenticationActions} from '../actions';
 import {getAuthUserData, login, logout} from '../thunks';
 import {mockAuthData, mockLoginData, mockLoginResponse, mockMeResponse} from '../helpers/test';

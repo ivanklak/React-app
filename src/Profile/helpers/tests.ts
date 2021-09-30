@@ -1,10 +1,11 @@
 import thunk from 'redux-thunk';
 import {applyMiddleware, createStore} from 'redux';
 
-import {IProfile} from '../types';
 import {ResultCodes} from '../../App/services/api';
-import {IDefaultResponse} from '../services';
 import {reducers} from '../../App/redux-store';
+
+import {IProfile} from '../types';
+import {IDefaultResponse} from '../services';
 
 export const mockProfileResponse = (overrides: Partial<IProfile> = {}): IProfile => ({
   userId: 999,

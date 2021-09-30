@@ -5,12 +5,10 @@ import {Provider} from 'react-redux';
 import {fireEvent, render, wait} from '@testing-library/react';
 
 import '../../../matchMedia';
-
 import {AuthenticationActions} from '../../actions';
 import {authAPI} from '../../services';
-
-import HeaderApp from '../Header';
 import {mockAuthData, reduxStore} from '../../helpers/test';
+import HeaderApp from '../Header';
 
 const authData = mockAuthData();
 const logoutData = mockAuthData({

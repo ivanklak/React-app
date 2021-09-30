@@ -1,5 +1,4 @@
 import {mockDefaultResponse, mockUsersResponse} from '../helpers/test';
-
 import {usersAPI} from '../services';
 
 const defaultResponse = mockDefaultResponse();

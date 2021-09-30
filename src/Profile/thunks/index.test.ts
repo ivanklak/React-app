@@ -1,6 +1,5 @@
 import {profileAPI} from '../services';
 import {ProfileActions} from '../actions';
-
 import {addNewPost, getStatus, getUserProfile, updateStatus} from '../thunks';
 import {mockDefaultResponse, mockProfileResponse} from '../helpers/tests';
 

@@ -4,9 +4,8 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../../../matchMedia';
-
-import Login from '../Login';
 import {reduxStore} from '../../helpers/test';
+import Login from '../Login';
 
 const store = reduxStore();
 const createTestables = () =>

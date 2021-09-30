@@ -7,8 +7,8 @@ import '../matchMedia';
 
 import {AuthenticationActions} from '../Authentication/actions';
 
-import Routes from './routes';
 import {mockAuthData, reduxStore} from './helpers/test';
+import Routes from './routes';
 
 interface IRouterProps {
   path: string;

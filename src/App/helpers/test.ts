@@ -2,8 +2,8 @@ import thunk from 'redux-thunk';
 import {applyMiddleware, createStore} from 'redux';
 
 import {IMeResponse} from '../../Authentication/services';
-import {ResultCodes} from '../services/api';
 import {IAuthenticationsData} from '../../Authentication/types';
+import {ResultCodes} from '../services/api';
 import {reducers} from '../redux-store';
 
 export const mockMeResponse = (overrides: Partial<IMeResponse> = {}): IMeResponse => ({

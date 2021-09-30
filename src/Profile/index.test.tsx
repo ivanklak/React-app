@@ -4,9 +4,8 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../matchMedia';
-import {IAuthenticationsData} from '../Authentication/types';
-
 import Profile from '../Profile';
+import {IAuthenticationsData} from '../Authentication/types';
 import {AuthenticationActions} from '../Authentication/actions';
 
 import {profileAPI} from './services';

@@ -1,10 +1,10 @@
 import thunk from 'redux-thunk';
 import {applyMiddleware, createStore} from 'redux';
 
-import {ILoginResponse, IMeResponse} from '../services';
 import {ResultCodes} from '../../App/services/api';
-import {IAuthenticationsData, ILoginFormData} from '../types';
 import {reducers} from '../../App/redux-store';
+import {ILoginResponse, IMeResponse} from '../services';
+import {IAuthenticationsData, ILoginFormData} from '../types';
 
 export const mockMeResponse = (overrides: Partial<IMeResponse> = {}): IMeResponse => ({
   data: {id: 999, email: 'test@gmail.com', login: 'testLogin'},
