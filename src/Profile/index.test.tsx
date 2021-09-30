@@ -4,14 +4,13 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../matchMedia';
-import store from '../App/redux-store';
-import {AuthenticationActions} from '../Authentication/actions';
 import {IAuthenticationsData} from '../Authentication/types';
 
 import Profile from '../Profile';
+import {AuthenticationActions} from '../Authentication/actions';
 
 import {profileAPI} from './services';
-import {mockProfileResponse} from './helpers/tests';
+import {mockProfileResponse, reduxStore} from './helpers/tests';
 
 const profileResponse = mockProfileResponse();
 const statusResponse = '#bitcoin';
@@ -22,6 +21,7 @@ const authData: IAuthenticationsData = {
   isAuth: true,
 };
 const textareaValue = 'This is my third post';
+const store = reduxStore();
 
 const createTestables = () =>
   render(
@@ -39,8 +39,8 @@ describe('Profile Component', () => {
   beforeEach(() => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
     mockedGetStatus = jest.spyOn(profileAPI, 'getStatus');
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
     mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
   });
 
   it('should be rendered', async () => {
@@ -84,7 +84,7 @@ describe('Profile Component', () => {
     const postItem = getByTestId('NewPost.Message.1');
 
     expect(postItem).toBeInTheDocument();
-    expect(postItem).toHaveTextContent(store.getState().profilePage.posts[0].message);
+    expect(postItem).toHaveTextContent(/hi, how are you/i);
   });
 
   it('at first textarea shouldn`t have a value, and have after change event', () => {

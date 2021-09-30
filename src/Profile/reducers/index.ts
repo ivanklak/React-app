@@ -11,7 +11,7 @@ export interface IProfileState {
   error: string | null;
 }
 
-const initialState: IProfileState = {
+export const initialState: IProfileState = {
   posts: [
     {id: 1, message: 'Hi, how are you?', likesCount: 12},
     {id: 2, message: 'Its my first post', likesCount: 11},
