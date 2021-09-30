@@ -1,5 +1,9 @@
+import {applyMiddleware, createStore} from 'redux';
+import thunk from 'redux-thunk';
+
 import {IDefaultResponse, IGetItems} from '../services';
 import {ResultCodes} from '../../App/services/api';
+import {reducers} from '../../App/redux-store';
 
 export const mockDefaultResponse = (overrides: Partial<IDefaultResponse> = {}): IDefaultResponse => ({
   data: {},
@@ -43,3 +47,9 @@ export const mockUsersResponse = (overrides: Partial<IGetItems> = {}): IGetItems
   error: null,
   ...overrides,
 });
+
+export const reduxStore = () => {
+  const middlewares = [thunk];
+
+  return createStore(reducers, applyMiddleware(...middlewares));
+};

@@ -2,21 +2,18 @@ import React from 'react';
 import {fireEvent, render} from '@testing-library/react';
 import {BrowserRouter, MemoryRouter, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import thunk from 'redux-thunk';
-import {applyMiddleware, createStore} from 'redux';
 
 import '../matchMedia';
 import Users from '../Users';
-import {reducers} from '../App/redux-store';
 
 import {usersAPI} from './services';
-import {mockDefaultResponse, mockUsersResponse} from './helpers/test';
+import {mockDefaultResponse, mockUsersResponse, reduxStore} from './helpers/test';
 
 const defaultResponse = mockDefaultResponse();
 const usersResponse = mockUsersResponse();
+const store = reduxStore();
 
-const middlewares = [thunk];
-const createTestables = ({initialState, store = createStore(reducers, initialState, applyMiddleware(...middlewares))}: any = {}) => {
+const createTestables = () => {
   const renderResult = render(
     <BrowserRouter>
       <Provider store={store}>
@@ -113,7 +110,6 @@ describe('Users Component', () => {
 
   it('by clicking on the avatar go to the profile', async () => {
     let testLocation;
-    const store = createStore(reducers, applyMiddleware(...middlewares));
     const {findByTestId} = render(
       <MemoryRouter initialEntries={['/users']}>
         <Provider store={store}>

@@ -12,7 +12,7 @@ export interface IUsersState {
   error: string | null;
 }
 
-const initialState: IUsersState = {
+export const initialState: IUsersState = {
   users: [],
   pageSize: 100,
   totalUsersCount: 0,

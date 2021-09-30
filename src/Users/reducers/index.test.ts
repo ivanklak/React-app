@@ -1,71 +1,30 @@
 import {UsersActions} from '../actions';
-import usersReducer, {IUsersState} from '../reducers';
+import usersReducer, {initialState} from '../reducers';
 
-const state: IUsersState = {
-  users: [
-    {
-      id: 0,
-      name: 'Post Malone',
-      status: 'status 0',
-      followed: true,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 1,
-      name: 'Dipper Pines',
-      status: 'status 1',
-      followed: false,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 2,
-      name: 'Mable Pines',
-      status: 'status 2',
-      followed: false,
-      photos: {small: null, large: null},
-    },
-    {
-      id: 3,
-      name: 'Miss Tokyo',
-      status: 'status 3',
-      followed: true,
-      photos: {small: null, large: null},
-    },
-  ],
-  pageSize: 100,
-  totalUsersCount: 0,
-  currentPage: 1,
-  isFetching: false,
-  followingInProgress: [],
-  error: null,
-};
-
+const state = initialState;
 const errorMessage = 'some error';
+const newUsers = [
+  {
+    id: 3,
+    name: 'Michael Scofield',
+    status: 'status 3',
+    followed: true,
+    photos: {small: null, large: null},
+  },
+  {
+    id: 4,
+    name: 'Alexander Mahone',
+    status: 'status 4',
+    followed: false,
+    photos: {small: null, large: null},
+  },
+];
 
 describe('usersReducer test', () => {
   it('get users success', () => {
-    const newUsers = [
-      {
-        id: 3,
-        name: 'Michael Scofield',
-        status: 'status 3',
-        followed: true,
-        photos: {small: null, large: null},
-      },
-      {
-        id: 4,
-        name: 'Alexander Mahone',
-        status: 'status 4',
-        followed: false,
-        photos: {small: null, large: null},
-      },
-    ];
-
     const newState = usersReducer(state, UsersActions.getUsersSuccess(newUsers));
 
-    expect(state.users[0].id).toBe(0);
-    expect(state.users[1].id).toBe(1);
-
+    expect(state.users).toEqual([]);
     expect(newState.users[0].id).toBe(3);
     expect(newState.users[1].id).toBe(4);
   });
@@ -78,13 +37,14 @@ describe('usersReducer test', () => {
   });
 
   it('follow success', () => {
-    const newState = usersReducer(state, UsersActions.followSuccess(1));
+    const changedState = {...state, users: newUsers};
+    const newState = usersReducer(changedState, UsersActions.followSuccess(4));
 
-    expect(state.users[1].followed).toBeFalsy();
-    expect(state.users[2].followed).toBeFalsy();
+    expect(changedState.users[0].followed).toBeTruthy();
+    expect(changedState.users[1].followed).toBeFalsy();
 
+    expect(newState.users[0].followed).toBeTruthy();
     expect(newState.users[1].followed).toBeTruthy();
-    expect(newState.users[2].followed).toBeFalsy();
   });
 
   it('follow failure', () => {
@@ -95,13 +55,14 @@ describe('usersReducer test', () => {
   });
 
   it('unfollow success', () => {
-    const newState = usersReducer(state, UsersActions.unfollowSuccess(0));
+    const changedState = {...state, users: newUsers};
+    const newState = usersReducer(changedState, UsersActions.unfollowSuccess(3));
 
-    expect(state.users[0].followed).toBeTruthy();
-    expect(state.users[3].followed).toBeTruthy();
+    expect(changedState.users[0].followed).toBeTruthy();
+    expect(changedState.users[1].followed).toBeFalsy();
 
     expect(newState.users[0].followed).toBeFalsy();
-    expect(newState.users[3].followed).toBeTruthy();
+    expect(newState.users[1].followed).toBeFalsy();
   });
 
   it('unfollow failure', () => {
