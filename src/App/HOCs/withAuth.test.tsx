@@ -4,15 +4,13 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../../matchMedia';
-import store from '../redux-store';
-
 import Login from '../../Authentication/components/Login';
-
 import {AuthenticationActions} from '../../Authentication/actions';
-import {mockAuthData} from '../helpers/test';
+import {mockAuthData, reduxStore} from '../helpers/test';
 
 import withAuthRedirect from './withAuthRedirect';
 
+const store = reduxStore();
 const authData = mockAuthData();
 const mockedComponent = () => <div>mockedComponent</div>;
 

@@ -7,9 +7,8 @@ import '../matchMedia';
 
 import {AuthenticationActions} from '../Authentication/actions';
 
-import store from './redux-store';
 import Routes from './routes';
-import {mockAuthData} from './helpers/test';
+import {mockAuthData, reduxStore} from './helpers/test';
 
 interface IRouterProps {
   path: string;
@@ -22,7 +21,7 @@ const logoutData = mockAuthData({
   login: null,
   isAuth: false,
 });
-
+const store = reduxStore();
 const createTestables = (props: IRouterProps) =>
   render(
     <MemoryRouter initialEntries={[props.path]}>

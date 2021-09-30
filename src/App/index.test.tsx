@@ -9,10 +9,10 @@ import {authAPI} from '../Authentication/services';
 
 import App from '../App';
 
-import store from './redux-store';
-import {mockMeResponse} from './helpers/test';
+import {mockMeResponse, reduxStore} from './helpers/test';
 
 const meResponse = mockMeResponse();
+const store = reduxStore();
 
 const createTestables = () =>
   render(

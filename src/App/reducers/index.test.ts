@@ -1,14 +1,13 @@
-import store from '../redux-store';
 import {AppActions} from '../actions';
+import appReducer, {initialState} from '../reducers';
 
-import appReducer from '../reducers';
-
-const state = store.getState().app;
+const state = initialState;
 
 describe('appReducer', () => {
   it('initialized success', () => {
     const newState = appReducer(state, AppActions.initializedSuccess());
 
+    expect(state.initialized).toBeFalsy();
     expect(newState.initialized).toBeTruthy();
   });
 });
