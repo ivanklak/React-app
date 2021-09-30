@@ -4,14 +4,13 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../matchMedia';
-import store from '../App/redux-store';
 
 import Dialogs from '../Dialogs';
 
-const inputValue = 'test value';
-const itemsAmount = store.getState().dialogsPage.dialogs.length;
-const messagesAmount = store.getState().dialogsPage.messages.length;
+import {reduxStore} from './helpers/test';
 
+const inputValue = 'test value';
+const store = reduxStore();
 const createTestables = () =>
   render(
     <BrowserRouter>
@@ -27,7 +26,7 @@ describe('Dialogs Component', () => {
 
     const dialogItems = getAllByTestId(/DialogItem.User/i);
 
-    expect(dialogItems.length).toBe(itemsAmount);
+    expect(dialogItems.length).toBe(6);
   });
 
   it('messages should be displayed', () => {
@@ -35,7 +34,7 @@ describe('Dialogs Component', () => {
 
     const messages = getAllByTestId(/NewMessage.Text/i);
 
-    expect(messages.length).toBe(messagesAmount);
+    expect(messages.length).toBe(5);
   });
 
   it('input should change the value', () => {

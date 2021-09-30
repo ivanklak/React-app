@@ -7,7 +7,7 @@ export interface IDialogsState {
   dialogs: Array<IDialogs>;
 }
 
-const initialState: IDialogsState = {
+export const initialState: IDialogsState = {
   messages: [
     {id: 1, message: 'Hi'},
     {id: 2, message: 'How are you?'},
