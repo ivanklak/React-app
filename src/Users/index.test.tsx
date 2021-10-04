@@ -9,6 +9,10 @@ import Users from '../Users';
 import {usersAPI} from './services';
 import {mockDefaultResponse, mockUsersResponse, createStore} from './helpers/test';
 
+interface ILocation {
+  pathname: string;
+}
+
 const defaultResponse = mockDefaultResponse();
 const usersResponse = mockUsersResponse();
 
@@ -28,6 +32,7 @@ describe('Users Component', () => {
   let mockedGetUsers: jest.SpyInstance;
   let mockedToFollow: jest.SpyInstance;
   let mockedToUnfollow: jest.SpyInstance;
+  let testLocation: ILocation;
 
   beforeEach(() => {
     mockedGetUsers = jest.spyOn(usersAPI, 'getUsers');
@@ -108,7 +113,6 @@ describe('Users Component', () => {
   });
 
   it('by clicking on the avatar go to the profile', async () => {
-    let testLocation: any;
     const store = createStore();
     const {findByTestId} = render(
       <MemoryRouter initialEntries={['/users']}>

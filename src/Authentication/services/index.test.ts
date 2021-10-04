@@ -22,6 +22,10 @@ describe('authAPI', () => {
     mockedLogout = jest.spyOn(authAPI, 'logout');
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('return auth users data from backend', async () => {
     mockedGetAuthUserData.mockReturnValue(Promise.resolve(meResponse));
 

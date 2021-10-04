@@ -18,7 +18,7 @@ export const initialState: IAuthenticationState = {
   error: null,
 };
 
-export const authReducer = (state = initialState, action: AuthenticationAction): IAuthenticationState => {
+const authReducer = (state = initialState, action: AuthenticationAction): IAuthenticationState => {
   switch (action.type) {
     case AuthenticationActionTypes.GET_USER_DATA_REQUEST:
       return {

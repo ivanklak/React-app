@@ -15,6 +15,10 @@ describe('usersAPI test', () => {
     mockedToUnfollow = jest.spyOn(usersAPI, 'toUnfollow');
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test('return users from backend', async () => {
     mockedGetUsers.mockReturnValue(Promise.resolve(usersResponse));
     const data = await usersAPI.getUsers({currentPage: 1, pageSize: 100});

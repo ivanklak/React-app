@@ -30,9 +30,7 @@ describe('auth thunks', () => {
   });
 
   afterEach(() => {
-    dispatchMock.mockClear();
-    getStateMock.mockClear();
-    extraArgumentMock.mockClear();
+    jest.clearAllMocks();
   });
 
   it('success getAuthUserData thunk', async () => {

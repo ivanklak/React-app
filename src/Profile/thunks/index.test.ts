@@ -26,9 +26,7 @@ describe('profile thunks', () => {
   });
 
   afterEach(() => {
-    dispatchMock.mockClear();
-    getStateMock.mockClear();
-    extraArgumentMock.mockClear();
+    jest.clearAllMocks();
   });
 
   it('success getUserProfile thunk', async () => {

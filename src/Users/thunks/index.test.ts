@@ -22,9 +22,7 @@ describe('users thunks tests', () => {
   });
 
   afterEach(() => {
-    dispatchMock.mockClear();
-    getStateMock.mockClear();
-    extraArgumentMock.mockClear();
+    jest.clearAllMocks();
   });
 
   it('success requestUsers thunk', async () => {

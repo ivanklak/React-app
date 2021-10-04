@@ -18,6 +18,10 @@ describe('profileAPI', () => {
     mockedUpdateStatus = jest.spyOn(profileAPI, 'updateStatus');
   });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('return profile from backend', async () => {
     mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
 

@@ -23,7 +23,7 @@ export const initialState: IProfileState = {
   error: null,
 };
 
-export const profileReducer = (state = initialState, action: ProfileAction): IProfileState => {
+const profileReducer = (state = initialState, action: ProfileAction): IProfileState => {
   switch (action.type) {
     case ProfileActionTypes.ADD_POST: {
       const newPost = {

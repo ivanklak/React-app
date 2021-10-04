@@ -2,8 +2,8 @@ import React, {ComponentType, FC} from 'react';
 import {useSelector} from 'react-redux';
 import {useLocation} from 'react-router-dom';
 
-import {getAuth} from '../selectors';
 import Login from '../../Authentication/components/Login';
+import {getAuth} from '../selectors';
 
 function withAuthRedirect<P>(WrappedComponent: ComponentType<P>) {
   const RedirectComponent: FC<P> = props => {
