@@ -8,9 +8,10 @@ import '../matchMedia';
 import Profile from '../Profile';
 import {IAuthenticationsData} from '../Authentication/types';
 import {AuthenticationActions} from '../Authentication/actions';
+import {createStore} from '../App/helpers/test';
 
 import {profileAPI} from './services';
-import {createStore, mockProfileResponse} from './helpers/tests';
+import {mockProfileResponse} from './helpers/tests';
 
 const profileResponse = mockProfileResponse();
 const statusResponse = '#bitcoin';

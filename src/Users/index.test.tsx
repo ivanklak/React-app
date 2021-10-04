@@ -5,9 +5,10 @@ import {Provider} from 'react-redux';
 
 import '../matchMedia';
 import Users from '../Users';
+import {createStore} from '../App/helpers/test';
 
 import {usersAPI} from './services';
-import {mockDefaultResponse, mockUsersResponse, createStore} from './helpers/test';
+import {mockDefaultResponse, mockUsersResponse} from './helpers/test';
 
 interface ILocation {
   pathname: string;
@@ -42,7 +43,7 @@ describe('Users Component', () => {
   });
 
   afterEach(() => {
-    mockedGetUsers.mockClear();
+    jest.clearAllMocks();
   });
 
   it('should be rendered', async () => {

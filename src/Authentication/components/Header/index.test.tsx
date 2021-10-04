@@ -5,9 +5,10 @@ import {Provider} from 'react-redux';
 import {fireEvent, render, wait} from '@testing-library/react';
 
 import '../../../matchMedia';
+import {createStore} from '../../../App/helpers/test';
 import {AuthenticationActions} from '../../actions';
 import {authAPI} from '../../services';
-import {mockAuthData, createStore} from '../../helpers/test';
+import {mockAuthData} from '../../helpers/test';
 
 import HeaderApp from '../Header';
 
@@ -18,7 +19,6 @@ const logoutData = mockAuthData({
   login: null,
   isAuth: false,
 });
-const mockedLogout: jest.SpyInstance = jest.spyOn(authAPI, 'logout');
 
 const createTestables = () => {
   const store = createStore();
@@ -35,6 +35,12 @@ const createTestables = () => {
 };
 
 describe('Header Component', () => {
+  const mockedLogout: jest.SpyInstance = jest.spyOn(authAPI, 'logout');
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be rendered', () => {
     const {getByTestId} = createTestables();
 

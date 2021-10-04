@@ -1,8 +1,4 @@
-import thunk from 'redux-thunk';
-import {applyMiddleware, createStore as createReduxStore} from 'redux';
-
 import {ResultCodes} from '../../App/services/api';
-import {reducers} from '../../App/redux-store';
 import {ILoginResponse, IMeResponse} from '../services';
 import {IAuthenticationsData, ILoginFormData} from '../types';
 
@@ -34,9 +30,3 @@ export const mockLoginData = (overrides: Partial<ILoginFormData> = {}): ILoginFo
   rememberMe: true,
   ...overrides,
 });
-
-export const createStore = () => {
-  const middlewares = [thunk];
-
-  return createReduxStore(reducers, applyMiddleware(...middlewares));
-};

@@ -4,9 +4,8 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../matchMedia';
+import {createStore} from '../App/helpers/test';
 import Dialogs from '../Dialogs';
-
-import {createStore} from './helpers/test';
 
 const inputValue = 'test value';
 
