@@ -23,7 +23,7 @@ describe('withAuthRedirect', () => {
   it('show login component when isAuth is false', () => {
     const store = createStore();
 
-    const {getByText} = render(
+    const {queryByText} = render(
       <BrowserRouter>
         <Provider store={store}>
           <WithAuthComponent />
@@ -33,7 +33,8 @@ describe('withAuthRedirect', () => {
     );
 
     expect(store.getState().auth.isAuth).toBeFalsy();
-    expect(getByText('Log in')).toBeInTheDocument();
+    expect(queryByText('Log in')).toBeInTheDocument();
+    expect(queryByText('mockedComponent')).not.toBeInTheDocument();
   });
 
   it('show wrapped component when isAuth is true', () => {
@@ -41,7 +42,7 @@ describe('withAuthRedirect', () => {
 
     store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
-    const {getByText} = render(
+    const {queryByText} = render(
       <BrowserRouter>
         <Provider store={store}>
           <WithAuthComponent />
@@ -50,6 +51,7 @@ describe('withAuthRedirect', () => {
     );
 
     expect(store.getState().auth.isAuth).toBeTruthy();
-    expect(getByText('mockedComponent')).toBeInTheDocument();
+    expect(queryByText('Log in')).not.toBeInTheDocument();
+    expect(queryByText('mockedComponent')).toBeInTheDocument();
   });
 });
