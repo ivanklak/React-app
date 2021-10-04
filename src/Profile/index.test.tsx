@@ -1,5 +1,6 @@
 import React from 'react';
-import {render, fireEvent} from '@testing-library/react';
+// @ts-ignore TypeScript definitions missing wait
+import {fireEvent, render, wait} from '@testing-library/react';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
@@ -9,7 +10,7 @@ import {IAuthenticationsData} from '../Authentication/types';
 import {AuthenticationActions} from '../Authentication/actions';
 
 import {profileAPI} from './services';
-import {mockProfileResponse, reduxStore} from './helpers/tests';
+import {createStore, mockProfileResponse} from './helpers/tests';
 
 const profileResponse = mockProfileResponse();
 const statusResponse = '#bitcoin';
@@ -20,16 +21,19 @@ const authData: IAuthenticationsData = {
   isAuth: true,
 };
 const textareaValue = 'This is my third post';
-const store = reduxStore();
 
-const createTestables = () =>
-  render(
+const createTestables = () => {
+  const store = createStore();
+  const renderResult = render(
     <BrowserRouter>
       <Provider store={store}>
         <Profile />
       </Provider>
     </BrowserRouter>,
   );
+
+  return {...renderResult, store};
+};
 
 describe('Profile Component', () => {
   let mockedGetProfile: jest.SpyInstance;
@@ -39,26 +43,34 @@ describe('Profile Component', () => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
     mockedGetStatus = jest.spyOn(profileAPI, 'getStatus');
     mockedGetProfile.mockReturnValue(Promise.resolve(profileResponse));
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
   it('should be rendered', async () => {
     mockedGetStatus.mockReturnValue(Promise.resolve(statusResponse));
 
-    createTestables();
+    const {store} = createTestables();
 
-    expect(mockedGetProfile).toBeCalledTimes(1);
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
+
+    await wait(() => expect(mockedGetProfile).toBeCalledTimes(1));
     expect(mockedGetStatus).toBeCalledTimes(1);
-    await expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
-    await expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
+    expect(mockedGetProfile).toBeCalledWith(profileResponse.userId);
+    expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
   });
 
   it('clicking on the status opens the edit mode', async () => {
     mockedGetStatus.mockReturnValue(Promise.resolve(statusResponse));
 
-    const {getByTestId} = createTestables();
+    const {getByTestId, store} = createTestables();
 
-    await expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
+
+    await wait(() => expect(mockedGetStatus).toBeCalledTimes(1));
+    expect(mockedGetStatus).toBeCalledWith(profileResponse.userId);
 
     const defaultStatus = getByTestId('DefaultStatus.Text');
 

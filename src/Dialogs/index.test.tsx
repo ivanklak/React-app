@@ -4,21 +4,23 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../matchMedia';
-
 import Dialogs from '../Dialogs';
 
-import {reduxStore} from './helpers/test';
+import {createStore} from './helpers/test';
 
 const inputValue = 'test value';
-const store = reduxStore();
-const createTestables = () =>
-  render(
+
+const createTestables = () => {
+  const store = createStore();
+
+  return render(
     <BrowserRouter>
       <Provider store={store}>
         <Dialogs />
       </Provider>
     </BrowserRouter>,
   );
+};
 
 describe('Dialogs Component', () => {
   it('dialogs items should be displayed', () => {

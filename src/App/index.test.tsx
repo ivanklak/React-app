@@ -9,19 +9,21 @@ import {authAPI} from '../Authentication/services';
 
 import App from '../App';
 
-import {mockMeResponse, reduxStore} from './helpers/test';
+import {mockMeResponse, createStore} from './helpers/test';
 
 const meResponse = mockMeResponse();
-const store = reduxStore();
 
-const createTestables = () =>
-  render(
+const createTestables = () => {
+  const store = createStore();
+
+  return render(
     <BrowserRouter>
       <Provider store={store}>
         <App />
       </Provider>
     </BrowserRouter>,
   );
+};
 
 describe('App Component', () => {
   const mockedAuth: jest.SpyInstance = jest.spyOn(authAPI, 'me');

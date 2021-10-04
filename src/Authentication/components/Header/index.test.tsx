@@ -7,7 +7,8 @@ import {fireEvent, render, wait} from '@testing-library/react';
 import '../../../matchMedia';
 import {AuthenticationActions} from '../../actions';
 import {authAPI} from '../../services';
-import {mockAuthData, reduxStore} from '../../helpers/test';
+import {mockAuthData, createStore} from '../../helpers/test';
+
 import HeaderApp from '../Header';
 
 const authData = mockAuthData();
@@ -18,16 +19,20 @@ const logoutData = mockAuthData({
   isAuth: false,
 });
 const mockedLogout: jest.SpyInstance = jest.spyOn(authAPI, 'logout');
-const store = reduxStore();
 
-const createTestables = () =>
-  render(
+const createTestables = () => {
+  const store = createStore();
+
+  const renderResult = render(
     <BrowserRouter>
       <Provider store={store}>
         <HeaderApp />
       </Provider>
     </BrowserRouter>,
   );
+
+  return {...renderResult, store};
+};
 
 describe('Header Component', () => {
   it('should be rendered', () => {
@@ -45,11 +50,10 @@ describe('Header Component', () => {
 
     expect(loginButton).toBeInTheDocument();
   });
-
   it('users avatar and Logout button should be displayed when logged', () => {
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
+    const {getByTestId, store} = createTestables();
 
-    const {getByTestId} = createTestables();
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
     const userAvatar = getByTestId('LoginUser.Img');
     const logoutButton = getByTestId('LogoutUser.Submit');
@@ -59,9 +63,9 @@ describe('Header Component', () => {
   });
 
   it('click on logout button', async () => {
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
+    const {getByTestId, store} = createTestables();
 
-    const {getByTestId} = createTestables();
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
     const logoutButton = getByTestId('LogoutUser.Submit');
 

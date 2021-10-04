@@ -1,10 +1,10 @@
 import thunk from 'redux-thunk';
-import {applyMiddleware, createStore} from 'redux';
+import {applyMiddleware, createStore as createReduxStore} from 'redux';
 
 import {reducers} from '../../App/redux-store';
 
-export const reduxStore = () => {
+export const createStore = () => {
   const middlewares = [thunk];
 
-  return createStore(reducers, applyMiddleware(...middlewares));
+  return createReduxStore(reducers, applyMiddleware(...middlewares));
 };

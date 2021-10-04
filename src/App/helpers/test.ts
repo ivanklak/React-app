@@ -1,5 +1,5 @@
 import thunk from 'redux-thunk';
-import {applyMiddleware, createStore} from 'redux';
+import {applyMiddleware, createStore as createReduxStore} from 'redux';
 
 import {IMeResponse} from '../../Authentication/services';
 import {IAuthenticationsData} from '../../Authentication/types';
@@ -21,8 +21,8 @@ export const mockAuthData = (overrides: Partial<IAuthenticationsData> = {}): IAu
   ...overrides,
 });
 
-export const reduxStore = () => {
+export const createStore = () => {
   const middlewares = [thunk];
 
-  return createStore(reducers, applyMiddleware(...middlewares));
+  return createReduxStore(reducers, applyMiddleware(...middlewares));
 };

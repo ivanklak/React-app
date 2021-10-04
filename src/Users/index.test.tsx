@@ -7,22 +7,21 @@ import '../matchMedia';
 import Users from '../Users';
 
 import {usersAPI} from './services';
-import {mockDefaultResponse, mockUsersResponse, reduxStore} from './helpers/test';
+import {mockDefaultResponse, mockUsersResponse, createStore} from './helpers/test';
 
 const defaultResponse = mockDefaultResponse();
 const usersResponse = mockUsersResponse();
-const store = reduxStore();
 
 const createTestables = () => {
-  const renderResult = render(
+  const store = createStore();
+
+  return render(
     <BrowserRouter>
       <Provider store={store}>
         <Users />
       </Provider>
     </BrowserRouter>,
   );
-
-  return {...renderResult, store};
 };
 
 describe('Users Component', () => {
@@ -109,7 +108,8 @@ describe('Users Component', () => {
   });
 
   it('by clicking on the avatar go to the profile', async () => {
-    let testLocation;
+    let testLocation: any;
+    const store = createStore();
     const {findByTestId} = render(
       <MemoryRouter initialEntries={['/users']}>
         <Provider store={store}>

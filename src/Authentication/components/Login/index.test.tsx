@@ -4,18 +4,21 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../../../matchMedia';
-import {reduxStore} from '../../helpers/test';
-import Login from '../Login';
+import {createStore} from '../../helpers/test';
+import Login, {ILoginComponentProps} from '../Login';
 
-const store = reduxStore();
-const createTestables = () =>
-  render(
+const defaultProps: ILoginComponentProps = {pathname: '*'};
+const createTestables = (props: Partial<ILoginComponentProps> = {}) => {
+  const store = createStore();
+
+  return render(
     <BrowserRouter>
       <Provider store={store}>
-        <Login />
+        <Login {...defaultProps} {...props} />
       </Provider>
     </BrowserRouter>,
   );
+};
 
 describe('Login Component', () => {
   it('should be rendered', () => {
