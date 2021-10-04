@@ -6,11 +6,10 @@ import {Provider} from 'react-redux';
 import '../../matchMedia';
 import Login from '../../Authentication/components/Login';
 import {AuthenticationActions} from '../../Authentication/actions';
-import {mockAuthData, reduxStore} from '../helpers/test';
+import {mockAuthData, createStore} from '../helpers/test';
 
 import withAuthRedirect from './withAuthRedirect';
 
-const store = reduxStore();
 const authData = mockAuthData();
 const mockedComponent = () => <div>mockedComponent</div>;
 
@@ -22,6 +21,8 @@ describe('withAuthRedirect', () => {
   });
 
   it('show login component when isAuth is false', () => {
+    const store = createStore();
+
     const {getByText} = render(
       <BrowserRouter>
         <Provider store={store}>
@@ -36,6 +37,8 @@ describe('withAuthRedirect', () => {
   });
 
   it('show wrapped component when isAuth is true', () => {
+    const store = createStore();
+
     store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
     const {getByText} = render(

@@ -4,10 +4,9 @@ import {MemoryRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../matchMedia';
-
 import {AuthenticationActions} from '../Authentication/actions';
 
-import {mockAuthData, reduxStore} from './helpers/test';
+import {mockAuthData, createStore} from './helpers/test';
 import Routes from './routes';
 
 interface IRouterProps {
@@ -15,15 +14,10 @@ interface IRouterProps {
 }
 
 const authData = mockAuthData();
-const logoutData = mockAuthData({
-  userId: null,
-  email: null,
-  login: null,
-  isAuth: false,
-});
-const store = reduxStore();
-const createTestables = (props: IRouterProps) =>
-  render(
+const createTestables = (props: IRouterProps) => {
+  const store = createStore();
+
+  const renderResult = render(
     <MemoryRouter initialEntries={[props.path]}>
       <Provider store={store}>
         <Routes />
@@ -31,14 +25,11 @@ const createTestables = (props: IRouterProps) =>
     </MemoryRouter>,
   );
 
+  return {...renderResult, store};
+};
+
 describe('router tests', () => {
-  beforeEach(() => {
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
-  });
-
   it('route path login', () => {
-    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(logoutData));
-
     const {getByTestId} = createTestables({path: '/login'});
 
     const loginInput = getByTestId('Email.Input');
@@ -47,7 +38,9 @@ describe('router tests', () => {
   });
 
   it('route path profile', () => {
-    const {getByTestId} = createTestables({path: '/profile'});
+    const {getByTestId, store} = createTestables({path: '/profile'});
+
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
     const profileTitle = getByTestId('MyPosts.Title');
 
@@ -55,7 +48,9 @@ describe('router tests', () => {
   });
 
   it('route path dialogs', () => {
-    const {getByTestId} = createTestables({path: '/dialogs'});
+    const {getByTestId, store} = createTestables({path: '/dialogs'});
+
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
     const dialogItems = getByTestId('DialogItem.User.1');
     const dialogInput = getByTestId('NewMessage.Input');
@@ -65,7 +60,9 @@ describe('router tests', () => {
   });
 
   it('route path users', () => {
-    const {getByTestId} = createTestables({path: '/users'});
+    const {getByTestId, store} = createTestables({path: '/users'});
+
+    store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
 
     const pagination = getByTestId('Pagination.Block');
     const usersList = getByTestId('Users.List');

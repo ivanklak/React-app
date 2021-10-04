@@ -11,7 +11,11 @@ import LoginForm from './LoginForm';
 
 import styles from './styles.module.css';
 
-const Login: FC = () => {
+export interface ILoginComponentProps {
+  pathname: string;
+}
+
+const Login: FC<ILoginComponentProps> = ({pathname}) => {
   const isAuth = useSelector(getAuth);
   const dispatch = useDispatch();
 
@@ -20,7 +24,7 @@ const Login: FC = () => {
   };
 
   if (isAuth) {
-    return <Redirect to="/profile" />;
+    return <Redirect to={pathname || '/profile'} />;
   }
 
   return (
