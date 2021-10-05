@@ -4,7 +4,8 @@ import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 import '../../../matchMedia';
-import {createStore} from '../../helpers/test';
+import {createStore} from '../../../App/helpers/test';
+
 import Login, {ILoginComponentProps} from '../Login';
 
 const defaultProps: ILoginComponentProps = {pathname: '*'};

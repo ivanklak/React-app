@@ -28,6 +28,10 @@ const createTestables = () => {
 describe('App Component', () => {
   const mockedAuth: jest.SpyInstance = jest.spyOn(authAPI, 'me');
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should be rendered', async () => {
     mockedAuth.mockReturnValue(Promise.resolve(meResponse));
 

@@ -8,6 +8,10 @@ describe('dialogs thunk', () => {
   const extraArgumentMock = jest.fn();
   const message = 'test message';
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('send message', async () => {
     const thunk = sendMessages(message);
 

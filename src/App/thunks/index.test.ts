@@ -14,6 +14,10 @@ describe('app thunk', () => {
   const getStateMock = jest.fn();
   const extraArgumentMock = jest.fn();
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('initializeApp thunk', async () => {
     const thunk = initializeApp();
 
