@@ -35,7 +35,11 @@ const createTestables = () => {
 };
 
 describe('Header Component', () => {
-  const mockedLogout: jest.SpyInstance = jest.spyOn(authAPI, 'logout');
+  let mockedLogout: jest.SpyInstance;
+
+  beforeEach(() => {
+    mockedLogout = jest.spyOn(authAPI, 'logout');
+  });
 
   afterEach(() => {
     jest.clearAllMocks();

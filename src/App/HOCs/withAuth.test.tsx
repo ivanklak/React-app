@@ -1,4 +1,4 @@
-import React, {ComponentType} from 'react';
+import React from 'react';
 import {render} from '@testing-library/react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
@@ -12,25 +12,26 @@ import withAuthRedirect from './withAuthRedirect';
 
 const authData = mockAuthData();
 const mockedComponent = () => <div>mockedComponent</div>;
+const WithAuthComponent = withAuthRedirect(mockedComponent);
+
+const createTestables = () => {
+  const store = createStore();
+
+  const renderResult = render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <WithAuthComponent />
+        <Route path="/login" component={Login} />
+      </Provider>
+    </BrowserRouter>,
+  );
+
+  return {...renderResult, store};
+};
 
 describe('withAuthRedirect', () => {
-  let WithAuthComponent: ComponentType;
-
-  beforeEach(() => {
-    WithAuthComponent = withAuthRedirect(mockedComponent);
-  });
-
   it('show login component when isAuth is false', () => {
-    const store = createStore();
-
-    const {queryByText} = render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <WithAuthComponent />
-          <Route path="/login" component={Login} />
-        </Provider>
-      </BrowserRouter>,
-    );
+    const {queryByText, store} = createTestables();
 
     expect(store.getState().auth.isAuth).toBeFalsy();
     expect(queryByText('Log in')).toBeInTheDocument();
@@ -38,17 +39,9 @@ describe('withAuthRedirect', () => {
   });
 
   it('show wrapped component when isAuth is true', () => {
-    const store = createStore();
+    const {queryByText, store} = createTestables();
 
     store.dispatch(AuthenticationActions.getAuthUserDataSuccess(authData));
-
-    const {queryByText} = render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <WithAuthComponent />
-        </Provider>
-      </BrowserRouter>,
-    );
 
     expect(store.getState().auth.isAuth).toBeTruthy();
     expect(queryByText('Log in')).not.toBeInTheDocument();

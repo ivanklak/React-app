@@ -9,10 +9,17 @@ const meResponse = mockMeResponse();
 const authData = mockAuthData();
 
 describe('app thunk', () => {
-  const mockedGetAuthUserData: jest.SpyInstance = jest.spyOn(authAPI, 'me');
-  const dispatchMock = jest.fn();
-  const getStateMock = jest.fn();
-  const extraArgumentMock = jest.fn();
+  let mockedGetAuthUserData: jest.SpyInstance;
+  let dispatchMock: jest.Mock;
+  let getStateMock: jest.Mock;
+  let extraArgumentMock: jest.Mock;
+
+  beforeEach(() => {
+    mockedGetAuthUserData = jest.spyOn(authAPI, 'me');
+    dispatchMock = jest.fn();
+    getStateMock = jest.fn();
+    extraArgumentMock = jest.fn();
+  });
 
   afterEach(() => {
     jest.clearAllMocks();

@@ -1,12 +1,18 @@
 import {DialogsActions} from '../actions';
-
 import {sendMessages} from '../thunks';
 
 describe('dialogs thunk', () => {
-  const dispatchMock = jest.fn();
-  const getStateMock = jest.fn();
-  const extraArgumentMock = jest.fn();
   const message = 'test message';
+
+  let dispatchMock: jest.Mock;
+  let getStateMock: jest.Mock;
+  let extraArgumentMock: jest.Mock;
+
+  beforeEach(() => {
+    dispatchMock = jest.fn();
+    getStateMock = jest.fn();
+    extraArgumentMock = jest.fn();
+  });
 
   afterEach(() => {
     jest.clearAllMocks();

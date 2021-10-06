@@ -14,15 +14,17 @@ describe('profile thunks', () => {
   let mockedGetProfile: jest.SpyInstance;
   let mockedGetStatus: jest.SpyInstance;
   let mockedUpdateStatus: jest.SpyInstance;
-
-  const dispatchMock = jest.fn();
-  const getStateMock = jest.fn();
-  const extraArgumentMock = jest.fn();
+  let dispatchMock: jest.Mock;
+  let getStateMock: jest.Mock;
+  let extraArgumentMock: jest.Mock;
 
   beforeEach(() => {
     mockedGetProfile = jest.spyOn(profileAPI, 'getProfile');
     mockedGetStatus = jest.spyOn(profileAPI, 'getStatus');
     mockedUpdateStatus = jest.spyOn(profileAPI, 'updateStatus');
+    dispatchMock = jest.fn();
+    getStateMock = jest.fn();
+    extraArgumentMock = jest.fn();
   });
 
   afterEach(() => {

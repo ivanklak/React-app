@@ -26,7 +26,11 @@ const createTestables = () => {
 };
 
 describe('App Component', () => {
-  const mockedAuth: jest.SpyInstance = jest.spyOn(authAPI, 'me');
+  let mockedAuth: jest.SpyInstance;
+
+  beforeEach(() => {
+    mockedAuth = jest.spyOn(authAPI, 'me');
+  });
 
   afterEach(() => {
     jest.clearAllMocks();

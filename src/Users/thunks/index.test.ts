@@ -11,14 +11,17 @@ describe('users thunks tests', () => {
   let mockedGetUsers: jest.SpyInstance;
   let mockedToFollow: jest.SpyInstance;
   let mockedToUnfollow: jest.SpyInstance;
-  const dispatchMock = jest.fn();
-  const getStateMock = jest.fn();
-  const extraArgumentMock = jest.fn();
+  let dispatchMock: jest.Mock;
+  let getStateMock: jest.Mock;
+  let extraArgumentMock: jest.Mock;
 
   beforeEach(() => {
     mockedGetUsers = jest.spyOn(usersAPI, 'getUsers');
     mockedToFollow = jest.spyOn(usersAPI, 'toFollow');
     mockedToUnfollow = jest.spyOn(usersAPI, 'toUnfollow');
+    dispatchMock = jest.fn();
+    getStateMock = jest.fn();
+    extraArgumentMock = jest.fn();
   });
 
   afterEach(() => {

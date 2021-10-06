@@ -19,14 +19,17 @@ describe('auth thunks', () => {
   let mockedGetAuthUserData: jest.SpyInstance;
   let mockedLogin: jest.SpyInstance;
   let mockedLogout: jest.SpyInstance;
-  const dispatchMock = jest.fn();
-  const getStateMock = jest.fn();
-  const extraArgumentMock = jest.fn();
+  let dispatchMock: jest.Mock;
+  let getStateMock: jest.Mock;
+  let extraArgumentMock: jest.Mock;
 
   beforeEach(() => {
     mockedGetAuthUserData = jest.spyOn(authAPI, 'me');
     mockedLogin = jest.spyOn(authAPI, 'login');
     mockedLogout = jest.spyOn(authAPI, 'logout');
+    dispatchMock = jest.fn();
+    getStateMock = jest.fn();
+    extraArgumentMock = jest.fn();
   });
 
   afterEach(() => {
