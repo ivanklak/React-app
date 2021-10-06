@@ -7,17 +7,22 @@ import '../../../../matchMedia';
 
 import LoginForm, {ILoginProps} from '../LoginForm';
 
-const onSubmit = jest.fn();
-const defaultProps: ILoginProps = {onSubmit};
-
-const createTestables = (props: Partial<ILoginProps>) =>
-  render(
-    <BrowserRouter>
-      <LoginForm {...defaultProps} {...props} />
-    </BrowserRouter>,
-  );
-
 describe('LoginForm Component', () => {
+  let onSubmit: jest.Mock;
+  let defaultProps: ILoginProps;
+
+  beforeEach(() => {
+    onSubmit = jest.fn();
+    defaultProps = {onSubmit};
+  });
+
+  const createTestables = (props: Partial<ILoginProps>) =>
+    render(
+      <BrowserRouter>
+        <LoginForm {...defaultProps} {...props} />
+      </BrowserRouter>,
+    );
+
   it('form should be submitted', async () => {
     const emailValue = 'test@gmail.com';
     const passwordValue = 'testPassword';

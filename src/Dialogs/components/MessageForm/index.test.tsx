@@ -7,17 +7,22 @@ import '../../../matchMedia';
 
 import MessageForm, {IPostProps} from '../MessageForm';
 
-const addNewMessage = jest.fn();
-const defaultProps: IPostProps = {addNewMessage};
-
-const createTestables = (props: Partial<IPostProps>) =>
-  render(
-    <BrowserRouter>
-      <MessageForm {...defaultProps} {...props} />
-    </BrowserRouter>,
-  );
-
 describe('MessageForm Component', () => {
+  let addNewMessage: jest.Mock;
+  let defaultProps: IPostProps;
+
+  beforeEach(() => {
+    addNewMessage = jest.fn();
+    defaultProps = {addNewMessage};
+  });
+
+  const createTestables = (props: Partial<IPostProps>) =>
+    render(
+      <BrowserRouter>
+        <MessageForm {...defaultProps} {...props} />
+      </BrowserRouter>,
+    );
+
   it('show the sent message', async () => {
     const inputValue = 'test message';
 

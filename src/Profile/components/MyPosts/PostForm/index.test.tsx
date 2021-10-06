@@ -7,17 +7,22 @@ import '../../../../matchMedia';
 
 import PostForm, {IPostProps} from '../PostForm';
 
-const onAddPost = jest.fn();
-const defaultProps: IPostProps = {onAddPost};
-
-const createTestables = (props: Partial<IPostProps>) =>
-  render(
-    <BrowserRouter>
-      <PostForm {...defaultProps} {...props} />
-    </BrowserRouter>,
-  );
-
 describe('PostForm Component', () => {
+  let onAddPost: jest.Mock;
+  let defaultProps: IPostProps;
+
+  beforeEach(() => {
+    onAddPost = jest.fn();
+    defaultProps = {onAddPost};
+  });
+
+  const createTestables = (props: Partial<IPostProps>) =>
+    render(
+      <BrowserRouter>
+        <PostForm {...defaultProps} {...props} />
+      </BrowserRouter>,
+    );
+
   it('show the sent post', async () => {
     const textareaValue = 'This is my third post';
 
