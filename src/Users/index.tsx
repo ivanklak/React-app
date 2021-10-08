@@ -11,31 +11,29 @@ import User from './components/User';
 import styles from './styles.module.css';
 
 const Users: FC = () => {
-  const {users, pageSize, totalUsersCount, currentPage, followingInProgress, isFetching} = useSelector(selector);
+  const {users, pageSize, currentPage, totalUsersCount, followingInProgress, isFetching} = useSelector(selector);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestUsers(currentPage, pageSize));
+    dispatch(requestUsers({currentPage, pageSize}));
   }, []);
 
   const onPageChanged = useCallback(
-    (pageNumber: number) => {
-      dispatch(requestUsers(pageNumber, pageSize));
+    (currentPage: number) => {
+      dispatch(requestUsers({currentPage, pageSize}));
     },
     [currentPage],
   );
 
-  const pagesCount = Math.ceil(totalUsersCount / pageSize);
-
   return users ? (
     <Row>
       <Col span={24} className={styles.usersContainer}>
-        <div className={styles.pagination}>
-          <Pagination size="small" current={currentPage} total={pagesCount} onChange={onPageChanged} showSizeChanger={false} />
+        <div data-testid="Pagination.Block" className={styles.pagination}>
+          <Pagination size="small" current={currentPage} total={totalUsersCount} pageSize={pageSize} onChange={onPageChanged} showSizeChanger={false} />
         </div>
-        <div className={styles.usersList}>
+        <div className={styles.usersList} data-testid="Users.List">
           {users.map(u => (
-            <User data-testid={`UserItem.${u.id}`} user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
+            <User user={u} followingInProgress={followingInProgress} key={u.id} isFetching={isFetching} />
           ))}
         </div>
       </Col>

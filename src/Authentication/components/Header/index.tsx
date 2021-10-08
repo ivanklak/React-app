@@ -21,7 +21,7 @@ const HeaderApp: FC = () => {
   };
 
   return (
-    <Header>
+    <Header data-testid="Header.Title">
       <Row>
         <Col span={20}>
           <Avatar src="https://cdn.auth0.com/blog/react-js/react.png" />
@@ -29,7 +29,7 @@ const HeaderApp: FC = () => {
         {isAuth ? (
           <>
             <Col span={1}>
-              <Avatar className={styles.headerAvatar} icon={<UserOutlined />} />
+              <Avatar data-testid="LoginUser.Img" className={styles.headerAvatar} icon={<UserOutlined />} />
             </Col>
             <Col span={3}>
               <Button data-testid="LogoutUser.Submit" onClick={onLogout}>

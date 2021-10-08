@@ -4,11 +4,15 @@ import {createAction} from '../../App/actions/helpers';
 import {IAuthenticationsData} from '../types';
 
 export enum AuthenticationActionTypes {
-  SET_USER_DATA = 'AUTH/SET_USER_DATA',
+  GET_USER_DATA_REQUEST = 'AUTH/GET_USER_DATA_REQUEST',
+  GET_USER_DATA_SUCCESS = 'AUTH/GET_USER_DATA_SUCCESS',
+  GET_USER_DATA_FAILURE = 'AUTH/GET_USER_DATA_FAILURE',
 }
 
 export const AuthenticationActions = {
-  setAuthUserData: (payload: IAuthenticationsData) => createAction(AuthenticationActionTypes.SET_USER_DATA, payload),
+  getAuthUserDataRequest: () => createAction(AuthenticationActionTypes.GET_USER_DATA_REQUEST),
+  getAuthUserDataSuccess: (payload: IAuthenticationsData) => createAction(AuthenticationActionTypes.GET_USER_DATA_SUCCESS, payload),
+  getAuthUserDataFailure: (payload: string) => createAction(AuthenticationActionTypes.GET_USER_DATA_FAILURE, payload),
 };
 
 export type AuthenticationAction = ActionsUnion<typeof AuthenticationActions>;

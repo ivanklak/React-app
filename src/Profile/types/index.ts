@@ -29,6 +29,6 @@ export interface IProfile {
   lookingForAJob: boolean;
   lookingForAJobDescription: string;
   fullName: string;
-  contacts: IContacts;
+  contacts: IContacts | null;
   photos: IPhotos;
 }

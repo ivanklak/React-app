@@ -2,27 +2,29 @@ import {IUser} from '../types';
 
 import {UsersAction, UsersActionTypes} from '../actions';
 
-interface IUsersState {
+export interface IUsersState {
   users: Array<IUser>;
   pageSize: number;
   totalUsersCount: number;
   currentPage: number;
   isFetching: boolean;
   followingInProgress: Array<number>;
+  error: string | null;
 }
 
-const initialState: IUsersState = {
+export const initialState: IUsersState = {
   users: [],
   pageSize: 100,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: true,
+  isFetching: false,
   followingInProgress: [],
+  error: null,
 };
 
 const usersReducer = (state = initialState, action: UsersAction): IUsersState => {
   switch (action.type) {
-    case UsersActionTypes.FOLLOW:
+    case UsersActionTypes.FOLLOW_SUCCESS:
       return {
         ...state,
         users: state.users.map(u => {
@@ -34,7 +36,10 @@ const usersReducer = (state = initialState, action: UsersAction): IUsersState =>
         }),
       };
 
-    case UsersActionTypes.UNFOLLOW:
+    case UsersActionTypes.FOLLOW_FAILURE:
+      return {...state, error: action.payload};
+
+    case UsersActionTypes.UNFOLLOW_SUCCESS:
       return {
         ...state,
         users: state.users.map(u => {
@@ -46,8 +51,15 @@ const usersReducer = (state = initialState, action: UsersAction): IUsersState =>
         }),
       };
 
-    case UsersActionTypes.SET_USERS: {
+    case UsersActionTypes.UNFOLLOW_FAILURE:
+      return {...state, error: action.payload};
+
+    case UsersActionTypes.GET_USERS_SUCCESS: {
       return {...state, users: action.payload};
+    }
+
+    case UsersActionTypes.GET_USERS_FAILURE: {
+      return {...state, error: action.payload};
     }
 
     case UsersActionTypes.SET_CURRENT_PAGE: {

@@ -4,7 +4,7 @@ interface IInitializeState {
   initialized: boolean;
 }
 
-const initialState: IInitializeState = {
+export const initialState: IInitializeState = {
   initialized: false,
 };
 

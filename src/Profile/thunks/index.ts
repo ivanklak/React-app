@@ -13,25 +13,40 @@ export const getUserProfile =
 
       dispatch(ProfileActions.getUserProfileSuccess(response));
     } catch (error) {
-      dispatch(ProfileActions.getUserProfileFailure(error.message));
+      const result = (error as Error).message;
+
+      dispatch(ProfileActions.getUserProfileFailure(result));
     }
   };
 
 export const getStatus =
   (userId: number): IThunkResult<Promise<void>, ProfileAction> =>
   async dispatch => {
-    const response = await profileAPI.getStatus(userId);
+    dispatch(ProfileActions.getStatusRequest());
+    try {
+      const response = await profileAPI.getStatus(userId);
 
-    dispatch(ProfileActions.setStatus(response));
+      dispatch(ProfileActions.getStatusSuccess(response));
+    } catch (error) {
+      const result = (error as Error).message;
+
+      dispatch(ProfileActions.getStatusFailure(result));
+    }
   };
 
 export const updateStatus =
   (status: string): IThunkResult<Promise<void>, ProfileAction> =>
   async dispatch => {
-    const response = await profileAPI.updateStatus(status);
+    try {
+      const response = await profileAPI.updateStatus(status);
 
-    if (response.resultCode === ResultCodes.Success) {
-      dispatch(ProfileActions.setStatus(status));
+      if (response.resultCode === ResultCodes.Success) {
+        dispatch(ProfileActions.getStatusSuccess(status));
+      }
+    } catch (error) {
+      const result = (error as Error).message;
+
+      dispatch(ProfileActions.getStatusFailure(result));
     }
   };
 

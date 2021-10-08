@@ -8,7 +8,7 @@ import authReducer from '../Authentication/reducers';
 
 import appReducer from './reducers';
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   usersPage: usersReducer,

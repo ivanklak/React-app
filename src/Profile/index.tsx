@@ -28,7 +28,7 @@ const Profile: FC<RouteComponentProps<IPathParams>> = props => {
       dispatch(getUserProfile(userId));
       dispatch(getStatus(userId));
     }
-  }, []);
+  }, [authorizedUserId]);
 
   return (
     <Row>

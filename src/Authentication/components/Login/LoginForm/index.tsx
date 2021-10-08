@@ -3,7 +3,7 @@ import {Button, Checkbox, Form, Input} from 'antd';
 
 import {ILoginFormData} from '../../../types';
 
-interface ILoginProps {
+export interface ILoginProps {
   onSubmit: (formData: ILoginFormData) => void;
 }
 

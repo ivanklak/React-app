@@ -8,17 +8,18 @@ import selector from '../../../selectors';
 import styles from './styles.module.css';
 
 interface IPostProps {
+  id: number;
   message: string;
   likesCount: number;
 }
 
 const {Meta} = Card;
 
-const Post: FC<IPostProps> = ({message, likesCount}) => {
+const Post: FC<IPostProps> = ({id, message, likesCount}) => {
   const {profile} = useSelector(selector);
 
   return (
-    <Card className={styles.postItem}>
+    <Card data-testid={`NewPost.Message.${id}`} className={styles.postItem}>
       <Row align="middle">
         <Col span={22}>
           <Meta

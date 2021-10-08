@@ -1,11 +1,52 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+// @ts-ignore TypeScript definitions missing wait
+import {render, wait} from '@testing-library/react';
+import {BrowserRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
 
-import App from './index';
+import '../matchMedia';
+import {authAPI} from '../Authentication/services';
 
-test('renders learn react link', () => {
-  const {getByText} = render(<App />);
-  const linkElement = getByText(/learn react/i);
+import App from '../App';
 
-  expect(linkElement).toBeInTheDocument();
+import {mockMeResponse, createStore} from './helpers/test';
+
+const meResponse = mockMeResponse();
+
+const createTestables = () => {
+  const store = createStore();
+
+  return render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>,
+  );
+};
+
+describe('App Component', () => {
+  let mockedAuth: jest.SpyInstance;
+
+  beforeEach(() => {
+    mockedAuth = jest.spyOn(authAPI, 'me');
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should be rendered', async () => {
+    mockedAuth.mockReturnValue(Promise.resolve(meResponse));
+
+    const {getByTestId, getByRole} = createTestables();
+
+    await wait(() => expect(mockedAuth).toHaveBeenCalledTimes(1));
+
+    const header = getByTestId('Header.Title');
+    const menu = getByRole('menu');
+
+    expect(header).toBeInTheDocument();
+    expect(menu).toBeInTheDocument();
+  });
 });

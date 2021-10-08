@@ -18,14 +18,14 @@ interface IUserProps {
 const {Meta} = Card;
 
 const User: FC<IUserProps> = ({user, followingInProgress, isFetching}) => (
-  <Card className={styles.userCard}>
+  <Card className={styles.userCard} data-testid={`UserItem.${user.id}`}>
     <Row align="middle">
       <Col span={19} className={styles.userDescription}>
         <Skeleton loading={isFetching} avatar active title={false} paragraph={{rows: 2}}>
           <Meta
             avatar={
               <NavLink to={`/profile/${user.id}`}>
-                <Avatar src={user.photos.small || userPhoto} className={styles.userAvatar} />
+                <Avatar data-testid={`UserItem.Avatar.${user.id}`} src={user.photos.small || userPhoto} className={styles.userAvatar} />
               </NavLink>
             }
             title={user.name}

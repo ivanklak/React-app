@@ -2,12 +2,12 @@ import {IDialogs, IMessages} from '../types';
 
 import {DialogsAction, DialogsActionTypes} from '../actions';
 
-interface IDialogsState {
+export interface IDialogsState {
   messages: Array<IMessages>;
   dialogs: Array<IDialogs>;
 }
 
-const initialState: IDialogsState = {
+export const initialState: IDialogsState = {
   messages: [
     {id: 1, message: 'Hi'},
     {id: 2, message: 'How are you?'},

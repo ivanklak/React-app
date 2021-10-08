@@ -14,7 +14,7 @@ const MyPosts: FC = () => {
   const {posts} = useSelector(selector);
   const dispatch = useDispatch();
 
-  const postsElements = posts.map(p => <Post data-testid={`NewPost.Message.${p.id}`} key={p.id} message={p.message} likesCount={p.likesCount} />);
+  const postsElements = posts.map(p => <Post id={p.id} key={p.id} message={p.message} likesCount={p.likesCount} />);
 
   const onAddPost = (values: IPostValues) => {
     dispatch(addNewPost(values.newPostText));
@@ -22,7 +22,7 @@ const MyPosts: FC = () => {
 
   return (
     <div className={styles.postsContainer}>
-      <h2>My posts</h2>
+      <h2 data-testid="MyPosts.Title">My posts</h2>
       <div className={styles.postForm}>
         <PostForm onAddPost={onAddPost} />
       </div>
