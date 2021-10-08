@@ -7,8 +7,7 @@ import '../../../../matchMedia';
 
 import PostForm, {IPostProps} from '../PostForm';
 
-const postProps = {onAddPost: () => ({})};
-const defaultProps = postProps;
+const defaultProps = {onAddPost: () => ({})};
 
 const createTestables = (props: Partial<IPostProps>) =>
   render(

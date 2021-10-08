@@ -7,8 +7,7 @@ import '../../../matchMedia';
 
 import MessageForm, {IMessageFormProps} from '../MessageForm';
 
-const messageProps = {addNewMessage: () => ({})};
-const defaultProps: IMessageFormProps = messageProps;
+const defaultProps: IMessageFormProps = {addNewMessage: () => ({})};
 
 const createTestables = (props: Partial<IMessageFormProps>) =>
   render(
