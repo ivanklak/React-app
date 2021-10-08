@@ -7,8 +7,8 @@ import '../../../../matchMedia';
 
 import LoginForm, {ILoginProps} from '../LoginForm';
 
-const onSubmit = () => ({});
-const defaultProps: ILoginProps = {onSubmit};
+const loginProps = {onSubmit: () => ({})};
+const defaultProps: ILoginProps = loginProps;
 
 const createTestables = (props: Partial<ILoginProps>) =>
   render(

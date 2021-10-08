@@ -5,12 +5,12 @@ import {BrowserRouter} from 'react-router-dom';
 
 import '../../../matchMedia';
 
-import MessageForm, {IPostProps} from '../MessageForm';
+import MessageForm, {IMessageFormProps} from '../MessageForm';
 
-const addNewMessage = () => ({});
-const defaultProps: IPostProps = {addNewMessage};
+const messageProps = {addNewMessage: () => ({})};
+const defaultProps: IMessageFormProps = messageProps;
 
-const createTestables = (props: Partial<IPostProps>) =>
+const createTestables = (props: Partial<IMessageFormProps>) =>
   render(
     <BrowserRouter>
       <MessageForm {...defaultProps} {...props} />

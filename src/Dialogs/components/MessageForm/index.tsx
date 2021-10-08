@@ -5,11 +5,11 @@ import {IMessageValues} from '../../types';
 
 import styles from './styles.module.css';
 
-export interface IPostProps {
+export interface IMessageFormProps {
   addNewMessage: (values: IMessageValues) => void;
 }
 
-const MessageForm: FC<IPostProps> = ({addNewMessage}) => (
+const MessageForm: FC<IMessageFormProps> = ({addNewMessage}) => (
   <Form layout="inline" initialValues={{remember: true}} onFinish={addNewMessage}>
     <Form.Item name="newMessageBody" rules={[{required: true, message: 'Please input your message'}]}>
       <Input className={styles.messageEnter} data-testid="NewMessage.Input" />
