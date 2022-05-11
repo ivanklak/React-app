@@ -28,6 +28,8 @@ const App: FC = () => {
   if (!initialized) {
     return <Preloader />;
   }
+  
+  //some changes
 
   return (
     <Layout>
